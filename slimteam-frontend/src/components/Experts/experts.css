@@ -1,0 +1,179 @@
+.container-search-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .button-expert {
+    background-color: #152d73;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+  }
+
+  .expert-list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem 0rem;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.01rem solid black;
+    width: 12%;
+    padding: 0.75rem 0.75rem;
+  }
+  
+  .card-container:hover {
+    box-shadow: 0 1rem 1rem 0 rgba(0,0,0,0.2);
+  }
+  
+  .card-name {
+    font-size: 0.9rem;
+  }
+
+  .card-expertise {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .card-address {
+    font-size: 0.8rem;
+  }
+
+  .star-review-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .rating-stars{
+    color: rgb(203, 19, 117);
+    font-size: 1rem;
+}
+
+  .number-reviews{
+    font-size: 0.85rem;
+}
+
+  .view-details-button {
+    text-decoration: none;
+    color: black;
+  }
+
+
+/* Expert portfolio page*/
+
+.goBackArrow{
+  background-color: white;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  margin: 0rem 1rem;
+}
+
+.goBackText {
+font-size: 1rem;
+cursor: pointer;
+color: gray;
+}
+
+.expert-portfolio {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.expert-description-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem ;
+}
+
+.banner {
+  width: 100%;
+  height: 18rem;
+  background-color: aliceblue;
+}
+
+.profile-picture {
+  border: 0.01rem solid black;
+  border-radius: 50%;
+  padding: 0.3rem ;
+  margin-top: -9rem;
+  margin-left: 1rem;
+}
+
+.expert-headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.name-address {
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+}
+
+.contact-message {
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+gap: 1rem;
+}
+
+.professional-experience {
+  border: 0.01rem solid black;
+  border-radius: 1rem;
+  padding: 1rem ;
+}
+
+
+.rate-review-container {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  border: 0.01rem solid black;
+  border-radius: 1rem;
+  width: 23%;
+  margin-bottom: 1rem;
+  padding: 1rem ;
+}
+
+.write-review {
+  width: 80%;
+  background-color: white;
+  border: 0.01rem solid black;
+
+}
