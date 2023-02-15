@@ -22,9 +22,9 @@ function Footer() {
             <div className='container-contact'>
               <div className='container-contact-address'>
                 <h5>SlimTeam (Head Office)</h5>
-                <p className='paragraph'>Soerser Weg 11b</p>
-                <p className='paragraph'>52070 Aachen, Germany</p>
-                <p className='paragraph'>+49 (0) - 176 - 4040 - 2523</p>
+                <p className='paragraph'>Central Park Str. 55</p>
+                <p className='paragraph'>68059 Berlin, Germany</p>
+                <p className='paragraph'>+49 (0) - XXX - XXX - XXXX</p>
                 <a href="mailto:info@slimteam.com">info@slimteam.com</a>
 
               </div>
