@@ -19,9 +19,9 @@ export default function ExploreExperts({experts, setExperts}) {
         {experts.map((expert, index) =>
           <div className="card-container">
             <img src="https://wallpapercave.com/wp/wp10092195.jpg" alt="Expert image" style={{height: 100, width: 100}}/>
-            <p className='card-name'><b>{expert.first_name} {expert.last_name}</b></p>
-            <p className='card-expertise'>{expert.expertise}</p>
-            <button className="button-expert"><NavLink to={`/explore-experts/${expert.first_name}`} className="button-expert">view details</NavLink></button>
+            <p className='card-name'><b>{expert.personal_details.first_name} {expert.personal_details.last_name}</b></p>
+            <p className='card-expertise'>{expert.personal_details.skills}</p>
+            <button className="button-expert"><NavLink to={`/explore-experts/${expert.personal_details.first_name}`} className="button-expert">view details</NavLink></button>
           </div>
            )}
       </div>

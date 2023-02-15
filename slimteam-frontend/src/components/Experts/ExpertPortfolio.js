@@ -3,20 +3,19 @@ import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 
+// whenever we are using axios and getting data from the backend we need to use optional chaining to load the data in front-end other wise we get undefined value
 
-export default function ExploreExperts() {
-
+export default function ExpertPortfolio() {
+console.log("expolore")
   const [expert, setExpert] = useState({})
   const {name} = useParams()
   const navigate = useNavigate();
-
 
   useEffect(() => {
     axios
     .get(`http://localhost:8888/explore-experts/${name}`)
     .then((res) => {
       setExpert(res.data)
-      console.log(res.data)
     })
     .catch((err) => {
       console.log(`Error fetching sought expert in database: ${err}`);
@@ -52,8 +51,8 @@ export default function ExploreExperts() {
 
           <div className='expert-headline'>
             <div className='name-address'>
-              <h4><b>{expert.first_name} {expert.last_name}</b></h4>
-              <h6>{expert.expertise}, Aachen, Germany</h6>
+              <h4><b>{expert.personal_details?.first_name} {expert.personal_details?.last_name}</b></h4>
+              <h6>{expert.personal_details?.skills}, Aachen, Germany</h6>
             </div>
 
             <div className='contact-message'>
@@ -99,7 +98,7 @@ export default function ExploreExperts() {
         </div>
 
         <div className='rate-review-container'>
-          <h4>Before you book <b>{expert.first_name}</b></h4>
+          <h4>Before you book <b>{expert.personal_details?.first_name}</b></h4>
           <button className='button-expert'>Previous assignment media files</button>
           <button className='button-expert'>Rates</button>
           <button className='button-expert'>Terms and conditions</button>

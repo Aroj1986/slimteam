@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import AboutUs from './components/AboutUs/AboutUs'
 import ExploreExperts from './components/Experts/ExploreExperts'
-import Expert from './components/Experts/ExpertPortfolio'
+import ExpertPortfolio from './components/Experts/ExpertPortfolio'
 import MeetUs from './components/Career/MeetUs'
 import Feedback from './components/Feedback/Feedback'
 import Register from './components/RegisterLogin/Register'
@@ -46,7 +46,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<AboutUs />}></Route>
       <Route path="/explore-experts" element={<ExploreExperts experts={experts} setExperts={setExperts}/>}></Route>
-      <Route path="/explore-experts/:name" element={<Expert expert={expert} setExpert={setExpert}/>}></Route>
+      <Route path="/explore-experts/:name" element={<ExpertPortfolio />}></Route>
       <Route path='/meet-us' element={<MeetUs />}></Route>
       <Route path='/feedback' element={<Feedback />}></Route>
       <Route path='/register' element={<Register />}></Route>
