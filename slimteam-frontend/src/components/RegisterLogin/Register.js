@@ -5,7 +5,7 @@ import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 import { useState } from "react";
-import axios from "axios"
+import axios from "axios";
 
 function Register() {
   const [type, setType] = useState("password");
@@ -14,7 +14,8 @@ function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
-
+  const [expert, setExpert] = useState(false);
+  const [user, setUser] = useState(false);
 
   const handleToggle = () => {
     if (type === "password") {
@@ -27,46 +28,47 @@ function Register() {
   };
 
   const onChangeEmail = (e) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   const onChangePassword = (e) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const onChangeRepeatPassword = (e) => {
-    if(password === e.target.value) {
-      setRepeatPassword(e.target.value)
+    if (password === e.target.value) {
+      setRepeatPassword(e.target.value);
+    } else {
+      repeatPassword.setCustomValidity("Passwords Don't Match");
     }
-    else {
-     repeatPassword.setCustomValidity("Passwords Don't Match");
-    }
-  }
+  };
 
-  // function validatePassword(){
-  //   if(password.value != confirm_password.value) {
-  //     confirm_password.setCustomValidity("Passwords Don't Match");
-  //   } else {
-  //     confirm_password.setCustomValidity('');
-  //   }
-  // }
+  const expertOnChange = (e) => {
+      setUser(false)
+      setExpert(true);
+  };
 
-  console.log(email)
-  console.log(password)
-  console.log(repeatPassword)
+  const userOnChange = (e) => {
+    setExpert(false);
+    setUser(true);
+};
+
+console.log(`expert : ${expert}`)
+console.log(`user : ${user}`)
 
   return (
     <>
       <div className="registerLogin-container">
         <h3>Create account</h3>
-        <form >
+        <form>
           <div className="form-group">
             <input
-              // type ="text"
+              type="email"
               name="email"
               placeholder="Email"
               className="form-input"
-              onChange = {onChangeEmail}
+              onChange={onChangeEmail}
+              required
             ></input>
           </div>
 
@@ -75,11 +77,11 @@ function Register() {
               type={type}
               name="password"
               placeholder="Password"
-              minlength="8"
-              maxlength="15"
-              pattern="[a-zA-Z0-9]{8,15}"
+              // minlength="8"
+              // maxlength="15"
+              // pattern="[a-zA-Z0-9]{8,15}"
               className="password-input"
-              onChange = {onChangePassword}
+              onChange={onChangePassword}
             ></input>
             <span onClick={handleToggle} className="password-icon">
               <Icon icon={icon} />
@@ -95,54 +97,73 @@ function Register() {
               maxlength="15"
               pattern="[a-zA-Z0-9]{8,15}"
               className="password-input"
-              onChange = {onChangeRepeatPassword}
+              onChange={onChangeRepeatPassword}
             ></input>
             <span onClick={handleToggle} className="password-icon">
               <Icon icon={icon} />
             </span>
           </div>
 
-          {/* <div> */}
-          {/* <input type="radio" id="html" name="fav_language" value="Exper" />
-          <label for="html"><strong>Are you registering as an expert?</strong></label><br/> */}
-          {/* <input type="radio" id="css" name="fav_language" value="CSS"/>
-          <label for="css">CSS</label><br/> */}
-          {/* </div> */}
+          <div className="radiobutton">
+          <input type="radio" id="expert" name="fav_language" value="Expert" onChange={expertOnChange} />
+          <label for="expert"><strong>Expert?</strong></label><br/>
+          <input type="radio" id="user" name="fav_language" value="user" onChange={userOnChange}/>
+          <label for="user"><strong>User?</strong></label><br/>
+          </div>
 
-          <div className="remember-forgot">
+          {/* <div className="remember-forgot">
             <div>
               <input type="checkbox" name="agree-term"></input>
               <label for="agree-term">
                 I agree all statements in <u>Terms of service</u>
               </label>
             </div>
-          </div>
+          </div> */}
 
           <div className="form-group">
-            <input
+          <button
               type="submit"
               name="submit"
               onClick={(e) => {
                 e.preventDefault();
-                // alert("Are you registering as an expert!!");
-                const postData = {
-                  email ,
-                  password
+                if (password === repeatPassword) {
+                  if(password.length >= 8 && password.length <= 15) {
+                    const postData = {
+                      email,
+                      password,
+                    };
+                    axios
+                      .post("http://localhost:8888/register", postData)
+                      .then((res) => {
+                        console.log(res.data);
+                      })
+                      .catch((err) => {
+                        if (err) {
+                          alert("user exists!!");
+                          console.log(
+                            `Error fetching sought expert in database: ${err}`
+                          );
+                        }
+                      });
+                
+                  }
+                  else {
+                    alert("password length not permitted!!")
+                  }
                 }
-                axios
-                  .post(("http://localhost:8888/register"),postData)
-                  .then((res) => {
-                    console.log(res.data);
-                  })
-                  .catch((err) => {
-                    console.log(
-                      `Error fetching sought expert in database: ${err}`
-                    );
-                  });
+                else {
+                  if(password !== repeatPassword) {
+                    alert("password missmatch!!")
+                  }
+                  else {
+                    alert("password length should be between 8 & 15!")
+                  }
+                }
               }}
               value="Register"
               className="form-submit"
-            ></input>
+            >
+               <NavLink to="/explore-experts">Register</NavLink> </button> 
           </div>
 
           <div class="hr-sect">

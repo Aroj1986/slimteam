@@ -12,6 +12,7 @@ import Feedback from './components/Feedback/Feedback'
 import Register from './components/RegisterLogin/Register'
 import Login from './components/RegisterLogin/Login'
 import Footer from './components/Footer/Footer'
+import Profile from './components/Profile/Profile';
 
 export default function App() {
 
@@ -51,6 +52,7 @@ export default function App() {
       <Route path='/feedback' element={<Feedback />}></Route>
       <Route path='/register' element={<Register />}></Route>
       <Route path='/login' element={<Login />}></Route>
+      <Route path='/profile' element={<Profile />}></Route>
     </Routes>
     <Footer />
     </>
