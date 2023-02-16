@@ -13,6 +13,8 @@ import Register from './components/RegisterLogin/Register'
 import Login from './components/RegisterLogin/Login'
 import Footer from './components/Footer/Footer'
 import Profile from './components/Profile/Profile';
+import Calender from './components/Calender/Calender';
+
 
 export default function App() {
 
@@ -53,6 +55,8 @@ export default function App() {
       <Route path='/register' element={<Register />}></Route>
       <Route path='/login' element={<Login />}></Route>
       <Route path='/profile' element={<Profile />}></Route>
+      <Route path='/book-online/:name' element={<Calender />}></Route>
+
     </Routes>
     <Footer />
     </>
