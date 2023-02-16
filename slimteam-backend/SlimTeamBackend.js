@@ -8,13 +8,16 @@ const cors = require('cors')
 const slimTeamRouter = require('./Routes/slimTeamRoutes')
 const userAuthenticationRouter = require('./Routes/UserAuthenticationRoutes')
 const {errorHandler} = require('./middlewares/errorHandler')
+const CalenderRoutes = require('./Routes/CalenderRoutes')
 
 slimTeam.use(express.json())
 slimTeam.use(cors())
 slimTeam.use('/', slimTeamRouter)
 slimTeam.use('/explore-experts', slimTeamRouter)
 slimTeam.use('/explore-experts/:name', slimTeamRouter)
+slimTeam.use('/', CalenderRoutes)
 slimTeam.use('/', userAuthenticationRouter)
+
 
 slimTeam.use(errorHandler)
 
