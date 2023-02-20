@@ -3,8 +3,8 @@ const CalenderRoutes = express.Router()
 const {createAppointment, getAppointments, getAppointment, updateAppointment, deleteAppointment} = require('../CallbackFunctions/CalenderCallbackFunctions')
 
 
-CalenderRoutes.route('/book-online/:title').post(createAppointment).get(getAppointment).delete(deleteAppointment)
-CalenderRoutes.route('/book-online').get(getAppointments)
+CalenderRoutes.route('/book-online/:id').get(getAppointment).delete(deleteAppointment).put(updateAppointment)
+CalenderRoutes.route('/book-online').get(getAppointments).post(createAppointment)
 
 
 
