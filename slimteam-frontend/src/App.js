@@ -13,13 +13,15 @@ import Register from './components/RegisterLogin/Register'
 import Login from './components/RegisterLogin/Login'
 import Footer from './components/Footer/Footer'
 import Profile from './components/Profile/Profile';
+import Portfolio from './components/Profile/Portfolio';
+import AddButtonForm from './components/Profile/AddButtonForm';
 import Calender from './components/Calender/Calender';
 
 
 export default function App() {
 
   const [experts, setExperts] = useState([])
-  const [expert, setExpert] = useState({})
+  // const [expert, setExpert] = useState({})
   const {name} = useParams()
 
   const [userLogin, setUserLogin] = useState(false)
@@ -31,18 +33,6 @@ export default function App() {
       setExperts(res.data)
     })
   }, [])
-  
-  useEffect(() => {
-    axios
-    .get(`http://localhost:8888/explore-experts/${name}`)
-    .then((res) => {
-      setExpert(res.data)
-    })
-    .catch((err) => {
-      console.log(`Error fetching sought expert in database: ${err}`);
-    })
-  }, [name])
-
   return (
     <>
     <Header />
@@ -55,8 +45,11 @@ export default function App() {
       <Route path='/jobwall' element={<Jobwall />}></Route>
       <Route path='/register' element={<Register />}></Route>
       <Route path='/profile' element={<Profile />}></Route>
+      <Route path='/portfolio/:name' element={<Portfolio name = {name} />}></Route>
+      <Route path='/addform' element={<AddButtonForm />}></Route>
       <Route path='/login' element={<Login setUserLogin={setUserLogin}/>}></Route>
       <Route path='/book-online/:name' element={<Calender />}></Route>
+
     </Routes>
     <Footer />
     </>

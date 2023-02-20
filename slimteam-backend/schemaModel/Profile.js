@@ -15,13 +15,13 @@ const profileSchema = new Schema (
             last_name : {type : String},
             address : {
                 street : {type : String},
-                h_no : {type : Number},
-                postal_code : {type : Number},
+                // h_no : {type : Number},
+                postal_code : {type : String},
                 city : {type : String},
             },
             nationality : {type : String},
             dob :  {type : Date},
-            phone_number : {type : Number},
+            phone_number : {type : String},
         },
        
         experience : [{
