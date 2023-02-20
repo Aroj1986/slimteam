@@ -7,7 +7,7 @@ const { ErrorResponse } = require("../utilities/ErrorResponse");
 const registerUser = async (req, res, next) => {
   try {
     // send email and password from req.body frontend
-    const { email, password } = req.body;
+    const { email, password, isExpert, isUser } = req.body;
 
     // check if user exists, if yes throw error from ErrorResponse class
     const user = await User.findOne({ email });
@@ -17,7 +17,7 @@ const registerUser = async (req, res, next) => {
     const hashPassword = await bcrypt.hash(password, 5);
 
     // save the new user with the hashed password
-    const newUser = await User.create({ email, password: hashPassword });
+    const newUser = await User.create({ email, password: hashPassword, isExpert, isUser });
 
     /* generate an One-Time Password (OTP) or security/authentication token 
     to be validated by the server to access the server in a more secured way

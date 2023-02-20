@@ -14,8 +14,8 @@ function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
-  const [expert, setExpert] = useState(false);
-  const [user, setUser] = useState(false);
+  const [isExpert, setIsExpert] = useState(false);
+  const [isUser, setIsUser] = useState(false);
 
   const handleToggle = () => {
     if (type === "password") {
@@ -40,13 +40,13 @@ function Register() {
   };
 
   const expertOnChange = (e) => {
-    setUser(false);
-    setExpert(true);
+    setIsUser(false);
+    setIsExpert(true);
   };
 
   const userOnChange = (e) => {
-    setExpert(false);
-    setUser(true);
+    setIsExpert(false);
+    setIsUser(true);
   };
 
   const registerOnClick = (e) => {
@@ -56,7 +56,7 @@ function Register() {
     } else if(repeatPassword !== password) {
       alert('password does not match')
     } else {
-      const postData = {email, password}
+      const postData = {email, password, isExpert, isUser}
       axios
       .post(("http://localhost:8888/register"),postData)
       .then((res) => {
