@@ -1,0 +1,124 @@
+.post-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+}
+
+.post-div {
+  border: 0.001rem solid rgb(230, 222, 222);
+  padding: 0.75rem 0.75rem;
+  border-radius: 0.75rem;
+  width: 40rem;
+}
+
+.post-input {
+  width: 35rem;
+  height: 2.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 0.4rem;
+  border: 0.001rem solid rgb(230, 222, 222);
+}
+
+.post-submit {
+  height: 2.5rem;
+  width: 3rem;
+  border: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #152d73;
+  border-radius: 0.7rem;
+  cursor: pointer;
+}
+
+.post-submit:active {
+  padding-top: 11px;
+  padding-right: 10px;
+  padding-bottom: 9px;
+  padding-left: 10px;
+  top: 1px;
+  color: white;
+}
+
+.attachment-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem 0rem;
+}
+
+.post-card {
+  border: 0.001rem solid rgb(230, 222, 222);
+  padding: 0.75rem 0.75rem;
+  border-radius: 0.75rem;
+  width: 40rem;
+}
+
+.post-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-image {
+  width: 38rem;
+}
+
+.response-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10rem;
+}
+
+.respond-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.horizontal-line {
+  border: 0.01rem solid gray;
+  color: gray;
+  width: 100%;
+  height: 0rem;
+  opacity: 20%;
+  margin-left: 0;
+}
+
+.post-author {
+  color: rgb(9, 135, 167);
+}
+
+.read-more-less {
+  background-color: transparent;
+  border: none;
+  color: rgb(9, 135, 167);
+  cursor: pointer;
+}

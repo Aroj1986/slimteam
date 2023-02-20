@@ -1,0 +1,51 @@
+/* Set the height of the calendar */
+.calender-styling {
+  margin: auto;
+  height: 500px;
+  width: 50%;
+  padding: 30px;
+  margin-bottom: 40px;
+}
+
+/* Set the background color of the event titles */
+.rbc-event-content {
+  background-color: #066ec2;
+  color: #fff;
+}
+
+/* Set the background color of the selected time slot */
+.rbc-slot-selection {
+  background-color: #ccc;
+}
+
+/* Style the delete button for events */
+.delete-button {
+  background-color: #f44336;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+/* Style the edit button for events */
+.edit-button {
+  background-color: #4caf50;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.hey {
+  
+    
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+}

@@ -14,8 +14,8 @@ function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
-  const [expert, setExpert] = useState(false);
-  const [user, setUser] = useState(false);
+  const [isExpert, setIsExpert] = useState(false);
+  const [isUser, setIsUser] = useState(false);
 
   const handleToggle = () => {
     if (type === "password") {
@@ -36,25 +36,41 @@ function Register() {
   };
 
   const onChangeRepeatPassword = (e) => {
-    if (password === e.target.value) {
       setRepeatPassword(e.target.value);
-    } else {
-      repeatPassword.setCustomValidity("Passwords Don't Match");
-    }
   };
 
   const expertOnChange = (e) => {
-      setUser(false)
-      setExpert(true);
+    setIsUser(false);
+    setIsExpert(true);
   };
 
   const userOnChange = (e) => {
-    setExpert(false);
-    setUser(true);
-};
+    setIsExpert(false);
+    setIsUser(true);
+  };
 
-console.log(`expert : ${expert}`)
-console.log(`user : ${user}`)
+  const registerOnClick = (e) => {
+    e.preventDefault();
+    if(password.length < 8 || password.length > 15 ) {
+      alert('password length must be between 8 and 15 characters')
+    } else if(repeatPassword !== password) {
+      alert('password does not match')
+    } else {
+      const postData = {email, password, isExpert, isUser}
+      axios
+      .post(("http://localhost:8888/register"),postData)
+      .then((res) => {
+        console.log(res.data);
+        console.log('A new user is registered successfully');
+      })
+      .catch((err) => {
+        if(err) {
+          alert('User exists with this email')
+          console.log(`Error registering the user ${err}`)
+        }
+      })
+    }
+  }
 
   return (
     <>
@@ -77,9 +93,9 @@ console.log(`user : ${user}`)
               type={type}
               name="password"
               placeholder="Password"
-              // minlength="8"
-              // maxlength="15"
-              // pattern="[a-zA-Z0-9]{8,15}"
+              minlength="8"
+              maxlength="15"
+              pattern="[a-zA-Z0-9]{8,15}"
               className="password-input"
               onChange={onChangePassword}
             ></input>
@@ -105,10 +121,28 @@ console.log(`user : ${user}`)
           </div>
 
           <div className="radiobutton">
-          <input type="radio" id="expert" name="fav_language" value="Expert" onChange={expertOnChange} />
-          <label for="expert"><strong>Expert?</strong></label><br/>
-          <input type="radio" id="user" name="fav_language" value="user" onChange={userOnChange}/>
-          <label for="user"><strong>User?</strong></label><br/>
+            <input
+              type="radio"
+              id="expert"
+              name="fav_language"
+              value="Expert"
+              onChange={expertOnChange}
+            />
+            <label for="expert">
+              <strong>Expert?</strong>
+            </label>
+            <br />
+            <input
+              type="radio"
+              id="user"
+              name="fav_language"
+              value="user"
+              onChange={userOnChange}
+            />
+            <label for="user">
+              <strong>User?</strong>
+            </label>
+            <br />
           </div>
 
           {/* <div className="remember-forgot">
@@ -121,49 +155,13 @@ console.log(`user : ${user}`)
           </div> */}
 
           <div className="form-group">
-          <button
+            <button
               type="submit"
               name="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                if (password === repeatPassword) {
-                  if(password.length >= 8 && password.length <= 15) {
-                    const postData = {
-                      email,
-                      password,
-                    };
-                    axios
-                      .post("http://localhost:8888/register", postData)
-                      .then((res) => {
-                        console.log(res.data);
-                      })
-                      .catch((err) => {
-                        if (err) {
-                          alert("user exists!!");
-                          console.log(
-                            `Error fetching sought expert in database: ${err}`
-                          );
-                        }
-                      });
-                
-                  }
-                  else {
-                    alert("password length not permitted!!")
-                  }
-                }
-                else {
-                  if(password !== repeatPassword) {
-                    alert("password missmatch!!")
-                  }
-                  else {
-                    alert("password length should be between 8 & 15!")
-                  }
-                }
-              }}
+              onClick={registerOnClick}
               value="Register"
               className="form-submit"
-            >
-               <NavLink to="/explore-experts">Register</NavLink> </button> 
+            ><NavLink to="/profile" className='registerLink'>Register</NavLink> </button>
           </div>
 
           <div class="hr-sect">
