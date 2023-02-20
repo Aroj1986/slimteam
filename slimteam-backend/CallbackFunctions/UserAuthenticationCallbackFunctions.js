@@ -6,7 +6,7 @@ const { ErrorResponse } = require("../utilities/ErrorResponse");
 
 const registerUser = async (req, res, next) => {
   try {
-    // send email and password from req.body backend
+    // send email and password from req.body frontend
     const { email, password } = req.body;
 
     // check if user exists, if yes throw error from ErrorResponse class
@@ -47,9 +47,18 @@ const registerUser = async (req, res, next) => {
   }
 };
 
+const getUsers = async (req, res, next) => {
+    try {
+        const users = await User.find({});
+        res.send(users) 
+    } catch (error) {
+        next(error);
+    }
+}
+
 const loginUser = async (req, res, next) => {
     try {
-      // receive email and password from req.body backend
+      // receive email and password from req.body frontend
       const { email, password } = req.body;
   
       // find user with the client input email, and bring everything plus password (since select: false in /schemaModel/users.js)
@@ -91,6 +100,7 @@ const loginUser = async (req, res, next) => {
   
 module.exports = { 
     registerUser,
+    getUsers,
     loginUser,
     logoutUser  
 };
