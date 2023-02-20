@@ -6,7 +6,6 @@ const Schema = mongoose.Schema
 
 const profileSchema = new Schema (
     {
-        id : {type : Number},
         personal_details : {
             email : {type: String},
             skills : [{type: String}],
