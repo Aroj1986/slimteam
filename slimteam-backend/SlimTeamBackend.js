@@ -7,6 +7,7 @@ const slimTeam = express()
 const cors = require('cors')
 const slimTeamRouter = require('./Routes/slimTeamRoutes')
 const userAuthenticationRouter = require('./Routes/UserAuthenticationRoutes')
+const jobWallRouter = require('./Routes/JobWallRoutes')
 const {errorHandler} = require('./middlewares/errorHandler')
 
 slimTeam.use(express.json())
@@ -15,6 +16,7 @@ slimTeam.use('/', slimTeamRouter)
 slimTeam.use('/explore-experts', slimTeamRouter)
 slimTeam.use('/explore-experts/:name', slimTeamRouter)
 slimTeam.use('/', userAuthenticationRouter)
+slimTeam.use('/', jobWallRouter)
 
 slimTeam.use(errorHandler)
 
