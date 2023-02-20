@@ -5,8 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 // whenever we are using axios and getting data from the backend we need to use optional chaining to load the data in front-end other wise we get undefined value
 
-export default function ExpertPortfolio() {
-console.log("expolore")
+export default function ExpertPortfolio({}) {
   const [expert, setExpert] = useState({})
   const {name} = useParams()
   const navigate = useNavigate();
