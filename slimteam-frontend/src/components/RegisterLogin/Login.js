@@ -7,7 +7,7 @@ import { eye } from "react-icons-kit/feather/eye";
 import { useState } from "react";
 import axios from "axios";
 
-function Login({ setUserLogin }) {
+function Login({ setUserLogin,name,setName }) {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
 
@@ -43,6 +43,12 @@ function Login({ setUserLogin }) {
         }
         setUserLogin(true);
         console.log("Frontend: User is logged in");
+      })
+
+      axios
+      .get(`http://localhost:8888/explore-experts/${email}`)
+      .then((res) => {
+        setName(res.data[0].personal_details.first_name)
       })
       .catch((err) => {
         if (err) {

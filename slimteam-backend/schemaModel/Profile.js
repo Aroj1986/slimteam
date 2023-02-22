@@ -9,7 +9,8 @@ const profileSchema = new Schema (
         personal_details : {
             email : {type: String},
             skills : [{type: String}],
-            profile_picture : {type: String },
+            profile_picture : {type: String,
+            default:"https://res.cloudinary.com/daeqbf45h/image/upload/v1677080995/rnjmgtg2gn6dse1oyseg.jpg" },
             title : {type : String},
             first_name : {type : String},
             last_name : {type : String},
@@ -42,6 +43,7 @@ const profileSchema = new Schema (
         certifications : [{
             id : {type : Number},
             certification_name : {type : String},
+            valid_from : {type : Date},
         }],
 
         languages : [{

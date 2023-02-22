@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./profile.css";
-
+import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 
-function Profile() {
-
+function Profile({email,setEmail,name,setName}) {
   const personal_details ={
     title: '',
     first_name: '',
@@ -42,19 +41,18 @@ function Profile() {
       nationality:data.nationality,
       skills:data.skills,
       dob:data.dob,
-      phone_number:data.phone_number
+      phone_number:data.phone_number,
+      email : email
     }
   }
 
-  console.log(postData)
-
 
   const onClickHandle = (e) => {
-    console.log(data)
       axios
       .post(("http://localhost:8888/explore-experts"),postData)
       .then((res) => {
         console.log(res.data)
+        setName(data.first_name)
       })
     
   };
@@ -360,7 +358,7 @@ function Profile() {
       </Container>
 
 
-      <button onClick = {onClickHandle}>Submit</button>
+      <button onClick = {onClickHandle}><NavLink to={`/portfolio/${data.first_name}`}>SUBMIT</NavLink> </button>
 
       {/* <div class="col-md">
         <label for="floatingInputGrid">Country</label>

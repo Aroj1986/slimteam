@@ -5,18 +5,14 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
-import EditSharpIcon from "@mui/icons-material/EditSharp";
 import AddIcon from "@mui/icons-material/Add";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 import { useState } from "react";
 import axios from "axios";
 
-export default function AddButtonForm({ name,id,portfolio , setPortfolio }) {
-console.log(name,id)
-
+export default function ExperienceAdd({ name,id,portfolio , setPortfolio }) {
   const [open, setOpen] = useState(false);
   const [institution, setInstitution] = useState(null);
   const [position, setPosition] = useState(null);
@@ -32,9 +28,7 @@ console.log(name,id)
     e.preventDefault()
     axios.put(url, experience)
     .then((res) => {
-    setPortfolio(
-        res.data
-      );
+    setPortfolio(res.data);
     });
     setOpen(false);
   };

@@ -1,12 +1,34 @@
 const mongoose = require('mongoose')
 const Profile = require('../schemaModel/Profile')
 
-
-
-// const createExpert = async (req, res) => {
+// const createProfile = async (req, res) => {
 //     try {
 //         const {personal_details,experience,education,certifications,languages,hourly_rate} = req.body
 //         const expert = await Profile.create({personal_details,experience,education,certifications,languages,hourly_rate})
+//         res.status(201).json(expert)
+//     } catch (error) {
+//         console.log(error.messages)
+//         res.status(500).send(error.messages);
+//     }
+// }
+
+const createProfile = async (req, res) => {
+    try {
+        const {personal_details} = req.body
+        const expert = await Profile.create({personal_details})
+        res.status(201).json(expert)
+    } catch (error) {
+        console.log(error.messages)
+        res.status(500).send(error.messages);
+    }
+}
+
+// const UpdateProfilePic = async (req, res) => {
+//     try {
+//         const {name} = req.params
+//         // const {profile_picture} = req.file.filename
+//         console.log(profile_picture)
+//         const expert = await Profile.findOneAndUpdate({"personal_details.first_name" : name},{profile_picture},{new:true})
 //         res.status(201).json(expert)
 //     } catch (error) {
 //         console.log(error.messages)
@@ -31,9 +53,9 @@ const createExpert = async (req, res) => {
 const editExpertExperience = async (req, res) => {
     try {
         const {name} = req.params;
-        const {experience} = req.body
-        console.log(name,experience)
-        const expert = await Profile.findOneAndUpdate({first_name : name},{$push : {experience}},{new:true})
+        const {experience,education,certifications,languages} = req.body
+        // const {education} = req.body
+        const expert = await Profile.findOneAndUpdate({"personal_details.first_name" : name},{$push : {experience,education,certifications,languages}},{new:true})
         res.status(201).json(expert)
     } catch (error) {
         console.log(error.message)
@@ -65,11 +87,22 @@ const getExperts = async (req, res) => {
 const getExpert = async (req, res) => {
     const {name} = req.params
     try {
-        const expert = await Profile.findOne({first_name: name})
+        const expert = await Profile.findOne({"personal_details.first_name": name})
         res.status(201).json(expert)
     } catch (error) {
         res.status(500).send(error.messages);
     }
 }
 
-module.exports = {createExpert,addExpertExperience, editExpertExperience,getExperts, getExpert}
+const getExpertwithEmail = async (req, res) => {
+    const {email} = req.params
+    try {
+        const expert = await Profile.find({"personal_details.email": email})
+        res.status(201).json(expert)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send(error.messages);
+    }
+}
+
+module.exports = {createExpert,createProfile,addExpertExperience, editExpertExperience,getExperts, getExpert,getExpertwithEmail}
