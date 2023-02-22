@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import Calender from '../Calender/Calender'
 
 // whenever we are using axios and getting data from the backend we need to use optional chaining to load the data in front-end other wise we get undefined value
 
@@ -9,9 +11,6 @@ export default function ExpertPortfolio({}) {
   const [expert, setExpert] = useState({})
   const {name} = useParams()
   const navigate = useNavigate();
-
-
-
   useEffect(() => {
     axios
     .get(`http://localhost:8888/explore-expert/${name}`)
@@ -22,8 +21,6 @@ export default function ExpertPortfolio({}) {
       console.log(`Error fetching sought expert in database: ${err}`);
     })
   }, [name])
-
-  console.log(name,expert)
 
   return (
     <>
@@ -108,7 +105,11 @@ export default function ExpertPortfolio({}) {
           <button className='button-expert'>Customer reviews</button>
           <button className='write-review'>Write a review</button>
           <hr/>
-          <button className='button-expert'>Book online</button>
+          <div>
+          <button className='button-expert'> <NavLink to={`/book-online/:name`} >Book online</NavLink></button>
+     
+
+          </div>
         </div>
       </div>
 {/*       <div className='expert-list-container'>

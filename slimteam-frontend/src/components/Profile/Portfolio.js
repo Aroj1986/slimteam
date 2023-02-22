@@ -8,22 +8,30 @@ import EducationAdd from "./AddFunctionality/EducationAdd";
 import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
 import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
 import UploadPic from "./UploadPic";
+import AddButtonForm from "./AddButtonForm";
+import moment from "moment";
+import TimeCalculator from "./TimeCalculator";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditSharpIcon from "@mui/icons-material/EditSharp";
 
 export default function Portfolio({ name, email }) {
   const [portfolio, setPortfolio] = useState();
-  
+  /*   const [institution, setInstitution] = useState(null);
+  const [position, setPosition] = useState(null);
+  const [start_date, setstart] = useState(null);
+  const [end_date, setend] = useState(null); */
+
   useEffect(() => {
     axios
       .get(`http://localhost:8888/portfolio/${name}`)
       .then((res) => {
         setPortfolio(res.data);
-        // console.log(res.data)
       })
       .catch((err) => {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
   }, [portfolio]);
-
 
   return (
     <Container>
@@ -72,13 +80,114 @@ export default function Portfolio({ name, email }) {
               return (
                 <div>
                   <ul>
-                    <strong> {exp?.institution} </strong>{" "}  
+                    <div className="experience-item">
+                      <h6>
+                        <strong>{exp?.position}</strong>
+                      </h6>{" "}
+                      <div>
+                      <IconButton aria-label="delete" size="large">
+                        <EditSharpIcon
+                          fontSize="inherit"
+                          onClick={() => {
+                            const experience = {
+                              experience: {
+                                institution: exp?.institution,
+                                position: exp?.position,
+                                from_date: exp?.from_date,
+                                until_date: exp?.until_date,
+                              },
+                            };
+
+                            axios
+                              .put(
+                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
+                                experience
+                              )
+                              .then((res) => {
+                                setPortfolio(res.data);
+                              })
+                              .catch((err) => {
+                                console.log(
+                                  `Error deleting experience in database: ${err}`
+                                );
+                              });
+                          }}
+                        />
+                      </IconButton>
+
+                      <IconButton aria-label="delete" size="large">
+                        <DeleteIcon
+                          fontSize="inherit"
+                          onClick={() => {
+                            const experience = {
+                              experience: {
+                                institution: exp?.institution,
+                                position: exp?.position,
+                                from_date: exp?.from_date,
+                                until_date: exp?.until_date,
+                              },
+                            };
+
+                            axios
+                              .put(
+                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
+                                experience
+                              )
+                              .then((res) => {
+                                setPortfolio(res.data);
+                              })
+                              .catch((err) => {
+                                console.log(
+                                  `Error deleting experience in database: ${err}`
+                                );
+                              });
+                          }}
+                        />
+                      </IconButton>
+                      </div>
+                      {/*                       <button
+                        onClick={() => {
+                          const experience = {
+                            experience: {
+                              institution: exp?.institution,
+                              position: exp?.position,
+                              from_date: exp?.from_date,
+                              until_date: exp?.until_date,
+                            },
+                          };
+
+                          axios
+                            .put(
+                              `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
+                              experience
+                            )
+                            .then((res) => {
+                              setPortfolio(res.data);
+                            })
+                            .catch((err) => {
+                              console.log(
+                                `Error deleting experience in database: ${err}`
+                              );
+                            });
+                        }}
+                      >
+                        Delete
+                      </button> */}
+                    </div>
+                    <div>
+                      <h6>at {exp?.institution}</h6>{" "}
+                    </div>
                     <div className="startandend">
-                      {" "}
-                      {exp.from_date} - {exp.until_date} . 7 months
+                      <p>
+                        {moment(exp?.from_date).format("MMM YYYY")} -{" "}
+                        {moment(exp?.until_date).format("MMM YYYY")} .{" "}
+                        <TimeCalculator
+                          date1={exp?.from_date}
+                          date2={exp?.until_date}
+                        />
+                      </p>
                     </div>{" "}
                   </ul>
-                  <ul>{exp.position}</ul>
                 </div>
               );
             })}
@@ -88,16 +197,105 @@ export default function Portfolio({ name, email }) {
             <div className="portfoliobutton">
               <h4>Qualification / Trainings</h4> <EducationAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
             </div>
-            {portfolio?.education.map((edu) => {
+
+            {/*             {portfolio?.education.map((edu) => {
               return (
                 <div>
                   <ul>
                     <strong> {edu?.institute}</strong>{" "}
                     <div className="startandend">
-                      {edu.start_date} - {edu.end_date} . 7 months
+                      {edu.from_date} - {edu.until_date} . 7 months
                     </div>{" "}
                   </ul>
                   <ul>{edu?.degree}</ul>
+                </div>
+              );
+            })}
+ */}
+            {portfolio?.education.map((edu) => {
+              return (
+                <div>
+                  <ul>
+                    <div className="experience-item">
+                      <h6>
+                        <strong>{edu?.degree}</strong>
+                      </h6>{" "}
+                      <IconButton aria-label="delete" size="large">
+                        <DeleteIcon
+                          fontSize="inherit"
+                          onClick={() => {
+                            const education = {
+                              education: {
+                                institute: edu?.institute,
+                                degree: edu?.degree,
+                                start_date: edu?.start_date,
+                                end_date: edu?.end_date,
+                              },
+                            };
+
+                            console.log(education);
+                            axios
+                              .put(
+                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
+                                education
+                              )
+                              .then((res) => {
+                                setPortfolio(res.data);
+                              })
+                              .catch((err) => {
+                                console.log(
+                                  `Error deleting education in database: ${err}`
+                                );
+                              });
+                            console.log(education);
+                          }}
+                        />
+                      </IconButton>
+                      {/*                       <button
+                        onClick={() => {
+                          const education = {
+                            education: {
+                              institute: edu?.institute,
+                              degree: edu?.degree,
+                              start_date: edu?.start_date,
+                              end_date: edu?.end_date,
+                            },
+                          };
+
+                          console.log(education);
+                          axios
+                            .put(
+                              `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
+                              education
+                            )
+                            .then((res) => {
+                              setPortfolio(res.data);
+                            })
+                            .catch((err) => {
+                              console.log(
+                                `Error deleting education in database: ${err}`
+                              );
+                            });
+                          console.log(education);
+                        }}
+                      >
+                        Delete
+                      </button> */}
+                    </div>
+                    <div>
+                      <h6>at {edu?.institute}</h6>{" "}
+                    </div>
+                    <div className="startandend">
+                      <p>
+                        {moment(edu?.start_date).format("MMM YYYY")} -{" "}
+                        {moment(edu?.end_date).format("MMM YYYY")} .{" "}
+                        <TimeCalculator
+                          date1={edu?.start_date}
+                          date2={edu?.end_date}
+                        />
+                      </p>
+                    </div>{" "}
+                  </ul>
                 </div>
               );
             })}
@@ -107,7 +305,8 @@ export default function Portfolio({ name, email }) {
             <div className="portfoliobutton">
               <h4>License / Certification</h4> <CerticiationsAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
             </div>
-            {portfolio?.certifications.map((certification) => {
+
+            {/*             {portfolio?.certifications.map((certification) => {
               return (
                 <div>
                  <ul>
@@ -119,19 +318,162 @@ export default function Portfolio({ name, email }) {
                </div>
               );
             })}
+          </div> */}
+
+            {portfolio?.certifications.map((cert) => {
+              return (
+                <div>
+                  <ul>
+                    <div className="experience-item">
+                      <h6>
+                        <strong>{cert?.certification_name}</strong>
+                      </h6>{" "}
+                      <IconButton aria-label="delete" size="large">
+                        <DeleteIcon
+                          fontSize="inherit"
+                          onClick={() => {
+                            const certifications = {
+                              certifications: {
+                                certification_name: cert?.certification_name,
+                              },
+                            };
+
+                            console.log(certifications);
+                            axios
+                              .put(
+                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
+                                certifications
+                              )
+                              .then((res) => {
+                                setPortfolio(res.data);
+                              })
+                              .catch((err) => {
+                                console.log(
+                                  `Error deleting education in database: ${err}`
+                                );
+                              });
+                            console.log(certifications);
+                          }}
+                        />
+                      </IconButton>
+                      {/*                       <button
+                        onClick={() => {
+                          const certifications = {
+                            certifications: {
+                              certification_name: cert?.certification_name,
+                            },
+                          };
+
+                          console.log(certifications);
+                          axios
+                            .put(
+                              `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
+                              certifications
+                            )
+                            .then((res) => {
+                              setPortfolio(res.data);
+                            })
+                            .catch((err) => {
+                              console.log(
+                                `Error deleting education in database: ${err}`
+                              );
+                            });
+                          console.log(certifications);
+                        }}
+                      >
+                        Delete
+                      </button> */}
+                    </div>
+                  </ul>
+                </div>
+              );
+            })}
           </div>
 
           <div className="professional-experience">
             <div className="portfoliobutton">
               <h4>Languages</h4> <LanguagesAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
             </div>
-            {portfolio?.languages.map((language) => {
+
+            {/*             {portfolio?.languages.map((language) => {
               return (
                 <div>
                   <ul>
                     <strong> {language?.language}</strong>{" "}
                   </ul>
                   <ul>{language?.proficiency}</ul>
+                </div>
+              );
+            })}
+          </div> */}
+
+            {portfolio?.languages.map((lang) => {
+              return (
+                <div>
+                  <ul>
+                    <div className="experience-item">
+                      <h6>
+                        <strong>{lang?.language}:</strong> {lang?.proficiency}
+                      </h6>{" "}
+                      <IconButton aria-label="delete" size="large">
+                        <DeleteIcon
+                          fontSize="inherit"
+                          onClick={() => {
+                            const languages = {
+                              languages: {
+                                language: lang?.language,
+                                proficiency: lang?.proficiency,
+                              },
+                            };
+
+                            console.log(languages);
+                            axios
+                              .put(
+                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
+                                languages
+                              )
+                              .then((res) => {
+                                setPortfolio(res.data);
+                              })
+                              .catch((err) => {
+                                console.log(
+                                  `Error deleting education in database: ${err}`
+                                );
+                              });
+                            console.log(languages);
+                          }}
+                        />
+                      </IconButton>
+{/*                       <button
+                        onClick={() => {
+                          const languages = {
+                            languages: {
+                              language: lang?.language,
+                              proficiency: lang?.proficiency,
+                            },
+                          };
+
+                          console.log(languages);
+                          axios
+                            .put(
+                              `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
+                              languages
+                            )
+                            .then((res) => {
+                              setPortfolio(res.data);
+                            })
+                            .catch((err) => {
+                              console.log(
+                                `Error deleting education in database: ${err}`
+                              );
+                            });
+                          console.log(languages);
+                        }}
+                      >
+                        Delete
+                      </button> */}
+                    </div>
+                  </ul>
                 </div>
               );
             })}

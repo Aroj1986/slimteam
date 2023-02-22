@@ -19,10 +19,14 @@ export default function ExperienceAdd({ name,id,portfolio , setPortfolio }) {
   const [start_date, setstart] = useState(null);
   const [end_date, setend] = useState(null);
 
-
   const experience = {
-    experience :{institution ,position,from_date : start_date, until_date : end_date}
-  }
+    experience: {
+      institution,
+      position,
+      from_date: start_date,
+      until_date: end_date,
+    },
+  };
   const url = `http://localhost:8888/portfolio/${name}`;
   const AddExperience = (e) => {
     e.preventDefault()
@@ -61,8 +65,8 @@ export default function ExperienceAdd({ name,id,portfolio , setPortfolio }) {
             fullWidth
             variant="standard"
             onChange={(e) => {
-                setInstitution(e.target.value);
-              }}
+              setInstitution(e.target.value);
+            }}
           />
           <TextField
             autoFocus
@@ -74,8 +78,8 @@ export default function ExperienceAdd({ name,id,portfolio , setPortfolio }) {
             fullWidth
             variant="standard"
             onChange={(e) => {
-                setPosition(e.target.value);
-              }}
+              setPosition(e.target.value);
+            }}
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -98,11 +102,7 @@ export default function ExperienceAdd({ name,id,portfolio , setPortfolio }) {
           </LocalizationProvider>
         </DialogContent>
         <DialogActions>
-          <Button
-           onClick={AddExperience}
-          >
-            ADD
-          </Button>
+          <Button onClick={AddExperience}>ADD</Button>
         </DialogActions>
       </Dialog>
     </div>

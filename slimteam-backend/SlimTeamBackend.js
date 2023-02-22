@@ -22,6 +22,7 @@ slimTeam.use('/', CalenderRoutes)
 slimTeam.use('/', userAuthenticationRouter)
 slimTeam.use('/', jobWallRouter)
 slimTeam.use('/', profilePicRouter);
+slimTeam.use('/book-online/:name', slimTeamRouter)
 
 slimTeam.use(errorHandler)
 

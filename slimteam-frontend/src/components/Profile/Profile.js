@@ -22,21 +22,19 @@ function Profile({email,setEmail,name,setName}) {
 
   const [data, setData] = useState(personal_details);
 
-
-
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const postData = {
-    personal_details :{
-      title : data.title,
-      first_name : data.first_name,
-      last_name:data.last_name,
-      address : {
+    personal_details: {
+      title: data.title,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      address: {
         street: data.street,
-        postal_code:data.postal_code,
-        city:data.city,
+        postal_code: data.postal_code,
+        city: data.city,
       },
       nationality:data.nationality,
       skills:data.skills,
@@ -45,8 +43,6 @@ function Profile({email,setEmail,name,setName}) {
       email : email
     }
   }
-
-
   const onClickHandle = (e) => {
       axios
       .post(("http://localhost:8888/explore-experts"),postData)
@@ -57,7 +53,7 @@ function Profile({email,setEmail,name,setName}) {
     
   };
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div>
@@ -68,7 +64,13 @@ function Profile({email,setEmail,name,setName}) {
             <Col>
               <div>
                 <label for="inputGroupSelect01">Title :</label> {"   "}
-                <select class="form-control" id="inputGroupSelect01" value = {data.title} name="title" onChange={handleChange}>
+                <select
+                  class="form-control"
+                  id="inputGroupSelect01"
+                  value={data.title}
+                  name="title"
+                  onChange={handleChange}
+                >
                   <option selected></option>
                   <option value="Mr">Mr</option>
                   <option value="Miss">Miss</option>
@@ -86,7 +88,8 @@ function Profile({email,setEmail,name,setName}) {
                     id="floatingInputGrid"
                     placeholder="First Name"
                     value={data.first_name}
-                    name="first_name" onChange={handleChange}
+                    name="first_name"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -101,7 +104,8 @@ function Profile({email,setEmail,name,setName}) {
                     id="floatingInputGrid"
                     placeholder="Last Name"
                     value={data.last_name}
-                    name="last_name" onChange={handleChange}
+                    name="last_name"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -117,7 +121,8 @@ function Profile({email,setEmail,name,setName}) {
                     id="floatingInputGrid"
                     placeholder="DOB"
                     value={data.dob}
-                    name="dob" onChange={handleChange}
+                    name="dob"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -133,7 +138,8 @@ function Profile({email,setEmail,name,setName}) {
                     id="floatingInputGrid"
                     placeholder="Street with Number"
                     value={data.street}
-                    name="street" onChange={handleChange}
+                    name="street"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -148,7 +154,8 @@ function Profile({email,setEmail,name,setName}) {
                     id="floatingInputGrid"
                     placeholder="Postal Code"
                     value={data.postal_code}
-                    name="postal_code" onChange={handleChange}
+                    name="postal_code"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -163,7 +170,8 @@ function Profile({email,setEmail,name,setName}) {
                     id="floatingInputGrid"
                     placeholder="City"
                     value={data.city}
-                    name="city" onChange={handleChange}
+                    name="city"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -178,7 +186,8 @@ function Profile({email,setEmail,name,setName}) {
                     id="floatingInputGrid"
                     placeholder="Country"
                     value={data.nationality}
-                    name="nationality" onChange={handleChange}
+                    name="nationality"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -194,7 +203,7 @@ function Profile({email,setEmail,name,setName}) {
                     class="form-control"
                     id="floatingInputGrid"
                     placeholder="Skills"
-                    name="skills" 
+                    name="skills"
                     value={data.skills}
                     onChange={handleChange}
                   />
@@ -210,7 +219,7 @@ function Profile({email,setEmail,name,setName}) {
                     class="form-control"
                     id="floatingInputGrid"
                     placeholder="+49 **********"
-                    name="phone_number" 
+                    name="phone_number"
                     value={data.phone_number}
                     onChange={handleChange}
                   />
@@ -354,10 +363,7 @@ function Profile({email,setEmail,name,setName}) {
           </Row>
           
         </div> */}
-        
       </Container>
-
-
       <button onClick = {onClickHandle}><NavLink to={`/portfolio/${data.first_name}`}>SUBMIT</NavLink> </button>
 
       {/* <div class="col-md">
