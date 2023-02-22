@@ -183,6 +183,7 @@ const deleteExpertLanguageOne = async (req, res) => {
 
 module.exports = {
   createExpert,
+  createProfile,
   getExperts,
   getExpert,
   addExpertExperience,

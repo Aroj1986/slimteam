@@ -5,6 +5,7 @@ const {
   getExperts,
   getExpert,
   addExpertExperience,
+  createProfile,
   getExpertwithEmail,
   editExpertExperience,
   deleteExpertExperienceOne,
@@ -15,7 +16,7 @@ const {
 slimTeamRouter.route('/explore-experts').post(createProfile).post(createExpert).get(getExperts)
 slimTeamRouter.route('/explore-expert/:name').get(getExpert)
 slimTeamRouter.route('/explore-experts/:email').get(getExpertwithEmail)
-limTeamRouter
+slimTeamRouter
   .route("/portfolio/:name")
   .put(editExpertExperience)
   .get(getExpert);

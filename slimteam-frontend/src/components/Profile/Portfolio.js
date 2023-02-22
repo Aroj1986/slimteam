@@ -8,7 +8,7 @@ import EducationAdd from "./AddFunctionality/EducationAdd";
 import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
 import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
 import UploadPic from "./UploadPic";
-import AddButtonForm from "./AddButtonForm";
+// import AddButtonForm from "./AddButtonForm";
 import moment from "moment";
 import TimeCalculator from "./TimeCalculator";
 import IconButton from "@mui/material/IconButton";
