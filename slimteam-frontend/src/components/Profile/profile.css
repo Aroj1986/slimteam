@@ -27,6 +27,13 @@
     width: 1040px;
 }
 
+.experience-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .startandend {
     color: rgb(160, 151, 151);
 }
