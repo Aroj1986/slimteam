@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import "./profile.css";
-
+import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 
-function Profile() {
-  const personal_details = {
-    title: "",
-    first_name: "",
-    last_name: "",
-    street: "",
-    postal_code: "",
-    city: "",
-    nationality: "",
-    skills: [""],
-    dob: "",
-    phone_number: "",
-  };
+function Profile({email,setEmail,name,setName}) {
+  const personal_details ={
+    title: '',
+    first_name: '',
+    last_name: '',
+      street: '',
+      postal_code: '',
+      city: '',
+    nationality: '',
+    skills : [''],
+    dob: '',
+    phone_number: ''
+  }
 
   const [data, setData] = useState(personal_details);
 
@@ -36,22 +36,21 @@ function Profile() {
         postal_code: data.postal_code,
         city: data.city,
       },
-      nationality: data.nationality,
-      skills: data.skills,
-      dob: data.dob,
-      phone_number: data.phone_number,
-    },
-  };
-
-  console.log(postData);
-
+      nationality:data.nationality,
+      skills:data.skills,
+      dob:data.dob,
+      phone_number:data.phone_number,
+      email : email
+    }
+  }
   const onClickHandle = (e) => {
-    console.log(data);
-    axios
-      .post("http://localhost:8888/explore-experts", postData)
+      axios
+      .post(("http://localhost:8888/explore-experts"),postData)
       .then((res) => {
-        console.log(res.data);
-      });
+        console.log(res.data)
+        setName(data.first_name)
+      })
+    
   };
 
   console.log(data);
@@ -365,8 +364,7 @@ function Profile() {
           
         </div> */}
       </Container>
-
-      <button onClick={onClickHandle}>Submit</button>
+      <button onClick = {onClickHandle}><NavLink to={`/portfolio/${data.first_name}`}>SUBMIT</NavLink> </button>
 
       {/* <div class="col-md">
         <label for="floatingInputGrid">Country</label>

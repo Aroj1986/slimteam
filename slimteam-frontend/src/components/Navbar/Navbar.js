@@ -4,7 +4,8 @@ import { NavLink} from 'react-router-dom';
 import axios from "axios";
 
 
-function Navbar({userLogin, setUserLogin}) {
+function Navbar({userLogin, setUserLogin,name}) {
+  console.log(name)
 
   const logoutOnClick = (e) => {
     axios
@@ -31,7 +32,7 @@ console.log(`User login status: ${userLogin}`)
           <NavLink to="/jobwall" className='items-navbar'>JobWall</NavLink> 
         </ul>
         <ul className='col-4 login-navbar'>
-          <NavLink to={`${userLogin ? '/profile' : '/register'}` } className='items-navbar'>{userLogin ? 'Profile' : 'Register' }</NavLink> |
+          <NavLink to={`${userLogin ? `/portfolio/${name}` : '/register'}` } className='items-navbar'>{userLogin ? 'Profile' : 'Register' }</NavLink> |
           <NavLink to={`${userLogin ? '/login' : '/login'}` } className='items-navbar'>{userLogin ? (<span onClick={logoutOnClick}>Logout</span>) : 'Login' }</NavLink>
         </ul>
       </div>

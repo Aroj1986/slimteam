@@ -3,14 +3,19 @@ import Container from "react-bootstrap/Container";
 import "./profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import AddButtonForm from "./AddButtonForm";
+import ExperienceAdd from "./AddFunctionality/ExperienceAdd";
+import EducationAdd from "./AddFunctionality/EducationAdd";
+import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
+import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
+import UploadPic from "./UploadPic";
+// import AddButtonForm from "./AddButtonForm";
 import moment from "moment";
 import TimeCalculator from "./TimeCalculator";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 
-export default function Portfolio({ name }) {
+export default function Portfolio({ name, email }) {
   const [portfolio, setPortfolio] = useState();
   /*   const [institution, setInstitution] = useState(null);
   const [position, setPosition] = useState(null);
@@ -26,7 +31,7 @@ export default function Portfolio({ name }) {
       .catch((err) => {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
-  }, [name]);
+  }, [portfolio]);
 
   return (
     <Container>
@@ -34,13 +39,16 @@ export default function Portfolio({ name }) {
         <div className="expert-description-container">
           <div className="banner"></div>
 
-          <div>
+          <div className="upload">
             <img
-              className="profile-picture"
-              src="https://wallpapercave.com/wp/wp10092195.jpg"
+              className="profile-picturee"
+              src={portfolio?.personal_details.profile_picture}
               alt="Expert image"
               style={{ height: 150, width: 150 }}
             />
+            <div className="camerabutton">
+            <UploadPic name={name}/>
+            </div>
           </div>
 
           <div className="expert-headline">
@@ -65,13 +73,7 @@ export default function Portfolio({ name }) {
           <div className="professional-experience">
             <div className="portfoliobutton">
               {" "}
-              <h4>Professional experience</h4>
-              <AddButtonForm
-                id={portfolio?._id}
-                name={portfolio?.personal_details.first_name}
-                portfolio={portfolio}
-                setPortfolio={setPortfolio}
-              />
+              <h4>Professional experience </h4>  <ExperienceAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
             </div>
 
             {portfolio?.experience.map((exp) => {
@@ -193,7 +195,7 @@ export default function Portfolio({ name }) {
 
           <div className="professional-experience">
             <div className="portfoliobutton">
-              <h4>Qualification / Trainings</h4> <button>ADD</button>
+              <h4>Qualification / Trainings</h4> <EducationAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
             </div>
 
             {/*             {portfolio?.education.map((edu) => {
@@ -301,14 +303,19 @@ export default function Portfolio({ name }) {
 
           <div className="professional-experience">
             <div className="portfoliobutton">
-              <h4>License / Certification</h4> <button>ADD</button>
+              <h4>License / Certification</h4> <CerticiationsAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
             </div>
 
             {/*             {portfolio?.certifications.map((certification) => {
               return (
                 <div>
-                  <ul>{certification.certification_name}</ul>
-                </div>
+                 <ul>
+                   <strong> {certification?.certification_name}</strong>{" "}
+                   <div className="startandend">
+                     {certification.valid_from}
+                   </div>{" "}
+                 </ul>
+               </div>
               );
             })}
           </div> */}
@@ -385,7 +392,7 @@ export default function Portfolio({ name }) {
 
           <div className="professional-experience">
             <div className="portfoliobutton">
-              <h4>Languages</h4> <button>ADD</button>
+              <h4>Languages</h4> <LanguagesAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
             </div>
 
             {/*             {portfolio?.languages.map((language) => {

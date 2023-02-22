@@ -11,11 +11,9 @@ export default function ExpertPortfolio({}) {
   const [expert, setExpert] = useState({})
   const {name} = useParams()
   const navigate = useNavigate();
-
-
   useEffect(() => {
     axios
-    .get(`http://localhost:8888/explore-experts/${name}`)
+    .get(`http://localhost:8888/explore-expert/${name}`)
     .then((res) => {
       setExpert(res.data)
     })
@@ -23,9 +21,6 @@ export default function ExpertPortfolio({}) {
       console.log(`Error fetching sought expert in database: ${err}`);
     })
   }, [name])
-
-
-
 
   return (
     <>
@@ -51,7 +46,7 @@ export default function ExpertPortfolio({}) {
           <div className='banner'></div>
 
           <div>
-            <img className='profile-picture' src="https://wallpapercave.com/wp/wp10092195.jpg" alt="Expert image"  style={{height: 150, width: 150}}/>
+            <img className='profile-picture' src={expert.personal_details?.profile_picture} alt="Expert image"  style={{height: 150, width: 150}}/>
           </div>
 
           <div className='expert-headline'>

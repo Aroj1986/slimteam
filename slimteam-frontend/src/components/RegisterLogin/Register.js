@@ -7,11 +7,11 @@ import { eye } from "react-icons-kit/feather/eye";
 import { useState } from "react";
 import axios from "axios";
 
-function Register() {
+function Register({email,setEmail}) {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
 
-  const [email, setEmail] = useState();
+
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
   const [isExpert, setIsExpert] = useState(false);

@@ -65,3 +65,29 @@
     flex-direction: row;
     gap : 1rem;
   }
+
+  .upload .profile-picturee  {
+    border: 0.01rem solid black;
+    border-radius: 50%;
+    padding: 0.3rem ;
+    margin-top: -9rem;
+    margin-left: 1rem;
+    position: relative;
+  }
+
+  .upload .camerabutton {
+    position: absolute;
+    top: 42%;
+    left: 27.5%;
+    background-color: aliceblue;
+    /* color: white; */
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  .upload .camerabutton :hover{
+    background-color:rgb(30, 28, 28);
+    cursor:pointer;
+    color:white;
+    }

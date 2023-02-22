@@ -4,7 +4,7 @@ import './experts.css'
 
 
 export default function ExploreExperts({experts, setExperts}) {
-
+  console.log(experts)
   return (
     <>
       <h2 style={{paddingLeft:'2rem'}}>Discover SlimTeam experts at your location</h2>
@@ -18,7 +18,7 @@ export default function ExploreExperts({experts, setExperts}) {
       <div className='expert-list-container'>
         {experts.map((expert, index) =>
           <div className="card-container">
-            <img src="https://wallpapercave.com/wp/wp10092195.jpg" alt="Expert image" style={{height: 100, width: 100}}/>
+            <img src={expert.personal_details.profile_picture} alt="Expert image" style={{height: 100, width: 100}}/>
             <p className='card-name'><b>{expert.personal_details.first_name} {expert.personal_details.last_name}</b></p>
             <p className='card-expertise'>{expert.personal_details.skills}</p>
             <button className="button-expert"><NavLink to={`/explore-experts/${expert.personal_details.first_name}`} className="button-expert">view details</NavLink></button>

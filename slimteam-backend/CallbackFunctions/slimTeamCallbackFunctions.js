@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Profile = require("../schemaModel/Profile");
+const mongoose = require('mongoose')
+const Profile = require('../schemaModel/Profile')
 
-// const createExpert = async (req, res) => {
+// const createProfile = async (req, res) => {
 //     try {
 //         const {personal_details,experience,education,certifications,languages,hourly_rate} = req.body
 //         const expert = await Profile.create({personal_details,experience,education,certifications,languages,hourly_rate})
@@ -11,6 +11,16 @@ const Profile = require("../schemaModel/Profile");
 //         res.status(500).send(error.messages);
 //     }
 // }
+const createProfile = async (req, res) => {
+    try {
+        const {personal_details} = req.body
+        const expert = await Profile.create({personal_details})
+        res.status(201).json(expert)
+    } catch (error) {
+        console.log(error.messages)
+        res.status(500).send(error.messages);
+    }
+}
 
 const createExpert = async (req, res) => {
   try {
@@ -25,6 +35,18 @@ const createExpert = async (req, res) => {
   }
 };
 
+const editExpertExperience = async (req, res) => {
+    try {
+        const {name} = req.params;
+        const {experience,education,certifications,languages} = req.body
+        // const {education} = req.body
+        const expert = await Profile.findOneAndUpdate({"personal_details.first_name" : name},{$push : {experience,education,certifications,languages}},{new:true})
+        res.status(201).json(expert)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send(error.messages);
+    }
+}
 const getExperts = async (req, res) => {
   try {
     const expert = await Profile.find();
@@ -34,15 +56,6 @@ const getExperts = async (req, res) => {
   }
 };
 
-const getExpert = async (req, res) => {
-  const { name } = req.params;
-  try {
-    const expert = await Profile.findOne({ first_name: name });
-    res.status(201).json(expert);
-  } catch (error) {
-    res.status(500).send(error.messages);
-  }
-};
 
 const addExpertExperience = async (req, res) => {
   try {
@@ -55,23 +68,26 @@ const addExpertExperience = async (req, res) => {
     res.status(500).send(error.messages);
   }
 };
+const getExpert = async (req, res) => {
+    const {name} = req.params
+    try {
+        const expert = await Profile.findOne({"personal_details.first_name": name})
+        res.status(201).json(expert)
+    } catch (error) {
+        res.status(500).send(error.messages);
+    }
+}
 
-const editExpertExperience = async (req, res) => {
-  try {
-    const { name } = req.params;
-    const { experience } = req.body;
-    console.log(name, experience);
-    const expert = await Profile.findOneAndUpdate(
-      { "personal_details.first_name": name },
-      { $push: { experience } },
-      { new: true }
-    );
-    res.status(201).json(expert);
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send(error.messages);
-  }
-};
+const getExpertwithEmail = async (req, res) => {
+    const {email} = req.params
+    try {
+        const expert = await Profile.find({"personal_details.email": email})
+        res.status(201).json(expert)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send(error.messages);
+    }
+}
 
 const deleteExpertExperienceOne = async (req, res) => {
   try {
@@ -167,6 +183,7 @@ const deleteExpertLanguageOne = async (req, res) => {
 
 module.exports = {
   createExpert,
+  createProfile,
   getExperts,
   getExpert,
   addExpertExperience,
@@ -175,4 +192,5 @@ module.exports = {
   deleteExpertEducationOne,
   deleteExpertCertificationOne,
   deleteExpertLanguageOne,
+  getExpertwithEmail,
 };
