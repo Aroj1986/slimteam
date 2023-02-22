@@ -14,8 +14,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
 import axios from "axios";
 
-export default function AddButtonForm({ name,id,portfolio , setPortfolio }) {
-console.log(name,id)
+export default function AddButtonForm({ name, id, portfolio, setPortfolio }) {
+  console.log(name, id);
 
   const [open, setOpen] = useState(false);
   const [institution, setInstitution] = useState(null);
@@ -23,18 +23,19 @@ console.log(name,id)
   const [start_date, setstart] = useState(null);
   const [end_date, setend] = useState(null);
 
-
   const experience = {
-    experience :{institution ,position,from_date : start_date, until_date : end_date}
-  }
+    experience: {
+      institution,
+      position,
+      from_date: start_date,
+      until_date: end_date,
+    },
+  };
   const url = `http://localhost:8888/portfolio/${name}`;
   const AddExperience = (e) => {
-    e.preventDefault()
-    axios.put(url, experience)
-    .then((res) => {
-    setPortfolio(
-        res.data
-      );
+    e.preventDefault();
+    axios.put(url, experience).then((res) => {
+      setPortfolio(res.data);
     });
     setOpen(false);
   };
@@ -67,8 +68,8 @@ console.log(name,id)
             fullWidth
             variant="standard"
             onChange={(e) => {
-                setInstitution(e.target.value);
-              }}
+              setInstitution(e.target.value);
+            }}
           />
           <TextField
             autoFocus
@@ -80,8 +81,8 @@ console.log(name,id)
             fullWidth
             variant="standard"
             onChange={(e) => {
-                setPosition(e.target.value);
-              }}
+              setPosition(e.target.value);
+            }}
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -104,11 +105,7 @@ console.log(name,id)
           </LocalizationProvider>
         </DialogContent>
         <DialogActions>
-          <Button
-           onClick={AddExperience}
-          >
-            ADD
-          </Button>
+          <Button onClick={AddExperience}>ADD</Button>
         </DialogActions>
       </Dialog>
     </div>
