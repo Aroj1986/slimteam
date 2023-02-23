@@ -6,45 +6,51 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./myCalendar.css";
 import axios from "axios";
-
-const localizer = momentLocalizer(moment);
+import Modal from "./Modal";
 
 const MyCalendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [events, setEvents] = useState([]);
   const [editingEvent, setEditingEvent] = useState(null);
+  const [title, setTitle] = useState('');
+  const [modalShow, setModalShow] = useState(false);
+  const [open, setOpen] = useState(false);
+  
+  const localizer = momentLocalizer(moment);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8888/book-online");
         setEvents(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
   }, []);
+  console.log(events);
 
-  const handleSelect = async ({ start, end }) => {
-    const now = new Date();
-    if (start < now.setHours(0, 0, 0, 0)) {
-      alert("You cannot book an appointment in the past!");
-      return;
-    }
-    const title = window.prompt("Enter a title for your appointment:");
-    if (title) {
-      axios
-        .post("http://localhost:8888/book-online", { start, end, title })
-        .then(({ data }) => setEvents([...events, data]))
-        .catch((err) => console.log(err));
-    }
+  // const handleSelect = () => {
+  
+  //   const now = new Date();
+  //   if (start < now.setHours(0, 0, 0, 0)) {
+  //     alert("You cannot book an appointment in the past!");
+  //     return;
+  //   }
 
-    // if (title) {
-    //   setEvents([...events, { start, end, title }]);
-    //   axios.post('http://localhost:8888/book-online', { start, end, title });
-  };
+  //   const title = window.prompt("Enter a title for your appointment:");
+  //   if (title) {
+  //     axios
+  //       .post("http://localhost:8888/book-online", { start, end, title })
+  //       .then(({ data }) => setEvents([...events, data]))
+  //       .catch((err) => console.log(err));
+  //   }
 
+  
+  // };
+  // }
   const handleEdit = ({ _id, title }) => {
     const newTitle = window.prompt(
       "Enter a new title for your appointment:",
@@ -94,43 +100,47 @@ const MyCalendar = () => {
       });
   };
 
-  const handleEventSelect = (event) => {
-    setEditingEvent(event);
-  };
+  const handleEventSelect = (start) => {
+    setOpen(true)
+    setStartDate(start.slots[0]);
+};
+ 
 
-  const eventPropGetter = (event) => {
-    const isBooked = events.some(
-      (e) =>
-        e !== event && moment(event.start).isBetween(e.start, e.end, null, "[]")
-    );
-    return {
-      className: isBooked ? "booked" : "available",
-      disabled: isBooked,
-      style: {
-        borderLeft: isBooked ? "5px solid red" : "5px solid #3174ad",
-      },
-    };
-  };
+  // const eventPropGetter = (event) => {
+  //   const isBooked = events.some(
+  //     (e) =>
+  //       e !== event && moment(event.start).isBetween(e.start, e.end, null, "[]")
+  //   );
+  //   return {
+  //     className: isBooked ? "booked" : "available",
+  //     disabled: isBooked,
+  //     style: {
+  //       borderLeft: isBooked ? "5px solid red" : "5px solid #3174ad",
+  //     },
+  //   };
+  // };
 
-  const eventStyleGetter = (event) => {
-    return {
-      style: {
-        backgroundColor: "red",
-        borderRadius: "0px",
-        opacity: 0.8,
-        color: "white",
-        border: "0px",
-      },
-    };
-  };
+  // const eventStyleGetter = (event) => {
+  //   return {
+  //     style: {
+  //       backgroundColor: "red",
+  //       borderRadius: "0px",
+  //       opacity: 0.8,
+  //       color: "white",
+  //       border: "0px",
+  //     },
+  //   };
+  // };
 
   return (
+    
     <div className="calender-full">
-      <DatePicker
+      <Modal open={open} setOpen={setOpen} start={startDate} events={events} setEvents={setEvents}/>
+      {/* <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         dateFormat="yyyy-MM-dd"
-      />
+      /> */}
       <Calendar
         className="calender-styling"
         localizer={localizer}
@@ -138,10 +148,10 @@ const MyCalendar = () => {
         startAccessor="start"
         endAccessor="end"
         selectable
-        onSelectSlot={handleSelect}
+        onSelectSlot={handleEventSelect}
         onSelectEvent={handleEventSelect}
-        eventPropGetter={eventPropGetter}
-        eventStyleGetter={eventStyleGetter}
+        // eventPropGetter={eventPropGetter}
+        // eventStyleGetter={eventStyleGetter}
       />
 
       {editingEvent && (
