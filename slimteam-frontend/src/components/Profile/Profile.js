@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 
-function Profile({email,setEmail,name,setName}) {
+function Profile({email,setEmail,name,setName,isExpert,isUser}) {
   const personal_details ={
     title: '',
     first_name: '',
@@ -26,7 +26,17 @@ function Profile({email,setEmail,name,setName}) {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  let role = ""
+  
+  if(isExpert) {
+      role = "Expert"
+  }
+  else {
+    role = "User"
+  }
+
   const postData = {
+    role : {role},
     personal_details: {
       title: data.title,
       first_name: data.first_name,
@@ -53,7 +63,7 @@ function Profile({email,setEmail,name,setName}) {
     
   };
 
-  console.log(data);
+  console.log(postData);
 
   return (
     <div>

@@ -31,7 +31,7 @@ export default function Portfolio({ name, email }) {
       .catch((err) => {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
-  }, [portfolio]);
+  }, [name]);
 
   return (
     <Container>

@@ -6,6 +6,7 @@ const Schema = mongoose.Schema
 
 const profileSchema = new Schema (
     {
+        role : {type : String},
         personal_details : {
             email : {type: String},
             skills : [{type: String}],

@@ -7,8 +7,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./myCalendar.css";
 import axios from "axios";
 import Modal from "./Modal";
+import { useParams } from "react-router-dom";
 
-const MyCalendar = () => {
+const MyCalendar = ({name,expertName}) => {
   const [startDate, setStartDate] = useState(new Date());
   const [events, setEvents] = useState([]);
   const [editingEvent, setEditingEvent] = useState(null);
@@ -17,6 +18,8 @@ const MyCalendar = () => {
   const [open, setOpen] = useState(false);
   
   const localizer = momentLocalizer(moment);
+
+  console.log(expertName,name)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,14 +34,6 @@ const MyCalendar = () => {
     fetchData();
   }, []);
   console.log(events);
-
-  // const handleSelect = () => {
-  
-  //   const now = new Date();
-  //   if (start < now.setHours(0, 0, 0, 0)) {
-  //     alert("You cannot book an appointment in the past!");
-  //     return;
-  //   }
 
   //   const title = window.prompt("Enter a title for your appointment:");
   //   if (title) {
@@ -135,7 +130,7 @@ const MyCalendar = () => {
   return (
     
     <div className="calender-full">
-      <Modal open={open} setOpen={setOpen} start={startDate} events={events} setEvents={setEvents}/>
+      <Modal open={open} setOpen={setOpen} start={startDate} events={events} setEvents={setEvents} name = {name} expertName={expertName}/>
       {/* <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(date)}
