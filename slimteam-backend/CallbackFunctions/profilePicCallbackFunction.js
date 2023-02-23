@@ -16,6 +16,7 @@ const createProfilePic = async (req, res,next) => {
   try {
     const {profile_picture} = req.body;
     const {name} = req.params;
+    console.log(profile_picture)
     const result = await cloudinary.uploader.unsigned_upload(profile_picture, "ju7lk0iu");
     const expert = await Profile.findOneAndUpdate(
         { "personal_details.first_name" : name },

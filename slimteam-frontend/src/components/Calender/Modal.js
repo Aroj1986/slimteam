@@ -14,7 +14,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useState } from "react";
 import axios from "axios";
 
-export default function Modal ({ open, setOpen, start, events, setEvents}) {
+export default function Modal ({ open, setOpen, start, events, setEvents,name,expertName}) {
   
   const [title, setTitle] = useState("");
   // const [events, setEvents] = useState([]);
@@ -22,7 +22,7 @@ export default function Modal ({ open, setOpen, start, events, setEvents}) {
   const handleSubmit = () => {
     if (title) {
       axios
-        .post("http://localhost:8888/book-online", { start, title })
+        .post("http://localhost:8888/book-online", { start,title,UserName:name,expertName : expertName  })
         .then(({ data }) => setEvents([...events, data]))
         .catch((err) => console.log(err));
       setOpen(false);
