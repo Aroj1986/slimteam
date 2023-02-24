@@ -26,7 +26,6 @@ const MyCalendar = ({name,expertName}) => {
       try {
         const response = await axios.get("http://localhost:8888/book-online");
         setEvents(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }

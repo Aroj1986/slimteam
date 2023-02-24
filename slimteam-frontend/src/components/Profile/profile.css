@@ -91,3 +91,26 @@
     cursor:pointer;
     color:white;
     }
+
+.expert-headline-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 47rem;
+}
+
+.expert-headline-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 47rem;
+}
+
+.expert-location {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}

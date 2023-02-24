@@ -40,7 +40,7 @@ export default function CerticiationsAdd({ name,id,portfolio , setPortfolio }) {
     return (
       <div>
         <IconButton aria-label="edit" size="large">
-          <AddIcon onClick={handleClickOpen} fontSize="inherit" color="primary" />
+          <AddIcon onClick={handleClickOpen} fontSize="inherit" color="inherit" />
         </IconButton>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Add New Experience</DialogTitle>
@@ -49,7 +49,7 @@ export default function CerticiationsAdd({ name,id,portfolio , setPortfolio }) {
               autoFocus
               margin="dense"
               id="name"
-              label="Certication Name"
+              label="Certification name"
               // value={institution}
               type="text"
               fullWidth
@@ -60,7 +60,7 @@ export default function CerticiationsAdd({ name,id,portfolio , setPortfolio }) {
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="valid from"
+                label="Valid from"
                 value={start_date}
                 onChange={(newValue) => {
                     setstart(newValue);

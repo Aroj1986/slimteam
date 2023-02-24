@@ -46,21 +46,20 @@ function Profile({email,setEmail,name,setName,isExpert,isUser}) {
         postal_code: data.postal_code,
         city: data.city,
       },
-      nationality:data.nationality,
-      skills:data.skills,
-      dob:data.dob,
-      phone_number:data.phone_number,
-      email : email
-    }
-  }
+      nationality: data.nationality,
+      skills: data.skills,
+      dob: data.dob,
+      phone_number: data.phone_number,
+      email: email,
+    },
+  };
   const onClickHandle = (e) => {
-      axios
-      .post(("http://localhost:8888/explore-experts"),postData)
+    axios
+      .post("http://localhost:8888/explore-experts", postData)
       .then((res) => {
-        console.log(res.data)
-        setName(data.first_name)
-      })
-    
+        console.log(res.data);
+        setName(data.first_name);
+      });
   };
 
   console.log(postData);
@@ -374,7 +373,9 @@ function Profile({email,setEmail,name,setName,isExpert,isUser}) {
           
         </div> */}
       </Container>
-      <button onClick = {onClickHandle}><NavLink to={`/portfolio/${data.first_name}`}>SUBMIT</NavLink> </button>
+      <button onClick={onClickHandle}>
+        <NavLink to={`/portfolio/${data.first_name}`}>SUBMIT</NavLink>{" "}
+      </button>
 
       {/* <div class="col-md">
         <label for="floatingInputGrid">Country</label>
