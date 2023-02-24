@@ -8,6 +8,8 @@ const appointmentSchema = new Schema (
         start: {type: Date},
         end: {type: Date},
         title: {type: String},
+        user_UserName : {type: String},
+        expert_UserName : {type: String}
     }
 )
 

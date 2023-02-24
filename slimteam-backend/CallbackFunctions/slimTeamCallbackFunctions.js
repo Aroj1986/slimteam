@@ -12,28 +12,28 @@ const Profile = require("../schemaModel/Profile");
 //     }
 // }
 const createProfile = async (req, res) => {
-  try {
-    const { personal_details } = req.body;
-    const expert = await Profile.create({ personal_details });
-    res.status(201).json(expert);
-  } catch (error) {
-    console.log(error.messages);
-    res.status(500).send(error.messages);
-  }
-};
+    try {
+        const {personal_details,role} = req.body
+        const expert = await Profile.create({personal_details,role})
+        res.status(201).json(expert)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send(error.messages);
+    }
+}
 
-const createExpert = async (req, res) => {
-  try {
-    const { personal_details } = req.body;
-    console.log(personal_details);
-    const expert = await Profile.find();
-    // create({personal_details})
-    res.status(201).json(expert);
-  } catch (error) {
-    console.log(error.messages);
-    res.status(500).send(error.messages);
-  }
-};
+// const createExpert = async (req, res) => {
+//   try {
+//     const { personal_details } = req.body;
+//     console.log(personal_details);
+//     const expert = await Profile.find();
+//     // create({personal_details})
+//     res.status(201).json(expert);
+//   } catch (error) {
+//     console.log(error.messages);
+//     res.status(500).send(error.messages);
+//   }
+// };
 
 const editExpertExperience = async (req, res) => {
   try {
@@ -249,7 +249,7 @@ const editExpertHeadline = async (req, res) => {
 };
 
 module.exports = {
-  createExpert,
+  // createExpert,
   createProfile,
   getExperts,
   getExpert,

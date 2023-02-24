@@ -1,25 +1,3 @@
-/* Set the height of the calendar
-.calender-styling {
-  margin: auto;
-  height: 500px;
-  width: 50%;
-  padding: 30px;
-  margin-bottom: 40px;
-}
-
-/* Set the background color of the event titles */
-/* .rbc-event-content {
-  background-color: #066ec2;
-  color: #fff;
-}
-
-/* Set the background color of the selected time slot */
-/* .rbc-slot-selection {
-  background-color: #ccc;
-} */ 
-
-
-
 .calender-styling {
   font-family: 'Roboto', sans-serif;
   background-color: #fff;
@@ -27,7 +5,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: auto;
-  height: 500px;
+  height: 450px;
   width: 50%;
   padding: 30px;
   margin-bottom: 40px;
@@ -53,7 +31,7 @@
 }
 
 .calender-styling .rbc-month-view {
-  background-color: #fff;
+  background-color: snow;
   border: none;
 }
 
@@ -65,7 +43,7 @@
   background-color: #007bff;
   border-radius: 5px;
   padding: 5px 10px;
-  color: #fff;
+  color: rgb(199, 26, 26);
   cursor: pointer;
 }
 
@@ -104,9 +82,6 @@
   flex-direction:column;
 }
 
-.event-editor2 {
-  
-}
 
 
 .event-editor h3 {
