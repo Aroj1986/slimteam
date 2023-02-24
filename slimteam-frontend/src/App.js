@@ -2,7 +2,6 @@ import './App.css';
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import {Routes, Route, useParams} from 'react-router-dom'
-import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import AboutUs from './components/AboutUs/AboutUs'
 import ExploreExperts from './components/Experts/ExploreExperts'
@@ -35,7 +34,7 @@ export default function App() {
   }, [])
   return (
     <>
-    <Header />
+    
     <Navbar userLogin={userLogin} setUserLogin={setUserLogin} />
     <Routes>
       <Route path='/' element={<AboutUs />}></Route>

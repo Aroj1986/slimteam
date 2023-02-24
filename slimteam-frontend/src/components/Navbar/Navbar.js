@@ -2,6 +2,8 @@ import React from 'react'
 import './navbar.css'
 import { NavLink} from 'react-router-dom';
 import axios from "axios";
+import Button from '@mui/material/Button';
+import LogoCompany from './header.png'
 
 
 function Navbar({userLogin, setUserLogin}) {
@@ -23,6 +25,9 @@ function Navbar({userLogin, setUserLogin}) {
 console.log(`User login status: ${userLogin}`)
   return (
     <>
+     <div className='container-header'>
+        <p><img className='img-header' src={LogoCompany} alt="logo-coffeeMeet"/></p>
+    
       <div className='row container-navbar'>
         <ul className='col-8 lists-navbar'>
           <NavLink to="/" className='items-navbar'>About us</NavLink> |
@@ -31,9 +36,10 @@ console.log(`User login status: ${userLogin}`)
           <NavLink to="/jobwall" className='items-navbar'>JobWall</NavLink> 
         </ul>
         <ul className='col-4 login-navbar'>
-          <NavLink to={`${userLogin ? '/profile' : '/register'}` } className='items-navbar'>{userLogin ? 'Profile' : 'Register' }</NavLink> |
-          <NavLink to={`${userLogin ? '/login' : '/login'}` } className='items-navbar'>{userLogin ? (<span onClick={logoutOnClick}>Logout</span>) : 'Login' }</NavLink>
+        <Button variant="contained"><NavLink to={`${userLogin ? '/profile' : '/register'}` } className='items-buttons register'>{userLogin ? 'Profile' : 'Register' }</NavLink></Button> |
+        <Button variant="contained"><NavLink to={`${userLogin ? '/login' : '/login'}` } className='items-buttons'>{userLogin ? (<span onClick={logoutOnClick}>Logout</span>) : 'Login' }</NavLink></Button>
         </ul>
+        </div>
       </div>
     </>
   )

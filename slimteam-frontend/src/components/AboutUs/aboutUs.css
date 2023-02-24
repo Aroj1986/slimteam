@@ -1,13 +1,40 @@
+.hero-page {
+    height: 130vh; /* sets the height to be equal to the viewport height */
+    width: 100%; 
+}
+
 .flex-carousel {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .horizontal-line {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  margin: 25px;
+  border-radius: 2%;
+
+}
+
+.slogan {
+  font-family: Baskerville;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.paragraph {
+    text-align: center;
+}
+
+.hero-section {
+    padding: 20px;
+    margin: 10px;
+}
