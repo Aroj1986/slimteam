@@ -62,9 +62,7 @@ export default function ExploreExperts({ experts, setExperts }) {
           Search
         </button>
       </div>
-
       <hr />
-
       <div className="row">
         <div className="col col-3 d-flex flex-column justify-content-start">
           <div className="filter-container">

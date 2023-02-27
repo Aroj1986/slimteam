@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Appointment = require('../schemaModel/Calender')
+const Profile = require('../schemaModel/Profile')
 
 const createAppointment = async (req, res) => {
     const { start, end, title,UserName,expertName } = req.body
@@ -14,8 +15,33 @@ const createAppointment = async (req, res) => {
 
 const getAppointments = async (req, res) => {
     try {
-        const appointments = await Appointment.find()
+        const {name,expertName} = req.params;
+        const appointments = await Appointment.find({
+            $and: [
+            {user_UserName:name} , {expert_UserName:expertName}]})
         res.status(201).json(appointments);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+const getAllAppointments = async (req, res) => {
+    try {
+        const {name,expertName} = req.params;
+        const appointments = await Appointment.find({})
+        res.status(201).json(appointments);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+const getDetailsUserExpert = async (req, res) => {
+    try {
+        const {name,expertName} = req.params;
+        const details = await Profile.find({"personal_details.first_name" :{
+            $in :
+           [name]}})
+        res.status(201).json(details);
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -60,4 +86,4 @@ const updateAppointment = async (req, res) => {
   };
 
 
-module.exports = {createAppointment, getAppointments, getAppointment, updateAppointment, deleteAppointment}
+module.exports = {createAppointment, getAppointments,getAllAppointments, getAppointment, updateAppointment, deleteAppointment,getDetailsUserExpert}

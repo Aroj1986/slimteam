@@ -97,8 +97,7 @@ const getExpertwithEmail = async (req, res) => {
 const deleteExpertExperienceOne = async (req, res) => {
   try {
     const { name } = req.params;
-    const { experience } = req.body;
-    console.log(name, experience);
+    const  {experience}  = req.body;
     const expert = await Profile.findOneAndUpdate(
       { "personal_details.first_name": name },
       { $pull: { experience } },

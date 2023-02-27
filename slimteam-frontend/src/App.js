@@ -1,6 +1,5 @@
 import './App.css'
 import axios from 'axios'
-
 import { useEffect, useState } from 'react'
 import { Routes, Route, useParams } from 'react-router-dom'
 import Header from './components/Header/Header'
@@ -16,24 +15,24 @@ import Footer from './components/Footer/Footer'
 import Profile from './components/Profile/Profile'
 import Portfolio from './components/Profile/Portfolio'
 // import ExperienceAdd from './components/Profile/ExperienceAdd';
-import Calender from './components/Calender/Calender'
+import Calender from "./components/Calender/Calender";
 
 export default function App() {
-  const [experts, setExperts] = useState([])
-  const [expertName, setExpertName] = useState()
-  const [userLogin, setUserLogin] = useState(false)
-  const [email, setEmail] = useState()
-  const [name, setName] = useState()
-  const [isExpert, setIsExpert] = useState(false)
-  const [isUser, setIsUser] = useState(false)
+  const [experts, setExperts] = useState([]);
+  const [expertName, setExpertName] = useState();
+  const [userLogin, setUserLogin] = useState(false);
+  const [email, setEmail] = useState();
+  const [name, setName] = useState();
+  const [isExpert, setIsExpert] = useState(false);
+  const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:8888/explore-experts').then((res) => {
-      setExperts(res.data)
-    })
-  }, [])
+    axios.get("http://localhost:8888/explore-experts").then((res) => {
+      setExperts(res.data);
+    });
+  }, [email]);
 
-  console.log(name)
+  console.log(name);
   return (
     <>
 
@@ -79,6 +78,7 @@ export default function App() {
               setName={setName}
               isExpert={isExpert}
               isUser={isUser}
+              setUserLogin={setUserLogin}
             />
           }
         ></Route>
@@ -98,5 +98,5 @@ export default function App() {
       <Footer />
 
     </>
-  )
+  );
 }
