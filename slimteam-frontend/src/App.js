@@ -1,5 +1,6 @@
 import './App.css'
 import axios from 'axios'
+
 import { useEffect, useState } from 'react'
 import { Routes, Route, useParams } from 'react-router-dom'
 import Header from './components/Header/Header'
@@ -35,6 +36,8 @@ export default function App() {
   console.log(name)
   return (
     <>
+
+
       <Header />
       <Navbar userLogin={userLogin} setUserLogin={setUserLogin} name={name} />
       <Routes>
@@ -93,6 +96,7 @@ export default function App() {
         ></Route>
       </Routes>
       <Footer />
+
     </>
   )
 }
