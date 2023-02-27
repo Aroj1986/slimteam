@@ -53,7 +53,7 @@ export default function ExpertPortfolio({setExpertName}) {
           <div className='expert-headline'>
             <div className='name-address'>
               <h4><b>{expert.personal_details?.first_name} {expert.personal_details?.last_name}</b></h4>
-              <h6>{expert.personal_details?.skills}, Aachen, Germany</h6>
+              <h6>{expert.personal_details?.skills}, {expert.personal_details?.nationality}</h6>
             </div>
 
             <div className='contact-message'>
@@ -67,10 +67,13 @@ export default function ExpertPortfolio({setExpertName}) {
 
           <div className='professional-experience'>
             <h4>Professional experience</h4>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-              commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            <p>{expert?.experience?.map((exp) => {
+              return (
+                <div>
+                  <li>Institution: {exp?.institution}</li>
+                  <li>Position: {exp?.position}</li>
+                </div>
+            )})}</p>
           </div>
 
           <div className='professional-experience'>
