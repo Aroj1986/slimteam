@@ -17,7 +17,7 @@ import EducationEdit from "./EditFunctionality/EducationEdit";
 import CertificationEdit from "./EditFunctionality/CertificationEdit";
 import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
 
-export default function Portfolio({ name, email }) {
+export default function Portfolio({ name, email,setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
@@ -367,6 +367,7 @@ export default function Portfolio({ name, email }) {
             nationality={portfolio?.personal_details.nationality}
             portfolio={portfolio}
             setPortfolio={setPortfolio}
+            setName={setName}
           />
 
           <div className="expert-headline">

@@ -8,7 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Login({ setUserLogin,name,setName }) {
+function Login({ setUserLogin,name,setName,setRole }) {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
 
@@ -53,6 +53,7 @@ function Login({ setUserLogin,name,setName }) {
       .get(`http://localhost:8888/explore-experts/${email}`)
       .then((res) => {
         setName(res.data[0].personal_details.first_name)
+        setRole(res.data[0].role)
       })
       .catch((err) => {
         if (err) {
