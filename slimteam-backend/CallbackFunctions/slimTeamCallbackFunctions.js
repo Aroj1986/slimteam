@@ -71,9 +71,12 @@ const addExpertExperience = async (req, res) => {
 const getExpert = async (req, res) => {
     const {name} = req.params
     try {
+      console.log(name)
         const expert = await Profile.findOne({"personal_details.first_name": name})
+        // console.log(expert)
         res.status(201).json(expert)
     } catch (error) {
+      console.log(error.message)
         res.status(500).send(error.messages);
     }
 }
@@ -93,7 +96,7 @@ const deleteExpertExperienceOne = async (req, res) => {
   try {
     const { name } = req.params;
     const  {experience}  = req.body;
-    console.log(name, experience);
+    // console.log(name, experience);
     const expert = await Profile.findOneAndUpdate(
       { "personal_details.first_name": name },
       { $pull: { experience } },

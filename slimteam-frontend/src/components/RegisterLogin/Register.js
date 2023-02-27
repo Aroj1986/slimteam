@@ -6,11 +6,12 @@ import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
-
+  const navigate = useNavigate();
 
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
@@ -60,6 +61,7 @@ function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
       axios
       .post(("http://localhost:8888/register"),postData)
       .then((res) => {
+        navigate("/profile");
         console.log(res.data);
         console.log('A new user is registered successfully');
       })
@@ -161,10 +163,11 @@ function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
               onClick={registerOnClick}
               value="Register"
               className="form-submit"
-            ><NavLink to="/profile" className='registerLink'>Register</NavLink> </button>
+            >
+              Register </button>
           </div>
 
-          <div class="hr-sect">
+          {/* <div class="hr-sect">
             <h5>or</h5>
           </div>
 
@@ -208,7 +211,7 @@ function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
               value="Login using Linkedin"
               className="social-media-submit linkedin-input-field"
             ></input>
-          </div>
+          </div> */}
 
           <p>
             Have already an account ?{" "}

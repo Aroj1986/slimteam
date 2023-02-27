@@ -13,8 +13,11 @@ const profilePicRouter = require('./routes/profilepic');
 const { errorHandler } = require('./middlewares/errorHandler')
 
 
-slimTeam.use(express.json())
+slimTeam.use(express.json({
+    limit: '50mb'
+  }));
 slimTeam.use(cors())
+
 slimTeam.use('/', slimTeamRouter)
 slimTeam.use('/explore-experts', slimTeamRouter)
 slimTeam.use('/explore-experts/:name', slimTeamRouter)

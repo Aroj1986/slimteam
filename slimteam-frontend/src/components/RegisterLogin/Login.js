@@ -6,6 +6,7 @@ import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login({ setUserLogin,name,setName }) {
   const [type, setType] = useState("password");
@@ -13,6 +14,8 @@ function Login({ setUserLogin,name,setName }) {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const navigate = useNavigate();
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -42,6 +45,7 @@ function Login({ setUserLogin,name,setName }) {
         if (email === res.data.email && password === res.data.password) {
         }
         setUserLogin(true);
+        navigate("/");
         console.log("Frontend: User is logged in");
       })
 
@@ -56,6 +60,7 @@ function Login({ setUserLogin,name,setName }) {
           console.log(`Backend: ${err}`);
         }
       });
+
   };
 
   return (
@@ -108,13 +113,13 @@ function Login({ setUserLogin,name,setName }) {
               onClick={loginOnClick}
               className="form-submit"
             >
-              <NavLink to="/" className="registerLink">
-                Login
-              </NavLink>
+              {/* <NavLink to="/" className="registerLink"> */}
+                SIGN IN
+              {/* </NavLink> */}
             </button>
           </div>
 
-          <div class="hr-sect">
+          {/* <div class="hr-sect">
             <h5>or</h5>
           </div>
 
@@ -158,7 +163,7 @@ function Login({ setUserLogin,name,setName }) {
               value="Login using Linkedin"
               className="social-media-submit linkedin-input-field"
             ></input>
-          </div>
+          </div> */}
         </form>
 
         <a>Don't have an account yet ? </a>
