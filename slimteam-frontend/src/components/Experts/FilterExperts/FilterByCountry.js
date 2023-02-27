@@ -38,6 +38,8 @@ export default function FilterByCountry({ experts, sortedExpertsByCountry, setSo
     filterExperts(e.target.checked);
   };
 
+  console.log(sortedExpertsByCountry);
+
   return (
     <div className="filter-card-container">
       <Box sx={{ display: "flex" }}>
