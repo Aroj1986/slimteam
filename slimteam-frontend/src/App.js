@@ -1,19 +1,19 @@
-import './App.css'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Routes, Route, useParams } from 'react-router-dom'
-import Header from './components/Header/Header'
-import Navbar from './components/Navbar/Navbar'
-import AboutUs from './components/AboutUs/AboutUs'
-import ExploreExperts from './components/Experts/ExploreExperts'
-import ExpertPortfolio from './components/Experts/ExpertPortfolio'
-import MeetUs from './components/Career/MeetUs'
-import Jobwall from './components/Jobwall/Jobwall'
-import Register from './components/RegisterLogin/Register'
-import Login from './components/RegisterLogin/Login'
-import Footer from './components/Footer/Footer'
-import Profile from './components/Profile/Profile'
-import Portfolio from './components/Profile/Portfolio'
+import "./App.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Routes, Route, useParams } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import AboutUs from "./components/AboutUs/AboutUs";
+import ExploreExperts from "./components/Experts/ExploreExperts";
+import ExpertPortfolio from "./components/Experts/ExpertPortfolio";
+import MeetUs from "./components/Career/MeetUs";
+import Jobwall from "./components/Jobwall/Jobwall";
+import Register from "./components/RegisterLogin/Register";
+import Login from "./components/RegisterLogin/Login";
+import Footer from "./components/Footer/Footer";
+import Profile from "./components/Profile/Profile";
+import Portfolio_generic from "./components/Profile/Portfolio_generic";
 // import ExperienceAdd from './components/Profile/ExperienceAdd';
 import Calender from "./components/Calender/Calender";
 
@@ -25,6 +25,8 @@ export default function App() {
   const [name, setName] = useState();
   const [isExpert, setIsExpert] = useState(false);
   const [isUser, setIsUser] = useState(false);
+  const [role,setRole] = useState();
+
 
   useEffect(() => {
     axios.get("http://localhost:8888/explore-experts").then((res) => {
@@ -32,11 +34,8 @@ export default function App() {
     });
   }, [email]);
 
-  console.log(name);
   return (
     <>
-
-
       {/* <Header /> */}
       <Navbar userLogin={userLogin} setUserLogin={setUserLogin} name={name} />
       <Routes>
@@ -66,7 +65,7 @@ export default function App() {
         ></Route>
         <Route
           path="/portfolio/:name"
-          element={<Portfolio name={name} email={email} />}
+          element={<Portfolio_generic name={name} email={email} role={role} setName = {setName}/>}
         ></Route>
         <Route
           path="/profile"
@@ -86,7 +85,7 @@ export default function App() {
         <Route
           path="/login"
           element={
-            <Login setUserLogin={setUserLogin} name={name} setName={setName} />
+            <Login setUserLogin={setUserLogin} name={name} setName={setName} setRole={setRole}/>
           }
         ></Route>
         {/* <Route path='/book-online/:name' element={<Calender />}></Route> */}
@@ -96,7 +95,6 @@ export default function App() {
         ></Route>
       </Routes>
       <Footer />
-
     </>
   );
 }

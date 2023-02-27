@@ -10,7 +10,7 @@ import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function HeadlineEdit({name, id_expert, first_name, last_name, skills, city, nationality, setPortfolio}) {
+export default function HeadlineEdit({name, id_expert, first_name, last_name, skills, city, nationality, setPortfolio,setName}) {
   const [open, setOpen] = React.useState(false);
   const [inputFirstName, setInputFirstName] = useState();
   const [inputLastName, setInputLastName] = useState();
@@ -22,6 +22,7 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
 
   const handleOnChangeFirstName = (e) => {
     setInputFirstName(e.target.value);
+
   };
 
   const handleOnChangeLastName = (e) => {
@@ -59,6 +60,7 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
     .put(`http://localhost:8888/portfolio/${name}/edit-headline/${id_expert}`, personal_details)
     .then((res) => {
       setPortfolio(res.data)
+      setName(inputFirstName)
     });
     setOpen(false);
   };
