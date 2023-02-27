@@ -35,18 +35,18 @@ export default function Portfolio({ name, email }) {
     <Container>
       <div className="expert-portfolio">
         <div className="expert-description-container">
-          <div className="banner"></div>
+          {/* <div className="banner"></div> */}
 
           <div className="upload">
+            <div className="camerabutton">
+              <UploadPic name={name} />
+            </div>
             <img
               className="profile-picturee"
               src={portfolio?.personal_details.profile_picture}
               alt="Expert image"
               style={{ height: 150, width: 150 }}
             />
-            <div className="camerabutton">
-              <UploadPic name={name} />
-            </div>
           </div>
 
           <div className="expert-headline-column headline">
@@ -59,19 +59,7 @@ export default function Portfolio({ name, email }) {
                   </b>
                 </h3>
               </div>
-              <div>
-                <HeadlineEdit
-                  id_expert={portfolio?._id}
-                  name={name}
-                  first_name={portfolio?.personal_details.first_name}
-                  last_name={portfolio?.personal_details.last_name}
-                  skills={portfolio?.personal_details.skills}
-                  city={portfolio?.personal_details.address.city}
-                  nationality={portfolio?.personal_details.nationality}
-                  portfolio={portfolio}
-                  setPortfolio={setPortfolio}
-                />
-              </div>
+              <div></div>
             </div>
             <div>
               <div className="skills">
@@ -81,17 +69,13 @@ export default function Portfolio({ name, email }) {
                 })}
               </div>
               <div className="expert-location">
-                <h6>
-                  {portfolio?.personal_details.address.city},
-                </h6>
-                <h6>
-                  {portfolio?.personal_details.nationality}
-                </h6>
+                <h6>{portfolio?.personal_details.address.city},</h6>
+                <h6>{portfolio?.personal_details.nationality}</h6>
               </div>
             </div>
           </div>
 
-          <div className="professional-experience">
+          {/* <div className="professional-experience">
             <div className="portfoliobutton">
               {" "}
               <h4>Professional experience </h4>{" "}
@@ -169,9 +153,9 @@ export default function Portfolio({ name, email }) {
                 </div>
               );
             })}
-          </div>
+          </div> */}
 
-          <div className="professional-experience">
+          {/* <div className="professional-experience">
             <div className="portfoliobutton">
               <h4>Qualification / Trainings</h4>{" "}
               <EducationAdd
@@ -250,9 +234,9 @@ export default function Portfolio({ name, email }) {
                 </div>
               );
             })}
-          </div>
+          </div> */}
 
-          <div className="professional-experience">
+          {/* <div className="professional-experience">
             <div className="portfoliobutton">
               <h4>License / Certification</h4>{" "}
               <CerticiationsAdd
@@ -313,9 +297,9 @@ export default function Portfolio({ name, email }) {
                 </div>
               );
             })}
-          </div>
+          </div> */}
 
-          <div className="professional-experience">
+          {/* <div className="professional-experience">
             <div className="portfoliobutton">
               <h4>Languages</h4>{" "}
               <LanguagesAdd
@@ -368,18 +352,38 @@ export default function Portfolio({ name, email }) {
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
 
         <div className="rate-review-container">
+          <HeadlineEdit
+            className="edit-function"
+            id_expert={portfolio?._id}
+            name={name}
+            first_name={portfolio?.personal_details.first_name}
+            last_name={portfolio?.personal_details.last_name}
+            address={portfolio?.personal_details.address.street}
+            city={portfolio?.personal_details.address.city}
+            nationality={portfolio?.personal_details.nationality}
+            portfolio={portfolio}
+            setPortfolio={setPortfolio}
+          />
+
           <div className="expert-headline">
             <div className="name-address">
+              <h3>Details</h3>
+
               <h4>
-                <b>{portfolio?.personal_details.first_name} {portfolio?.personal_details.last_name}</b>
+                <b>
+                  Name: {portfolio?.personal_details.first_name}{" "}
+                  {portfolio?.personal_details.last_name}
+                </b>
               </h4>
+              <h6>Address: {portfolio?.personal_details.address.street} </h6>
               <h6>City: {portfolio?.personal_details.address.city}</h6>
               <h6>Country: {portfolio?.personal_details.nationality}</h6>
-              <h6>hourly_rate : 6€</h6>
+              <h6>E-Mail: {portfolio?.personal_details.email} </h6>
+              <h6>Phone number: {portfolio?.personal_details.phone_number} </h6>
             </div>
           </div>
         </div>
