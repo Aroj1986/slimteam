@@ -38,7 +38,7 @@ export default function App() {
     <>
 
 
-      <Header />
+      {/* <Header /> */}
       <Navbar userLogin={userLogin} setUserLogin={setUserLogin} name={name} />
       <Routes>
         <Route path="/" element={<AboutUs />}></Route>
