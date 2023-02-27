@@ -7,25 +7,21 @@ import Calender from '../Calender/Calender'
 
 // whenever we are using axios and getting data from the backend we need to use optional chaining to load the data in front-end other wise we get undefined value
 
-export default function ExpertPortfolio({}) {
+export default function ExpertPortfolio({setExpertName}) {
   const [expert, setExpert] = useState({})
   const {name} = useParams()
   const navigate = useNavigate();
-
-
   useEffect(() => {
     axios
-    .get(`http://localhost:8888/explore-experts/${name}`)
+    .get(`http://localhost:8888/explore-expert/${name}`)
     .then((res) => {
       setExpert(res.data)
+      setExpertName(name)
     })
     .catch((err) => {
       console.log(`Error fetching sought expert in database: ${err}`);
     })
   }, [name])
-
-
-
 
   return (
     <>
@@ -51,7 +47,7 @@ export default function ExpertPortfolio({}) {
           <div className='banner'></div>
 
           <div>
-            <img className='profile-picture' src="https://wallpapercave.com/wp/wp10092195.jpg" alt="Expert image"  style={{height: 150, width: 150}}/>
+            <img className='profile-picture' src={expert.personal_details?.profile_picture} alt="Expert image"  style={{height: 150, width: 150}}/>
           </div>
 
           <div className='expert-headline'>
@@ -111,7 +107,7 @@ export default function ExpertPortfolio({}) {
           <button className='write-review'>Write a review</button>
           <hr/>
           <div>
-          <button className='button-expert'> <NavLink to={`/book-online/:name`} >Book online</NavLink></button>
+          <button className='button-expert'> <NavLink to={`/book-online/${name}`} >Book online</NavLink></button>
      
 
           </div>

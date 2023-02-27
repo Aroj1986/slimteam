@@ -105,3 +105,6 @@ dist
 
 # Dotenv file
 .env
+
+#images folder
+images

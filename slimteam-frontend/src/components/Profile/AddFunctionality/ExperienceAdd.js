@@ -5,36 +5,34 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
-import EditSharpIcon from "@mui/icons-material/EditSharp";
 import AddIcon from "@mui/icons-material/Add";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 import { useState } from "react";
 import axios from "axios";
 
-export default function AddButtonForm({ name,id,portfolio , setPortfolio }) {
-console.log(name,id)
-
+export default function ExperienceAdd({ name,id,portfolio , setPortfolio }) {
   const [open, setOpen] = useState(false);
   const [institution, setInstitution] = useState(null);
   const [position, setPosition] = useState(null);
   const [start_date, setstart] = useState(null);
   const [end_date, setend] = useState(null);
 
-
   const experience = {
-    experience :{institution ,position,from_date : start_date, until_date : end_date}
-  }
+    experience: {
+      institution,
+      position,
+      from_date: start_date,
+      until_date: end_date,
+    },
+  };
   const url = `http://localhost:8888/portfolio/${name}`;
   const AddExperience = (e) => {
     e.preventDefault()
     axios.put(url, experience)
     .then((res) => {
-    setPortfolio(
-        res.data
-      );
+    setPortfolio(res.data);
     });
     setOpen(false);
   };
@@ -52,24 +50,11 @@ console.log(name,id)
         Open form dialog
       </Button> */}
       <IconButton aria-label="edit" size="large">
-        <AddIcon onClick={handleClickOpen} fontSize="inherit" color="primary" />
+        <AddIcon onClick={handleClickOpen} fontSize="inherit" color="inherit" />
       </IconButton>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add New Experience</DialogTitle>
         <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Company Name"
-            // value={institution}
-            type="text"
-            fullWidth
-            variant="standard"
-            onChange={(e) => {
-                setInstitution(e.target.value);
-              }}
-          />
           <TextField
             autoFocus
             margin="dense"
@@ -80,12 +65,25 @@ console.log(name,id)
             fullWidth
             variant="standard"
             onChange={(e) => {
-                setPosition(e.target.value);
-              }}
+              setPosition(e.target.value);
+            }}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Company name"
+            // value={institution}
+            type="text"
+            fullWidth
+            variant="standard"
+            onChange={(e) => {
+              setInstitution(e.target.value);
+            }}
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-              label="Basic example"
+              label="Start date"
               value={start_date}
               onChange={(newValue) => {
                 setstart(newValue);
@@ -94,7 +92,7 @@ console.log(name,id)
             />
 
             <DatePicker
-              label="Basic example"
+              label="End date"
               value={end_date}
               onChange={(newValue) => {
                 setend(newValue);
@@ -104,11 +102,7 @@ console.log(name,id)
           </LocalizationProvider>
         </DialogContent>
         <DialogActions>
-          <Button
-           onClick={AddExperience}
-          >
-            ADD
-          </Button>
+          <Button onClick={AddExperience}>ADD</Button>
         </DialogActions>
       </Dialog>
     </div>

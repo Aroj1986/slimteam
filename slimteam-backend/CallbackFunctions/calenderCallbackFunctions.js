@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const Appointment = require('../schemaModel/Calender')
 
 const createAppointment = async (req, res) => {
-    const { start, end, title } = req.body
+    const { start, end, title,UserName,expertName } = req.body
     try {
-        const appointment = await Appointment.create({start: start, end: end, title: title});
+        const appointment = await Appointment.create({start: start, end: end, title: title, user_UserName:UserName, expert_UserName:expertName});
         res.status(201).json(appointment)
     } catch (error) {
         console.log(error.message);

@@ -7,15 +7,15 @@ import { eye } from "react-icons-kit/feather/eye";
 import { useState } from "react";
 import axios from "axios";
 
-function Register() {
+function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
 
-  const [email, setEmail] = useState();
+
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
-  const [isExpert, setIsExpert] = useState(false);
-  const [isUser, setIsUser] = useState(false);
+  // const [isExpert, setIsExpert] = useState(false);
+  // const [isUser, setIsUser] = useState(false);
 
   const handleToggle = () => {
     if (type === "password") {

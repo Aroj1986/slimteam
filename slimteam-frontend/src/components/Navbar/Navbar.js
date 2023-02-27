@@ -6,7 +6,8 @@ import Button from '@mui/material/Button';
 import LogoCompany from './header.png'
 
 
-function Navbar({userLogin, setUserLogin}) {
+function Navbar({userLogin, setUserLogin,name}) {
+  console.log(name)
 
   const logoutOnClick = (e) => {
     axios
@@ -36,8 +37,10 @@ console.log(`User login status: ${userLogin}`)
           <NavLink to="/jobwall" className='items-navbar'>JobWall</NavLink> 
         </ul>
         <ul className='col-4 login-navbar'>
-        <Button variant="contained"><NavLink to={`${userLogin ? '/profile' : '/register'}` } className='items-buttons register'>{userLogin ? 'Profile' : 'Register' }</NavLink></Button> |
+
+        <Button variant="contained"><NavLink to={`${userLogin ? `/portfolio/${name}` : '/register'}` } className='items-buttons register'>{userLogin ? 'Profile' : 'Register' }</NavLink></Button> |
         <Button variant="contained"><NavLink to={`${userLogin ? '/login' : '/login'}` } className='items-buttons'>{userLogin ? (<span onClick={logoutOnClick}>Logout</span>) : 'Login' }</NavLink></Button>
+
         </ul>
         </div>
       </div>
