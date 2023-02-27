@@ -9,17 +9,12 @@ import {
   Checkbox,
 } from "@mui/material";
 
-export default function CheckboxFilter({ experts, setExperts }) {
-
-  console.log(experts);
-  
+export default function FilterByCountry({ experts, sortedExpertsByCountry, setSortedExpertsByCountry }) {
   const [isCountryChecked, setIsCountryChecked] = useState(false);
   const [prevCountryChecked, setPrevCountryChecked] = useState(false);
-  const [sortedExpertsByCountry, setSortedExpertsByCountry] = useState(experts);
 
   // filter checkbox
   const filterExperts = (value) => {
-    console.log(value)
     if (value) {
       setSortedExpertsByCountry(
         experts.filter(
@@ -27,10 +22,10 @@ export default function CheckboxFilter({ experts, setExperts }) {
             expert?.personal_details?.nationality?.toLowerCase() === "germany"
         )
       );
-      console.log(isCountryChecked);
-    } if(!value) {
+      console.log(value);
+    } else {
       setSortedExpertsByCountry(experts);
-      console.log(isCountryChecked);
+      console.log(value);
     }
   };
 
@@ -42,7 +37,9 @@ export default function CheckboxFilter({ experts, setExperts }) {
     // Call the filter function with the previous value
     filterExperts(e.target.checked);
   };
-  
+
+  console.log(sortedExpertsByCountry);
+
   return (
     <div className="filter-card-container">
       <Box sx={{ display: "flex" }}>
@@ -52,12 +49,12 @@ export default function CheckboxFilter({ experts, setExperts }) {
             <FormControlLabel
               label="Germany"
               control={
-    <Checkbox
-      checked={isCountryChecked}
-      onChange={handleCheckboxChange}
-      size="small"
-      color="success"
-    />
+                <Checkbox
+                  checked={isCountryChecked}
+                  onChange={handleCheckboxChange}
+                  size="small"
+                  color="success"
+                />
               }
             />
           </FormGroup>

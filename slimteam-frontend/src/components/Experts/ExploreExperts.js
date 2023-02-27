@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./experts.css";
 import { useNavigate } from "react-router-dom";
-//import CheckboxFilter from "./CheckboxFilter";
+import FilterByCountry from "./FilterExperts/FilterByCountry";
 import {
   Box,
   FormLabel,
@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 
 export default function ExploreExperts({ experts, setExperts }) {
-
   const [expertSearchText, setExpertSearchText] = useState();
   const [soughtExperts, setSoughtExperts] = useState();
   const [countryIsChecked, setCountryIsChecked] = useState(false);
@@ -46,20 +45,6 @@ export default function ExploreExperts({ experts, setExperts }) {
     }
   };
 
-  // filter checkbox
-  const filterExperts = (value) => {
-    if (value) {
-      setSortedExpertsByCountry(
-        experts.filter(
-          (expert) =>
-            expert?.personal_details?.nationality?.toLowerCase() === "germany"
-        )
-      );
-    } else {
-      setSortedExpertsByCountry(experts);
-    }
-  };
-
   return (
     <>
       <h3 style={{ paddingLeft: "2rem" }}>
@@ -89,28 +74,11 @@ export default function ExploreExperts({ experts, setExperts }) {
               </b>
             </h6>
             <div className="filter-card-container">
-              {/* <CheckboxFilter country={country} setCountry={setCountry} /> */}
-              <Box sx={{ display: "flex" }}>
-                <FormControl component="fieldset" variant="standard">
-                  <FormLabel component="legend">Country</FormLabel>
-                  <FormGroup>
-                    <FormControlLabel
-                      label="Germany"
-                      control={
-                        <Checkbox
-                          checked={countryIsChecked}
-                          onChange={(e) => {
-                            setCountryIsChecked(e.target.checked);
-                            filterExperts(e.target.checked);
-                          }}
-                          size="small"
-                          color="success"
-                        />
-                      }
-                    />
-                  </FormGroup>
-                </FormControl>
-              </Box>
+              <FilterByCountry
+                experts={experts}
+                sortedExpertsByCountry={sortedExpertsByCountry}
+                setSortedExpertsByCountry={setSortedExpertsByCountry}
+              />
             </div>
           </div>
         </div>
