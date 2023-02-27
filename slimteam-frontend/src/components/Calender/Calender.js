@@ -39,7 +39,6 @@ const MyCalendar = ({ name, expertName }) => {
        setBookedDates(bookedDate.data.map((value) => {
             return value.start
         }))
-      //  console.log(bookedDate.data)
       } catch (error) {
         console.log(error);
       }

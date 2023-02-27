@@ -1,93 +1,135 @@
-
-.firstrow {
+/* .firstrow {
     /* background-color: antiquewhite; */
-    margin-top: 2rem;
+/* margin-top: 2rem;
     border: 2px solid black;
     padding: 1rem 1rem;
     border-radius: 1rem;
-}
+} */
+*/
 
 
-.secondrow {
-   
+/* .secondrow {
     border: 2px solid black;
     padding: 1rem 1rem;
     border-radius: 1rem;
-}
+} */
 
-.thirdrow {
-   
+/* .thirdrow {
     border: 2px solid black;
     padding: 1rem 1rem;
     border-radius: 1rem;
     margin-bottom: 2rem;
-}
+} */
 
-.professional-experience {
+/* .professional-experience {
     width: 1040px;
-}
-
+} */
+/* 
 .experience-item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 .startandend {
-    color: rgb(160, 151, 151);
+  color: rgb(160, 151, 151);
 }
 
 .portfoliobutton {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.edit-function {
+  background-color: aquamarine;
 }
 
 .rate-review-container {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1rem;
-    border: 0.01rem solid black;
-    border-radius: 1rem;
-    width: 23%;
-    margin-bottom: 1rem;
-    margin-top: 5rem;
-    padding: 1rem ;
-  }
+  width: 100%;
 
-  .skills {
-    display: flex;
-    flex-direction: row;
-    gap : 1rem;
-  }
 
-  .upload .profile-picturee  {
-    border: 0.01rem solid black;
-    border-radius: 50%;
-    padding: 0.3rem ;
-    margin-top: -9rem;
-    margin-left: 1rem;
-    position: relative;
-  }
+  /* gap: 1rem;
+  border: 0.01rem solid black;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 5rem;
+  padding: 2rem;
+  margin-right: 2rem;  */
+}
 
-  .upload .camerabutton {
-    position: absolute;
-    top: 42%;
-    left: 27.5%;
-    background-color: aliceblue;
-    /* color: white; */
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-  }
+.skills {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
 
-  .upload .camerabutton :hover{
-    background-color:rgb(30, 28, 28);
-    cursor:pointer;
-    color:white;
-    }
+.expert-description-container {
+  max-width: 30%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.upload .profile-picturee {
+  border: 0.01rem solid black;
+  border-radius: 50%;
+  padding: 0.3rem;
+  margin-top: -9rem;
+  margin-left: 1rem;
+  position: relative;
+}
+
+.camerabutton {
+  position: absolute;
+ 
+  /* top: 32%;
+  left: 26.5%; */
+  background-color: aliceblue;
+  /* color: white; */
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.upload .camerabutton :hover {
+  background-color: rgb(30, 28, 28);
+  cursor: pointer;
+  color: white;
+}
+
+.expert-headline-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 47rem;
+}
+
+.expert-headline-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 27rem;
+}
+
+.expert-location {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.expert-portfolio {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 5rem;
+  flex-wrap: wrap; /* delete this line in case it should be in a row */
+
+}

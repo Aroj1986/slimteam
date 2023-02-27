@@ -43,7 +43,7 @@ export default function EducationAdd({ name,id,portfolio , setPortfolio }) {
       return (
         <div>
           <IconButton aria-label="edit" size="large">
-            <AddIcon onClick={handleClickOpen} fontSize="inherit" color="primary" />
+            <AddIcon onClick={handleClickOpen} fontSize="inherit" color="inherit" />
           </IconButton>
           <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Add New Experience</DialogTitle>
@@ -52,20 +52,7 @@ export default function EducationAdd({ name,id,portfolio , setPortfolio }) {
                 autoFocus
                 margin="dense"
                 id="name"
-                label="College"
-                // value={institution}
-                type="text"
-                fullWidth
-                variant="standard"
-                onChange={(e) => {
-                    setInstitution(e.target.value);
-                  }}
-              />
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="degree"
+                label="Degree"
                 // value = {position}
                 type="text"
                 fullWidth
@@ -74,9 +61,22 @@ export default function EducationAdd({ name,id,portfolio , setPortfolio }) {
                     setPosition(e.target.value);
                   }}
               />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="University/College"
+                // value={institution}
+                type="text"
+                fullWidth
+                variant="standard"
+                onChange={(e) => {
+                    setInstitution(e.target.value);
+                  }}
+              />
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
-                  label="start date"
+                  label="Start date"
                   value={start_date}
                   onChange={(newValue) => {
                     setstart(newValue);
@@ -85,7 +85,7 @@ export default function EducationAdd({ name,id,portfolio , setPortfolio }) {
                 />
     
                 <DatePicker
-                  label="end date"
+                  label="End date"
                   value={end_date}
                   onChange={(newValue) => {
                     setend(newValue);
