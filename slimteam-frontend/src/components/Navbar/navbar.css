@@ -11,6 +11,7 @@
   background-color: rgb(242, 236, 236);
 }
 
+
 .lists-navbar {
   list-style: none;
   padding-left: 20rem;
@@ -20,8 +21,9 @@
   gap: 0.5rem;
   color: black;
   font-size: 1rem;
-  
 }
+
+
 
 .login-navbar {
   list-style: none;
@@ -42,7 +44,8 @@
 
 .items-buttons:hover {
   background-color: black;
-  color: darkgrey /* change text color on hover */
+  color: darkgrey; /* change text color on hover */
+  text-decoration: none; /* Remove underline */
 }
 
 

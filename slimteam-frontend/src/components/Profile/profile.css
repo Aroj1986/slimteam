@@ -40,11 +40,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+ 
 }
 
-.edit-function {
-  background-color: aquamarine;
-}
 
 .rate-review-container {
   width: 100%;
@@ -86,7 +84,7 @@
   position: absolute;
  
   /* top: 32%;
-  left: 26.5%; */
+  left: 42%; */
   background-color: aliceblue;
   /* color: white; */
   border: none;
