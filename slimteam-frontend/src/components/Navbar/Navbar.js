@@ -3,7 +3,8 @@ import './navbar.css'
 import { NavLink} from 'react-router-dom';
 import axios from "axios";
 import Button from '@mui/material/Button';
-import LogoCompany from './header.png'
+import LogoCompany from './header.png';
+
 
 
 
@@ -25,6 +26,11 @@ function Navbar({userLogin, setUserLogin,name}) {
       setUserLogin(false)
   };
 console.log(`User login status: ${userLogin}`)
+
+
+
+
+
   return (
     <>
      <div className='container-header'>
@@ -38,6 +44,7 @@ console.log(`User login status: ${userLogin}`)
           <NavLink to="/jobwall" className='items-navbar'>JobWall</NavLink> 
         </ul>
         <ul className='col-4 login-navbar'>
+      
 
         <Button variant="contained"><NavLink to={`${userLogin ? `/portfolio/${name}` : '/register'}` } className='items-buttons register'>{userLogin ? 'Profile' : 'Register' }</NavLink></Button> |
         <Button variant="contained"><NavLink to={`${userLogin ? '/login' : '/login'}` } className='items-buttons'>{userLogin ? (<span onClick={logoutOnClick}>Logout</span>) : 'Login' }</NavLink></Button>

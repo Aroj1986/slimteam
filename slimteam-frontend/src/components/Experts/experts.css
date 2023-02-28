@@ -2,11 +2,14 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-left: 2rem;
+  padding-left: 0rem;
   margin-bottom: 1rem;
   gap: 1rem;
 }
+.header-slimteam{
 
+  text-align: center;
+}
 .button-expert {
   background-color: #152d73;
   color: white;
@@ -36,7 +39,7 @@
 }
 
 .expert-list-container {
-  width: 100%;
+ 
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -44,9 +47,15 @@
   flex-grow: 1;
   flex-shrink: 1;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   padding: 1rem 0rem;
+
+width: 100%;
 }
+.expert-list-container{
+  background-color:F2ECEC;
+}
+
 
 .card-container {
   display: flex;
@@ -122,10 +131,11 @@
   justify-content: center;
   align-items: flex-start;
   gap: 1rem;
+  width:100%;
 }
 
 .expert-description-container {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -145,8 +155,13 @@
   border: 0.01rem solid black;
   border-radius: 50%;
   padding: 0.3rem;
-  margin-top: -9rem;
+  margin-top: 0rem;
   margin-left: 1rem;
+  text-align: center;
+}
+.main-card{
+ background-color: #152d73;
+  text-align: center;
 }
 
 .expert-headline {
@@ -194,3 +209,18 @@
   background-color: white;
   border: 0.01rem solid black;
 }
+.expert-portfolio2{
+
+display: flex;
+
+
+
+  width: 100%;
+  text-align: center;
+}
+.expert{
+
+  text-align: center;
+ align-content: center;
+}
+
