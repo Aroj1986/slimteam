@@ -247,6 +247,17 @@ const editExpertHeadline = async (req, res) => {
   }
 };
 
+
+const getProfile = async (req, res) => {
+  try {
+    const expert = await Profile.find({
+    });
+    res.status(201).json(expert);
+  } catch (error) {
+    res.status(500).send(error.messages);
+  }
+};
+
 module.exports = {
   // createExpert,
   createProfile,
@@ -263,4 +274,5 @@ module.exports = {
   editExpertEducationOne,
   editExpertCertificationOne,
   editExpertHeadline,
+  getProfile,
 };

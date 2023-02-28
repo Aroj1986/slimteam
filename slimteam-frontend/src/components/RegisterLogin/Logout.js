@@ -2,9 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import "./registerLogin.css";
+import { AuthContext } from "../../context/AuthProvider";
 
 
 export default function Logout({setUserLogin}) {
+
+  const { logout, user, loading } = useContext(AuthContext);
 
   const logoutOnClick = (e) => {
     axios
