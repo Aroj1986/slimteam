@@ -34,7 +34,7 @@ function AboutUs() {
         >
           <Carousel.Item>
             <p>
-              Through SlimTeam, we were able to find a Staff
+              Through SlimTeam, we were able to find Staff
               within a few hours who more than fulfilled her job. We were very
               satisfied with the performance.
             </p>
