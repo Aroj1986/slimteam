@@ -17,15 +17,22 @@ import Portfolio_generic from "./components/Profile/Portfolio_generic";
 // import ExperienceAdd from './components/Profile/ExperienceAdd';
 import Calender from "./components/Calender/Calender";
 
+import { useContext } from 'react';
+import AuthProvider from "./context/AuthProvider";
+import { AuthContext } from './context/AuthProvider';
+
+
 export default function App() {
   const [experts, setExperts] = useState([]);
   const [expertName, setExpertName] = useState();
-  const [userLogin, setUserLogin] = useState(false);
+//  const [userLogin, setUserLogin] = useState(false);
   const [email, setEmail] = useState();
   const [name, setName] = useState();
   const [isExpert, setIsExpert] = useState(false);
   const [isUser, setIsUser] = useState(false);
   const [role,setRole] = useState();
+  const { userLogin, setUserLogin} = useContext(AuthContext);
+
 
 
   useEffect(() => {

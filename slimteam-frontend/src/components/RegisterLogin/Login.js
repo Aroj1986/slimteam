@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+
 
 function Login({ setUserLogin,name,setName,setRole }) {
   const [type, setType] = useState("password");
@@ -14,7 +16,10 @@ function Login({ setUserLogin,name,setName,setRole }) {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const { login, user, loading } = useContext(AuthContext);
 
+  console.log(user)
+  console.log(email)
   const navigate = useNavigate();
 
   const onChangeEmail = (e) => {
@@ -37,7 +42,8 @@ function Login({ setUserLogin,name,setName,setRole }) {
 
   const loginOnClick = (e) => {
     e.preventDefault();
-    const postData = { email, password };
+    login(email, password)
+/*     const postData = { email, password };
     axios
       .post("http://localhost:8888/login", postData)
       .then((res) => {
@@ -60,13 +66,16 @@ function Login({ setUserLogin,name,setName,setRole }) {
           console.log("Frontend: User credentials mismatch! try again");
           console.log(`Backend: ${err}`);
         }
-      });
+      }); */
 
   };
 
   return (
     <>
-      <div className="registerLogin-container">
+    {user ? (
+      <Navigate to='/' /> )
+      : (
+        <div className="registerLogin-container">
         <h3>Login using</h3>
         <form method="POST">
           <div className="form-group">
@@ -174,6 +183,7 @@ function Login({ setUserLogin,name,setName,setRole }) {
           </a>
         </div>
       </div>
+    )}
     </>
   );
 }

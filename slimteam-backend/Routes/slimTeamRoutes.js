@@ -1,5 +1,6 @@
 const express = require("express");
 const slimTeamRouter = express.Router();
+const {verifyToken} = require('../middlewares/verifyToken')
 const {
   // createExpert,
   getExperts,
@@ -16,8 +17,10 @@ const {
   editExpertEducationOne,
   editExpertCertificationOne,
   editExpertHeadline,
+  getProfile,
 } = require("../CallbackFunctions/SlimTeamCallbackFunctions");
 
+slimTeamRouter.get("/profile", verifyToken, getProfile);
 slimTeamRouter.route('/explore-experts').post(createProfile).get(getExperts)
 slimTeamRouter.route('/explore-expert/:name').get(getExpert)
 slimTeamRouter.route('/explore-experts/:email').get(getExpertwithEmail)
