@@ -12,13 +12,21 @@ import {
   Checkbox,
 } from "@mui/material";
 import SearchExpert from "./SearchExpert";
+import FilterByExpertise from "./FilterExperts/FilterByExpertise";
 
 export default function ExploreExperts({ experts, setExperts }) {
   const [soughtExperts, setSoughtExperts] = useState();
-  const [isCountryChecked, setIsCountryChecked] = useState(false);
-  const [prevCountryChecked, setPrevCountryChecked] = useState(false);
+  const [checkedCountry, setCheckedCountry] = useState([
+    { count: "germany", checked: false },
+    { count: "england", checked: false },
+  ]);  const [prevCountryChecked, setPrevCountryChecked] = useState(false);
   const [sortedExpertsByCountry, setSortedExpertsByCountry] = useState(experts);
   const navigate = useNavigate();
+  //const [selected, setSelected] = useState([])
+
+  let selected = []
+
+  console.log(selected)
 
   return (
     <>
@@ -37,11 +45,21 @@ export default function ExploreExperts({ experts, setExperts }) {
                 experts={experts}
                 sortedExpertsByCountry={sortedExpertsByCountry}
                 setSortedExpertsByCountry={setSortedExpertsByCountry}
-                isCountryChecked={isCountryChecked}
-                setIsCountryChecked={setIsCountryChecked}
+                checkedCountry={checkedCountry}
+                setCheckedCountry={setCheckedCountry}
                 prevCountryChecked={prevCountryChecked}
                 setPrevCountryChecked={setPrevCountryChecked}
+                selected={selected}
               />
+{/*               <FilterByExpertise
+                experts={experts}
+                sortedExpertsByCountry={sortedExpertsByCountry}
+                setSortedExpertsByCountry={setSortedExpertsByCountry}
+                checkedCountry={checkedCountry}
+                setcheckedCountry={setcheckedCountry}
+                prevCountryChecked={prevCountryChecked}
+                setPrevCountryChecked={setPrevCountryChecked}
+              /> */}
             </div>
           </div>
         </div>
@@ -99,57 +117,57 @@ export default function ExploreExperts({ experts, setExperts }) {
                 </div>
               ) : (
                 <div>
-                  {!isCountryChecked ? (
+                  {sortedExpertsByCountry.length === 0 ? (
                     <div>
-                      <button
-                        onClick={() => navigate(0)}
-                        className="goBackArrow"
-                      >
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            fill="gray"
-                            className="bi bi-skip-backward-btn "
-                            viewBox="0 0 16 16"
-                          >
-                            <path d="M11.21 5.093A.5.5 0 0 1 12 5.5v5a.5.5 0 0 1-.79.407L8.5 8.972V10.5a.5.5 0 0 1-.79.407L5 8.972V10.5a.5.5 0 0 1-1 0v-5a.5.5 0 0 1 1 0v1.528l2.71-1.935a.5.5 0 0 1 .79.407v1.528l2.71-1.935z" />
-                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                          </svg>
-                        </span>
-                        <span className="goBackText">Back to all experts</span>
-                      </button>
+                    <button
+                      onClick={() => navigate(0)}
+                      className="goBackArrow"
+                    >
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="gray"
+                          className="bi bi-skip-backward-btn "
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M11.21 5.093A.5.5 0 0 1 12 5.5v5a.5.5 0 0 1-.79.407L8.5 8.972V10.5a.5.5 0 0 1-.79.407L5 8.972V10.5a.5.5 0 0 1-1 0v-5a.5.5 0 0 1 1 0v1.528l2.71-1.935a.5.5 0 0 1 .79.407v1.528l2.71-1.935z" />
+                          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                        </svg>
+                      </span>
+                      <span className="goBackText"></span>
+                    </button>
 
-                      <div className="expert-list-container">
-                        {experts.map((expert, index) => (
-                          <div className="card-container" key={index}>
-                            <img
-                              src={expert.personal_details.profile_picture}
-                              alt="Expert image"
-                              style={{ height: 100, width: 100 }}
-                            />
-                            <p className="card-name">
-                              <b>
-                                {expert.personal_details.first_name}{" "}
-                                {expert.personal_details.last_name}
-                              </b>
-                            </p>
-                            <p className="card-expertise">
-                              {expert.personal_details.skills}
-                            </p>
-                            <button className="button-expert">
-                              <NavLink
-                                to={`/explore-experts/${expert.personal_details.first_name}`}
-                                className="button-expert"
-                              >
-                                view details
-                              </NavLink>
-                            </button>
-                          </div>
-                        ))}
-                      </div>
+                    <div className="expert-list-container">
+                      {experts.map((expert, index) => (
+                        <div className="card-container" key={index}>
+                          <img
+                            src={expert.personal_details.profile_picture}
+                            alt="Expert image"
+                            style={{ height: 100, width: 100 }}
+                          />
+                          <p className="card-name">
+                            <b>
+                              {expert.personal_details.first_name}{" "}
+                              {expert.personal_details.last_name}
+                            </b>
+                          </p>
+                          <p className="card-expertise">
+                            {expert.personal_details.skills}
+                          </p>
+                          <button className="button-expert">
+                            <NavLink
+                              to={`/explore-experts/${expert.personal_details.first_name}`}
+                              className="button-expert"
+                            >
+                              view details
+                            </NavLink>
+                          </button>
+                        </div>
+                      ))}
                     </div>
+                  </div>
                   ) : (
                     <div>
                       <button

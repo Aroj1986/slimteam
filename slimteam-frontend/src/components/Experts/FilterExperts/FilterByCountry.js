@@ -11,40 +11,36 @@ import {
 
 export default function FilterByCountry({
   experts,
-  sortedExpertsByCountry,
   setSortedExpertsByCountry,
-  isCountryChecked,
-  setIsCountryChecked,
-  prevCountryChecked,
-  setPrevCountryChecked,
+  checkedCountry,
+  setCheckedCountry,
+  selected,
 }) {
-
   // filter checkbox
-  const filterExperts = (value) => {
-    if (value) {
-      setSortedExpertsByCountry(
-        experts.filter(
-          (expert) =>
-            expert?.personal_details?.nationality?.toLowerCase() === "germany"
-        )
-      );
-      console.log(value);
-    } else {
-      setSortedExpertsByCountry(experts);
-      console.log(value);
-    }
+  let result = checkedCountry.filter((count) => count.checked);
+
+  const handleChange = (checked, i) => {
+    let tmp = checkedCountry[i];
+    tmp.checked = !checked;
+    let CheckedCountriesClone = [...checkedCountry];
+    CheckedCountriesClone[i] = tmp;
+    setCheckedCountry([...CheckedCountriesClone]);
+    setSortedExpertsByCountry(experts)
   };
 
-  const handleCheckboxChange = (e) => {
-    const isChecked = e.target.checked;
-    setPrevCountryChecked(isCountryChecked); // Store the previous value
-    setIsCountryChecked(isChecked); // Update the current value
+  selected = result.map((rec) => rec.count)
 
-    // Call the filter function with the previous value
-    filterExperts(e.target.checked);
-  };
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSortedExpertsByCountry(
+      experts.filter(
+        (expert) =>
+          expert?.personal_details?.nationality?.toLowerCase() === selected[0]
+      )
+    );
+  }
 
-  console.log(sortedExpertsByCountry);
+  console.log(selected[0]);
 
   return (
     <div className="filter-card-container">
@@ -52,17 +48,20 @@ export default function FilterByCountry({
         <FormControl component="fieldset" variant="standard">
           <FormLabel component="legend">Country</FormLabel>
           <FormGroup>
-            <FormControlLabel
-              label="Germany"
-              control={
-                <Checkbox
-                  checked={isCountryChecked}
-                  onChange={handleCheckboxChange}
-                  size="small"
-                  color="success"
+            {checkedCountry.map(({ count, checked }, i) => (
+              <div key={i}>
+                <input
+                  type="checkbox"
+                  id={i}
+                  checked={checked}
+                  onChange={() => handleChange(checked, i)}
                 />
-              }
-            />
+                <label className="form-check-label" htmlFor={i}>
+                  {count}
+                </label>
+              </div>
+            ))}
+            <button onClick={handleSubmit}>Filter</button>
           </FormGroup>
         </FormControl>
       </Box>
