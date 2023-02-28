@@ -9,9 +9,15 @@ import {
   Checkbox,
 } from "@mui/material";
 
-export default function FilterByCountry({ experts, sortedExpertsByCountry, setSortedExpertsByCountry }) {
-  const [isCountryChecked, setIsCountryChecked] = useState(false);
-  const [prevCountryChecked, setPrevCountryChecked] = useState(false);
+export default function FilterByCountry({
+  experts,
+  sortedExpertsByCountry,
+  setSortedExpertsByCountry,
+  isCountryChecked,
+  setIsCountryChecked,
+  prevCountryChecked,
+  setPrevCountryChecked,
+}) {
 
   // filter checkbox
   const filterExperts = (value) => {
