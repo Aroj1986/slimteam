@@ -52,6 +52,10 @@
   padding-right: 20px;
 }
 
+.footer-downs:hover {
+  cursor: pointer;
+}
+
 /* Media queries to adjust styles based on screen size */
 @media screen and (max-width: 768px) {
   .logo {
