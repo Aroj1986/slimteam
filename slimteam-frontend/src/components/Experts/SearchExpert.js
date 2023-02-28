@@ -31,9 +31,9 @@ function SearchExpert({ experts, setExperts }) {
   };
   return (
     <div>
-      <h3 style={{ paddingLeft: "2rem" }}>
-        Discover SlimTeam experts at your location
-      </h3>
+      <h6 style={{ paddingLeft: "0rem" }}>
+        Discover Experts at your location
+      </h6>
       <div className="container-search-field">
         <input
           type="text"

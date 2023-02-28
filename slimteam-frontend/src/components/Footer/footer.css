@@ -40,6 +40,10 @@
   margin-right: 20px; /* add a 10px margin to all icons except the last one */
 }
 
+.social-media:hover {
+  cursor: pointer;
+}
+
 .footer-down {
   font-size: 12px;
   display: flex;
@@ -50,6 +54,10 @@
 .footer-downs {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.footer-downs:hover {
+  cursor: pointer;
 }
 
 /* Media queries to adjust styles based on screen size */
