@@ -1,15 +1,14 @@
 .container-navbar {
   width: 100%;
-  background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 1rem;
-  height: 2rem;
   color: white;
   margin-left: 0rem;
+  background-color: rgb(242, 236, 236);
 }
 
 .lists-navbar {
@@ -20,7 +19,8 @@
   justify-content: center;
   gap: 0.5rem;
   color: black;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  
 }
 
 .login-navbar {
@@ -38,6 +38,12 @@
   /* margin: 5px; */
 }
 
+
+
+.items-buttons:hover {
+  background-color: black;
+  color: darkgrey /* change text color on hover */
+}
 
 
 /* Media Queries */
@@ -92,15 +98,17 @@
   flex-direction: row;
   justify-content: flex-start;
   background-color: white;
-  gap: 2rem;
+  /* gap: 2rem; */
   color: black;
-  padding: 20px;
+  /* padding: 20px; */
+  background-color: rgb(242, 236, 236);
  
 }
 
 .img-header {
-  height: 3rem;
+  height: 5rem;
   padding-left: 2rem;
+  padding-top: 0.5rem;
 
 }
 

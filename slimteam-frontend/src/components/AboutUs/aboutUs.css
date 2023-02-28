@@ -1,6 +1,16 @@
 /* Default styles for the hero section */
-.hero-page {
+/* .hero-page {
   width: 100%;
+  display: flex;
+
+} */
+
+.aroj {
+  margin: 3rem;
+}
+
+.line {
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 .flex-carousel {
@@ -9,12 +19,13 @@
   align-items: center;
   flex-wrap: wrap;
 }
-
+/* 
 .image {
-  margin: 1rem;
+  margin: 3rem;
+
   border-radius: 2%;
   max-width: 100%;
-}
+} */
 
 .slogan {
   font-family: Baskerville;
@@ -29,8 +40,7 @@
 }
 
 .hero-section {
-  padding: 20px;
-  margin: 10px;
+  padding: 80px; 
 }
 
 .horizontal-line {
@@ -47,18 +57,14 @@
     align-items: center;
   }
 
-  .image {
-    margin: 0.5rem;
-    width: 70%;
-  }
 
   .slogan {
     font-size: 24px;
   }
 
   .hero-section {
-    padding: 10px;
-    margin: 5px;
+    padding: 30px;
+    margin: 7px;
   }
 }
 
