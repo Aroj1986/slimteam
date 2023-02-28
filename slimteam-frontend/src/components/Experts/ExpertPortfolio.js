@@ -39,7 +39,7 @@ export default function ExpertPortfolio({setExpertName}) {
           <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
           </svg>
         </span>
-        <span className="goBackText">Go back</span>
+        <span className="goBackText">Back to all experts</span>
        </button>
 
       <div className='expert-portfolio'>
