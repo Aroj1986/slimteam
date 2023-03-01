@@ -43,10 +43,10 @@ export default function ExploreExperts({ experts, setExperts }) {
         <div className="col col-3 d-flex flex-column justify-content-start">
           <div className="filter-container">
             <h6>
-              <b>
+              <>
               <SearchExpert experts={experts} setExperts={setExperts} /> 
-                <u>Filter your search results:</u>
-              </b>
+                <h5>Filter your search results:</h5>
+              </>
             </h6>
             <div className="filter-card-container">
               <FilterByCountry
@@ -117,7 +117,7 @@ export default function ExploreExperts({ experts, setExperts }) {
                        <CardActions>
                       
 
-                         <Button variant="contained" className="btn-view" >
+                         <Button variant="contained" >
                            <NavLink
                              to={`/explore-experts/${expert.personal_details.first_name}`}
                              className="button-expert"
@@ -252,7 +252,7 @@ export default function ExploreExperts({ experts, setExperts }) {
                              </CardContent>
                            </CardActionArea>
                            <CardActions>
-                             <Button size="small" color="primary">
+                             <Button size="small" >
                                <NavLink
                                  to={`/explore-experts/${expert.personal_details.first_name}`}
                                  className="button-expert"

@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import "./experts.css";
 
 function SearchExpert({ experts, setExperts }) {
 
@@ -35,16 +39,15 @@ function SearchExpert({ experts, setExperts }) {
         Discover Experts at your location
       </h6>
       <div className="container-search-field">
-        <input
-          type="text"
-          placeholder={"SlimTeam expert"}
+
+      <TextField  sx={{ input: {color: 'black' } }}id="filled-basic" label="SlimTeam expert" variant="filled" 
           value={expertSearchText}
           onChange={handleOnChangeSearch}
-          onKeyDown={handleOnKeySearch}
-        ></input>
-        <button className="button-expert" onClick={handleOnClickSearch}>
-          Search
-        </button>
+          onKeyDown={handleOnKeySearch}  />
+        
+        <Button size="small"  onClick={handleOnClickSearch} style={{color: "white"}}>
+         <a className="button-expert">Search</a> 
+        </Button>
       </div>
     </div>
   );
