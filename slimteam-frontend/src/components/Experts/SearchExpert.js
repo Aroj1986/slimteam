@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import "./experts.css";
 
 function SearchExpert({ experts, setExperts }) {
 
@@ -35,16 +39,37 @@ function SearchExpert({ experts, setExperts }) {
         Discover Experts at your location
       </h6>
       <div className="container-search-field">
-        <input
-          type="text"
-          placeholder={"SlimTeam expert"}
-          value={expertSearchText}
-          onChange={handleOnChangeSearch}
-          onKeyDown={handleOnKeySearch}
-        ></input>
-        <button className="button-expert" onClick={handleOnClickSearch}>
-          Search
-        </button>
+
+      <TextField
+  sx={{
+    input: { color: 'black' },
+    label: { color: 'black' }, // set the label color to black
+    backgroundColor: 'white',
+    '& .MuiFilledInput-underline:after': {
+      borderBottom: '2px solid grey'
+    } // set the background color to white
+  }}
+  id="filled-basic"
+  label="SlimTeam expert"
+  variant="filled"
+  value={expertSearchText}
+  onChange={handleOnChangeSearch}
+  onKeyDown={handleOnKeySearch}
+  InputLabelProps={{
+    focused: false // disable the default focused state of the label
+  }}
+  onFocus={(e) => {
+    e.target.labels[0].style.color = 'black'; // set the label color to black when the input field is focused
+  }}
+  onBlur={(e) => {
+    e.target.labels[0].style.color = ''; // remove the label color when the input field loses focus
+  }}
+/>
+
+        
+        <Button size="small"  onClick={handleOnClickSearch} style={{color: "white"}}>
+         <a className="button-expert">Search</a> 
+        </Button>
       </div>
     </div>
   );

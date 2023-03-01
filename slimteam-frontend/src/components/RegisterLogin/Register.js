@@ -4,9 +4,10 @@ import { NavLink } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
-import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+
 
 function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
   const [type, setType] = useState("password");
@@ -15,8 +16,7 @@ function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
 
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
-  // const [isExpert, setIsExpert] = useState(false);
-  // const [isUser, setIsUser] = useState(false);
+  const { register, user, loading } = useContext(AuthContext);
 
   const handleToggle = () => {
     if (type === "password") {
@@ -57,25 +57,15 @@ function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
     } else if(repeatPassword !== password) {
       alert('password does not match')
     } else {
-      const postData = {email, password, isExpert, isUser}
-      axios
-      .post(("http://localhost:8888/register"),postData)
-      .then((res) => {
-        navigate("/profile");
-        console.log(res.data);
-        console.log('A new user is registered successfully');
-      })
-      .catch((err) => {
-        if(err) {
-          alert('User exists with this email')
-          console.log(`Error registering the user ${err}`)
-        }
-      })
+      register(email, password, isExpert, isUser)
     }
   }
 
   return (
     <>
+    {user ? (
+       <Navigate to='/profile' /> )
+       : (
       <div className="registerLogin-container">
         <h3>Create account</h3>
         <form>
@@ -221,6 +211,7 @@ function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
           </p>
         </form>
       </div>
+      )}
     </>
   );
 }

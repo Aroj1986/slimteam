@@ -41,10 +41,10 @@ export default function ExploreExperts({ experts, setExperts }) {
         <div className="col col-3 d-flex flex-column justify-content-start">
           <div className="filter-container">
             <h6>
-              <b>
-                <SearchExpert experts={experts} setExperts={setExperts} />
-                <u>Filter your search results:</u>
-              </b>
+              <>
+              <SearchExpert experts={experts} setExperts={setExperts} /> 
+                <h5>Filter your search results:</h5>
+              </>
             </h6>
             <div className="filter-card-container">
               <FilterByCountry
@@ -133,7 +133,8 @@ export default function ExploreExperts({ experts, setExperts }) {
                     <div>
                       <div className="expert-list-container">
                         {sortedExpertsByExpertise.map((expert, index) => (
-                          <Card sx={{ maxWidth: 250 }}>
+                          <Card    border="primary"
+                          style={{ width: "15rem", height: "22rem" }}>
                             <CardActionArea>
                               <CardMedia
                                 component="img"
@@ -173,9 +174,11 @@ export default function ExploreExperts({ experts, setExperts }) {
                       </div>
                     </div>
                   ) : (
+
                     <div className="expert-list-container">
                       {experts.map((expert, index) => (
-                        <Card sx={{ maxWidth: 250 }}>
+                        <Card    border="primary"
+                        style={{ width: "15rem", height: "22rem" }}>
                           <CardActionArea>
                             <CardMedia
                               component="img"

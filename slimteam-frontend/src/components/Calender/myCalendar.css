@@ -13,7 +13,7 @@
 }
 
 .calender-styling .rbc-toolbar button {
-  background-color: #007bff;
+  background-color: rgb(101, 97, 97);
   color: #fff;
   border-radius: 3px;
   padding: 6px 12px;
@@ -23,11 +23,11 @@
 }
 
 .calender-styling .rbc-toolbar button:hover {
-  background-color: #0069d9;
+  background-color: #010407;
 }
 
 .calender-styling .rbc-toolbar .rbc-active {
-  background-color: #0069d9;
+  background-color: rgb(101, 97, 97);
 }
 
 .calender-styling .rbc-month-view {
@@ -40,7 +40,7 @@
 }
 
 .calender-styling .rbc-event {
-  background-color: #007bff;
+  background-color: #5d6160;
   border-radius: 5px;
   padding: 5px 10px;
   color: rgb(199, 26, 26);
@@ -48,11 +48,11 @@
 }
 
 .calender-styling .rbc-event:hover {
-  background-color: #0069d9;
+  background-color: #090b0d;
 }
 
 .calender-styling .rbc-selected {
-  background-color: #007bff !important;
+  background-color: #555759 !important;
   color: #fff;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .edit-button {
-  background-color: #4CAF50;
+  background-color: #898f8a;
   color: white;
   border: none;
   padding: 10px;
@@ -106,7 +106,7 @@
 }
 
 .edit-button:hover {
-  background-color: #3e8e41;
+  background-color: #505250;
 }
 
 .delete-button {

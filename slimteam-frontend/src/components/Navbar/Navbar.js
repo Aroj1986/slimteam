@@ -3,42 +3,44 @@ import "./navbar.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthProvider';
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 import LogoCompany from "./SlimTeam.jpg";
 
-
 function Navbar({ userLogin, setUserLogin, name }) {
   console.log(name);
-  
-  const {user, loading, logout, login} = useContext(AuthContext)
-  console.log(user)
-  const logoutOnClick = (e) => {
-    axios
-      .post("http://localhost:8888/logout")
-      .then((res) => {
-        console.log(`Backend: ${res.data}`);
-        console.log("Frontend: User is logged out");
-      })
-      .catch((err) => {
-        if (err) {
-          console.log(`Error logging out the user ${err}`);
-        }
-      });
-    setUserLogin(false);
-  };
 
-console.log(`User login status: ${userLogin}`)
+  const { user, loading, logout } = useContext(AuthContext);
+  // console.log(user);
+  // const logoutOnClick = (e) => {
+  //   axios
+  //     .post("http://localhost:8888/logout")
+  //     .then((res) => {
+  //       console.log(`Backend: ${res.data}`);
+  //       console.log("Frontend: User is logged out");
+  //     })
+  //     .catch((err) => {
+  //       if (err) {
+  //         console.log(`Error logging out the user ${err}`);
+  //       }
+  //     });
+  //   setUserLogin(false);
+  // };
+
+  console.log(`User login status: ${userLogin}`);
 
   return (
     <>
-     <div className='container-header'>
-        <p><img className='img-header' src={LogoCompany} alt="logo-coffeeMeet"/></p>
-    
+      <div className="container-header">
+        <p>
+          <img className="img-header" src={LogoCompany} alt="logo-coffeeMeet" />
+        </p>
 
         <div className="row container-navbar">
-          <ul className="col-8 lists-navbar">
+          {!loading && (
+            <>
+            <ul className="col-8 lists-navbar">
             <NavLink to="/" className="items-navbar">
               About us
             </NavLink>{" "}
@@ -56,21 +58,50 @@ console.log(`User login status: ${userLogin}`)
             </NavLink>
           </ul>
           <ul className="col-4 login-navbar">
+
+            
           {user ? (
-              <>
-                <NavLink to={`/portfolio/${name}`}>Profile</NavLink> |
-                <button className='items-buttons' onClick={logout}>
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <NavLink to='/register'>Register</NavLink> |
-                <button className='items-buttons'> <NavLink to='/login'>Login</NavLink>
-                </button>
-              </>
-            )}
-{/*             <Button
+  <>
+  <Button
+      variant="contained"
+      style={{ backgroundColor: "black" }}
+    >
+    <NavLink to={`/portfolio/${name}`} className="items-buttons">Profile</NavLink> 
+    </Button>
+    <Button
+      variant="contained"
+      style={{ backgroundColor: "black" }}
+      onClick={logout}
+    >
+      Logout
+    </Button>
+  </>
+) : (
+  <>
+    <Button
+      variant="contained"
+      style={{ backgroundColor: "black" }}
+    >
+
+      
+      <NavLink to="/register" className="items-buttons">
+        Register
+      </NavLink>
+    </Button>
+    <Button
+      variant="contained"
+      style={{ backgroundColor: "black" }}
+    >
+      <NavLink to="/login" className="items-buttons">
+        Login
+      </NavLink>
+    </Button>
+  </>
+)}
+
+
+
+            {/*             <Button
               variant="contained"
               style={{ backgroundColor: "black" }}
             >
@@ -98,6 +129,8 @@ console.log(`User login status: ${userLogin}`)
               </NavLink>
             </Button> */}
           </ul>
+            </>
+          )}
         </div>
       </div>
     </>
