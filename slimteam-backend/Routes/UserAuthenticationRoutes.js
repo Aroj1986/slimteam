@@ -4,6 +4,6 @@ const {registerUser, getUsers, loginUser, logoutUser} = require('../CallbackFunc
 
 userAuthenticationRouter.route('/register').post(registerUser).get(getUsers)
 userAuthenticationRouter.route('/login').post(loginUser)
-userAuthenticationRouter.route('/logout').post(logoutUser)
+userAuthenticationRouter.route('/logout').get(logoutUser)
 
 module.exports = userAuthenticationRouter
