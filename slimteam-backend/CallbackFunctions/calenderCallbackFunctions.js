@@ -35,6 +35,16 @@ const getAllAppointments = async (req, res) => {
     }
 };
 
+const getBookingInfo = async (req, res) => {
+    try {
+        const {name} = req.params;
+        const appointments = await Appointment.find({user_UserName :name})
+        res.status(201).json(appointments);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
 const getDetailsUserExpert = async (req, res) => {
     try {
         const {name,expertName} = req.params;
@@ -86,4 +96,4 @@ const updateAppointment = async (req, res) => {
   };
 
 
-module.exports = {createAppointment, getAppointments,getAllAppointments, getAppointment, updateAppointment, deleteAppointment,getDetailsUserExpert}
+module.exports = {createAppointment, getAppointments,getBookingInfo,getAllAppointments, getAppointment, updateAppointment, deleteAppointment,getDetailsUserExpert}
