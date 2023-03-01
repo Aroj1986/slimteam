@@ -122,7 +122,7 @@
 }
 
 .expert-portfolio {
-  width: 100%;
+  width: 60vw;
   flex-direction: row;
   display: flex;
   justify-content: center;
@@ -130,4 +130,10 @@
   padding: 5rem;
   flex-wrap: wrap; /* delete this line in case it should be in a row */
 
+}
+
+.editButton {
+position: absolute;
+top: 10%; 
+right: 3%;
 }

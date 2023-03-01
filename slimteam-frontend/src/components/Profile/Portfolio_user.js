@@ -364,7 +364,7 @@ export default function Portfolio({ name, email,setName }) {
           </div> */}
         </div>
 
-        <div className="rate-review-container">
+        <div className="rate-review-container" style={{position: "relative"}}>
           <HeadlineEdit
             className="edit-function"
             id_expert={portfolio?._id}

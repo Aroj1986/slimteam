@@ -58,22 +58,47 @@ function Navbar({ userLogin, setUserLogin, name }) {
             </NavLink>
           </ul>
           <ul className="col-4 login-navbar">
-            {user ? (
-              <>
-                <NavLink to={`/portfolio/${name}`}>Profile</NavLink> |
-                <button className="items-buttons" onClick={logout}>
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <NavLink to="/register">Register</NavLink> |
-                <button className="items-buttons">
-                  {" "}
-                  <NavLink to="/login">Login</NavLink>
-                </button>
-              </>
-            )}
+
+            
+          {user ? (
+  <>
+  <Button
+      variant="contained"
+      style={{ backgroundColor: "black" }}
+    >
+    <NavLink to={`/portfolio/${name}`}>Profile</NavLink> 
+    </Button>
+    <Button
+      variant="contained"
+      style={{ backgroundColor: "black" }}
+      onClick={logout}
+    >
+      Logout
+    </Button>
+  </>
+) : (
+  <>
+    <Button
+      variant="contained"
+      style={{ backgroundColor: "black" }}
+    >
+      <NavLink to="/register" className="items-buttons">
+        Register
+      </NavLink>
+    </Button>
+    <Button
+      variant="contained"
+      style={{ backgroundColor: "black" }}
+    >
+      <NavLink to="/login" className="items-buttons">
+        Login
+      </NavLink>
+    </Button>
+  </>
+)}
+
+
+
             {/*             <Button
               variant="contained"
               style={{ backgroundColor: "black" }}
