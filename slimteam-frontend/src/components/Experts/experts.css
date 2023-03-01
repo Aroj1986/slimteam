@@ -20,12 +20,19 @@
 }
 .button-expert:hover {
   color: white;
+  background-color: black;
 }
+.heading{
 
+  text-align: left;
+}
+.heading2{
+padding: 0.1rem;
 
+}
 .filter-container {
   width: 100%;
-  height: 30rem;
+  height: 120rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,8 +41,9 @@
   margin-left: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  background: rgba(112, 14, 14, 0.2);
+  background: rgba(195, 120, 120, 0.2);
 }
+
 
 .filter-card-container {
   display: flex;
@@ -147,11 +155,11 @@ width: 100%;
   padding: 1rem;
 }
 
-.banner {
+/* .banner {
   width: 100%;
   height: 18rem;
   background-color: aliceblue;
-}
+} */
 
 .profile-picture {
   border: 0.01rem solid black;
@@ -187,11 +195,13 @@ width: 100%;
 }
 
 .professional-experience {
-  border: 0.01rem solid black;
+  border: 0.01rem solid rgb(196, 184, 184);
   border-radius: 1rem;
   padding: 1rem;
 }
-
+.my-list {
+  list-style-type: none;
+}
 .rate-review-container {
   width: 25%;
   display: flex;

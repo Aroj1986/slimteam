@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+import "./filter.css";
 import { useState } from "react";
 import {
   Box,
@@ -61,7 +63,11 @@ export default function FilterByCountry({
                 </label>
               </div>
             ))}
-            <button onClick={handleSubmit}>Filter</button>
+
+<Button size="small"  onClick={handleSubmit} style={{color: "white"}}>
+         <a className="button-expert">Filter</a> 
+        </Button>
+            
           </FormGroup>
         </FormControl>
       </Box>

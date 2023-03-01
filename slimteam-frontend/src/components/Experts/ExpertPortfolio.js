@@ -12,8 +12,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./experts.css";
 
-// whenever we are using axios and getting data from the backend we need to use optional chaining to load the data in front-end other wise we get undefined value
-
 export default function ExpertPortfolio({ setExpertName }) {
   const [expert, setExpert] = useState({});
   const { name } = useParams();
@@ -52,115 +50,145 @@ export default function ExpertPortfolio({ setExpertName }) {
 
       <div className="expert">
         <div className="ex1">
-
-        <div>
-            <img className='profile-picture' src={expert.personal_details?.profile_picture} alt="Expert image"  style={{height: 150, width: 150}}/>
+          <div>
+            <img
+              className="profile-picture"
+              src={expert.personal_details?.profile_picture}
+              alt="Expert image"
+              style={{ height: 150, width: 150 ,textAlign:"center"}}
+            />
           </div>
-          {/* <div className="main-card"> */}
 
-          <Card >
-            
-            <CardContent >
-              <Typography gutterBottom component="div">
-                {expert.personal_details?.first_name}{" "}
-                {expert.personal_details?.last_name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {expert.personal_details?.skills},{" "}
-                {expert.personal_details?.nationality}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" className="button-expert" >
-                <a  className="button-expert" >Message</a></Button>
-              <Button size="small" className="button-expert" >
-                <NavLink to={`/book-online/${name}`} className="button-expert" >Book online</NavLink>
-              </Button>
-            </CardActions>
-            <CardContent>
-              <Typography gutterBottom component="div">
-                <div className="professional-experience">
-                  <div>
-                    {expert?.experience?.length ? (
-                      expert.experience.map((exp) => {
-                        return (
-                          <ul>
-                            <li>Institution: {exp?.institution}</li>
-                            <li>Position: {exp?.position}</li>
-                          </ul>
-                        );
-                      })
-                    ) : (
-                      <p> No Experience Found</p>
-                    )}
-                  </div>
-                </div>
-              </Typography>
-              <Typography gutterBottom component="div">
-                <div className="professional-experience">
-                  <h6>Education</h6>
-                  <div>
-                    {expert?.experience?.length ? (
-                      expert.experience.map((exp) => {
-                        return (
-                          <ul>
-                            <li>Institution: {exp?.institution}</li>
-                            <li>Position: {exp?.position}</li>
-                          </ul>
-                        );
-                      })
-                    ) : (
-                      <p> No Education Found</p>
-                    )}
-                  </div>
-                </div>
-              </Typography>
-              <Typography gutterBottom component="div">
-                <div className="professional-experience">
-                  <h6>License / Certification</h6>
-                  <p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "105%",
+              margin: "0 auto",
+              marginBottom:"5rem",
+              
+              
+            }}
+          >
+            <Card style={{backgroundColor:" rgba(255,250,250)", padding:"0rem", width: "42%", borderRadius:"1rem"}}>
+              <CardContent>
+                <Typography gutterBottom component="div">
+                  {expert.personal_details?.first_name}{" "}
+                  {expert.personal_details?.last_name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {expert.personal_details?.skills},{" "}
+                  {expert.personal_details?.nationality}
+                </Typography>
+              </CardContent>
+              <CardActions style={{ justifyContent: "center" }}>
+                <Button
+                  size="small"
+                  className="button-expert"
+                  style={{ color: "white" }}
+                >
+                  <a className="button-expert">Message</a>
+                </Button>
+                <Button
+                  size="small"
+                  className="button-expert"
+                  style={{ color: "white" }}
+                >
+                  <NavLink
+                    to={`/book-online/${name}`}
+                    className="button-expert"
+                  >
+                    Book online
+                  </NavLink>
+                </Button>
+              </CardActions>
+              <CardContent>
+                <Typography gutterBottom component="div">
+                  <div className="professional-experience">
                     <div>
-                      {expert?.certifications?.length ? (
-                        expert.certifications.map((exp) => {
+                      <h5 className="heading">Experience</h5>
+                      {expert?.experience?.length ? (
+                        expert.experience.map((exp) => {
                           return (
-                            <ul>
-                              <li>certifications: {exp?.certification_name}</li>
+                            <ul className="my-list heading">
+                              <li>Institution: {exp?.institution}</li>
+                              <li>Position: {exp?.position}</li>
                             </ul>
                           );
                         })
                       ) : (
-                        <p> Certification Found</p>
+                        <p className="heading2"> No Experience Found</p>
                       )}
                     </div>
-                  </p>
-                </div>
-              </Typography>
-
-              <Typography gutterBottom component="div">
-                <div className="professional-experience">
-                  <h6>Languages</h6>
-
-                  <div>
-                    {expert?.languages?.length ? (
-                      expert.languagues.map((exp) => {
-                        return (
-                          <ul>
-                            <li>languages: {exp?.language}</li>
-                            <li>languages: {exp?.proficiency}</li>
-                          </ul>
-                        );
-                      })
-                    ) : (
-                      <p>No Languages Found</p>
-                    )}
                   </div>
-                </div>
-              </Typography>
-            </CardContent>
-          </Card>
+                </Typography>
+                <Typography gutterBottom component="div">
+                  <div className="professional-experience">
+                    <h5 className="heading">Education</h5>
+                    <div>
+                      {expert?.education?.length ? (
+                        expert.education.map((exp) => {
+                          return (
+                            <ul className="my-list heading">
+                              <li>Institute: {exp?.institute}</li>
+                              <li>Degree: {exp?.degree}</li>
+                            </ul>
+                          );
+                        })
+                      ) : (
+                        <p className="heading2"> No Education Found</p>
+                      )}
+                    </div>
+                  </div>
+                </Typography>
+                <Typography gutterBottom component="div">
+                  <div className="professional-experience">
+                    <h5 className="heading">License / Certification</h5>
+                    <p>
+                      <div>
+                        {expert?.certifications?.length ? (
+                          expert.certifications.map((exp) => {
+                            return (
+                              <ul className="my-list heading">
+                                <li>
+                                  certifications: {exp?.certification_name}
+                                </li>
+                              </ul>
+                            );
+                          })
+                        ) : (
+                          <p className="heading2"> Certification Found</p>
+                        )}
+                      </div>
+                    </p>
+                  </div>
+                </Typography>
+
+                <Typography gutterBottom component="div">
+                  <div className="professional-experience">
+                    <h5 className="heading" >Languages</h5>
+
+                    <div>
+                      {expert?.languages?.length ? (
+                        expert.languagues.map((exp) => {
+                          return (
+                            <ul className="my-list heading">
+                              <li>languages: {exp?.language}</li>
+                              <li>languages: {exp?.proficiency}</li>
+                            </ul>
+                          );
+                        })
+                      ) : (
+                        <p className="heading2"> No Languages Found</p>
+                      )}
+                    </div>
+                  </div>
+                </Typography>
+              </CardContent>
+            </Card>
           </div>
-          
         </div>
+      </div>
       {/* </div> */}
     </>
   );
