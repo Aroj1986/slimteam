@@ -58,15 +58,8 @@ export default function ExpertPortfolio({ setExpertName }) {
           </div>
           {/* <div className="main-card"> */}
 
-          <Card className = "ex2">
-            {/* <CardMedia className="profile-picture"
-              component="img"
-              alt="Expert image"
-              height="140"
-              // img className='profile-picture' src={expert.personal_details?.profile_picture} alt="Expert image"  style={{height: 150, width: 150}}/>
-              
-              image={expert.personal_details?.profile_picture}
-            /> */}
+          <Card >
+            
             <CardContent >
               <Typography gutterBottom component="div">
                 {expert.personal_details?.first_name}{" "}
@@ -78,15 +71,15 @@ export default function ExpertPortfolio({ setExpertName }) {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Message</Button>
-              <Button size="small">
-                <NavLink to={`/book-online/${name}`}>Book online</NavLink>
+              <Button size="small" className="button-expert" >
+                <a  className="button-expert" >Message</a></Button>
+              <Button size="small" className="button-expert" >
+                <NavLink to={`/book-online/${name}`} className="button-expert" >Book online</NavLink>
               </Button>
             </CardActions>
             <CardContent>
               <Typography gutterBottom component="div">
                 <div className="professional-experience">
-                  <h6>Professional experience</h6>
                   <div>
                     {expert?.experience?.length ? (
                       expert.experience.map((exp) => {

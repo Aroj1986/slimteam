@@ -87,30 +87,46 @@ export default function ExploreExperts({ experts, setExperts }) {
 
                   <div className="expert-list-container">
                     {soughtExperts.map((expert, index) => (
-                      <div className="card-container" key={index}>
-                        <img
-                          src={expert.personal_details.profile_picture}
-                          alt="Expert image"
-                          style={{ height: 100, width: 100 }}
-                        />
-                        <p className="card-name">
-                          <b>
-                            {expert.personal_details.first_name}{" "}
-                            {expert.personal_details.last_name}
-                          </b>
-                        </p>
-                        <p className="card-expertise">
-                          {expert.personal_details.skills}
-                        </p>
-                        <button className="button-expert">
-                          <NavLink
-                            to={`/explore-experts/${expert.personal_details.first_name}`}
-                            className="button-expert"
-                          >
-                            view details
-                          </NavLink>
-                        </button>
-                      </div>
+                     <Card    border="primary"
+                     style={{ width: "15rem", height: "22rem" }}>
+                       <CardActionArea>
+                         <CardMedia
+                           component="img"
+                           height="200"
+                           image={expert.personal_details.profile_picture}
+                           alt="Expert image"
+                         />
+                         <CardContent>
+                           <Typography
+                             gutterBottom
+                             variant="h5"
+                             component="div"
+                           >
+                             
+                               {expert.personal_details.first_name}{" "}{expert.personal_details.last_name}
+                             
+                           </Typography>
+                           <Typography
+                             variant="body2"
+                             color="text.secondary"
+                           >
+                             {expert.personal_details.skills}
+                           </Typography>
+                         </CardContent>
+                       </CardActionArea>
+                       <CardActions>
+                      
+
+                         <Button variant="contained" className="btn-view" >
+                           <NavLink
+                             to={`/explore-experts/${expert.personal_details.first_name}`}
+                             className="button-expert"
+                           >
+                             view details
+                           </NavLink>
+                         </Button>
+                       </CardActions>
+                     </Card>
                     ))}
                   </div>
                 </div>
@@ -143,7 +159,8 @@ export default function ExploreExperts({ experts, setExperts }) {
                         {experts.map((expert, index) => (
                        
 
-                          <Card sx={{ maxWidth: 250 }}>
+                          <Card    border="primary"
+                          style={{ width: "15rem", height: "22rem" }}>
                             <CardActionArea>
                               <CardMedia
                                 component="img"
@@ -207,30 +224,44 @@ export default function ExploreExperts({ experts, setExperts }) {
 
                       <div className="expert-list-container">
                         {sortedExpertsByCountry.map((expert, index) => (
-                          <div className="card-container" key={index}>
-                            <img
-                              src={expert.personal_details.profile_picture}
-                              alt="Expert image"
-                              style={{ height: 100, width: 100 }}
-                            />
-                            <p className="card-name">
-                              <b>
-                                {expert.personal_details.first_name}{" "}
-                                {expert.personal_details.last_name}
-                              </b>
-                            </p>
-                            <p className="card-expertise">
-                              {expert.personal_details.skills}
-                            </p>
-                            <button className="button-expert">
-                              <NavLink
-                                to={`/explore-experts/${expert.personal_details.first_name}`}
-                                className="button-expert"
-                              >
-                                view details
-                              </NavLink>
-                            </button>
-                          </div>
+                         <Card    border="primary"
+                         style={{ width: "15rem", height: "22rem" }}>
+                           <CardActionArea>
+                             <CardMedia
+                               component="img"
+                               height="200"
+                               image={expert.personal_details.profile_picture}
+                               alt="Expert image"
+                             />
+                             <CardContent>
+                               <Typography
+                                 gutterBottom
+                                 variant="h5"
+                                 component="div"
+                               >
+                                 
+                                   {expert.personal_details.first_name}{" "}{expert.personal_details.last_name}
+                                 
+                               </Typography>
+                               <Typography
+                                 variant="body2"
+                                 color="text.secondary"
+                               >
+                                 {expert.personal_details.skills}
+                               </Typography>
+                             </CardContent>
+                           </CardActionArea>
+                           <CardActions>
+                             <Button size="small" color="primary">
+                               <NavLink
+                                 to={`/explore-experts/${expert.personal_details.first_name}`}
+                                 className="button-expert"
+                               >
+                                 view details
+                               </NavLink>
+                             </Button>
+                           </CardActions>
+                         </Card>
                         ))}
                       </div>
                     </div>
