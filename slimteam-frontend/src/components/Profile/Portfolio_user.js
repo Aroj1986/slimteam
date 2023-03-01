@@ -16,6 +16,8 @@ import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
 import EducationEdit from "./EditFunctionality/EducationEdit";
 import CertificationEdit from "./EditFunctionality/CertificationEdit";
 import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
+import { NavLink } from "react-router-dom";
+import ManageBookings from "./ManageBookings";
 
 export default function Portfolio({ name, email,setName }) {
   const [portfolio, setPortfolio] = useState();
@@ -30,6 +32,10 @@ export default function Portfolio({ name, email,setName }) {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
   }, [name]);
+
+  // const handleOnclick = () => {
+  //   <Navigate to='/managebookings' element ={<ManageBookings name={name}/>} />
+  // }
 
   return (
     <Container>
@@ -69,9 +75,12 @@ export default function Portfolio({ name, email,setName }) {
                 })}
               </div>
               <div className="expert-location">
-                <h6>{portfolio?.personal_details.address.city},</h6>
+                <h6>{portfolio?.personal_details.address.city}</h6>
                 <h6>{portfolio?.personal_details.nationality}</h6>
               </div>
+            </div>
+            <div>
+              <button className="expert-location"> <NavLink to ="/managebookings" >ManageBookings</NavLink></button>
             </div>
           </div>
 

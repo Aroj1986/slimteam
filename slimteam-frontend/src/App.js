@@ -5,7 +5,7 @@ import { Routes, Route, useParams } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import AboutUs from "./components/AboutUs/AboutUs";
-import ExploreExperts from "./components/Experts/ExploreExperts";
+import Protected from "./components/Protected";
 import ExpertPortfolio from "./components/Experts/ExpertPortfolio";
 import MeetUs from "./components/Career/MeetUs";
 import Jobwall from "./components/Jobwall/Jobwall";
@@ -14,32 +14,35 @@ import Login from "./components/RegisterLogin/Login";
 import Footer from "./components/Footer/Footer";
 import Profile from "./components/Profile/Profile";
 import Portfolio_generic from "./components/Profile/Portfolio_generic";
-// import ExperienceAdd from './components/Profile/ExperienceAdd';
+import ExploreExperts from "./components/Experts/ExploreExperts"
 import Calender from "./components/Calender/Calender";
 
-import { useContext } from 'react';
-import AuthProvider from "./context/AuthProvider";
-import { AuthContext } from './context/AuthProvider';
-
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthProvider";
+import ManageBookings from "./components/Profile/ManageBookings";
 
 export default function App() {
   const [experts, setExperts] = useState([]);
   const [expertName, setExpertName] = useState();
-//  const [userLogin, setUserLogin] = useState(false);
+  const [userLogin, setUserLogin] = useState(false);
   const [email, setEmail] = useState();
   const [name, setName] = useState();
   const [isExpert, setIsExpert] = useState(false);
   const [isUser, setIsUser] = useState(false);
-  const [role,setRole] = useState();
-  const { userLogin, setUserLogin} = useContext(AuthContext);
-
-
+  const [role, setRole] = useState();
+  const { user, loading } = useContext(AuthContext);
+  var mail = localStorage.getItem("email");
 
   useEffect(() => {
     axios.get("http://localhost:8888/explore-experts").then((res) => {
       setExperts(res.data);
     });
-  }, [email]);
+
+    axios.get(`http://localhost:8888/explore-experts/${mail}`).then((res) => {
+      setName(res.data[0].personal_details?.first_name);
+      setRole(res.data[0]?.role);
+    });
+  }, [mail]);
 
   return (
     <>
@@ -47,14 +50,20 @@ export default function App() {
       <Navbar userLogin={userLogin} setUserLogin={setUserLogin} name={name} />
       <Routes>
         <Route path="/" element={<AboutUs />}></Route>
-        <Route
+        {/* <Route
           path="/explore-experts"
           element={<ExploreExperts experts={experts} setExperts={setExperts} />}
         ></Route>
         <Route
           path="/explore-experts/:name"
           element={<ExpertPortfolio setExpertName={setExpertName} />}
-        ></Route>
+        ></Route> */}
+                <Route path="/explore-experts"  element={<ExploreExperts experts={experts} setExperts={setExperts} />} />
+
+        <Route path="/explore-experts" element={<Protected user={user} loading={loading} />}>
+          <Route path="/explore-experts/:name"  element={<ExpertPortfolio setExpertName={setExpertName} />} />
+        </Route>
+
         <Route path="/meet-us" element={<MeetUs />}></Route>
         <Route path="/jobwall" element={<Jobwall />}></Route>
         <Route
@@ -72,7 +81,14 @@ export default function App() {
         ></Route>
         <Route
           path="/portfolio/:name"
-          element={<Portfolio_generic name={name} email={email} role={role} setName = {setName}/>}
+          element={
+            <Portfolio_generic
+              name={name}
+              email={email}
+              role={role}
+              setName={setName}
+            />
+          }
         ></Route>
         <Route
           path="/profile"
@@ -92,7 +108,20 @@ export default function App() {
         <Route
           path="/login"
           element={
-            <Login setUserLogin={setUserLogin} name={name} setName={setName} setRole={setRole}/>
+            <Login
+              setUserLogin={setUserLogin}
+              name={name}
+              setName={setName}
+              setRole={setRole}
+            />
+          }
+        ></Route>
+         <Route
+          path="/managebookings"
+          element={
+            <ManageBookings
+              name={name}
+            />
           }
         ></Route>
         {/* <Route path='/book-online/:name' element={<Calender />}></Route> */}

@@ -13,12 +13,11 @@ import { AuthContext } from "../../context/AuthProvider";
 function Login({ setUserLogin,name,setName,setRole }) {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
-
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const { login, user, loading } = useContext(AuthContext);
 
-  console.log(user)
+  // console.log(user)
   console.log(email)
   const navigate = useNavigate();
 
