@@ -9,6 +9,8 @@ import IconButton from "@mui/material/IconButton";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "../profile.css";
+
 
 export default function HeadlineEdit({name, id_expert, first_name, last_name, skills, city, nationality, setPortfolio,setName}) {
   const [open, setOpen] = React.useState(false);
@@ -72,14 +74,14 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
   console.log(name, id_expert, personal_details)
 
   return (
-    <div>
-      <IconButton aria-label="edit" size="large">
+    <>
+     <div className="editButton"> <IconButton aria-label="edit" size="large">
         <EditSharpIcon
           onClick={handleClickOpen}
           fontSize="inherit"
           color="inherit"
         />
-      </IconButton>
+      </IconButton> </div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit education</DialogTitle>
         <DialogContent>
@@ -138,6 +140,6 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
           <Button onClick={handleSubmitEdit}>Save</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
