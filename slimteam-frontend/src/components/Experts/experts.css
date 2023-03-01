@@ -236,3 +236,6 @@ display: flex;
  align-content: center;
 }
 
+MuiFilledInput-underline:after {
+  border-bottom: 2px solid grey;
+}
