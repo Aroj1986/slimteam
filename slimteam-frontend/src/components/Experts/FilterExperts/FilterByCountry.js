@@ -1,13 +1,11 @@
 import * as React from "react";
-import { useState } from "react";
 import {
   Box,
   FormLabel,
   FormControl,
   FormGroup,
-  FormControlLabel,
-  Checkbox,
 } from "@mui/material";
+import '../experts.css'
 
 export default function FilterByCountry({
   experts,
@@ -20,34 +18,34 @@ export default function FilterByCountry({
   let result = checkedCountry.filter((count) => count.checked);
 
   const handleChange = (checked, i) => {
+    setCheckedCountry(false)
     let tmp = checkedCountry[i];
     tmp.checked = !checked;
     let CheckedCountriesClone = [...checkedCountry];
     CheckedCountriesClone[i] = tmp;
-    setCheckedCountry([...CheckedCountriesClone]);
-    setSortedExpertsByCountry(experts)
+    setCheckedCountry([...CheckedCountriesClone, ]);
+    if(tmp.checked === false) {
+      setSortedExpertsByCountry(false)
+    } else {
+      setSortedExpertsByCountry(
+        experts.filter(
+          (expert) =>
+            expert?.personal_details?.nationality?.toLowerCase() === tmp.count
+        )
+      );      
+    }
+    console.log(tmp)
+    console.log(CheckedCountriesClone)
   };
 
   selected = result.map((rec) => rec.count)
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setSortedExpertsByCountry(
-      experts.filter(
-        (expert) =>
-          expert?.personal_details?.nationality?.toLowerCase() === selected[0]
-      )
-    );
-  }
-
-  console.log(selected[0]);
 
   return (
     <div className="filter-card-container">
       <Box sx={{ display: "flex" }}>
         <FormControl component="fieldset" variant="standard">
           <FormLabel component="legend">Country</FormLabel>
-          <FormGroup>
+          <FormGroup className="checkbox-label">
             {checkedCountry.map(({ count, checked }, i) => (
               <div key={i}>
                 <input
@@ -61,7 +59,6 @@ export default function FilterByCountry({
                 </label>
               </div>
             ))}
-            <button onClick={handleSubmit}>Filter</button>
           </FormGroup>
         </FormControl>
       </Box>
