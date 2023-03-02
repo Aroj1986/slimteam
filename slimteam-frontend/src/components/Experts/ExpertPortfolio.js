@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useEffect, useState ,useContext} from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Calender from "../Calender/Calender";
@@ -11,11 +11,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./experts.css";
-import { AuthContext } from "../../context/AuthProvider"; 
+import { AuthContext } from "../../context/AuthProvider";
 
 export default function ExpertPortfolio({ setExpertName }) {
   const { user } = useContext(AuthContext);
-  console.log(user)
+  console.log(user);
   const [expert, setExpert] = useState({});
   const { name } = useParams();
   const navigate = useNavigate();
@@ -25,8 +25,8 @@ export default function ExpertPortfolio({ setExpertName }) {
       .then((res) => {
         setExpert(res.data);
         setExpertName(name);
-        localStorage.setItem("expertName",name)
-        localStorage.setItem("name",user?.personal_details?.first_name)
+        localStorage.setItem("expertName", name);
+        localStorage.setItem("name", user?.personal_details?.first_name);
       })
       .catch((err) => {
         console.log(`Error fetching sought expert in database: ${err}`);
@@ -60,7 +60,7 @@ export default function ExpertPortfolio({ setExpertName }) {
               className="profile-picture"
               src={expert.personal_details?.profile_picture}
               alt="Expert image"
-              style={{ height: 150, width: 150 ,textAlign:"center"}}
+              style={{ height: 150, width: 150, textAlign: "center" }}
             />
           </div>
 
@@ -70,12 +70,17 @@ export default function ExpertPortfolio({ setExpertName }) {
               justifyContent: "center",
               width: "105%",
               margin: "0 auto",
-              marginBottom:"5rem",
-              
-              
+              marginBottom: "5rem",
             }}
           >
-            <Card style={{backgroundColor:" rgba(255,250,250)", padding:"0rem", width: "42%", borderRadius:"1rem"}}>
+            <Card
+              style={{
+                backgroundColor: " rgba(255,250,250)",
+                padding: "0rem",
+                width: "42%",
+                borderRadius: "1rem",
+              }}
+            >
               <CardContent>
                 <Typography gutterBottom component="div">
                   {expert.personal_details?.first_name}{" "}
@@ -169,7 +174,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                   </div>
                 </Typography>
 
-                <Typography gutterBottom component="div">
+                {/*                 <Typography gutterBottom component="div">
                   <div className="professional-experience">
                     <h5 className="heading" >Languages</h5>
 
@@ -188,7 +193,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                       )}
                     </div>
                   </div>
-                </Typography>
+                </Typography> */}
               </CardContent>
             </Card>
           </div>
