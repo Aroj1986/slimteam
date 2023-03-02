@@ -25,7 +25,7 @@ function AuthProvider(props) {
       });
   }, []);
 
-  const login = (email, password) => {
+  const login = (email, password, setError) => {
     return axios
       .post(
         "http://localhost:8888/login",
@@ -37,8 +37,9 @@ function AuthProvider(props) {
         setUserLogin(true)
         navigate("/");
       })
-     
+      
       .catch((err) => {
+        setError("Invalid email or password")
         setUser(null);
       });
       

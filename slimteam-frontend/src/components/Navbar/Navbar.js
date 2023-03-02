@@ -66,7 +66,7 @@ function Navbar({ userLogin, setUserLogin, name }) {
       variant="contained"
       style={{ backgroundColor: "black" }}
     >
-    <NavLink to={`/portfolio/${name}`} className="items-buttons">Profile</NavLink> 
+    <NavLink to={`/portfolio/${name}`} className="items-buttons">{name}</NavLink> 
     </Button>
     <Button
       variant="contained"
