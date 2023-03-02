@@ -55,7 +55,7 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
       .post(("http://localhost:8888/explore-experts"),postData)
       .then((res) => {
         setUserLogin(true);
-        navigate(`/portfolio/${data.first_name}`);
+        navigate(`/portfolio_user/${data.first_name}`);
         console.log(res.data)
         setName(data.first_name)
       })
@@ -205,25 +205,12 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
             
       </Container>
       <button onClick = {onClickHandle}>
-        {/* <NavLink to={`/portfolio/${data.first_name}`}> */}
+       
         SUBMIT
-        {/* </NavLink>  */}
+       
         </button>
 
-      {/* <div class="col-md">
-        <label for="floatingInputGrid">Country</label>
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInputGrid"
-            placeholder="Country"
-            //   value={}
-          />
-        </div>
-      </div> */}
-
-      {/* </div> */}
+    
     </div>
   );
 }

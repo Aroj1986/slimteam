@@ -27,10 +27,10 @@ export default function FilterByCountry({
     let CheckedCountriesClone = [...checkedCountry];
     CheckedCountriesClone[i] = tmp;
     setCheckedCountry([...CheckedCountriesClone]);
-    setSortedExpertsByCountry(experts)
+    setSortedExpertsByCountry(experts);
   };
 
-  selected = result.map((rec) => rec.count)
+  selected = result.map((rec) => rec.count);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -48,7 +48,7 @@ export default function FilterByCountry({
     <div className="filter-card-container">
       <Box sx={{ display: "flex" }}>
         <FormControl component="fieldset" variant="standard">
-          <FormLabel component="legend">Country</FormLabel>
+          <FormLabel component="legend" className="country">Country</FormLabel>
           <FormGroup>
             {checkedCountry.map(({ count, checked }, i) => (
               <div key={i}>
@@ -64,10 +64,13 @@ export default function FilterByCountry({
               </div>
             ))}
 
-<Button size="small"  onClick={handleSubmit} style={{color: "white"}}>
-         <a className="button-expert">Filter</a> 
-        </Button>
-            
+            <Button
+              size="small"
+              onClick={handleSubmit}
+              style={{ color: "white" }}
+            >
+              <a className="button-expert">Filter</a>
+            </Button>
           </FormGroup>
         </FormControl>
       </Box>

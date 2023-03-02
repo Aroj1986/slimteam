@@ -12,13 +12,16 @@ import axios from "axios";
 import "../profile.css";
 
 
-export default function HeadlineEdit({name, id_expert, first_name, last_name, skills, city, nationality, setPortfolio,setName}) {
+export default function HeadlineEdit({name, id_expert, first_name, last_name, skills, city, nationality,email,phone_number, setPortfolio,setName}) {
   const [open, setOpen] = React.useState(false);
   const [inputFirstName, setInputFirstName] = useState();
   const [inputLastName, setInputLastName] = useState();
   const [inputSkills, setInputSkills] = useState([]);
   const [inputCity, setInputCity] = useState();
   const [inputNationality, setInputNationality] = useState();
+  const [inputPhoneNo, setInputPhoneNo]=useState();
+  const [inputEmail, setInputEmail]=useState();
+
 
   console.log(id_expert, first_name, last_name, skills, city, nationality)
 
@@ -43,6 +46,15 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
     setInputNationality(e.target.value);
   };
 
+  const handleOnChangeEmail =(e) =>
+  {
+    setInputEmail(e.target.value);
+  };
+  const handleOnChangePhoneNo =(e) =>
+  {
+    setInputPhoneNo(e.target.value);
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -54,6 +66,8 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
       skills: inputSkills,
       city: inputCity,
       nationality: inputNationality,
+      email:inputEmail,
+      phone_number:inputPhoneNo,
     },
   };
 
@@ -135,6 +149,27 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
             variant="standard"
             onChange={handleOnChangeNationality}
           />
+           <TextField
+            autoFocus
+            margin="dense"
+            type="text"
+            label={email}
+            placeholder="email"
+            fullWidth
+            variant="standard"
+            onChange={handleOnChangeEmail}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            type="text"
+            label={phone_number}
+            placeholder="Phone Number"
+            fullWidth
+            variant="standard"
+            onChange={handleOnChangePhoneNo}
+          />
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSubmitEdit}>Save</Button>
