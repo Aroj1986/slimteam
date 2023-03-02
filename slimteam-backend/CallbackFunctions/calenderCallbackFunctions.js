@@ -3,9 +3,9 @@ const Appointment = require('../schemaModel/Calender')
 const Profile = require('../schemaModel/Profile')
 
 const createAppointment = async (req, res) => {
-    const { start, end, title,UserName,expertName } = req.body
+    const { start, end, title,UserName,expertName,allDay } = req.body
     try {
-        const appointment = await Appointment.create({start: start, end: end, title: title, user_UserName:UserName, expert_UserName:expertName});
+        const appointment = await Appointment.create({start: start, end: end, title: title, user_UserName:UserName, expert_UserName:expertName,allDay:allDay});
         res.status(201).json(appointment)
     } catch (error) {
         console.log(error.message);

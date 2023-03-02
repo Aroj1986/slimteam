@@ -250,7 +250,7 @@ const editExpertHeadline = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-    const expert = await Profile.find({
+    const expert = await Profile.findOne({"personal_details.email":req.user.email
     });
     res.status(201).json(expert);
   } catch (error) {
