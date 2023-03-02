@@ -55,7 +55,7 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
       .post(("http://localhost:8888/explore-experts"),postData)
       .then((res) => {
         setUserLogin(true);
-        navigate(`/portfolio/${data.first_name}`);
+        navigate(`/portfolio_user/${data.first_name}`);
         console.log(res.data)
         setName(data.first_name)
       })

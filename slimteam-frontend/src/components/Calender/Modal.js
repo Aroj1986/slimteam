@@ -31,7 +31,7 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
     e.preventDefault();
     if (title) {
       axios
-        .post("http://localhost:8888/book-online", { start,end,title,UserName:name,expertName : expertName  })
+        .post("http://localhost:8888/book-online", { start,end,title,UserName:name,expertName : expertName,allDay:true  })
         .then(({ data }) => setEvents([...events, data]))
         .catch((err) => console.log(err));
       setOpen(false);

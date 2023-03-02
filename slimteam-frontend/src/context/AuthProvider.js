@@ -14,9 +14,9 @@ function AuthProvider(props) {
     axios
       .get('http://localhost:8888/profile', {withCredentials: true})
       .then((res) => {
-        console.log(res.data);
         setUser(res.data)
         setLoading(false);
+        localStorage.setItem("name",res.data.personal_details.first_name)
         console.log(res.data)
       })
       .catch((err) => {

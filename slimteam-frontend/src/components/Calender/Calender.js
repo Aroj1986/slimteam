@@ -7,8 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./myCalendar.css";
 import axios from "axios";
 import Modal from "./Modal";
-import { useParams } from "react-router-dom";
-import { accordionDetailsClasses } from "@mui/material";
+
 
 const MyCalendar = ({ name, expertName }) => {
   const [startDate, setStartDate] = useState();
@@ -23,16 +22,17 @@ const MyCalendar = ({ name, expertName }) => {
   const[from_email,setfromEmail] = useState();
   const [bookedDates, setBookedDates] = useState([]);
   const[request,setRequest] = useState();
-
+  const exptname = localStorage.getItem("expertName")
+  const usName = localStorage.getItem("name")
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8888/book-online/${name}/${expertName}`);
+        const response = await axios.get(`http://localhost:8888/book-online/${name ? name : usName}/${exptname}`);
         setEvents(response.data);
-        const user = await axios .get(`http://localhost:8888/profile-details/${name}`)
-        setfromEmail(user.data[0].personal_details.email)
-       const expert = await axios .get(`http://localhost:8888/profile-details/${expertName}`)
+        const userw = await axios .get(`http://localhost:8888/profile-details/${name}`)
+        setfromEmail(userw.data[0].personal_details.email)
+       const expert = await axios .get(`http://localhost:8888/profile-details/${exptname}`)
        setToEmail(expert.data[0].personal_details.email)
        const bookedDate = await axios.get("http://localhost:8888/book-online");
        console.log(bookedDate.data)
