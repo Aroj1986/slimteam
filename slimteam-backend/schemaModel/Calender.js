@@ -9,7 +9,8 @@ const appointmentSchema = new Schema (
         end: {type: Date},
         title: {type: String},
         user_UserName : {type: String},
-        expert_UserName : {type: String}
+        expert_UserName : {type: String},
+        allDay : {type:Boolean}
     }
 )
 

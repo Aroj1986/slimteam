@@ -49,6 +49,7 @@ padding: 0.1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 1.5rem;
 }
 
 .expert-list-container {
@@ -236,3 +237,18 @@ display: flex;
  align-content: center;
 }
 
+.checkbox-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.3rem;
+}
+
+.form-check-label {
+  padding-left: 0.5rem;
+  cursor: pointer;
+}
+
+MuiFilledInput-underline:after {
+  border-bottom: 2px solid grey;
+}

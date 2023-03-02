@@ -6,7 +6,7 @@
 } */
 
 .aroj {
-  margin: 3rem;
+  margin: 2rem;
 }
 
 .line {
@@ -32,15 +32,20 @@
   padding: 10px;
   display: flex;
   justify-content: center;
-  font-size: 32px;
+  font-size: 28px;
 }
 
 .paragraph {
   text-align: center;
+  font-size: 16px;
 }
 
 .hero-section {
   padding: 80px; 
+}
+
+.reviews {
+  font-size: 13px;
 }
 
 .horizontal-line {
@@ -58,9 +63,9 @@
   }
 
 
-  .slogan {
-    font-size: 24px;
-  }
+  /* .slogan {
+    font-size: 20px;
+  } */
 
   .hero-section {
     padding: 30px;
@@ -74,9 +79,9 @@
     width: 90%;
   }
 
-  .slogan {
-    font-size: 18px;
-  }
+  /* .slogan {
+    font-size: 10px;
+  } */
 
   .hero-section {
     padding: 5px;

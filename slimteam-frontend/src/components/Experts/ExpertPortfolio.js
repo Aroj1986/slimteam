@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useContext} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Calender from "../Calender/Calender";
@@ -11,8 +11,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./experts.css";
+import { AuthContext } from "../../context/AuthProvider"; 
 
 export default function ExpertPortfolio({ setExpertName }) {
+  const { user } = useContext(AuthContext);
+  console.log(user)
   const [expert, setExpert] = useState({});
   const { name } = useParams();
   const navigate = useNavigate();
@@ -22,6 +25,8 @@ export default function ExpertPortfolio({ setExpertName }) {
       .then((res) => {
         setExpert(res.data);
         setExpertName(name);
+        localStorage.setItem("expertName",name)
+        localStorage.setItem("name",user?.personal_details?.first_name)
       })
       .catch((err) => {
         console.log(`Error fetching sought expert in database: ${err}`);
