@@ -1,36 +1,3 @@
-/* .firstrow {
-    /* background-color: antiquewhite; */
-/* margin-top: 2rem;
-    border: 2px solid black;
-    padding: 1rem 1rem;
-    border-radius: 1rem;
-} */
-*/
-
-
-/* .secondrow {
-    border: 2px solid black;
-    padding: 1rem 1rem;
-    border-radius: 1rem;
-} */
-
-/* .thirdrow {
-    border: 2px solid black;
-    padding: 1rem 1rem;
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-} */
-
-/* .professional-experience {
-    width: 1040px;
-} */
-/* 
-.experience-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-} */
 
 .startandend {
   color: rgb(160, 151, 151);
@@ -48,13 +15,6 @@
   width: 100%;
 
 
-  /* gap: 1rem;
-  border: 0.01rem solid black;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
-  margin-top: 5rem;
-  padding: 2rem;
-  margin-right: 2rem;  */
 }
 
 .skills {
@@ -80,6 +40,10 @@
   position: relative;
 }
 
+.profile-picturee {
+  display: block;
+  margin: 0 auto;
+}
 .camerabutton {
   position: absolute;
  
@@ -127,7 +91,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  padding: 5rem;
+  padding: 2rem;
   flex-wrap: wrap; /* delete this line in case it should be in a row */
 
 }

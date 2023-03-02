@@ -205,25 +205,12 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
             
       </Container>
       <button onClick = {onClickHandle}>
-        {/* <NavLink to={`/portfolio/${data.first_name}`}> */}
+       
         SUBMIT
-        {/* </NavLink>  */}
+       
         </button>
 
-      {/* <div class="col-md">
-        <label for="floatingInputGrid">Country</label>
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInputGrid"
-            placeholder="Country"
-            //   value={}
-          />
-        </div>
-      </div> */}
-
-      {/* </div> */}
+    
     </div>
   );
 }
