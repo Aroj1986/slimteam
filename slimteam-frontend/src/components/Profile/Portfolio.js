@@ -289,7 +289,7 @@ export default function Portfolio({ name, email,setName }) {
               return (
                 <div>
                   <ul>
-                    <div className="experience-item">
+                    <div className="experience-item" key="language">
                       <h6>
                         <strong>{lang?.language}:</strong> {lang?.proficiency}
                       </h6>{" "}

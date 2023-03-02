@@ -6,6 +6,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@material-ui/core";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}) {
   const navigate = useNavigate();
@@ -51,11 +56,43 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
     }
   }
   const onClickHandle = (e) => {
+    if (data.first_name.trim() === '' || data.last_name.trim() === '') {
+      toast.error('Please enter your first and second name.');
+      return;
+    }
+    
+    if (data.street.trim() === '') {
+      toast.error('Please enter your street address.');
+      return;
+    }
+    if (data.postal_code.trim() === '') {
+      toast.error('Please enter your postal code.');
+      return;
+    }
+    if (data.city.trim() === '') {
+      toast.error('Please enter your city.');
+      return;
+    }
+    if (data.nationality.trim() === '') {
+      toast.error('Please enter your country.');
+      return;
+    }
+    if (data.phone_number.trim() === '') {
+      toast.error('Please enter your phone number.');
+      return;
+    }
+    if (data.title.trim() === '') {
+      toast.error('Please enter your title.');
+      return;
+    }
+
+  
+    
       axios
       .post(("http://localhost:8888/explore-experts"),postData)
       .then((res) => {
         setUserLogin(true);
-        navigate(`/portfolio_user/${data.first_name}`);
+        navigate(`/portfolio/${data.first_name}`); 
         console.log(res.data)
         setName(data.first_name)
       })
@@ -64,8 +101,9 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
 
   return (
     <div>
+        <ToastContainer toastClassName="toastCustomClassName" />
       <Container>
-        <div className="firstrow">
+      <div className="firstrow" style={{margin: '20px'}}>
           <h6>Personal Details</h6>
           <Row md={4}>
             <Col>
@@ -97,6 +135,7 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
                     value={data.first_name}
                     name="first_name"
                     onChange={handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -113,6 +152,7 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
                     value={data.last_name}
                     name="last_name"
                     onChange={handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -130,6 +170,7 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
                     value={data.street}
                     name="street"
                     onChange={handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -195,6 +236,7 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
                     name="phone_number"
                     value={data.phone_number}
                     onChange={handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -204,11 +246,17 @@ function Profile_user({email,setEmail,name,setName,isExpert,isUser,setUserLogin}
         </div>
             
       </Container>
-      <button onClick = {onClickHandle}>
-       
-        SUBMIT
-       
-        </button>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+      <Button
+        variant="contained"
+        color="inherit"
+        onClick={onClickHandle}
+        style={{ backgroundColor: "black", color: "white" }}
+      > {/* <NavLink to={`/portfolio/${data.first_name}`}> */}
+      SUBMIT
+      {/* </NavLink>  */}
+    </Button>
+    </div>
 
     
     </div>

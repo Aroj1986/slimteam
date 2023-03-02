@@ -6,8 +6,8 @@ import arojPicture from "./ArojPicture.jpg";
 function AboutUs() {
   return (
     <div className="hero-page">
-      <div className="d-flex flex-column justify-content-center align-items-center mt-3 mb-3">
-        <div className="d-flex flex-row aroj justify-content-md-between align-items-center p-2">
+      <div className="d-flex flex-column justify-content-center align-items-center mt-3 mb-3 ">
+        <div className="d-flex flex-row aroj justify-content-md-between align-items-center p-2 ">
           <div className="hero-section">
             <h2 className="slogan">Our Connection to Excellent Services</h2>
             <p className="paragraph">
@@ -23,13 +23,12 @@ function AboutUs() {
             style={{ height: 350 }}
           />
         </div>
-        <div className="line"></div>
         <br></br>
-        
+        <div className="carousel">
         <Carousel
           variant="dark"
           className="flex-carousel text-center"
-          style={{ width: 300 }}
+          style={{ width: 300, backgroundColor: 'rgb(242, 236, 236)' }}
         >
           <Carousel.Item>
             <div className="reviews">
@@ -59,6 +58,7 @@ function AboutUs() {
             </div>
           </Carousel.Item>
         </Carousel>
+        </div>
       </div>
     </div>
   );

@@ -101,3 +101,9 @@ position: absolute;
 top: 10%; 
 right: 3%;
 }
+
+.toastCustomClassName .Toastify__progress-bar--animated {
+  background-color: rgb(211, 201, 201);
+}
+
+
