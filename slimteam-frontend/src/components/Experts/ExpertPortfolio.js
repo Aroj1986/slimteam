@@ -180,7 +180,7 @@ export default function ExpertPortfolio({ setExpertName }) {
 
                     <div>
                       {expert?.languages?.length ? (
-                        expert.languagues.map((exp) => {
+                        expert.languages.map((exp) => {
                           return (
                             <ul className="my-list heading">
                               <li>languages: {exp?.language}</li>
