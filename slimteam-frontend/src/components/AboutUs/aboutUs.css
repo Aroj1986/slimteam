@@ -35,7 +35,7 @@
   font-size: 28px;
 }
 
-.carousel {
+.carousel-bg{
 background-color: rgb(242, 236, 236);
 
 }
@@ -92,3 +92,4 @@ background-color: rgb(242, 236, 236);
     margin: 2px;
   }
 }
+

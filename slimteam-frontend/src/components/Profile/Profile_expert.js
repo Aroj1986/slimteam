@@ -99,9 +99,10 @@ function Profile_expert({
       return;
     }
     if (data.skills.trim() === '') {
-      toast.error('Please enter your title.');
+      toast.error('Please enter your Skills.');
       return;
     }
+   
 
 
     axios
