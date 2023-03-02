@@ -8,7 +8,7 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import Protected from "./components/Protected";
 import ExpertPortfolio from "./components/Experts/ExpertPortfolio";
 import MeetUs from "./components/Career/MeetUs";
-import Jobwall from "./components/Jobwall/Jobwall";
+import JobWall from "./components/Jobwall/JobWall";
 import Register from "./components/RegisterLogin/Register";
 import Login from "./components/RegisterLogin/Login";
 import Footer from "./components/Footer/Footer";
@@ -39,7 +39,7 @@ export default function App() {
     });
 
     axios.get(`http://localhost:8888/explore-experts/${mail}`).then((res) => {
-      setName(res.data[0].personal_details?.first_name);
+      setName(res.data[0]?.personal_details?.first_name);
       setRole(res.data[0]?.role);
     });
   }, [mail]);
@@ -65,7 +65,7 @@ export default function App() {
         </Route>
 
         <Route path="/meet-us" element={<MeetUs />}></Route>
-        <Route path="/jobwall" element={<Jobwall />}></Route>
+        <Route path="/jobwall" element={<JobWall name={name} />}></Route>
         <Route
           path="/register"
           element={

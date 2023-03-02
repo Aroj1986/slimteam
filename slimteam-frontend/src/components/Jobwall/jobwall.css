@@ -18,25 +18,53 @@
 }
 
 .post-input {
-  width: 35rem;
+  width: 38rem;
   height: 2.5rem;
   padding: 1rem;
   font-size: 1rem;
   border-radius: 0.4rem;
   border: 0.001rem solid rgb(230, 222, 222);
+  margin-bottom: 1rem;
+}
+
+.attachment-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10rem;
+}
+
+.post-image-btn {
+  color: black;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  border: none;
+  font-size: 0.8rem;
+}
+
+.post-image-btn:hover {
+  color: darkgrey; 
+  text-decoration: none; 
 }
 
 .post-submit {
-  height: 2.5rem;
-  width: 3rem;
+  height: 2.0rem;
+  width: 8rem;
   border: none;
   box-sizing: border-box;
   font-size: 1rem;
-  font-weight: 600;
+  background-color: rgb(101, 97, 97);
   color: white;
-  background-color: #152d73;
-  border-radius: 0.7rem;
+  text-decoration: none;
+  border-radius: 0.3rem;
   cursor: pointer;
+}
+
+.post-submit:hover {
+  background-color: rgb(101, 97, 97);
+  color: darkgrey; 
+  text-decoration: none; 
 }
 
 .post-submit:active {
@@ -46,14 +74,6 @@
   padding-left: 10px;
   top: 1px;
   color: white;
-}
-
-.attachment-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
 }
 
 .post-container {

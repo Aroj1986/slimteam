@@ -8,15 +8,25 @@ import { useState, useContext } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 
-
-function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
+function Register({
+  email,
+  setEmail,
+  isExpert,
+  isUser,
+  setIsExpert,
+  setIsUser,
+}) {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
   const navigate = useNavigate();
+  const { register, user, loading } = useContext(AuthContext);
 
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
-  const { register, user, loading } = useContext(AuthContext);
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [repeatPasswordError, setRepeatPasswordError] = useState("");
 
   const handleToggle = () => {
     if (type === "password") {
@@ -30,14 +40,16 @@ function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
+    setEmailError(false)
   };
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
+      setPasswordError(false)
   };
 
   const onChangeRepeatPassword = (e) => {
-      setRepeatPassword(e.target.value);
+    setRepeatPassword(e.target.value);
   };
 
   const expertOnChange = (e) => {
@@ -52,165 +64,127 @@ function Register({email,setEmail,isExpert,isUser,setIsExpert,setIsUser}) {
 
   const registerOnClick = (e) => {
     e.preventDefault();
-    if(password.length < 8 || password.length > 15 ) {
-      alert('password length must be between 8 and 15 characters')
-    } else if(repeatPassword !== password) {
-      alert('password does not match')
+    if (!email && !password) {
+      setEmailError("Enter valid email address");
+      setPasswordError("Password should not be empty");
+    } else if (!email) {
+      setEmailError("Enter valid email address");
+    } else if (!password) {
+      setPasswordError("Password should not be empty");
+    } else if (password.length < 8 || password.length > 15) {
+      setPasswordError("password length must be between 8 and 15 characters");
+    } else if (repeatPassword !== password) {
+      setRepeatPasswordError("password does not match");
     } else {
-      register(email, password, isExpert, isUser)
+      register(email, password, isExpert, isUser);
     }
-  }
+  };
 
   return (
     <>
-    {user ? (
-       <Navigate to='/profile' /> )
-       : (
-      <div className="registerLogin-container">
-        <h3>Create account</h3>
-        <form>
-          <div className="form-group">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="form-input"
-              onChange={onChangeEmail}
-              required
-            ></input>
-          </div>
-
-          <div className="password-group">
-            <input
-              type={type}
-              name="password"
-              placeholder="Password"
-              minlength="8"
-              maxlength="15"
-              pattern="[a-zA-Z0-9]{8,15}"
-              className="password-input"
-              onChange={onChangePassword}
-            ></input>
-            <span onClick={handleToggle} className="password-icon">
-              <Icon icon={icon} />
-            </span>
-          </div>
-
-          <div className="password-group">
-            <input
-              type={type}
-              name="password"
-              placeholder="Repeat password"
-              minlength="8"
-              maxlength="15"
-              pattern="[a-zA-Z0-9]{8,15}"
-              className="password-input"
-              onChange={onChangeRepeatPassword}
-            ></input>
-            <span onClick={handleToggle} className="password-icon">
-              <Icon icon={icon} />
-            </span>
-          </div>
-
-          <div className="radiobutton">
-            <input
-              type="radio"
-              id="expert"
-              name="fav_language"
-              value="Expert"
-              onChange={expertOnChange}
-            />
-            <label for="expert">
-              <strong>Expert?</strong>
-            </label>
-            <br />
-            <input
-              type="radio"
-              id="user"
-              name="fav_language"
-              value="user"
-              onChange={userOnChange}
-            />
-            <label for="user">
-              <strong>User?</strong>
-            </label>
-            <br />
-          </div>
-
-          {/* <div className="remember-forgot">
+      {user ? (
+        <Navigate to="/profile" />
+      ) : (
+        <div className="registerLogin-container">
+          <h3>Create account</h3>
+          <form>
             <div>
-              <input type="checkbox" name="agree-term"></input>
-              <label for="agree-term">
-                I agree all statements in <u>Terms of service</u>
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className="form-input"
+                  onChange={onChangeEmail}
+                  required
+                ></input>
+              <p className="error-message">{emailError}</p>
+              </div>
+            </div>
+
+            <div>
+              <div className="password-group">
+                <input
+                  type={type}
+                  name="password"
+                  placeholder="Password"
+                  minlength="8"
+                  maxlength="15"
+                  pattern="[a-zA-Z0-9]{8,15}"
+                  className="password-input"
+                  onChange={onChangePassword}
+                ></input>
+                <span onClick={handleToggle} className="password-icon">
+                  <Icon icon={icon} />
+                </span>
+              </div>
+              <p className="error-message">{passwordError}</p>
+            </div>
+
+            <div>
+              <div className="password-group">
+                <input
+                  type={type}
+                  name="password"
+                  placeholder="Repeat password"
+                  minlength="8"
+                  maxlength="15"
+                  pattern="[a-zA-Z0-9]{8,15}"
+                  className="password-input"
+                  onChange={onChangeRepeatPassword}
+                ></input>
+                <span onClick={handleToggle} className="password-icon">
+                  <Icon icon={icon} />
+                </span>
+              </div>
+              <p className="error-message">{repeatPasswordError}</p>
+            </div>
+
+            <div className="radiobutton">
+              <input
+                type="radio"
+                id="expert"
+                name="fav_language"
+                value="Expert"
+                onChange={expertOnChange}
+              />
+              <label for="expert">
+                <strong>Expert?</strong>
               </label>
+              <br />
+              <input
+                type="radio"
+                id="user"
+                name="fav_language"
+                value="user"
+                onChange={userOnChange}
+              />
+              <label for="user">
+                <strong>User?</strong>
+              </label>
+              <br />
             </div>
-          </div> */}
 
-          <div className="form-group">
-            <button
-              type="submit"
-              name="submit"
-              onClick={registerOnClick}
-              value="Register"
-              className="form-submit"
-            >
-              Register </button>
-          </div>
-
-          {/* <div class="hr-sect">
-            <h5>or</h5>
-          </div>
-
-          <div className="social-media-login">
-            <div className="google-icon-field">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="white"
-                class="bi bi-google"
-                viewBox="0 0 16 16"
+            <div className="form-group">
+              <button
+                type="submit"
+                name="submit"
+                onClick={registerOnClick}
+                value="Register"
+                className="form-submit"
               >
-                <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-              </svg>
+                Register{" "}
+              </button>
             </div>
-            <input
-              type="submit"
-              name="submit"
-              value="Login using Google"
-              className="social-media-submit google-input-field"
-            ></input>
-          </div>
 
-          <div className="social-media-login">
-            <div className="linkedin-icon-field">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="white"
-                class="bi bi-linkedin"
-                viewBox="0 0 16 16"
-              >
-                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
-              </svg>
-            </div>
-            <input
-              type="submit"
-              name="submit"
-              value="Login using Linkedin"
-              className="social-media-submit linkedin-input-field"
-            ></input>
-          </div> */}
-
-          <p>
-            Have already an account ?{" "}
-            <NavLink to="/login">
-              <b>Login here</b>
-            </NavLink>
-          </p>
-        </form>
-      </div>
+            <p>
+              Have already an account ?{" "}
+              <NavLink to="/login">
+                <b>Login here</b>
+              </NavLink>
+            </p>
+          </form>
+        </div>
       )}
     </>
   );
