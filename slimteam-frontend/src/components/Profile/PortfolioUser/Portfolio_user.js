@@ -11,7 +11,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function UserDisplayingDetails({ name, email, setName }) {
+export default function Portfolio_user({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
@@ -24,7 +24,9 @@ export default function UserDisplayingDetails({ name, email, setName }) {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
   }, [name]);
-
+  
+  console.log(portfolio)
+  
   return (
     <Container>
       <div className="expert-portfolio">
@@ -74,14 +76,14 @@ export default function UserDisplayingDetails({ name, email, setName }) {
                 >
                   <Button size="small" color="primary">
                     <NavLink to="/managebookings" className="button-expert">
-                      ManageBookings
+                      Manage your Bookings
                     </NavLink>
                   </Button>
                 </CardActions>
 
                 <Typography variant="body2" color="text.secondary" align="left">
                   <b>
-                    Name: {portfolio?.personal_details.first_name}{" "}
+                    {portfolio?.personal_details.first_name}{" "}
                     {portfolio?.personal_details.last_name}
                   </b>
                 </Typography>

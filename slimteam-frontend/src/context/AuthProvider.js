@@ -17,7 +17,6 @@ function AuthProvider(props) {
         setUser(res.data)
         setLoading(false);
         localStorage.setItem("name",res.data.personal_details.first_name)
-        console.log(res.data)
       })
       .catch((err) => {
         setUser(null);
@@ -85,10 +84,6 @@ function AuthProvider(props) {
       }
     });
 };
-
-
-  console.log(user)
-
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout,register, userLogin, setUserLogin }}>

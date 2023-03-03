@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../profile.css";
+import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,7 +10,7 @@ import { Button } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function UserCompletingRegistration({
+export default function Profile_user({
   email,
   setEmail,
   name,
