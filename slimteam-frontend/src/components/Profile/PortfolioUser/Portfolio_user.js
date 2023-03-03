@@ -53,8 +53,8 @@ export default function Portfolio_user({ name, email, setName }) {
           >
             <CardActionArea>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Details
+                <Typography className = "headlineeditbutton" gutterBottom variant="h5" component="div">
+                  PROFILE DETAILS
                   <HeadlineEdit
                     className="edit-function"
                     id_expert={portfolio?._id}
@@ -74,11 +74,6 @@ export default function Portfolio_user({ name, email, setName }) {
                 <CardActions
                   style={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Button size="small" color="primary">
-                    <NavLink to="/managebookings" className="button-expert">
-                      Manage your Bookings
-                    </NavLink>
-                  </Button>
                 </CardActions>
 
                 <Typography variant="body2" color="text.secondary" align="left">
@@ -99,6 +94,16 @@ export default function Portfolio_user({ name, email, setName }) {
                     Phone number: {portfolio?.personal_details.phone_number}{" "}
                   </h6>
                 </Typography>
+
+                <CardActions
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                    <Button size="small" color="primary">
+                    <NavLink to="/managebookings" className="button-expert">
+                      Manage your Bookings
+                    </NavLink>
+                  </Button>
+                </CardActions>
               </CardContent>
             </CardActionArea>
           </Card>

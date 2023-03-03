@@ -116,7 +116,10 @@
 .img-header {
   height: 5rem;
   padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: 0.5rem;
+  border-radius: 100%;
+  mix-blend-mode:exclusion;
 
 }
 
