@@ -3,24 +3,11 @@ import Container from "react-bootstrap/Container";
 import "./profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExperienceAdd from "./AddFunctionality/ExperienceAdd";
-import EducationAdd from "./AddFunctionality/EducationAdd";
-import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
-import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
 import UploadPic from "./UploadPic";
-import moment from "moment";
-import TimeCalculator from "./TimeCalculator";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
-import EducationEdit from "./EditFunctionality/EducationEdit";
-import CertificationEdit from "./EditFunctionality/CertificationEdit";
 import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
 import { NavLink } from "react-router-dom";
-import ManageBookings from "./ManageBookings";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
@@ -68,8 +55,8 @@ export default function Portfolio({ name, email, setName }) {
           >
             <CardActionArea>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Details
+                <Typography className = "headlineeditbutton" gutterBottom variant="h5" component="div">
+                  PROFILE DETAILS
                   <HeadlineEdit
                     className="edit-function"
                     id_expert={portfolio?._id}
@@ -86,15 +73,6 @@ export default function Portfolio({ name, email, setName }) {
                     setName={setName}
                   />
                 </Typography>
-                <CardActions
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  <Button size="small" color="primary">
-                    <NavLink to="/managebookings" className="button-expert">
-                      ManageBookings
-                    </NavLink>
-                  </Button>
-                </CardActions>
 
                 <Typography variant="body2" color="text.secondary" align="left">
                   <b>
@@ -114,6 +92,16 @@ export default function Portfolio({ name, email, setName }) {
                     Phone number: {portfolio?.personal_details.phone_number}{" "}
                   </h6>
                 </Typography>
+
+                <CardActions
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <Button size="small" color="primary">
+                    <NavLink to="/managebookings" className="button-expert">
+                      ManageBookings
+                    </NavLink>
+                  </Button>
+                </CardActions>
               </CardContent>
             </CardActionArea>
           </Card>

@@ -158,6 +158,7 @@ const handleDelete = ({ _id }) => {
         request={request}
         setEditingEvent={setEditingEvent}
       />
+      <div className="calendar-container">
       <Calendar
         className="calender-styling"
         localizer={localizer}
@@ -171,6 +172,7 @@ const handleDelete = ({ _id }) => {
         eventStyleGetter={eventStyleGetter}
         tileDisabled={({date}) => [0, 6].includes(date.getDay())}
       />
+      </div>
        {editingEvent && (
         <div className="event-editor">
           <h3>Edit Appointment</h3>

@@ -58,7 +58,7 @@ export default function ExpertPortfolio({ setExpertName }) {
           <div>
             <img
               className="profile-picture"
-              src={expert.personal_details?.profile_picture}
+              src={expert?.personal_details?.profile_picture}
               alt="Expert image"
               style={{ height: 150, width: 150 ,textAlign:"center"}}
             />
@@ -78,12 +78,12 @@ export default function ExpertPortfolio({ setExpertName }) {
             <Card style={{backgroundColor:" rgba(255,250,250)", padding:"0rem", width: "42%", borderRadius:"1rem"}}>
               <CardContent>
                 <Typography gutterBottom component="div">
-                  {expert.personal_details?.first_name}{" "}
-                  {expert.personal_details?.last_name}
+                  {expert?.personal_details?.first_name}{" "}
+                  {expert?.personal_details?.last_name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {expert.personal_details?.skills},{" "}
-                  {expert.personal_details?.nationality}
+                  {expert?.personal_details?.skills},{" "}
+                  {expert?.personal_details?.nationality}
                 </Typography>
               </CardContent>
               <CardActions style={{ justifyContent: "center" }}>
@@ -113,7 +113,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                     <div>
                       <h5 className="heading">Experience</h5>
                       {expert?.experience?.length ? (
-                        expert.experience.map((exp) => {
+                        expert?.experience.map((exp) => {
                           return (
                             <ul className="my-list heading">
                               <li>Institution: {exp?.institution}</li>
@@ -132,7 +132,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                     <h5 className="heading">Education</h5>
                     <div>
                       {expert?.education?.length ? (
-                        expert.education.map((exp) => {
+                        expert?.education.map((exp) => {
                           return (
                             <ul className="my-list heading">
                               <li>Institute: {exp?.institute}</li>
@@ -152,7 +152,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                     <p>
                       <div>
                         {expert?.certifications?.length ? (
-                          expert.certifications.map((exp) => {
+                          expert?.certifications.map((exp) => {
                             return (
                               <ul className="my-list heading">
                                 <li>
@@ -169,13 +169,13 @@ export default function ExpertPortfolio({ setExpertName }) {
                   </div>
                 </Typography>
 
-                <Typography gutterBottom component="div">
+                {/* <Typography gutterBottom component="div">
                   <div className="professional-experience">
                     <h5 className="heading" >Languages</h5>
 
                     <div>
-                      {expert?.languages?.length ? (
-                        expert.languagues.map((exp) => {
+                      {expert?.languages.length ? (
+                        expert?.languagues.map((exp) => {
                           return (
                             <ul className="my-list heading">
                               <li>languages: {exp?.language}</li>
@@ -188,7 +188,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                       )}
                     </div>
                   </div>
-                </Typography>
+                </Typography> */}
               </CardContent>
             </Card>
           </div>
