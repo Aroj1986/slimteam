@@ -11,7 +11,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function Portfolio({ name, email, setName }) {
+export default function Portfolio_user({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
@@ -25,10 +25,6 @@ export default function Portfolio({ name, email, setName }) {
       });
   }, [name]);
 
-  // const handleOnclick = () => {
-  //   <Navigate to='/managebookings' element ={<ManageBookings name={name}/>} />
-  // }
-  
   console.log(portfolio)
   
   return (

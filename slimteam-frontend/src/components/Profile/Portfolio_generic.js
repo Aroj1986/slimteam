@@ -5,7 +5,12 @@ function Portfolio_generic({ email, name, role, setName }) {
   return (
     <div>
       {role === "Expert" ? (
-        <Portfolio_expert email={email} name={name} role={role} setName={setName} />
+        <Portfolio_expert
+          email={email}
+          name={name}
+          role={role}
+          setName={setName}
+        />
       ) : (
         <Portfolio_user
           email={email}

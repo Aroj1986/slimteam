@@ -1,4 +1,3 @@
-
 import React from "react";
 import Profile_expert from "./Profile_expert";
 import Profile_user from "./PortfolioUser/Profile_user";
@@ -35,7 +34,6 @@ function Profile_gerneric({
           setUserLogin={setUserLogin}
         />
       )}
-
     </div>
   );
 }

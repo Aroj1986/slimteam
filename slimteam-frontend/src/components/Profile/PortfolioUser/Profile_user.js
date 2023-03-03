@@ -10,7 +10,7 @@ import { Button } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Profile_user({
+export default function Profile_user({
   email,
   setEmail,
   name,
@@ -269,5 +269,3 @@ function Profile_user({
     </div>
   );
 }
-
-export default Profile_user;
