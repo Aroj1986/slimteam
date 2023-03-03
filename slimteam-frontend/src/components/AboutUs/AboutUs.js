@@ -2,9 +2,17 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "./aboutUs.css";
 import arojPicture from "./ArojPicture.jpg";
+
+import HandymanIcon from "@mui/icons-material/Handyman";
+import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import ImagesearchRollerIcon from '@mui/icons-material/ImagesearchRoller';
+import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly';
+
 import logo from "../../images/logo.png";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
+
 
 function AboutUs() {
   return (
@@ -38,43 +46,73 @@ function AboutUs() {
         </div>
         <br></br>
 
-
-      <Carousel
+        <Carousel
           variant="dark"
           className="flex-carousel text-center"
           style={{ width: 300 }}
+          indicators={false}
         >
           <Carousel.Item>
             <div className="reviews">
+              <p>
+                <HandymanIcon style={{ color: "grey", fontSize: "2.5rem" }}/>
+              </p>
+            
+
             <p>
-              Through SlimTeam, we were able to find Staff
-              within a few hours who more than fulfilled her job. We were very
-              satisfied with the performance.
+              {" "}
+              <p>Plumbing services</p>{" "}
             </p>
             </div>
-            
-            <p>
-            
-              {" "}
-              - <i>Mannhart GmbH</i> -{" "}
-            </p>
           </Carousel.Item>
           <Carousel.Item>
-          <div className="reviews">
-            <p>
-            To support participant management, we booked 16 promoters through Slimteam who greatly helped us and made the event a success.
-            </p>
-            <p>
-              {" "}
-              - <i>Dyson GmbH</i> -{" "}
-              
-            </p>
+            <div className="reviews">
+              <p>
+                <ElectricBoltIcon style={{ color: "gold", fontSize: "2.5rem"}}/>{" "}
+              </p>
+              <p>
+                {" "}
+                <p>Electrician services</p>{" "}
+              </p>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="reviews">
+              <p>
+                <CleaningServicesIcon style={{ color: "brown", fontSize: "2.5rem" }} />{" "}
+              </p>
+              <p>
+                {" "}
+                <p>Cleaning services</p>{" "}
+              </p>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="reviews">
+              <p>
+                <ImagesearchRollerIcon style={{color: "grey", fontSize: "2.5rem" }} />{" "}
+              </p>
+              <p>
+                {" "}
+                <p>Home Painting services</p>{" "}
+              </p>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="reviews">
+              <p>
+                <ChildFriendlyIcon style={{ color: "green", fontSize: "3rem" }}/>{" "}
+              </p>
+              <p>
+                {" "}
+                <p>Nanny services</p>{" "}
+              </p>
             </div>
           </Carousel.Item>
         </Carousel>
-      <br />
-      <br />
-    </div>
+        <br />
+        <br />
+      </div>
     </div>
   );
 }

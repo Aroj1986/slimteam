@@ -62,7 +62,7 @@ export default function ExperienceEdit({name, id_exp, institution, position, fro
 
   return (
     <div>
-      <IconButton aria-label="edit" size="large">
+      <IconButton aria-label="edit" size="small">
         <EditSharpIcon
           onClick={handleClickOpen}
           fontSize="inherit"
