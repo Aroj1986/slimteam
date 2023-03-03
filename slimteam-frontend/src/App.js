@@ -45,7 +45,7 @@ export default function App() {
     });
 
     axios.get(`http://localhost:8888/explore-experts/${mail}`).then((res) => {
-      setName(res.data[0].personal_details?.first_name);
+      setName(res.data[0]?.personal_details?.first_name);
       setRole(res.data[0]?.role);
     });
   }, [mail]);
@@ -72,7 +72,7 @@ export default function App() {
         </Route>
 
         <Route path="/meet-us" element={<MeetUs />}></Route>
-        <Route path="/jobwall" element={<Jobwall />}></Route>
+        <Route path="/jobwall" element={<Jobwall name={name} />}></Route>
         <Route
           path="/register"
           element={

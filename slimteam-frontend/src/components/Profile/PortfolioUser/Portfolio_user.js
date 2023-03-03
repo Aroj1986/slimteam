@@ -1,17 +1,17 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import "./profile.css";
+import "../profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import UploadPic from "./UploadPic";
-import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
+import UploadPic from "../UploadPic";
+import HeadlineEdit from "../EditFunctionality/HeadlineEdit";
 import { NavLink } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function Portfolio({ name, email, setName }) {
+export default function Portfolio_user({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
@@ -25,10 +25,8 @@ export default function Portfolio({ name, email, setName }) {
       });
   }, [name]);
 
-  // const handleOnclick = () => {
-  //   <Navigate to='/managebookings' element ={<ManageBookings name={name}/>} />
-  // }
-
+  console.log(portfolio)
+  
   return (
     <Container>
       <div className="expert-portfolio">
@@ -61,26 +59,30 @@ export default function Portfolio({ name, email, setName }) {
                     className="edit-function"
                     id_expert={portfolio?._id}
                     name={name}
-                    first_name={portfolio?.personal_details.first_name}
-                    last_name={portfolio?.personal_details.last_name}
-                    address={portfolio?.personal_details.address.street}
-                    city={portfolio?.personal_details.address.city}
-                    nationality={portfolio?.personal_details.nationality}
-                    email={portfolio?.personal_details.email}
-                    phone_number={portfolio?.personal_details.phone_number}
+                    first_name={portfolio?.personal_details?.first_name}
+                    last_name={portfolio?.personal_details?.last_name}
+                    street={portfolio?.personal_details?.address?.street}
+                    city={portfolio?.personal_details?.address?.city}
+                    nationality={portfolio?.personal_details?.nationality}
+                    email={portfolio?.personal_details?.email}
+                    phone_number={portfolio?.personal_details?.phone_number}
                     portfolio={portfolio}
                     setPortfolio={setPortfolio}
                     setName={setName}
                   />
                 </Typography>
+                <CardActions
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                </CardActions>
 
                 <Typography variant="body2" color="text.secondary" align="left">
                   <b>
-                    Name: {portfolio?.personal_details.first_name}{" "}
+                    {portfolio?.personal_details.first_name}{" "}
                     {portfolio?.personal_details.last_name}
                   </b>
                 </Typography>
-               
+
                 <Typography variant="body2" color="text.secondary" align="left">
                   <h6>
                     Address: {portfolio?.personal_details.address.street}{" "}
@@ -96,9 +98,9 @@ export default function Portfolio({ name, email, setName }) {
                 <CardActions
                   style={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Button size="small" color="primary">
+                    <Button size="small" color="primary">
                     <NavLink to="/managebookings" className="button-expert">
-                      ManageBookings
+                      Manage your Bookings
                     </NavLink>
                   </Button>
                 </CardActions>

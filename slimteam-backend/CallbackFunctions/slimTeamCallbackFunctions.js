@@ -234,9 +234,11 @@ const editExpertHeadline = async (req, res) => {
       { $set: { 
         "personal_details.first_name": personal_details.first_name,
         "personal_details.last_name": personal_details.last_name,
-        "personal_details.address.city": personal_details.city,
-//        "personal_details.skills": personal_details.skills,
+        "personal_details.address.street": personal_details.address.street,
+        "personal_details.address.city": personal_details.address.city,
         "personal_details.nationality": personal_details.nationality,
+        "personal_details.email": personal_details.email,
+        "personal_details.phone_number": personal_details.phone_number,
        } },
       { new: true }
     );
