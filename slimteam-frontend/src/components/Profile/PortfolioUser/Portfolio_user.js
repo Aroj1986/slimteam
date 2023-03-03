@@ -24,7 +24,7 @@ export default function Portfolio_user({ name, email, setName }) {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
   }, [name]);
-  
+
   console.log(portfolio)
   
   return (
@@ -59,13 +59,13 @@ export default function Portfolio_user({ name, email, setName }) {
                     className="edit-function"
                     id_expert={portfolio?._id}
                     name={name}
-                    first_name={portfolio?.personal_details.first_name}
-                    last_name={portfolio?.personal_details.last_name}
-                    street={portfolio?.personal_details.address.street}
-                    city={portfolio?.personal_details.address.city}
-                    nationality={portfolio?.personal_details.nationality}
-                    email={portfolio?.personal_details.email}
-                    phone_number={portfolio?.personal_details.phone_number}
+                    first_name={portfolio?.personal_details?.first_name}
+                    last_name={portfolio?.personal_details?.last_name}
+                    street={portfolio?.personal_details?.address?.street}
+                    city={portfolio?.personal_details?.address?.city}
+                    nationality={portfolio?.personal_details?.nationality}
+                    email={portfolio?.personal_details?.email}
+                    phone_number={portfolio?.personal_details?.phone_number}
                     portfolio={portfolio}
                     setPortfolio={setPortfolio}
                     setName={setName}
