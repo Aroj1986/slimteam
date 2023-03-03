@@ -1,26 +1,13 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import "./profile.css";
+import "../profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExperienceAdd from "./AddFunctionality/ExperienceAdd";
-import EducationAdd from "./AddFunctionality/EducationAdd";
-import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
-import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
-import UploadPic from "./UploadPic";
-import moment from "moment";
-import TimeCalculator from "./TimeCalculator";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
-import EducationEdit from "./EditFunctionality/EducationEdit";
-import CertificationEdit from "./EditFunctionality/CertificationEdit";
-import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
+import UploadPic from "../UploadPic";
+import HeadlineEdit from "../EditFunctionality/HeadlineEdit";
 import { NavLink } from "react-router-dom";
-import ManageBookings from "./ManageBookings";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
@@ -41,7 +28,9 @@ export default function Portfolio({ name, email, setName }) {
   // const handleOnclick = () => {
   //   <Navigate to='/managebookings' element ={<ManageBookings name={name}/>} />
   // }
-
+  
+  console.log(portfolio)
+  
   return (
     <Container>
       <div className="expert-portfolio">
@@ -74,13 +63,13 @@ export default function Portfolio({ name, email, setName }) {
                     className="edit-function"
                     id_expert={portfolio?._id}
                     name={name}
-                    first_name={portfolio?.personal_details.first_name}
-                    last_name={portfolio?.personal_details.last_name}
-                    address={portfolio?.personal_details.address.street}
-                    city={portfolio?.personal_details.address.city}
-                    nationality={portfolio?.personal_details.nationality}
-                    email={portfolio?.personal_details.email}
-                    phone_number={portfolio?.personal_details.phone_number}
+                    first_name={portfolio?.personal_details?.first_name}
+                    last_name={portfolio?.personal_details?.last_name}
+                    street={portfolio?.personal_details?.address?.street}
+                    city={portfolio?.personal_details?.address?.city}
+                    nationality={portfolio?.personal_details?.nationality}
+                    email={portfolio?.personal_details?.email}
+                    phone_number={portfolio?.personal_details?.phone_number}
                     portfolio={portfolio}
                     setPortfolio={setPortfolio}
                     setName={setName}
@@ -91,18 +80,18 @@ export default function Portfolio({ name, email, setName }) {
                 >
                   <Button size="small" color="primary">
                     <NavLink to="/managebookings" className="button-expert">
-                      ManageBookings
+                      Manage your Bookings
                     </NavLink>
                   </Button>
                 </CardActions>
 
                 <Typography variant="body2" color="text.secondary" align="left">
                   <b>
-                    Name: {portfolio?.personal_details.first_name}{" "}
+                    {portfolio?.personal_details.first_name}{" "}
                     {portfolio?.personal_details.last_name}
                   </b>
                 </Typography>
-               
+
                 <Typography variant="body2" color="text.secondary" align="left">
                   <h6>
                     Address: {portfolio?.personal_details.address.street}{" "}

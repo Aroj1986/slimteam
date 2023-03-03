@@ -7,7 +7,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
-export default function Whiteboard({ name }) {
+export default function JobWall({ name }) {
   const { user, loading } = useContext(AuthContext);
 
   const postItem = {

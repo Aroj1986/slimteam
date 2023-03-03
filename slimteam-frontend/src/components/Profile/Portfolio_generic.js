@@ -1,34 +1,19 @@
-import Portfolio from "./Portfolio";
-import Portfolio_user from "./Portfolio_user"
+import Portfolio_expert from "./Portfolio_expert";
+import Portfolio_user from "./PortfolioUser/Portfolio_user";
 
-
-function Portfolio_generic({
-  email,
-  name,
-  role,
-  setName
-})
-
-{
-    console.log(role)
+function Portfolio_generic({ email, name, role, setName }) {
   return (
     <div>
       {role === "Expert" ? (
-        <Portfolio
+        <Portfolio_expert email={email} name={name} role={role} setName={setName} />
+      ) : (
+        <Portfolio_user
           email={email}
           name={name}
           role={role}
           setName={setName}
         />
-      ) : (
-        <Portfolio_user
-        email={email}
-        name={name}
-       role={role}
-       setName={setName}
-        />
       )}
-
     </div>
   );
 }

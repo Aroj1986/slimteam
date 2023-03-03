@@ -11,47 +11,55 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../profile.css";
 
+export default function HeadlineEdit({
+  name,
+  id_expert,
+  first_name,
+  last_name,
+  street,
+  city,
+  nationality,
+  email,
+  phone_number,
+  setPortfolio,
+  setName,
+}) {
 
-export default function HeadlineEdit({name, id_expert, first_name, last_name, skills, city, nationality,email,phone_number, setPortfolio,setName}) {
   const [open, setOpen] = React.useState(false);
   const [inputFirstName, setInputFirstName] = useState();
   const [inputLastName, setInputLastName] = useState();
-  const [inputSkills, setInputSkills] = useState([]);
+  const [inputStreet, setInputStreet] = useState([]);
   const [inputCity, setInputCity] = useState();
   const [inputNationality, setInputNationality] = useState();
-  const [inputPhoneNo, setInputPhoneNo]=useState();
-  const [inputEmail, setInputEmail]=useState();
+  const [inputEmail, setInputEmail] = useState();
+  const [inputPhoneNo, setInputPhoneNo] = useState();
 
-
-  console.log(id_expert, first_name, last_name, skills, city, nationality)
+  console.log(id_expert, first_name, last_name, street, city, nationality, email, phone_number);
 
   const handleOnChangeFirstName = (e) => {
     setInputFirstName(e.target.value);
-
   };
 
   const handleOnChangeLastName = (e) => {
     setInputLastName(e.target.value);
   };
 
-  const handleOnChangeSkills = (e) => {
-    setInputSkills(e.target.value);
+  const handleOnChangeStreet = (e) => {
+    setInputStreet(e.target.value);
   };
 
-  const handleOnChangeAddress = (e) => {
+  const handleOnChangeCity = (e) => {
     setInputCity(e.target.value);
   };
-  
+
   const handleOnChangeNationality = (e) => {
     setInputNationality(e.target.value);
   };
 
-  const handleOnChangeEmail =(e) =>
-  {
+  const handleOnChangeEmail = (e) => {
     setInputEmail(e.target.value);
   };
-  const handleOnChangePhoneNo =(e) =>
-  {
+  const handleOnChangePhoneNo = (e) => {
     setInputPhoneNo(e.target.value);
   };
 
@@ -63,39 +71,48 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
     personal_details: {
       first_name: inputFirstName,
       last_name: inputLastName,
-      skills: inputSkills,
-      city: inputCity,
+      address: {
+        street: inputStreet,
+        city: inputCity,
+      },
       nationality: inputNationality,
-      email:inputEmail,
-      phone_number:inputPhoneNo,
+      email: inputEmail,
+      phone_number: inputPhoneNo,
     },
   };
 
+  console.log(personal_details)
+  
   const handleSubmitEdit = async () => {
     await axios
-    .put(`http://localhost:8888/portfolio/${name}/edit-headline/${id_expert}`, personal_details)
-    .then((res) => {
-      setPortfolio(res.data)
-      setName(inputFirstName)
-    });
+      .put(
+        `http://localhost:8888/portfolio/${name}/edit-headline/${id_expert}`,
+        personal_details
+      )
+      .then((res) => {
+        setPortfolio(res.data);
+        console.log(res.data)
+        setName(inputFirstName);
+      });
     setOpen(false);
   };
-  
+
   const handleClose = () => {
     setOpen(false);
   };
 
-  console.log(name, id_expert, personal_details)
-
   return (
     <>
-     <div className="editButton"> <IconButton aria-label="edit" size="large">
-        <EditSharpIcon
-          onClick={handleClickOpen}
-          fontSize="inherit"
-          color="inherit"
-        />
-      </IconButton> </div>
+      <div className="editButton">
+        {" "}
+        <IconButton aria-label="edit" size="large">
+          <EditSharpIcon
+            onClick={handleClickOpen}
+            fontSize="inherit"
+            color="inherit"
+          />
+        </IconButton>{" "}
+      </div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit education</DialogTitle>
         <DialogContent>
@@ -123,11 +140,11 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
             autoFocus
             margin="dense"
             type="text"
-            label={skills}
-            placeholder="Skills"
+            label={street}
+            placeholder="street"
             fullWidth
             variant="standard"
-            onChange={handleOnChangeSkills}
+            onChange={handleOnChangeStreet}
           />
           <TextField
             autoFocus
@@ -137,7 +154,7 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
             placeholder="City"
             fullWidth
             variant="standard"
-            onChange={handleOnChangeAddress}
+            onChange={handleOnChangeCity}
           />
           <TextField
             autoFocus
@@ -149,7 +166,7 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
             variant="standard"
             onChange={handleOnChangeNationality}
           />
-           <TextField
+          <TextField
             autoFocus
             margin="dense"
             type="text"
@@ -169,7 +186,6 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
             variant="standard"
             onChange={handleOnChangePhoneNo}
           />
-
         </DialogContent>
         <DialogActions>
           <Button onClick={handleSubmitEdit}>Save</Button>
