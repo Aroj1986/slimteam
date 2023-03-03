@@ -1,108 +1,110 @@
-/*    body{
-    background-color: rgb(233, 215, 215);
-    background-image: url(../images/signup-bg.jpg);
-   } */
+.registerLogin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 3%;
+  width: 30%;
+  height: 33rem;
+  margin: 2rem auto 2rem auto;
+  box-shadow: 0 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+}
 
-   
-  .registerLogin-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    border-radius: 3%;
-    width: 30%;
-    height: 33rem;
-    margin: 2rem auto 2rem auto;
-    box-shadow: 0 0.25rem 0.25rem 0.25rem rgba(0,0,0,0.2);
-  }
+.form-group {
+  overflow: hidden;
+}
 
-  .form-group {
-    overflow: hidden;
-    margin-bottom: 1rem;
-  }
+.error-message {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: red;
+  margin-top: 0.2rem;
+}
 
-  .form-input {
-    width: 100%;
-    border: 0.01rem solid rgb(180, 178, 178);
-    box-sizing: border-box;
-    height: 2.5rem;   
-    padding: 1rem;
-    font-size: 0.9rem;
-    border-radius: 0.4rem;
+.form-input {
+  width: 100%;
+  border: 0.01rem solid rgb(180, 178, 178);
+  box-sizing: border-box;
+  height: 2.5rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-radius: 0.4rem;
+}
 
-  }
-  
-  a {
-    color: black;
-  }
+a {
+  color: black;
+}
 
-  .checkbox {
-    padding: 1rem 0 2rem 0;
-  }
+.checkbox {
+  padding: 1rem 0 2rem 0;
+}
 
-  .form-submit {
-    width: 100%;
-    border: none;
-    box-sizing: border-box;
-    height: 2.5rem;   
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: white;
-    background-color: #152d73;
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
+.form-submit {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  height: 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(101, 97, 97);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
 
-  .form-submit:active {
-    padding-bottom:9px;
-    padding-left:10px;
-    padding-right:10px;
-    padding-top:11px;
-    top:1px;
-    color: white;
-  }
+.form-submit:hover {
+  background-color: rgb(101, 97, 97);
+  color: white;
+  text-decoration: none;
+}
 
-  .registerLink{
-    color: white;
-  }
+.form-submit:active {
+  padding-bottom: 9px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 11px;
+  top: 1px;
+  color: white;
+}
 
-  .registerLink:hover{
-    color: white;
-    text-decoration: none;
-  }
+.registerLink {
+  color: white;
+}
 
-  /* For login page*/
+.registerLink:hover {
+  color: white;
+  text-decoration: none;
+}
 
-  .password-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    border: 0.01rem solid rgb(180, 178, 178);
-    box-sizing: border-box;
-    height: 2.5rem;   
-    padding: 1rem;
-    font-size: 0.9rem;
-    border-radius: 0.4rem;
-    margin-bottom: 1rem;
-  }
+.password-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  border: 0.01rem solid rgb(180, 178, 178);
+  box-sizing: border-box;
+  height: 2.5rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-radius: 0.4rem;
+}
 
-  .password-input {
-    width: 100%;
-    outline: none;
-    border: hidden;
-  }
+.password-input {
+  width: 100%;
+  outline: none;
+  border: hidden;
+}
 
-  .password-icon {
-    cursor: pointer;
-  }
+.password-icon {
+  cursor: pointer;
+}
 
-  .forgot-password {
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
+.forgot-password {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
 
 .remember-forgot {
   width: 100%;
@@ -140,12 +142,12 @@
 
 .social-media-submit {
   width: 100%;
-  border:#DB4437;
+  border: #db4437;
   box-sizing: border-box;
-  height: 2rem;   
+  height: 2rem;
   font-size: 0.85rem;
   color: white;
-  border-radius: 0  0.5rem 0.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
   text-align: center;
   cursor: pointer;
 }
@@ -159,7 +161,7 @@
 }
 
 .google-input-field {
-  background-color: #DB4437;
+  background-color: #db4437;
   text-align: center;
 }
 

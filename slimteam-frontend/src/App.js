@@ -2,7 +2,6 @@ import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
-import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Protected from "./components/Protected";
@@ -14,7 +13,7 @@ import Login from "./components/RegisterLogin/Login";
 import Footer from "./components/Footer/Footer";
 import Profile from "./components/Profile/Profile";
 import Portfolio_generic from "./components/Profile/Portfolio_generic";
-import ExploreExperts from "./components/Experts/ExploreExperts"
+import ExploreExperts from "./components/Experts/ExploreExperts";
 import Calender from "./components/Calender/Calender";
 
 import { useContext } from "react";
@@ -35,37 +34,45 @@ export default function App() {
 
   useEffect(() => {
     axios.get("http://localhost:8888/explore-experts").then((res) => {
-      setExperts(res.data);
+      setExperts(res.data.filter((rd) => 
+      {
+        if(rd?.role === "Expert") {
+         return  {rd}
+        }
+      }
+      ))
+      // setExperts(res.data);
     });
 
     axios.get(`http://localhost:8888/explore-experts/${mail}`).then((res) => {
-      setName(res.data[0].personal_details?.first_name);
+      setName(res.data[0]?.personal_details?.first_name);
       setRole(res.data[0]?.role);
     });
   }, [mail]);
 
+
   return (
     <>
-      {/* <Header /> */}
       <Navbar userLogin={userLogin} setUserLogin={setUserLogin} name={name} />
       <Routes>
         <Route path="/" element={<AboutUs />}></Route>
-        {/* <Route
+        <Route
           path="/explore-experts"
           element={<ExploreExperts experts={experts} setExperts={setExperts} />}
-        ></Route>
-        <Route
-          path="/explore-experts/:name"
-          element={<ExpertPortfolio setExpertName={setExpertName} />}
-        ></Route> */}
-                <Route path="/explore-experts"  element={<ExploreExperts experts={experts} setExperts={setExperts} />} />
+        />
 
-        <Route path="/explore-experts" element={<Protected user={user} loading={loading} />}>
-          <Route path="/explore-experts/:name"  element={<ExpertPortfolio setExpertName={setExpertName} />} />
+        <Route
+          path="/explore-experts"
+          element={<Protected user={user} loading={loading} />}
+        >
+          <Route
+            path="/explore-experts/:name"
+            element={<ExpertPortfolio setExpertName={setExpertName} />}
+          />
         </Route>
 
         <Route path="/meet-us" element={<MeetUs />}></Route>
-        <Route path="/jobwall" element={<Jobwall />}></Route>
+        <Route path="/jobwall" element={<Jobwall name={name} />}></Route>
         <Route
           path="/register"
           element={
@@ -104,7 +111,6 @@ export default function App() {
             />
           }
         ></Route>
-        {/* <Route path='/addform' element={<ExperienceAdd />}></Route> */}
         <Route
           path="/login"
           element={
@@ -116,15 +122,10 @@ export default function App() {
             />
           }
         ></Route>
-         <Route
+        <Route
           path="/managebookings"
-          element={
-            <ManageBookings
-              name={name}
-            />
-          }
+          element={<ManageBookings name={name} />}
         ></Route>
-        {/* <Route path='/book-online/:name' element={<Calender />}></Route> */}
         <Route
           path="/book-online/:name"
           element={<Calender name={name} expertName={expertName} />}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./profile.css";
+import "../profile.css";
 import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -10,7 +10,7 @@ import { Button } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Profile_expert({
+export default function Profile_user({
   email,
   setEmail,
   name,
@@ -28,11 +28,8 @@ function Profile_expert({
     postal_code: "",
     city: "",
     nationality: "",
-    skills: [""],
-    // dob: '',
     phone_number: "",
   };
-
   const [data, setData] = useState(personal_details);
 
   const handleChange = (e) => {
@@ -59,51 +56,40 @@ function Profile_expert({
         city: data.city,
       },
       nationality: data.nationality,
-      skills: data.skills,
-      dob: data.dob,
       phone_number: data.phone_number,
       email: email,
     },
   };
-
-
-
   const onClickHandle = (e) => {
-    if (data.first_name.trim() === '' || data.last_name.trim() === '') {
-      
-      toast.error('Please enter your first and second name.');
+    if (data.first_name.trim() === "" || data.last_name.trim() === "") {
+      toast.error("Please enter your first and second name.");
       return;
     }
-    if (data.street.trim() === '') {
-      toast.error('Please enter your street address.');
-      return;
-    }
-    if (data.postal_code.trim() === '') {
-      toast.error('Please enter your postal code.');
-      return;
-    }
-    if (data.city.trim() === '') {
-      toast.error('Please enter your city.');
-      return;
-    }
-    if (data.nationality.trim() === '') {
-      toast.error('Please enter your country.');
-      return;
-    }
-    if (data.phone_number.trim() === '') {
-      toast.error('Please enter your phone number.');
-      return;
-    }
-    if (data.title.trim() === '') {
-      toast.error('Please enter your title.');
-      return;
-    }
-    if (data.skills.trim() === '') {
-      toast.error('Please enter your Skills.');
-      return;
-    }
-   
 
+    if (data.street.trim() === "") {
+      toast.error("Please enter your street address.");
+      return;
+    }
+    if (data.postal_code.trim() === "") {
+      toast.error("Please enter your postal code.");
+      return;
+    }
+    if (data.city.trim() === "") {
+      toast.error("Please enter your city.");
+      return;
+    }
+    if (data.nationality.trim() === "") {
+      toast.error("Please enter your country.");
+      return;
+    }
+    if (data.phone_number.trim() === "") {
+      toast.error("Please enter your phone number.");
+      return;
+    }
+    if (data.title.trim() === "") {
+      toast.error("Please enter your title.");
+      return;
+    }
 
     axios
       .post("http://localhost:8888/explore-experts", postData)
@@ -115,14 +101,11 @@ function Profile_expert({
       });
   };
 
-  console.log(postData);
-
   return (
-
     <div>
       <ToastContainer toastClassName="toastCustomClassName" />
       <Container>
-        <div className="firstrow" style={{margin: '20px'}}>
+        <div className="firstrow" style={{ margin: "20px" }}>
           <h6>Personal Details</h6>
           <Row md={4}>
             <Col>
@@ -134,8 +117,6 @@ function Profile_expert({
                   value={data.title}
                   name="title"
                   onChange={handleChange}
-                  required
-
                 >
                   <option selected></option>
                   <option value="Mr">Mr</option>
@@ -156,6 +137,7 @@ function Profile_expert({
                     value={data.first_name}
                     name="first_name"
                     onChange={handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -244,23 +226,6 @@ function Profile_expert({
               </div>
             </Col>
             <Col></Col>
-
-            <Col>
-              <div>
-                <label for="floatingInputGrid">Skills :</label>
-                <div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="floatingInputGrid"
-                    placeholder="Skills"
-                    name="skills"
-                    value={data.skills}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            </Col>
             <Col>
               <div>
                 <label for="floatingInputGrid">Mobile No :</label>
@@ -273,6 +238,7 @@ function Profile_expert({
                     name="phone_number"
                     value={data.phone_number}
                     onChange={handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -280,25 +246,26 @@ function Profile_expert({
             <Col></Col>
           </Row>
         </div>
-        <br />
-        <br />
       </Container>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-      <Button
-        variant="contained"
-        color="inherit"
-        onClick={onClickHandle}
-        style={{ backgroundColor: "black", color: "white" }}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "20px",
+        }}
       >
-        {/* <NavLink to={`/portfolio/${data.first_name}`}> */}
-        SUBMIT
-        {/* </NavLink>  */}
-      </Button>
+        <Button
+          variant="contained"
+          color="inherit"
+          onClick={onClickHandle}
+          style={{ backgroundColor: "black", color: "white" }}
+        >
+          {" "}
+          {/* <NavLink to={`/portfolio/${data.first_name}`}> */}
+          SUBMIT
+          {/* </NavLink>  */}
+        </Button>
       </div>
-
-      
     </div>
   );
 }
-
-export default Profile_expert;

@@ -9,24 +9,30 @@ import axios from "axios";
 import { useNavigate, Navigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 
+function Login({ setUserLogin, name, setName, setRole }) {
+  const { login, user, loading } = useContext(AuthContext);
 
-function Login({ setUserLogin,name,setName,setRole }) {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const { login, user, loading } = useContext(AuthContext);
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [error, setError] = useState("");
 
   // console.log(user)
-  console.log(email)
+  console.log(email);
   const navigate = useNavigate();
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
+    setEmailError(false);
   };
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
+    setPasswordError(false);
   };
 
   const handleToggle = () => {
@@ -41,8 +47,13 @@ function Login({ setUserLogin,name,setName,setRole }) {
 
   const loginOnClick = (e) => {
     e.preventDefault();
-    login(email, password)
-/*     const postData = { email, password };
+    if (!email && !password) {
+      setEmailError("Enter valid email address");
+      setPasswordError("Password should not be empty");
+    } else {
+      login(email, password, setError);
+    }
+    /*     const postData = { email, password };
     axios
       .post("http://localhost:8888/login", postData)
       .then((res) => {
@@ -66,69 +77,75 @@ function Login({ setUserLogin,name,setName,setRole }) {
           console.log(`Backend: ${err}`);
         }
       }); */
-
   };
 
   return (
     <>
-    {user ? (
-      <Navigate to='/' /> )
-      : (
+      {user ? (
+        <Navigate to="/" />
+      ) : (
         <div className="registerLogin-container">
-        <h3>Login using</h3>
-        <form method="POST">
-          <div className="form-group">
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              className="form-input"
-              onChange={onChangeEmail}
-              required
-            ></input>
-          </div>
-
-          <div className="password-group">
-            <input
-              type={type}
-              name="password"
-              placeholder="Password"
-              minlength="8"
-              maxlength="15"
-              pattern="[a-zA-Z0-9]{8,15}"
-              className="password-input"
-              onChange={onChangePassword}
-            ></input>
-            <span onClick={handleToggle} className="password-icon">
-              <Icon icon={icon} />
-            </span>
-          </div>
-
-          <div className="remember-forgot">
+          <h3>Login using</h3>
+          <form method="POST">
             <div>
-              <input type="checkbox" name="agree-term"></input>
-              <label for="agree-term">Remember me</label>
+              <div>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  className="form-input"
+                  onChange={onChangeEmail}
+                  required
+                ></input>
+              </div>
+              <p className="error-message">{emailError}</p>
             </div>
-            <div className="forgot-password">
-              <a href="#">Forgot password?</a>
-            </div>
-          </div>
 
-          <div className="form-group">
-            <button
-              type="submit"
-              name="submit"
-              value="Login"
-              onClick={loginOnClick}
-              className="form-submit"
-            >
-              {/* <NavLink to="/" className="registerLink"> */}
+            <div>
+              <div className="password-group">
+                <input
+                  type={type}
+                  name="password"
+                  placeholder="Password"
+                  minlength="8"
+                  maxlength="15"
+                  pattern="[a-zA-Z0-9]{8,15}"
+                  className="password-input"
+                  onChange={onChangePassword}
+                ></input>
+                <span onClick={handleToggle} className="password-icon">
+                  <Icon icon={icon} />
+                </span>
+              </div>
+              <p className="error-message">{passwordError}</p>
+            </div>
+
+            <div className="remember-forgot">
+              <div>
+                <input type="checkbox" name="agree-term"></input>
+                <label for="agree-term">Remember me</label>
+              </div>
+              <div className="forgot-password">
+                <a href="#">Forgot password?</a>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <button
+                type="submit"
+                name="submit"
+                value="Login"
+                onClick={loginOnClick}
+                className="form-submit"
+              >
+                {/* <NavLink to="/" className="registerLink"> */}
                 SIGN IN
-              {/* </NavLink> */}
-            </button>
-          </div>
+                {/* </NavLink> */}
+              </button>
+              <p className="error-message">{error}</p>
+            </div>
 
-          {/* <div class="hr-sect">
+            {/* <div class="hr-sect">
             <h5>or</h5>
           </div>
 
@@ -173,16 +190,16 @@ function Login({ setUserLogin,name,setName,setRole }) {
               className="social-media-submit linkedin-input-field"
             ></input>
           </div> */}
-        </form>
+          </form>
 
-        <a>Don't have an account yet ? </a>
-        <div className="create-new">
-          <a>
-            <NavLink to="/register">Create new account</NavLink>
-          </a>
+          <a>Don't have an account yet ? </a>
+          <div className="create-new">
+            <a>
+              <NavLink to="/register">Create new account</NavLink>
+            </a>
+          </div>
         </div>
-      </div>
-    )}
+      )}
     </>
   );
 }

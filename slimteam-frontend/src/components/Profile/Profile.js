@@ -1,7 +1,6 @@
-
 import React from "react";
 import Profile_expert from "./Profile_expert";
-import Profile_user from "./Profile_user";
+import Profile_user from "./PortfolioUser/Profile_user";
 
 function Profile_gerneric({
   email,
@@ -35,7 +34,6 @@ function Profile_gerneric({
           setUserLogin={setUserLogin}
         />
       )}
-
     </div>
   );
 }

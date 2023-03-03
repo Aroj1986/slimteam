@@ -249,6 +249,13 @@ display: flex;
   cursor: pointer;
 }
 
+.no-search-text{
+  font-size: 2rem;
+  padding: 2rem;
+  text-align: center;
+}
+
 MuiFilledInput-underline:after {
   border-bottom: 2px solid grey;
 }
+

@@ -5,11 +5,9 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-
-import LogoCompany from "./SlimTeam.jpg";
+import LogoCompany from "./ST.png";
 
 function Navbar({ userLogin, setUserLogin, name }) {
-  console.log(name);
 
   const { user, loading, logout } = useContext(AuthContext);
   // console.log(user);
@@ -28,13 +26,11 @@ function Navbar({ userLogin, setUserLogin, name }) {
   //   setUserLogin(false);
   // };
 
-  console.log(`User login status: ${userLogin}`);
-
   return (
     <>
       <div className="container-header">
         <p>
-          <img className="img-header" src={LogoCompany} alt="logo-coffeeMeet" />
+          <img className="img-header" src={LogoCompany} alt="logo" />
         </p>
 
         <div className="row container-navbar">
@@ -66,7 +62,7 @@ function Navbar({ userLogin, setUserLogin, name }) {
       variant="contained"
       style={{ backgroundColor: "black" }}
     >
-    <NavLink to={`/portfolio/${name}`} className="items-buttons">Profile</NavLink> 
+    <NavLink to={`/portfolio/${name}`} className="items-buttons">{name}</NavLink> 
     </Button>
     <Button
       variant="contained"

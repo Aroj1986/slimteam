@@ -17,7 +17,6 @@ function AuthProvider(props) {
         setUser(res.data)
         setLoading(false);
         localStorage.setItem("name",res.data.personal_details.first_name)
-        console.log(res.data)
       })
       .catch((err) => {
         setUser(null);
@@ -25,7 +24,7 @@ function AuthProvider(props) {
       });
   }, []);
 
-  const login = (email, password) => {
+  const login = (email, password, setError) => {
     return axios
       .post(
         "http://localhost:8888/login",
@@ -37,8 +36,9 @@ function AuthProvider(props) {
         setUserLogin(true)
         navigate("/");
       })
-     
+      
       .catch((err) => {
+        setError("Invalid email or password")
         setUser(null);
       });
       
@@ -84,10 +84,6 @@ function AuthProvider(props) {
       }
     });
 };
-
-
-  console.log(user)
-
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout,register, userLogin, setUserLogin }}>

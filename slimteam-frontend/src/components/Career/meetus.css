@@ -1,0 +1,68 @@
+
+/* Our story Section */
+.our_story-section ,
+.team-content-section 
+{
+  font-family: 'Roboto';
+}
+
+
+.wearehiring:hover,
+.learnmore:hover {
+  background-color: rgb(192, 209, 206);
+  cursor: pointer;
+}
+
+/* Team content section */
+
+.team-content-section {
+  text-align: center;
+  /* background-image: url(./images/bgk-header.png); */
+  /* color: white; */
+  padding: 60px 60px;
+  background-size: cover;
+}
+
+.team-member-job {
+  color: rgb(114, 109, 109);
+}
+
+.team-member {
+  border: 1px solid gray;
+  margin-bottom: 5px;
+}
+
+.team-member-name {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.team-member-job {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.wearehiring {
+  width: 150px;
+  border: 2px solid #00e0d0;
+  border-radius: 10px;
+  color: #00e0d0;
+  background-color: transparent;
+  font-weight: 300px;
+  padding: 15px 15px;
+}
+
+#team-section hr {
+  width: 50px;
+  border-color: rgb(114, 109, 109);
+  border-width: 1px;
+}
+
+.team-members {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 14rem;
+  padding-right: 14rem;
+}

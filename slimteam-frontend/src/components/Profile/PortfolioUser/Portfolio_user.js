@@ -1,30 +1,17 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import "./profile.css";
+import "../profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExperienceAdd from "./AddFunctionality/ExperienceAdd";
-import EducationAdd from "./AddFunctionality/EducationAdd";
-import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
-import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
-import UploadPic from "./UploadPic";
-import moment from "moment";
-import TimeCalculator from "./TimeCalculator";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
-import EducationEdit from "./EditFunctionality/EducationEdit";
-import CertificationEdit from "./EditFunctionality/CertificationEdit";
-import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
+import UploadPic from "../UploadPic";
+import HeadlineEdit from "../EditFunctionality/HeadlineEdit";
 import { NavLink } from "react-router-dom";
-import ManageBookings from "./ManageBookings";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function Portfolio({ name, email, setName }) {
+export default function Portfolio_user({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
