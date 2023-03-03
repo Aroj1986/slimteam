@@ -89,7 +89,7 @@ export default function HeadlineEdit({name, id_expert, first_name, last_name, sk
 
   return (
     <>
-     <div className="editButton"> <IconButton aria-label="edit" size="large">
+     <div className="editButton"> <IconButton aria-label="edit" size="small">
         <EditSharpIcon
           onClick={handleClickOpen}
           fontSize="inherit"

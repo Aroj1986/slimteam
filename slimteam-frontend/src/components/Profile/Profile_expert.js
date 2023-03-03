@@ -238,20 +238,7 @@ function Profile_expert({email,setEmail,name,setName,isExpert,isUser,setUserLogi
         {/* </NavLink>  */}
         </button>
 
-      {/* <div class="col-md">
-        <label for="floatingInputGrid">Country</label>
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInputGrid"
-            placeholder="Country"
-            //   value={}
-          />
-        </div>
-      </div> */}
-
-      {/* </div> */}
+      
     </div>
   );
 }

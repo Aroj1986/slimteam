@@ -1,4 +1,3 @@
-
 .startandend {
   color: rgb(160, 151, 151);
 }
@@ -7,20 +6,22 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
- 
+  padding: 0.5rem;
 }
-
-
+/* 
 .rate-review-container {
   width: 100%;
+} */
+.icons{
+
+float:right;
 
 
 }
-
 .skills {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .expert-description-container {
@@ -28,28 +29,26 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 80px;
 }
 
 .upload .profile-picturee {
-  border: 0.01rem solid black;
+  border: 0.01rem solid rgb(246, 244, 244);
   border-radius: 50%;
-  padding: 0.3rem;
-  margin-top: -9rem;
-  margin-left: 1rem;
-  position: relative;
+  
 }
 
 .profile-picturee {
   display: block;
-  margin: 0 auto;
+  /* left: 175px; */
+  margin-bottom: -5px;
 }
 .camerabutton {
   position: absolute;
- 
+
   /* top: 32%;
   left: 42%; */
-  background-color: aliceblue;
+  background-color: rgb(25, 26, 27);
   /* color: white; */
   border: none;
   cursor: pointer;
@@ -91,13 +90,30 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  padding: 2rem;
+  padding: 5rem;
   flex-wrap: wrap; /* delete this line in case it should be in a row */
-
 }
 
-.editButton {
-position: absolute;
-top: 10%; 
-right: 3%;
+/* .editButton {
+  position: absolute;
+  /* top: 10%; */
+  /* right: 3%; */
+
+.professional-experience
+{
+margin-bottom: 1rem;
+  padding: 0rem;
 }
+.experience-item{
+ display: flex;
+ flex-direction: row;
+  
+}
+.experience{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ 
+}
+
+

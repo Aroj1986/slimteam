@@ -61,7 +61,7 @@ export default function EducationEdit({name, id_edu, institute, degree, start_da
 
   return (
     <div>
-      <IconButton aria-label="edit" size="large">
+      <IconButton aria-label="edit" size="small">
         <EditSharpIcon
           onClick={handleClickOpen}
           fontSize="inherit"
