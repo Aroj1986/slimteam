@@ -22,8 +22,10 @@
   max-width: 30%;
   display: flex;
   justify-content: center;
+  align-items: center;
   text-align: center;
   margin-top: 150px;
+  gap: 3rem;
 }
 
 .upload .profile-picturee {
@@ -39,22 +41,19 @@
   display: block;
   margin: 0 auto;
 }
-.camerabutton {
+.upload .camerabutton {
   position: absolute;
-
-  /* top: 32%;
-  left: 42%; */
   background-color: aliceblue;
-  /* color: white; */
   border: none;
   cursor: pointer;
   border-radius: 10px;
+  transform: translate(170%, 19%);
+  opacity: 0;
+  transition: opacity 0.1s ease;
 }
 
-.upload .camerabutton :hover {
-  background-color: rgb(30, 28, 28);
-  cursor: pointer;
-  color: white;
+.upload:hover .camerabutton  {
+  opacity: 1;
 }
 
 .expert-headline-column {
@@ -81,7 +80,7 @@
 }
 
 .expert-portfolio {
-  width: 60vw;
+  /* width: 60vw; */
   flex-direction: row;
   display: flex;
   justify-content: center;
@@ -91,9 +90,9 @@
 }
 
 .editButton {
-  position: absolute;
-  top: 10%;
-  right: 3%;
+position: absolute;
+/* top: 10%;  */
+right: 3%;
 }
 
 .toastCustomClassName .Toastify__progress-bar--animated {
@@ -106,4 +105,3 @@
 
 
 /* Aroj css*/
-

@@ -2,11 +2,17 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "./aboutUs.css";
 import arojPicture from "./ArojPicture.jpg";
+
 import HandymanIcon from "@mui/icons-material/Handyman";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import ImagesearchRollerIcon from '@mui/icons-material/ImagesearchRoller';
 import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly';
+
+import logo from "../../images/logo.png";
+import { Button } from "@mui/material";
+import { NavLink } from "react-router-dom";
+
 
 function AboutUs() {
   return (
@@ -14,18 +20,27 @@ function AboutUs() {
       <div className="d-flex flex-column justify-content-center align-items-center mt-3 mb-3 ">
         <div className="d-flex flex-row aroj justify-content-md-between align-items-center p-2">
           <div className="hero-section">
-            <h2 className="slogan">Our Connection to Excellent Services</h2>
+            <h2 className="slogan" style={{display:"inline"}}>Our Connection to Excellent <p style={{margin:"0.4rem",display:"inline"}}></p><img src={logo} height={70} width={60}></img> ervices</h2>
             <p className="paragraph">
-              From minor repairs to major renovations, our service experts have
-              got you covered - book now <br />
-              Receive your future staff for your job within a few hours.
+
+              From minor repairs to major renovations, our service experts have got you covered - 
+              <Button size="small" color="primary">
+                              <NavLink
+                                to={`/explore-experts`}
+                                className="button-expert"
+                                style={{textDecoration:"none",backgroundColor:"black"} }
+                              >
+                                BOOK NOW
+                              </NavLink>
+                            </Button> <br />Receive your future staff for your job within a few
+              hours.
+
             </p>
           </div>
           <img
             className="image"
             src={arojPicture}
             alt="arojPicture"
-            // src="https://static5.abbyy.com/abbyycommedia/32760/02a-profservices-customers.jpg"
             style={{ height: 350 }}
           />
         </div>
