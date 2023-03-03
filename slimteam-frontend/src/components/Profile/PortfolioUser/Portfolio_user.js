@@ -9,13 +9,16 @@ import { NavLink } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
 export default function Portfolio_user({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
-    axios
+    const getPortfolio = () =>{
+      axios
       .get(`http://localhost:8888/portfolio/${name}`)
       .then((res) => {
         setPortfolio(res.data);
@@ -23,26 +26,28 @@ export default function Portfolio_user({ name, email, setName }) {
       .catch((err) => {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
+    }  
+    name && getPortfolio()
+
   }, [name]);
 
 
 
   return (
     <Container>
-  <div className="expert-portfolio">
-    <div className="expert-description-container">
-      <div className="upload">
-        <div className="camerabutton">
-          <UploadPic name={name} />
-        </div>
-        <img
-          className="profile-picturee"
-          src={portfolio?.personal_details.profile_picture}
-          alt="Expert image"
-          style={{ height: 150, width: 150 }}
-        />
-      </div>
-
+      {portfolio ? <div className="expert-portfolio">
+        <div className="expert-description-container">
+          <div className="upload">
+            <div className="camerabutton">
+              <UploadPic name={name} />
+            </div>
+            <img
+              className="profile-picturee"
+              src={portfolio?.personal_details.profile_picture}
+              alt="Expert image"
+              style={{ height: 150, width: 150 }}
+            />
+          </div>
       <Card
         style={{
           backgroundColor: " rgba(255,250,250)",
@@ -107,6 +112,22 @@ export default function Portfolio_user({ name, email, setName }) {
     </div>
   </div>
 </Container>
-
+                <CardActions
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                    <Button size="small" color="primary">
+                    <NavLink to="/managebookings" className="button-expert">
+                      Manage your Bookings
+                    </NavLink>
+                  </Button>
+                </CardActions>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </div>
+      </div> :  <Box sx={{ display: 'flex' }}>
+      <CircularProgress />
+    </Box>}
+    </Container>
   );
 }
