@@ -1,30 +1,17 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import "./profile.css";
+import "../profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExperienceAdd from "./AddFunctionality/ExperienceAdd";
-import EducationAdd from "./AddFunctionality/EducationAdd";
-import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
-import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
-import UploadPic from "./UploadPic";
-import moment from "moment";
-import TimeCalculator from "./TimeCalculator";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
-import EducationEdit from "./EditFunctionality/EducationEdit";
-import CertificationEdit from "./EditFunctionality/CertificationEdit";
-import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
+import UploadPic from "../UploadPic";
+import HeadlineEdit from "../EditFunctionality/HeadlineEdit";
 import { NavLink } from "react-router-dom";
-import ManageBookings from "./ManageBookings";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function Portfolio({ name, email, setName }) {
+export default function UserDisplayingDetails({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
@@ -37,10 +24,6 @@ export default function Portfolio({ name, email, setName }) {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
   }, [name]);
-
-  // const handleOnclick = () => {
-  //   <Navigate to='/managebookings' element ={<ManageBookings name={name}/>} />
-  // }
 
   return (
     <Container>
@@ -76,7 +59,7 @@ export default function Portfolio({ name, email, setName }) {
                     name={name}
                     first_name={portfolio?.personal_details.first_name}
                     last_name={portfolio?.personal_details.last_name}
-                    address={portfolio?.personal_details.address.street}
+                    street={portfolio?.personal_details.address.street}
                     city={portfolio?.personal_details.address.city}
                     nationality={portfolio?.personal_details.nationality}
                     email={portfolio?.personal_details.email}
@@ -102,7 +85,7 @@ export default function Portfolio({ name, email, setName }) {
                     {portfolio?.personal_details.last_name}
                   </b>
                 </Typography>
-               
+
                 <Typography variant="body2" color="text.secondary" align="left">
                   <h6>
                     Address: {portfolio?.personal_details.address.street}{" "}

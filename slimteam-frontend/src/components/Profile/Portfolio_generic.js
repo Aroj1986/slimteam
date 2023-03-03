@@ -1,5 +1,5 @@
-import Portfolio from "./Portfolio";
-import Portfolio_user from "./Portfolio_user"
+import Portfolio_expert from "./Portfolio_expert";
+import UserDisplayingDetails from "./UserPortfolio/UserDisplayingUI"
 
 
 function Portfolio_generic({
@@ -14,14 +14,14 @@ function Portfolio_generic({
   return (
     <div>
       {role === "Expert" ? (
-        <Portfolio
+        <Portfolio_expert
           email={email}
           name={name}
           role={role}
           setName={setName}
         />
       ) : (
-        <Portfolio_user
+        <UserDisplayingDetails
         email={email}
         name={name}
        role={role}

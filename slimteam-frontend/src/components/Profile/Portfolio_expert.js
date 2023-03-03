@@ -15,7 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 
-export default function Portfolio({ name, email,setName }) {
+export default function Portfolio_expert({ name, email,setName }) {
   const [portfolio, setPortfolio] = useState();
  
 

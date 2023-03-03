@@ -1,7 +1,7 @@
 
 import React from "react";
 import Profile_expert from "./Profile_expert";
-import Profile_user from "./Profile_user";
+import UserCompletingRegistration from "./UserPortfolio/UserCompletingRegistration";
 
 function Profile_gerneric({
   email,
@@ -25,7 +25,7 @@ function Profile_gerneric({
           setUserLogin={setUserLogin}
         />
       ) : (
-        <Profile_user
+        <UserCompletingRegistration
           email={email}
           setEmail={setEmail}
           name={name}
