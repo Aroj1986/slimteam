@@ -6,6 +6,7 @@ import HandymanIcon from "@mui/icons-material/Handyman";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import ImagesearchRollerIcon from '@mui/icons-material/ImagesearchRoller';
+import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly';
 
 function AboutUs() {
   return (
@@ -34,11 +35,12 @@ function AboutUs() {
           variant="dark"
           className="flex-carousel text-center"
           style={{ width: 300 }}
+          indicators={false}
         >
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <HandymanIcon />
+                <HandymanIcon style={{ color: "grey", fontSize: "2.5rem" }}/>
               </p>
             
 
@@ -51,7 +53,7 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <ElectricBoltIcon />{" "}
+                <ElectricBoltIcon style={{ color: "gold", fontSize: "2.5rem"}}/>{" "}
               </p>
               <p>
                 {" "}
@@ -62,7 +64,7 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <CleaningServicesIcon />{" "}
+                <CleaningServicesIcon style={{ color: "brown", fontSize: "2.5rem" }} />{" "}
               </p>
               <p>
                 {" "}
@@ -73,11 +75,22 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <ImagesearchRollerIcon />{" "}
+                <ImagesearchRollerIcon style={{color: "grey", fontSize: "2.5rem" }} />{" "}
               </p>
               <p>
                 {" "}
                 <p>Home Painting services</p>{" "}
+              </p>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="reviews">
+              <p>
+                <ChildFriendlyIcon style={{ color: "green", fontSize: "3rem" }}/>{" "}
+              </p>
+              <p>
+                {" "}
+                <p>Nanny services</p>{" "}
               </p>
             </div>
           </Carousel.Item>
