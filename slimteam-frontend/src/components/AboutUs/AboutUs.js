@@ -2,6 +2,10 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "./aboutUs.css";
 import arojPicture from "./ArojPicture.jpg";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import ImagesearchRollerIcon from '@mui/icons-material/ImagesearchRoller';
 
 function AboutUs() {
   return (
@@ -26,43 +30,61 @@ function AboutUs() {
         </div>
         <br></br>
 
-
-      <Carousel
+        <Carousel
           variant="dark"
           className="flex-carousel text-center"
           style={{ width: 300 }}
         >
           <Carousel.Item>
             <div className="reviews">
+              <p>
+                <HandymanIcon />
+              </p>
+            
+
             <p>
-              Through SlimTeam, we were able to find Staff
-              within a few hours who more than fulfilled her job. We were very
-              satisfied with the performance.
+              {" "}
+              <p>Plumbing services</p>{" "}
             </p>
             </div>
-            
-            <p>
-            
-              {" "}
-              - <i>Mannhart GmbH</i> -{" "}
-            </p>
           </Carousel.Item>
           <Carousel.Item>
-          <div className="reviews">
-            <p>
-            To support participant management, we booked 16 promoters through Slimteam who greatly helped us and made the event a success.
-            </p>
-            <p>
-              {" "}
-              - <i>Dyson GmbH</i> -{" "}
-              
-            </p>
+            <div className="reviews">
+              <p>
+                <ElectricBoltIcon />{" "}
+              </p>
+              <p>
+                {" "}
+                <p>Electrician services</p>{" "}
+              </p>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="reviews">
+              <p>
+                <CleaningServicesIcon />{" "}
+              </p>
+              <p>
+                {" "}
+                <p>Cleaning services</p>{" "}
+              </p>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="reviews">
+              <p>
+                <ImagesearchRollerIcon />{" "}
+              </p>
+              <p>
+                {" "}
+                <p>Home Painting services</p>{" "}
+              </p>
             </div>
           </Carousel.Item>
         </Carousel>
-      <br />
-      <br />
-    </div>
+        <br />
+        <br />
+      </div>
     </div>
   );
 }
