@@ -12,8 +12,6 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
 
 export default function Portfolio_user({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
