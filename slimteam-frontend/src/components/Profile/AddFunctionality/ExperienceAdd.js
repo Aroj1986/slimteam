@@ -49,7 +49,7 @@ export default function ExperienceAdd({ name,id,portfolio , setPortfolio }) {
       {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button> */}
-      <IconButton aria-label="edit" size="large">
+      <IconButton aria-label="edit" size="small">
         <AddIcon onClick={handleClickOpen} fontSize="inherit" color="inherit" />
       </IconButton>
       <Dialog open={open} onClose={handleClose}>

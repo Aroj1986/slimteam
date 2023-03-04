@@ -9,6 +9,8 @@ import { NavLink } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -18,22 +20,19 @@ export default function Portfolio_user({ name, email, setName }) {
   const [loading, setLoading] = React.useState(false);
 
   useEffect(() => {
-    const getPortfolio = () => {
+    const getPortfolio = () =>{
       axios
-        .get(`http://localhost:8888/portfolio/${name}`)
-        .then((res) => {
-          setPortfolio(res.data);
-        })
-        .catch((err) => {
-          console.log(`Error fetching sought expert in database: ${err}`);
-        });
-    };
-    name && getPortfolio();
-  }, [name]);
+      .get(`http://localhost:8888/portfolio/${name}`)
+      .then((res) => {
+        setPortfolio(res.data);
+      })
+      .catch((err) => {
+        console.log(`Error fetching sought expert in database: ${err}`);
+      });
+    }  
+    name && getPortfolio()
 
-/*   const refreshPage = () => {
-    window.location.reload();
-  }; */
+  }, [name]);
 
   return (
     <Container>
@@ -51,7 +50,6 @@ export default function Portfolio_user({ name, email, setName }) {
                 style={{ height: 150, width: 150 }}
               />
             </div>
-
             <Card
               style={{
                 backgroundColor: " rgba(255,250,250)",
@@ -63,7 +61,7 @@ export default function Portfolio_user({ name, email, setName }) {
               <CardActionArea>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    Details
+                    PROFILE DETAILS
                     <HeadlineEdit
                       className="edit-function"
                       id_expert={portfolio?._id}
@@ -116,11 +114,6 @@ export default function Portfolio_user({ name, email, setName }) {
                 <CardActions
                   style={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Button size="small" color="primary">
-                    <NavLink to="/managebookings" className="button-expert">
-                      Manage your Bookings
-                    </NavLink>
-                  </Button>
                 </CardActions>
               </CardActionArea>
             </Card>

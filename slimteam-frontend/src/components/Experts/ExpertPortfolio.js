@@ -58,7 +58,7 @@ export default function ExpertPortfolio({ setExpertName }) {
           <div>
             <img
               className="profile-picture"
-              src={expert.personal_details?.profile_picture}
+              src={expert?.personal_details?.profile_picture}
               alt="Expert image"
               style={{ height: 150, width: 150, textAlign: "center" }}
             />
@@ -81,14 +81,44 @@ export default function ExpertPortfolio({ setExpertName }) {
                 borderRadius: "1rem",
               }}
             >
-              <CardContent>
+              <CardContent style={{ padding: "0px", paddingTop: "16px" }}>
                 <Typography gutterBottom component="div">
-                  {expert.personal_details?.first_name}{" "}
-                  {expert.personal_details?.last_name}
+                  <h4>
+                    {expert.personal_details?.first_name}{" "}
+                    {expert.personal_details?.last_name}
+                  </h4>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {expert.personal_details?.skills},{" "}
-                  {expert.personal_details?.nationality}
+                  <b>
+                   
+                    
+                    {expert.personal_details?.address?.city},{" "}
+                    {expert.personal_details?.nationality}
+                  </b>
+                </Typography>
+                <Typography>
+
+                {expert?.personal_details?.skills?.length ? (
+                        expert.personal_details.skills.map((skill) => {
+                          return (
+                            <>{skill} |{" "}
+                            </>
+                              
+                              
+                          
+                          );
+                        })): (
+                          <p className="heading2"> No SkillsFound</p>
+                  
+                          )}
+                
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {expert.personal_details?.email}{" "}
+                </Typography>
+                <Typography>{expert.personal_details?.phone_number}</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <p>Hourly Rate: {expert?.hourly_rate}/€</p>
                 </Typography>
               </CardContent>
               <CardActions style={{ justifyContent: "center" }}>
@@ -118,7 +148,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                     <div>
                       <h5 className="heading">Experience</h5>
                       {expert?.experience?.length ? (
-                        expert.experience.map((exp) => {
+                        expert?.experience.map((exp) => {
                           return (
                             <ul className="my-list heading">
                               <li>Institution: {exp?.institution}</li>
@@ -137,7 +167,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                     <h5 className="heading">Education</h5>
                     <div>
                       {expert?.education?.length ? (
-                        expert.education.map((exp) => {
+                        expert?.education.map((exp) => {
                           return (
                             <ul className="my-list heading">
                               <li>Institute: {exp?.institute}</li>
@@ -157,7 +187,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                     <p>
                       <div>
                         {expert?.certifications?.length ? (
-                          expert.certifications.map((exp) => {
+                          expert?.certifications.map((exp) => {
                             return (
                               <ul className="my-list heading">
                                 <li>
@@ -174,9 +204,11 @@ export default function ExpertPortfolio({ setExpertName }) {
                   </div>
                 </Typography>
 
+
                 {/*                 <Typography gutterBottom component="div">
+
                   <div className="professional-experience">
-                    <h5 className="heading" >Languages</h5>
+                    <h5 className="heading">Languages</h5>
 
                     <div>
                       {expert?.languages?.length ? (

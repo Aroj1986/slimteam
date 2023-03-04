@@ -58,7 +58,7 @@ export default function CertificationEdit({
 
   return (
     <div>
-      <IconButton aria-label="edit" size="large">
+      <IconButton aria-label="edit" size="small">
         <EditSharpIcon
           onClick={handleClickOpen}
           fontSize="inherit"

@@ -50,7 +50,7 @@ export default function LanguagesAdd({ name,id,portfolio , setPortfolio }) {
   
     return (
       <div>
-         <IconButton aria-label="edit" size="large">
+         <IconButton aria-label="edit" size="small">
           <AddIcon onClick={handleClickOpen} fontSize="inherit" color="inherit" />
         </IconButton>
         <Dialog open={open} onClose={handleClose}>

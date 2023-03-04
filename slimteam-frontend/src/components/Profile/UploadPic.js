@@ -46,7 +46,7 @@ export default function UploadPic({name}) {
 
   return (
     <div>
-      <IconButton color="primary" aria-label="upload picture" component="label">
+      <IconButton color="black" aria-label="upload picture" component="label">
         <PhotoCamera onClick={handleClickOpen}/>
       </IconButton>
       <Dialog open={open} onClose={handleClose}>

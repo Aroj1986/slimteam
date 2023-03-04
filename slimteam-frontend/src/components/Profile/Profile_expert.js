@@ -296,20 +296,7 @@ function Profile_expert({
       </Button>
       </div>
 
-      {/* <div class="col-md">
-        <label for="floatingInputGrid">Country</label>
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInputGrid"
-            placeholder="Country"
-            //   value={}
-          />
-        </div>
-      </div> */}
-
-      {/* </div> */}
+      
     </div>
   );
 }

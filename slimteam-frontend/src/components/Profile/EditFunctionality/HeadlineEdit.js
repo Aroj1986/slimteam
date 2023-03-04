@@ -132,16 +132,13 @@ export default function HeadlineEdit({
 
   return (
     <>
-      <div className="editButton">
-        {" "}
-        <IconButton aria-label="edit" size="large">
-          <EditSharpIcon
-            onClick={handleClickOpen}
-            fontSize="inherit"
-            color="inherit"
-          />
-        </IconButton>{" "}
-      </div>
+     <div className="editButton"> <IconButton aria-label="edit" size="small">
+        <EditSharpIcon
+          onClick={handleClickOpen}
+          fontSize="inherit"
+          color="inherit"
+        />
+      </IconButton> </div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit education</DialogTitle>
         <DialogContent>

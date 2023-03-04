@@ -5,8 +5,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-
-import LogoCompany from "./SlimTeam.jpg";
+import LogoCompany from "./ST.png";
 
 function Navbar({ userLogin, setUserLogin, name }) {
 
@@ -31,7 +30,7 @@ function Navbar({ userLogin, setUserLogin, name }) {
     <>
       <div className="container-header">
         <p>
-          <img className="img-header" src={LogoCompany} alt="logo-coffeeMeet" />
+          <img className="img-header" src={LogoCompany} alt="logo" />
         </p>
 
         <div className="row container-navbar">

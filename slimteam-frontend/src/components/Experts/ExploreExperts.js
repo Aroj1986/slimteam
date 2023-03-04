@@ -133,7 +133,7 @@ export default function ExploreExperts({ experts, setExperts }) {
                         <CardActions className="button-div">
                           <Button size="small" color="primary">
                             <NavLink
-                              to={`/explore-experts/${expert.personal_details.first_name}`}
+                              to={`/explore-experts/${expert?.personal_details.first_name}`}
                               className="button-expert"
                             >
                               view details
