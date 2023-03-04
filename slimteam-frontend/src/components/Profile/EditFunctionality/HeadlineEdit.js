@@ -24,43 +24,72 @@ export default function HeadlineEdit({
   setPortfolio,
   setName,
 }) {
-
   const [open, setOpen] = React.useState(false);
   const [inputFirstName, setInputFirstName] = useState();
   const [inputLastName, setInputLastName] = useState();
-  const [inputStreet, setInputStreet] = useState([]);
+  const [inputStreet, setInputStreet] = useState();
   const [inputCity, setInputCity] = useState();
   const [inputNationality, setInputNationality] = useState();
   const [inputEmail, setInputEmail] = useState();
   const [inputPhoneNo, setInputPhoneNo] = useState();
 
-  console.log(id_expert, first_name, last_name, street, city, nationality, email, phone_number);
+  console.log(
+    id_expert,
+    first_name,
+    last_name,
+    street,
+    city,
+    nationality,
+    email,
+    phone_number
+  );
+
+  // to capitalize first letter of the word
+  const capitalizeWords = (str) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   const handleOnChangeFirstName = (e) => {
-    setInputFirstName(e.target.value);
+    setInputFirstName(capitalizeWords(e.target.value));
   };
 
   const handleOnChangeLastName = (e) => {
-    setInputLastName(e.target.value);
+    setInputLastName(capitalizeWords(e.target.value));
   };
 
   const handleOnChangeStreet = (e) => {
-    setInputStreet(e.target.value);
+    setInputStreet(capitalizeWords(e.target.value));
   };
 
   const handleOnChangeCity = (e) => {
-    setInputCity(e.target.value);
+    setInputCity(capitalizeWords(e.target.value));
   };
 
   const handleOnChangeNationality = (e) => {
-    setInputNationality(e.target.value);
+    setInputNationality(capitalizeWords(e.target.value));
   };
 
-  const handleOnChangeEmail = (e) => {
+  /*   const handleOnChangeEmail = (e) => {
     setInputEmail(e.target.value);
-  };
+  }; */
+
+  // to format the phone number as (XXX - XXXX - XXXX)
   const handleOnChangePhoneNo = (e) => {
-    setInputPhoneNo(e.target.value);
+    if (e.target.value.length < 13) {
+      const currentPhoneNumber = ("" + e.target.value).replace(/\D/g, "");
+
+      let formattedPhoneNumber = `${currentPhoneNumber.substring(0, 3)}${
+        currentPhoneNumber.length > 3 ? "-" : ""
+      }${currentPhoneNumber.substring(3, 7)}${
+        currentPhoneNumber.length > 7 ? "-" : ""
+      }${currentPhoneNumber.substring(7, 11)}`;
+
+      setInputPhoneNo(formattedPhoneNumber);
+    }
   };
 
   const handleClickOpen = () => {
@@ -76,13 +105,13 @@ export default function HeadlineEdit({
         city: inputCity,
       },
       nationality: inputNationality,
-      email: inputEmail,
+      //      email: inputEmail,
       phone_number: inputPhoneNo,
     },
   };
 
-  console.log(personal_details)
-  
+  console.log(personal_details);
+
   const handleSubmitEdit = async () => {
     await axios
       .put(
@@ -91,7 +120,7 @@ export default function HeadlineEdit({
       )
       .then((res) => {
         setPortfolio(res.data);
-        console.log(res.data)
+        console.log(res.data);
         setName(inputFirstName);
       });
     setOpen(false);
@@ -166,7 +195,7 @@ export default function HeadlineEdit({
             variant="standard"
             onChange={handleOnChangeNationality}
           />
-          <TextField
+          {/*           <TextField
             autoFocus
             margin="dense"
             type="text"
@@ -175,7 +204,7 @@ export default function HeadlineEdit({
             fullWidth
             variant="standard"
             onChange={handleOnChangeEmail}
-          />
+          /> */}
           <TextField
             autoFocus
             margin="dense"
