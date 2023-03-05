@@ -9,27 +9,26 @@ import { NavLink } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { height, maxHeight } from "@mui/system";
 
 export default function Portfolio_user({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
-  const [loading, setLoading] = React.useState(false);
 
   useEffect(() => {
-    const getPortfolio = () =>{
+    const getPortfolio = () => {
       axios
-      .get(`http://localhost:8888/portfolio/${name}`)
-      .then((res) => {
-        setPortfolio(res.data);
-      })
-      .catch((err) => {
-        console.log(`Error fetching sought expert in database: ${err}`);
-      });
-    }  
-    name && getPortfolio()
-
+        .get(`http://localhost:8888/portfolio/${name}`)
+        .then((res) => {
+          setPortfolio(res.data);
+        })
+        .catch((err) => {
+          console.log(`Error fetching sought expert in database: ${err}`);
+        });
+    };
+    name && getPortfolio();
   }, [name]);
 
   return (
@@ -58,25 +57,28 @@ export default function Portfolio_user({ name, email, setName }) {
             >
               <CardActionArea>
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    PROFILE DETAILS
-                    <HeadlineEdit
-                      className="edit-function"
-                      id_expert={portfolio?._id}
-                      name={name}
-                      first_name={portfolio?.personal_details?.first_name}
-                      last_name={portfolio?.personal_details?.last_name}
-                      street={portfolio?.personal_details?.address?.street}
-                      city={portfolio?.personal_details?.address?.city}
-                      nationality={portfolio?.personal_details?.nationality}
-                      email={portfolio?.personal_details?.email}
-                      phone_number={portfolio?.personal_details?.phone_number}
-                      portfolio={portfolio}
-                      setPortfolio={setPortfolio}
-                      setName={setName}
-                    />
-                  </Typography>
-
+                  <div className="professional-experience" style={{paddingLeft: "1rem", margin: "1rem"}}>
+                    <div className="portfoliobutton">
+                      <h6>
+                        <strong>Personal Details</strong>
+                      </h6>
+                      {"\n"}
+                      <HeadlineEdit
+                        className="edit-function"
+                        id_expert={portfolio?._id}
+                        name={name}
+                        first_name={portfolio?.personal_details?.first_name}
+                        last_name={portfolio?.personal_details?.last_name}
+                        street={portfolio?.personal_details?.address?.street}
+                        city={portfolio?.personal_details?.address?.city}
+                        nationality={portfolio?.personal_details?.nationality}
+                        email={portfolio?.personal_details?.email}
+                        phone_number={portfolio?.personal_details?.phone_number}
+                        portfolio={portfolio}
+                        setPortfolio={setPortfolio}
+                        setName={setName}
+                      />
+                    </div>
                   <Typography
                     variant="body2"
                     color="text.secondary"
@@ -91,7 +93,7 @@ export default function Portfolio_user({ name, email, setName }) {
                       </b>
                     </h6>
                   </Typography>
-
+                  
                   <Typography
                     variant="body2"
                     color="text.secondary"
@@ -107,6 +109,9 @@ export default function Portfolio_user({ name, email, setName }) {
                       Phone number: {portfolio?.personal_details?.phone_number}{" "}
                     </h6>
                   </Typography>
+                  </div>
+
+
                 </CardContent>
 
                 <CardActions

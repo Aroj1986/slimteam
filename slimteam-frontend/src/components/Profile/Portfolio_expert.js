@@ -14,6 +14,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import HeadlineEditExpert from "./EditFunctionality/HeadlineEditExpert";
 import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
 import EducationEdit from "./EditFunctionality/EducationEdit";
 import CertificationEdit from "./EditFunctionality/CertificationEdit";
@@ -38,6 +41,7 @@ export default function Portfolio({ name, email, setName }) {
     name && getPortfolio();
   }, [name]);
 
+  console.log(portfolio?.hourly_rate)
   return (
     <>
       {portfolio ? (
@@ -92,43 +96,41 @@ export default function Portfolio({ name, email, setName }) {
                 </h6>
                 {"\n"}
 
-                <HeadlineEdit
+                <HeadlineEditExpert
                   id_expert={portfolio?._id}
                   name={name}
                   first_name={portfolio?.personal_details.first_name}
                   last_name={portfolio?.personal_details.last_name}
                   skills={portfolio?.personal_details.skills}
+                  street={portfolio?.personal_details.address.street}
                   city={portfolio?.personal_details.address.city}
                   nationality={portfolio?.personal_details.nationality}
+                  hourly_rate={portfolio?.hourly_rate}
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
+                  setName={setName}
                 />
               </div>
               <div style={{ padding: "1rem" }}>
                 <p>
-                  <strong>Full Name:</strong>{" "}
-                  {portfolio?.personal_details.first_name}{" "}
+                <strong>Name: </strong> {portfolio?.personal_details.first_name}{" "}
                   {portfolio?.personal_details.last_name}
                 </p>
                 <p>
-                  <strong>City:</strong>
-                  {portfolio?.personal_details.address.city}
+                <strong>Street: </strong>{portfolio?.personal_details.address.street}
+                  {"\n"}
+                </p>
+                <p>
+                <strong>City: </strong>{portfolio?.personal_details.address.city}
                   {"\n"}
                 </p>
 
-                <p>
-                  <strong>Country:</strong>
-                  {portfolio?.personal_details.nationality}
-                </p>
+                <p><strong>Country: </strong>{portfolio?.personal_details.nationality}</p>
 
                 {portfolio?.personal_details.skills.map((skill) => {
-                  return (
-                    <p>
-                      <strong>Sills: </strong>
-                      {skill}
-                    </p>
-                  );
+                  return <p><strong>Skills: </strong>{skill}</p>;
                 })}
+                <p><strong>Hourly rate: </strong>{portfolio?.hourly_rate} Euros / hour</p>
               </div>
             </div>
 

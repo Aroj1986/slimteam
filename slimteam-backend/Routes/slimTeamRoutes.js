@@ -17,6 +17,7 @@ const {
   editExpertEducationOne,
   editExpertCertificationOne,
   editExpertHeadline,
+  editExpertHeadlineExpert,
   getProfile,
   editLanguages,
 } = require("../CallbackFunctions/SlimTeamCallbackFunctions");
@@ -28,7 +29,7 @@ slimTeamRouter.route("/explore-experts/:email").get(getExpertwithEmail);
 slimTeamRouter
   .route("/portfolio/:name")
   .put(editExpertExperience)
-  .get(getExpert);
+  .get(getExpert);  
 slimTeamRouter
   .route("/portfolio/:name/delete-experience")
   .put(deleteExpertExperienceOne);
@@ -53,6 +54,9 @@ slimTeamRouter
 slimTeamRouter.route("/portfolio/:name/edit-languages/:id").put(editLanguages);
 slimTeamRouter
   .route("/portfolio/:name/edit-headline/:id")
-  .put(editExpertHeadline);
+  .put(editExpertHeadline)
+slimTeamRouter
+  .route("/portfolio/:name/edit-headline-expert/:id")
+  .put(editExpertHeadlineExpert);
 
 module.exports = slimTeamRouter;
