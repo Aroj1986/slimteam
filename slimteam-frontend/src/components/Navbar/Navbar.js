@@ -1,14 +1,14 @@
 import React from "react";
 import "./navbar.css";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import LogoCompany from "./ST.png";
+import { padding } from "@mui/system";
 
 function Navbar({ userLogin, setUserLogin, name }) {
-
   const { user, loading, logout } = useContext(AuthContext);
   // console.log(user);
   // const logoutOnClick = (e) => {
@@ -29,9 +29,9 @@ function Navbar({ userLogin, setUserLogin, name }) {
   return (
     <>
       <div className="container-header">
-        <p>
-          <img className="img-header" src={LogoCompany} alt="logo" />
-        </p>
+        <a href="/"><p style={{paddingLeft:"20px"}}>
+          <img className="img-header" src= {LogoCompany} alt="logo" />
+        </p></a>
 
         <div className="row container-navbar">
           {!loading && (

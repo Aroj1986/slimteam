@@ -28,37 +28,36 @@ float:right;
   max-width: 30%;
   display: flex;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  margin-top: 80px;
+  gap: 0.5rem;
 }
 
 .upload .profile-picturee {
-  border: 0.01rem solid rgb(246, 244, 244);
+  border: 0.01rem solid rgb(160, 151, 151);
   border-radius: 50%;
-  
+  padding: 0.15rem;
+  background-color: rgb(160, 151, 151);
 }
 
-.profile-picturee {
-  display: block;
-  /* left: 175px; */
-  margin-bottom: -5px;
-}
+.upload .profile-picturee {
+    display: block;
+    margin: 0 auto;
+  }
+
 .camerabutton {
   position: absolute;
-
-  /* top: 32%;
-  left: 42%; */
-  background-color: rgb(25, 26, 27);
-  /* color: white; */
+  background-color: aliceblue;
   border: none;
   cursor: pointer;
   border-radius: 10px;
+  transform: translate(140%, 140%);
+  opacity: 0;
+  transition: opacity 0.1s ease;
 }
 
-.upload .camerabutton :hover {
-  background-color: rgb(30, 28, 28);
-  cursor: pointer;
-  color: white;
+.upload:hover .camerabutton  {
+  opacity: 0.8;
 }
 
 .expert-headline-column {
@@ -85,7 +84,7 @@ float:right;
 }
 
 .expert-portfolio {
-  width: 60vw;
+  /* width: 60vw; */
   flex-direction: row;
   display: flex;
   justify-content: center;
@@ -94,10 +93,11 @@ float:right;
   flex-wrap: wrap; /* delete this line in case it should be in a row */
 }
 
-/* .editButton {
+.editButton {
   position: absolute;
-  /* top: 10%; */
-  /* right: 3%; */
+  top: 3.5%;
+  right: 3%;
+}
 
 .professional-experience
 {

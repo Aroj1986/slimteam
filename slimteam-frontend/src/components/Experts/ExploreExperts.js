@@ -79,7 +79,7 @@ export default function ExploreExperts({ experts, setExperts }) {
           </div>
         </div>
 
-        <div className="col col-9">
+        <div className="col col-9 fullcontainer">
           <button onClick={() => navigate(0)} className="goBackArrow">
             <span>
               <svg

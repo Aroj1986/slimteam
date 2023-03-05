@@ -10,6 +10,11 @@
   text-align: center;
 }
 
+.fullcontainer {
+  /* background-color: antiquewhite; */
+  padding-left: 2rem;
+}
+
 .button-div {
   display: flex;
   flex-direction: row;

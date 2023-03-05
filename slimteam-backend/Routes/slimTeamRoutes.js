@@ -1,6 +1,6 @@
 const express = require("express");
 const slimTeamRouter = express.Router();
-const {verifyToken} = require('../middlewares/verifyToken')
+const { verifyToken } = require("../middlewares/verifyToken");
 const {
   // createExpert,
   getExperts,
@@ -18,12 +18,13 @@ const {
   editExpertCertificationOne,
   editExpertHeadline,
   getProfile,
+  editLanguages,
 } = require("../CallbackFunctions/SlimTeamCallbackFunctions");
 
 slimTeamRouter.get("/profile", verifyToken, getProfile);
-slimTeamRouter.route('/explore-experts').post(createProfile).get(getExperts)
-slimTeamRouter.route('/explore-expert/:name').get(getExpert)
-slimTeamRouter.route('/explore-experts/:email').get(getExpertwithEmail)
+slimTeamRouter.route("/explore-experts").post(createProfile).get(getExperts);
+slimTeamRouter.route("/explore-expert/:name").get(getExpert);
+slimTeamRouter.route("/explore-experts/:email").get(getExpertwithEmail);
 slimTeamRouter
   .route("/portfolio/:name")
   .put(editExpertExperience)
@@ -49,6 +50,7 @@ slimTeamRouter
 slimTeamRouter
   .route("/portfolio/:name/edit-certification/:id")
   .put(editExpertCertificationOne);
+slimTeamRouter.route("/portfolio/:name/edit-languages/:id").put(editLanguages);
 slimTeamRouter
   .route("/portfolio/:name/edit-headline/:id")
   .put(editExpertHeadline);

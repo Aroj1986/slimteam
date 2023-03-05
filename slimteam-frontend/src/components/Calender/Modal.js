@@ -11,20 +11,73 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import FormHelperText from '@mui/material/FormHelperText';
 import { NavLink } from 'react-router-dom';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 // import emailjs from '@emailjs/browser';
 import * as emailjs from "emailjs-com"
 
 import { useState } from "react";
 import axios from "axios";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 export default function Modal ({ open, setOpen, start,end, title,setTitle,events, setEvents,name,expertName,booking,to_email,from_email,request}) {
-  // const [title, setTitle] = useState("");
-  // const [events, setEvents] = useState([]);
-  console.log(booking)
+  const [time, setTime] = useState();
+  const [description,setDesciption] = useState();
   const form = useRef();
-  var template_param = {
-    to_email,from_email,expert_name : expertName,user_name : name, start_date: start,title:title
+
+  const [userDetails,setUserDetails] = useState(
+  )
+  const [expertDetails,setExpertDetails] = useState(
+  )
+  useEffect(() => {
+    const getDetails = () =>{
+      axios
+      .get(`http://localhost:8888/portfolio/${name}`)
+      .then((res) => {
+        setUserDetails(res.data);
+      })
+
+      axios
+      .get(`http://localhost:8888/portfolio/${expertName}`)
+      .then((res) => {
+        setExpertDetails(res.data);
+      })
+      .catch((err) => {
+        console.log(`Error fetching sought expert in database: ${err}`);
+      });
+    }  
+    name && expertName && getDetails()
+
+  }, [name,expertName]);
+
+
+  var template_param_expert = {
+    to_email : expertDetails?.personal_details?.email,
+    from_email:userDetails?.personal_details?.email,
+    expert_name : expertName,
+    user_name : name, 
+    start_date: start,
+    title:title,
+    Time:time,
+    phone_number: expertDetails?.personal_details?.phone_number,
+    street : expertDetails?.personal_details?.address?.street,
+    city:expertDetails?.personal_details?.address?.city,
+    postal_code:expertDetails?.personal_details?.address?.postal_code,
+    description:description,
+  }
+
+  var template_param_user = {
+    to_email : userDetails?.personal_details?.email,
+    from_email:expertDetails?.personal_details?.email,
+    expert_name : expertName,
+    user_name : name, 
+    start_date: start,
+    title:title,
+    Time:time,
+    phone_number: userDetails?.personal_details?.phone_number,
+    street : userDetails?.personal_details?.address?.street,
+    city:userDetails?.personal_details?.address?.city,
+    postal_code:userDetails?.personal_details?.address?.postal_code,
+    description:description,
   }
 
   const handleSubmit = (e) => {
@@ -35,7 +88,15 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
         .then(({ data }) => setEvents([...events, data]))
         .catch((err) => console.log(err));
       setOpen(false);
-      // emailjs.send('service_uvp0rck', 'template_9qeisr9', template_param, 'f_2ehsvnxo2qEtz7Z')
+      //mail to expert for user booking
+      // emailjs.send('service_tnbxdpq', 'template_gseatce', template_param_expert, '52YVtk3Co2hMAovzI')
+      // .then((result) => {
+      //     console.log(result.status,result.text);
+      // }, (error) => {
+      //     console.log(error.text);
+      // });
+      // // copy of confirmation mail to user for booking an expert
+      // emailjs.send('service_tnbxdpq', 'template_q6jcw4l', template_param_user, '52YVtk3Co2hMAovzI')
       // .then((result) => {
       //     console.log(result.status,result.text);
       // }, (error) => {
@@ -69,6 +130,26 @@ const handleClickOpen = () => {
            fullWidth
            value={title}
            onChange={(e) => setTitle(e.target.value)}
+         />
+         <TextField
+           autoFocus
+           margin="dense"
+           id="time 24h format"
+           label="9AM - 5PM"
+           type="time"
+           fullWidth
+           value={time}
+           onChange={(e) => setTime(e.target.value)}
+         />
+         <TextField
+           autoFocus
+           margin="dense"
+           id="description"
+           label="Description if any"
+           type="text"
+           fullWidth
+           value={description}
+           onChange={(e) => setDesciption(e.target.value)}
          />
        </DialogContent>
      <DialogActions>

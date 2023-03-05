@@ -224,6 +224,27 @@ const editExpertCertificationOne = async (req, res) => {
   }
 };
 
+const editLanguages = async (req, res) => {
+  try {
+    const { name, id } = req.params;
+    const { languages } = req.body;
+    const expert = await Profile.findOne({ "languages._id": id });
+    expert.languages = expert.languages.map((lang) => {
+      if (lang._id.equals(id)) {
+        return languages;
+      } else {
+        return lang;
+      }
+    });
+    const result = await expert.save();
+    res.status(201).json(result);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send(error.messages);
+  }
+};
+
+
 const editExpertHeadline = async (req, res) => {
   try {
     const { name, id } = req.params;
@@ -275,6 +296,7 @@ module.exports = {
   editExpertExperienceOne,
   editExpertEducationOne,
   editExpertCertificationOne,
+  editLanguages,
   editExpertHeadline,
   getProfile,
 };
