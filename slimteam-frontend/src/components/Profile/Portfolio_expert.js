@@ -18,7 +18,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
+import HeadlineEditExpert from "./EditFunctionality/HeadlineEditExpert";
 import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
 import EducationEdit from "./EditFunctionality/EducationEdit";
 import CertificationEdit from "./EditFunctionality/CertificationEdit";
@@ -27,7 +27,8 @@ export default function Portfolio({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
-    axios
+    const getPortfolio = () =>{
+      axios
       .get(`http://localhost:8888/portfolio/${name}`)
       .then((res) => {
         setPortfolio(res.data);
@@ -35,8 +36,12 @@ export default function Portfolio({ name, email, setName }) {
       .catch((err) => {
         console.log(`Error fetching sought expert in database: ${err}`);
       });
+    }  
+    name && getPortfolio()
+
   }, [name]);
 
+  console.log(portfolio?.hourly_rate)
   return (
     <>
       <div
@@ -89,33 +94,41 @@ export default function Portfolio({ name, email, setName }) {
                 <h6><strong>Personal Details</strong></h6>
                 {"\n"}
 
-                <HeadlineEdit
+                <HeadlineEditExpert
                   id_expert={portfolio?._id}
                   name={name}
                   first_name={portfolio?.personal_details.first_name}
                   last_name={portfolio?.personal_details.last_name}
                   skills={portfolio?.personal_details.skills}
+                  street={portfolio?.personal_details.address.street}
                   city={portfolio?.personal_details.address.city}
                   nationality={portfolio?.personal_details.nationality}
+                  hourly_rate={portfolio?.hourly_rate}
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
+                  setName={setName}
                 />
               </div>
               <div style={{ padding: "1rem" }}>
                 <p>
-                <strong>Full Name:</strong> {portfolio?.personal_details.first_name}{" "}
+                <strong>Name: </strong> {portfolio?.personal_details.first_name}{" "}
                   {portfolio?.personal_details.last_name}
                 </p>
                 <p>
-                <strong>City:</strong>{portfolio?.personal_details.address.city}
+                <strong>Street: </strong>{portfolio?.personal_details.address.street}
+                  {"\n"}
+                </p>
+                <p>
+                <strong>City: </strong>{portfolio?.personal_details.address.city}
                   {"\n"}
                 </p>
 
-                <p><strong>Country:</strong>{portfolio?.personal_details.nationality}</p>
+                <p><strong>Country: </strong>{portfolio?.personal_details.nationality}</p>
 
                 {portfolio?.personal_details.skills.map((skill) => {
-                  return <p><strong>Sills: </strong>{skill}</p>;
+                  return <p><strong>Skills: </strong>{skill}</p>;
                 })}
+                <p><strong>Hourly rate: </strong>{portfolio?.hourly_rate} Euros / hour</p>
               </div>
             </div>
 
