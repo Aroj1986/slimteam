@@ -116,7 +116,13 @@ export default function Portfolio_user({ name, email, setName }) {
 
                 <CardActions
                   style={{ display: "flex", justifyContent: "center" }}
-                ></CardActions>
+                >
+                  <Button size="small" color="primary">
+                    <NavLink to="/managebookings" className="button-expert">
+                      MANAGE YOUR BOOKINGS
+                    </NavLink>
+                  </Button>
+                </CardActions>
               </CardActionArea>
             </Card>
           </div>

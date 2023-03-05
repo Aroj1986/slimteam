@@ -6,6 +6,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { useState } from "react";
 import axios from "axios";
@@ -19,14 +22,14 @@ export default function CertificationEdit({
 }) {
   const [open, setOpen] = React.useState(false);
   const [inputCertificateName, setInputCertificateName] = useState();
-  const [inputFromDate, setInputFromDate] = useState();
+  const [inputFromDate, setInputFromDate] = useState(valid_from);
 
   const handleOnChangeCertificate = (e) => {
     setInputCertificateName(e.target.value);
   };
 
-  const handleOnChangeFromDate = (e) => {
-    setInputFromDate(e.target.value);
+  const handleOnChangeFromDate = (newValue) => {
+    setInputFromDate(newValue);
   };
 
   const handleClickOpen = () => {
@@ -35,8 +38,8 @@ export default function CertificationEdit({
 
   const certifications = {
     certifications: {
-      certification_name: inputCertificateName,
-      valid_from: inputFromDate,
+      certification_name: inputCertificateName?inputCertificateName:certification_name,
+      valid_from: inputFromDate?inputFromDate:valid_from,
     },
   };
 
@@ -72,22 +75,28 @@ export default function CertificationEdit({
             autoFocus
             margin="dense"
             type="text"
-            label={certification_name}
+            label="Name of Certification"
+            defaultValue={certification_name}
             placeholder="Certificate name"
             fullWidth
             variant="standard"
             onChange={handleOnChangeCertificate}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            type="date"
-//            label={valid_from}
-            fullWidth
-            onChange={handleOnChangeFromDate}
-          />
+          <div style={{padding:"1rem"}}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+         <div style={{padding:"1rem"}}>
+        <DesktopDatePicker
+          label="from date"
+          inputFormat="MM/DD/YYYY"
+          value={inputFromDate}
+          onChange={handleOnChangeFromDate}
+          renderInput={(params) => <TextField {...params} />}
+        /></div>
+          </LocalizationProvider>
+          </div>
         </DialogContent>
         <DialogActions>
+        <Button onClick={handleClose}>CANCEL</Button>
           <Button onClick={handleSubmitEdit}>DONE</Button>
         </DialogActions>
       </Dialog>

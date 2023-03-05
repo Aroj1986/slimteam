@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import "./profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -12,48 +11,55 @@ import moment from "moment";
 import TimeCalculator from "./TimeCalculator";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditSharpIcon from "@mui/icons-material/EditSharp";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
+import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import HeadlineEditExpert from "./EditFunctionality/HeadlineEditExpert";
 import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
 import EducationEdit from "./EditFunctionality/EducationEdit";
 import CertificationEdit from "./EditFunctionality/CertificationEdit";
+import LanguageEdit from "./EditFunctionality/LanguageEdit";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function Portfolio({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
-    const getPortfolio = () =>{
+    const getPortfolio = () => {
       axios
-      .get(`http://localhost:8888/portfolio/${name}`)
-      .then((res) => {
-        setPortfolio(res.data);
-      })
-      .catch((err) => {
-        console.log(`Error fetching sought expert in database: ${err}`);
-      });
-    }  
-    name && getPortfolio()
-
+        .get(`http://localhost:8888/portfolio/${name}`)
+        .then((res) => {
+          setPortfolio(res.data);
+        })
+        .catch((err) => {
+          console.log(`Error fetching sought expert in database: ${err}`);
+        });
+    };
+    name && getPortfolio();
   }, [name]);
 
   console.log(portfolio?.hourly_rate)
   return (
     <>
-      <div
+      {portfolio ? (
+        <div>
+          <div
         style={{
           width: "100%",
           display: "flex",
           justifyContent: "center",
-          padding: "5rem",
+          paddingTop: "5rem",
+          paddingBottom: "2rem",
           left: "20px",
         }}
       >
         <div className="upload">
+          <div className="camerabutton">
+            <UploadPic name={name} />
+          </div>
           <img
             className="profile-picturee"
             src={portfolio?.personal_details.profile_picture}
@@ -61,13 +67,8 @@ export default function Portfolio({ name, email, setName }) {
             style={{
               height: 150,
               width: 150,
-              display: "flex",
-              justifyContent: "center",
             }}
           />
-          <div className="camerabutton">
-            <UploadPic name={name} />
-          </div>
         </div>
       </div>
 
@@ -75,7 +76,6 @@ export default function Portfolio({ name, email, setName }) {
         style={{
           display: "flex",
           justifyContent: "center",
-          padding: "0px",
           paddingBottom: "3rem",
         }}
       >
@@ -84,14 +84,16 @@ export default function Portfolio({ name, email, setName }) {
             backgroundColor: "rgba(255, 250, 250)",
             padding: "0rem",
             borderRadius: "1rem",
-            maxWidth: "600px",
+            maxWidth: "800px",
             width: "100%",
           }}
         >
           <CardContent>
             <div className="professional-experience">
               <div className="portfoliobutton">
-                <h6><strong>Personal Details</strong></h6>
+                <h6>
+                  <strong>Personal Details</strong>
+                </h6>
                 {"\n"}
 
                 <HeadlineEditExpert
@@ -134,7 +136,9 @@ export default function Portfolio({ name, email, setName }) {
 
             <div className="professional-experience">
               <div className="portfoliobutton">
-                <h6><strong>Professional Experience</strong> </h6>{" "}
+                <h6>
+                  <strong>Professional Experience</strong>{" "}
+                </h6>{" "}
                 <ExperienceAdd
                   id={portfolio?._id}
                   name={portfolio?.personal_details.first_name}
@@ -214,7 +218,9 @@ export default function Portfolio({ name, email, setName }) {
 
             <div className="professional-experience">
               <div className="portfoliobutton">
-                <h6><strong>Qualification / Trainings</strong></h6>{" "}
+                <h6>
+                  <strong>Qualification / Trainings</strong>
+                </h6>{" "}
                 <EducationAdd
                   id={portfolio?._id}
                   name={portfolio?.personal_details.first_name}
@@ -296,7 +302,9 @@ export default function Portfolio({ name, email, setName }) {
 
             <div className="professional-experience">
               <div className="portfoliobutton">
-                <h6><strong>License / Certification</strong></h6>{" "}
+                <h6>
+                  <strong>License / Certification</strong>
+                </h6>{" "}
                 <CerticiationsAdd
                   id={portfolio?._id}
                   name={portfolio?.personal_details.first_name}
@@ -353,7 +361,10 @@ export default function Portfolio({ name, email, setName }) {
                         </div>
                       </div>
                       <div>
-                        <h6>Valid from {cert?.valid_from}</h6>{" "}
+                        <h6 className="startandend">
+                          Valid from{" "}
+                          {moment(cert?.valid_from).format("MMM YYYY")}{" "}
+                        </h6>{" "}
                       </div>
                     </ul>
                   </div>
@@ -363,7 +374,9 @@ export default function Portfolio({ name, email, setName }) {
 
             <div className="professional-experience">
               <div className="portfoliobutton">
-                <h6><strong>Languages</strong></h6>
+                <h6>
+                  <strong>Languages</strong>
+                </h6>
                 <LanguagesAdd
                   id={portfolio?._id}
                   name={portfolio?.personal_details.first_name}
@@ -378,18 +391,16 @@ export default function Portfolio({ name, email, setName }) {
                     <ul>
                       <div className="experience">
                         <h6>
-                          <strong>{lang?.language}:</strong> {lang?.proficiency}
+                          <strong>{lang?.language} </strong>
                         </h6>{" "}
                         <div className="experience-item">
-                          {/* <EducationEdit
+                          <LanguageEdit
                             name={name}
-                            id_edu={edu?._id}
-                            institute={edu?.institute}
-                            degree={edu?.degree}
-                            start_date={edu?.start_date}
-                            end_date={edu?.end_date}
+                            id_lang={lang?._id}
+                            language={lang?.language}
+                            proficiency={lang?.proficiency}
                             setPortfolio={setPortfolio}
-                          /> */}
+                          />
                           <IconButton aria-label="delete" size="small">
                             <DeleteIcon
                               fontSize="inherit"
@@ -421,6 +432,9 @@ export default function Portfolio({ name, email, setName }) {
                           </IconButton>
                         </div>
                       </div>
+                      <div>
+                        <h6 className="startandend">{lang?.proficiency}</h6>
+                      </div>
                     </ul>
                   </div>
                 );
@@ -429,6 +443,12 @@ export default function Portfolio({ name, email, setName }) {
           </CardContent>
         </Card>
       </div>
+        </div>
+      ) : (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      )}
     </>
   );
 }

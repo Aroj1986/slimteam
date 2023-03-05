@@ -1,6 +1,6 @@
 .calender-styling {
   font-family: 'Roboto', sans-serif;
-  background-color: #fff;
+  /* background-colokur: #fff; */
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -24,7 +24,6 @@
 
 .calendar-container {
   width: 100%;
-  background-color: #e6e2e6;
   padding: 20px;
 }
 

@@ -15,7 +15,6 @@ import { AuthContext } from "../../context/AuthProvider";
 
 export default function ExpertPortfolio({ setExpertName }) {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const [expert, setExpert] = useState({});
   const { name } = useParams();
   const navigate = useNavigate();

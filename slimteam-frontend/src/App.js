@@ -48,6 +48,7 @@ export default function App() {
   useEffect(()=> {
     axios.get(`http://localhost:8888/explore-experts/${mail}`).then((res) => {
       setName(res.data[0]?.personal_details?.first_name);
+      localStorage.setItem("name",res.data[0]?.personal_details?.first_name)
       setRole(res.data[0]?.role);
     });
 

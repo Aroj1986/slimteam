@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./myCalendar.css";
 import axios from "axios";
 import Modal from "./Modal";
+import * as emailjs from "emailjs-com"
 
 
 const MyCalendar = ({ name, expertName }) => {
@@ -82,11 +83,11 @@ const MyCalendar = ({ name, expertName }) => {
 //   setRequest("PUT")
 // };
 
-const handleDelete = ({ _id }) => {
+const handleDelete = ({ expert_UserName,user_UserName,title,start,_id }) => {
+  console.log(expert_UserName,user_UserName)
   setEditingEvent(null);
   axios
     .delete(`http://localhost:8888/book-online/${_id}`)
-
     .then((response) => {
       console.log("Event got deleted successfully", response.data);
       setEvents(
@@ -94,7 +95,22 @@ const handleDelete = ({ _id }) => {
           return event._id != response.data._id;
         })
       );
+         //mail to expert for user booking
+        //  emailjs.send('service_uvp0rck', 'template_9qeisr9', {
+        //   to_email : to_email
+        //   ,from_email:from_email
+        //   ,expert_name : expert_UserName
+        //   ,user_name : user_UserName
+        //   ,start_date: start
+        //   ,title:title
+        //  }, 'f_2ehsvnxo2qEtz7Z')
+        //  .then((result) => {
+        //      console.log(result.status,result.text);
+        //  }, (error) => {
+        //      console.log(error.text);
+        //  });
     })
+   
     .catch((error) => {
       console.error("Error deleting event", error);
     });
@@ -102,6 +118,7 @@ const handleDelete = ({ _id }) => {
 
 
   const handleEventSelect = (event,start) => {
+    console.log(event)
     setEditingEvent(event);
   };
 
@@ -117,7 +134,8 @@ const handleDelete = ({ _id }) => {
       style: {
         // borderLeft: isBooked ? "5px solid blue" : "5px solid black",
         color:"black",
-        backgroundColor:"#008080"
+        backgroundColor:" #7f6d7f"
+      
       },
     };
   };
@@ -150,8 +168,8 @@ const handleDelete = ({ _id }) => {
         setEvents={setEvents}
         title={title}
         setTitle={setTitle}
-        name={name}
-        expertName={expertName}
+        name={usName}
+        expertName={exptname}
         booking={booking}
         to_email={to_email}
         from_email ={from_email}
