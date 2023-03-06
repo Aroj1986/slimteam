@@ -41,7 +41,8 @@
   display: flex;
   justify-content: center;
   font-weight:bolder;
-  font-size: 30px;
+  text-align: center;
+  /* font-size: 30px; */
   font-family: 'Julius Sans One', sans-serif;
   /* font-family: 'Holtwood One SC', serif; */
   /* font-family: 'Tilt Prism', cursive; */
@@ -59,6 +60,9 @@ background-color: rgb(242, 236, 236);
 
 .hero-section {
   padding: 80px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .reviews {
