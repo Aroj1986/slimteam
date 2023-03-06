@@ -15,10 +15,12 @@ import Profile from "./components/Profile/Profile";
 import Portfolio_generic from "./components/Profile/Portfolio_generic";
 import ExploreExperts from "./components/Experts/ExploreExperts";
 import Calender from "./components/Calender/Calender";
-
+import ExpertView from "./components/Profile/ViewProfileinBookings/ExpertView"
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthProvider";
 import ManageBookings from "./components/Profile/ManageBookings";
+import UserView from "./components/Profile/ViewProfileinBookings/UserView";
+import ManageBookings_Expert from "./components/Profile/ViewProfileinBookings/ManageBookings_expert";
 
 export default function App() {
   const [experts, setExperts] = useState([]);
@@ -36,23 +38,19 @@ export default function App() {
     axios.get("http://localhost:8888/explore-experts").then((res) => {
       setExperts(res.data.filter((rd) => 
       {
-        if(rd?.role === "Expert") {
+        if(rd?.role === "Expert" && rd?.personal_details.email !== mail) {
          return  {rd}
         }
       }
       ))
       // setExperts(res.data);
     });
-  }, []);
-
-  useEffect(()=> {
     axios.get(`http://localhost:8888/explore-experts/${mail}`).then((res) => {
       setName(res.data[0]?.personal_details?.first_name);
       localStorage.setItem("name",res.data[0]?.personal_details?.first_name)
       setRole(res.data[0]?.role);
     });
-
-  }, [mail])
+  }, [mail]);
 
   return (
     <>
@@ -100,6 +98,18 @@ export default function App() {
             />
           }
         ></Route>
+          <Route
+          path="/viewexpertprofile/:name"
+          element={
+            <ExpertView />
+          }
+        ></Route>
+          <Route
+          path="/viewuserprofile/:name"
+          element={
+            <UserView />
+          }
+        ></Route>
         <Route
           path="/profile"
           element={
@@ -126,8 +136,12 @@ export default function App() {
           }
         ></Route>
         <Route
-          path="/managebookings"
-          element={<ManageBookings name={name} />}
+          path="/managebookings/:name"
+          element={<ManageBookings/>}
+        ></Route>
+         <Route
+          path="/manageexpertbookings/:name"
+          element={<ManageBookings_Expert />}
         ></Route>
         <Route
           path="/book-online/:name"

@@ -9,7 +9,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function UploadPic({name}) {
+export default function UploadPic({name,setPortfolio}) {
   const [open, setOpen] = useState(false);
   const[profile_picture,setSelectedImage] = useState();
   const handleInput = async(e) => {
@@ -29,9 +29,10 @@ export default function UploadPic({name}) {
     reader.onerror = (error) => reject(error);
   });
 
-  const editTodo = async() => {
+  const editPicture = async() => {
     await axios.put(`http://localhost:8888/addprofilepic/${name}`, {profile_picture})
     .then(res => {
+     setPortfolio(res.data)
        console.log(res.data);
     })
     .catch(err => {
@@ -64,7 +65,7 @@ export default function UploadPic({name}) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={editTodo}>UPLOAD</Button>
+          <Button onClick={editPicture}>UPLOAD</Button>
         </DialogActions>
       </Dialog>
     </div>

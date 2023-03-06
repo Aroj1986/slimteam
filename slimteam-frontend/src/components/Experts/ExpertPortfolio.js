@@ -25,7 +25,6 @@ export default function ExpertPortfolio({ setExpertName }) {
         setExpert(res.data);
         setExpertName(name);
         localStorage.setItem("expertName", name);
-        localStorage.setItem("name", user?.personal_details?.first_name);
       })
       .catch((err) => {
         console.log(`Error fetching sought expert in database: ${err}`);

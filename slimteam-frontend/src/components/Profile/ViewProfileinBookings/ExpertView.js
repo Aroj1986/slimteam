@@ -1,33 +1,22 @@
 import React from "react";
-import "./profile.css";
+import "../profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ExperienceAdd from "./AddFunctionality/ExperienceAdd";
-import EducationAdd from "./AddFunctionality/EducationAdd";
-import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
-import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
-import UploadPic from "./UploadPic";
 import moment from "moment";
-import TimeCalculator from "./TimeCalculator";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
+import TimeCalculator from "../TimeCalculator";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import HeadlineEditExpert from "./EditFunctionality/HeadlineEditExpert";
-import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
-import EducationEdit from "./EditFunctionality/EducationEdit";
-import CertificationEdit from "./EditFunctionality/CertificationEdit";
-import LanguageEdit from "./EditFunctionality/LanguageEdit";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { CardActionArea,CardActions } from "@mui/material";
+import { useParams } from "react-router-dom";
 
-export default function Portfolio({ name, email, setName }) {
+
+export default function ExpertView() {
   const [portfolio, setPortfolio] = useState();
+  const {name} = useParams();
 
   useEffect(() => {
     const getPortfolio = () => {
@@ -59,9 +48,9 @@ export default function Portfolio({ name, email, setName }) {
         }}
       >
         <div className="upload">
-          <div className="camerabutton">
-            <UploadPic name={name} setPortfolio={setPortfolio} />
-          </div>
+          {/* <div className="camerabutton">
+            <UploadPic name={name} />
+          </div> */}
           <img
             className="profile-picturee"
             src={portfolio?.personal_details.profile_picture}
@@ -99,7 +88,7 @@ export default function Portfolio({ name, email, setName }) {
                 </h6>
                 {"\n"}
 
-                <HeadlineEditExpert
+                {/* <HeadlineEditExpert
                   id_expert={portfolio?._id}
                   name={name}
                   first_name={portfolio?.personal_details.first_name}
@@ -112,7 +101,7 @@ export default function Portfolio({ name, email, setName }) {
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
                   setName={setName}
-                />
+                /> */}
               </div>
               <div style={{ padding: "1rem" }}>
                 <p>
@@ -142,12 +131,12 @@ export default function Portfolio({ name, email, setName }) {
                 <h6>
                   <strong>Professional Experience</strong>{" "}
                 </h6>{" "}
-                <ExperienceAdd
+                {/* <ExperienceAdd
                   id={portfolio?._id}
                   name={portfolio?.personal_details.first_name}
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
-                />
+                /> */}
               </div>
 
               {portfolio?.experience.map((exp) => {
@@ -158,7 +147,7 @@ export default function Portfolio({ name, email, setName }) {
                         <h6>
                           <strong>{exp?.position}</strong>
                         </h6>{" "}
-                        <div className="experience-item">
+                        {/* <div className="experience-item">
                           <ExperienceEdit
                             name={name}
                             id_exp={exp?._id}
@@ -198,7 +187,7 @@ export default function Portfolio({ name, email, setName }) {
                               }}
                             />
                           </IconButton>
-                        </div>
+                        </div> */}
                       </div>
                       <div>
                         <h6>at {exp?.institution}</h6>{" "}
@@ -224,12 +213,12 @@ export default function Portfolio({ name, email, setName }) {
                 <h6>
                   <strong>Qualification / Trainings</strong>
                 </h6>{" "}
-                <EducationAdd
+                {/* <EducationAdd
                   id={portfolio?._id}
                   name={portfolio?.personal_details.first_name}
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
-                />
+                /> */}
               </div>
 
               {portfolio?.education.map((edu) => {
@@ -240,7 +229,7 @@ export default function Portfolio({ name, email, setName }) {
                         <h6>
                           <strong>{edu?.degree}</strong>
                         </h6>{" "}
-                        <div className="experience-item">
+                        {/* <div className="experience-item">
                           <EducationEdit
                             name={name}
                             id_edu={edu?._id}
@@ -282,7 +271,7 @@ export default function Portfolio({ name, email, setName }) {
                               }}
                             />
                           </IconButton>
-                        </div>
+                        </div> */}
                       </div>
                       <div>
                         <h6>from {edu?.institute}</h6>{" "}
@@ -308,12 +297,12 @@ export default function Portfolio({ name, email, setName }) {
                 <h6>
                   <strong>License / Certification</strong>
                 </h6>{" "}
-                <CerticiationsAdd
+                {/* <CerticiationsAdd
                   id={portfolio?._id}
                   name={portfolio?.personal_details.first_name}
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
-                />
+                /> */}
               </div>
 
               {portfolio?.certifications.map((cert) => {
@@ -324,7 +313,7 @@ export default function Portfolio({ name, email, setName }) {
                         <h6>
                           <strong>{cert?.certification_name}</strong>
                         </h6>{" "}
-                        <div className="experience-item">
+                        {/* <div className="experience-item">
                           <CertificationEdit
                             name={name}
                             id_cert={cert?._id}
@@ -361,7 +350,7 @@ export default function Portfolio({ name, email, setName }) {
                               }}
                             />
                           </IconButton>
-                        </div>
+                        </div> */}
                       </div>
                       <div>
                         <h6 className="startandend">
@@ -380,12 +369,12 @@ export default function Portfolio({ name, email, setName }) {
                 <h6>
                   <strong>Languages</strong>
                 </h6>
-                <LanguagesAdd
+                {/* <LanguagesAdd
                   id={portfolio?._id}
                   name={portfolio?.personal_details.first_name}
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
-                />
+                /> */}
               </div>
 
               {portfolio?.languages.map((lang) => {
@@ -396,7 +385,7 @@ export default function Portfolio({ name, email, setName }) {
                         <h6>
                           <strong>{lang?.language} </strong>
                         </h6>{" "}
-                        <div className="experience-item">
+                        {/* <div className="experience-item">
                           <LanguageEdit
                             name={name}
                             id_lang={lang?._id}
@@ -433,7 +422,7 @@ export default function Portfolio({ name, email, setName }) {
                               }}
                             />
                           </IconButton>
-                        </div>
+                        </div> */}
                       </div>
                       <div>
                         <h6 className="startandend">{lang?.proficiency}</h6>
@@ -444,15 +433,15 @@ export default function Portfolio({ name, email, setName }) {
               })}
             </div>
           </CardContent>
-          <CardActions
+          {/* <CardActions
                   style={{ display: "flex", justifyContent: "center" }}
                 >
                   <Button size="small" color="primary">
-                    <NavLink to={`/manageexpertbookings/${portfolio?.personal_details.first_name}`} className="button-expert">
+                    <NavLink to="/managebookings" className="button-expert">
                       MANAGE YOUR BOOKINGS
                     </NavLink>
                   </Button>
-                </CardActions>
+                </CardActions> */}
           </CardActionArea>
         </Card>
       </div>

@@ -105,12 +105,12 @@ export default function ExploreExperts({ experts, setExperts }) {
                       <Card
                         className="cardpoke"
                         border="primary"
-                        style={{ width: "15rem", height: "22rem" }}
+                        style={{ width: "16rem",height: "25rem",borderRadius:"3rem"}}
                       >
                         <CardActionArea>
                           <CardMedia
                             component="img"
-                            height="200"
+                            height="250"
                             image={expert.personal_details.profile_picture}
                             alt="Expert image"
                           />
@@ -157,12 +157,12 @@ export default function ExploreExperts({ experts, setExperts }) {
                           <Card
                             className="cardpoke"
                             border="primary"
-                            style={{ width: "15rem", height: "22rem" }}
+                            style={{ width: "16rem", height: "25rem",borderRadius:"3rem" }}
                           >
                             <CardActionArea>
                               <CardMedia
                                 component="img"
-                                height="200"
+                                height="250"
                                 image={expert.personal_details.profile_picture}
                                 alt="Expert image"
                               />
@@ -206,13 +206,13 @@ export default function ExploreExperts({ experts, setExperts }) {
                         <Card
                           className="cardpoke"
                           border="primary"
-                          style={{ width: "15rem", height: "22rem" }}
+                          style={{ width: "16rem",height: "25rem",borderRadius:"3rem"}}
                         >
                           {" "}
                           <CardActionArea>
                             <CardMedia
                               component="img"
-                              height="200"
+                              height="250"
                               image={expert.personal_details.profile_picture}
                               alt="Expert image"
                             />
