@@ -15,6 +15,8 @@
   margin-right: 3rem;
   margin-bottom: rem;
   mix-blend-mode: multiply;
+  display: flex;
+  flex-direction: column;
 }
 
 .line {
@@ -37,7 +39,7 @@
 
 .slogan {
   font-family: Baskerville;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   font-weight:bolder;
@@ -56,13 +58,15 @@ background-color: rgb(242, 236, 236);
 .paragraph {
   text-align: center;
   font-size: 16px;
+ padding: 1rem;
 }
 
 .hero-section {
-  padding: 80px; 
+  padding: 15px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .reviews {
@@ -91,35 +95,10 @@ background-color: rgb(242, 236, 236);
   display: none;
 }
 
-/* Media queries to adjust styles based on screen size */
-@media screen and (max-width: 768px) {
-  .flex-carousel {
-    flex-direction: column;
-    align-items: center;
-  }
-
-
-  /* .slogan {
-    font-size: 20px;
-  } */
 
   .hero-section {
-    padding: 30px;
-    margin: 7px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .image {
-    margin: 0.25rem;
-    width: 90%;
-    mix-blend-mode:initial;
+    padding: 1rem;
+    margin: 2rem;
   }
 
-
-  .hero-section {
-    padding: 5px;
-    margin: 2px;
-  }
-}
 
