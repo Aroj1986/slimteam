@@ -22,9 +22,9 @@ const createProfilePic = async (req, res,next) => {
         { "personal_details.first_name" : name },
         { $set : {
         "personal_details.profile_picture" : result.secure_url,
-    }}
+    }},
+    { new: true }
     )
-
 res.status(201).json(expert)
 
   } catch (error) {

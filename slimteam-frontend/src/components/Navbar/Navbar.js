@@ -26,7 +26,6 @@ function Navbar({ userLogin, setUserLogin, name }) {
         {/* <div className="row container-navbar"> */}
           {!loading && (
             <>
-
             <div className="col-8 lists-navbar">
               <ul>
                 <NavLink to="/" className="items-navbar">
@@ -58,7 +57,7 @@ function Navbar({ userLogin, setUserLogin, name }) {
                         to={`/portfolio/${name}`}
                         className="items-buttons"
                       >
-                        {name}
+                        PROFILE
                       </NavLink>
                     </Button>
                     <Button

@@ -12,18 +12,17 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import { height, maxHeight } from "@mui/system";
+import { useParams } from "react-router-dom";
 
-export default function Portfolio_user({ name, email, setName }) {
+export default function UserView() {
   const [portfolio, setPortfolio] = useState();
-
+  const {name} = useParams();
   useEffect(() => {
     const getPortfolio = () => {
       axios
         .get(`http://localhost:8888/portfolio/${name}`)
         .then((res) => {
           setPortfolio(res.data);
-          console.log(res.data)
         })
         .catch((err) => {
           console.log(`Error fetching sought expert in database: ${err}`);
@@ -38,9 +37,9 @@ export default function Portfolio_user({ name, email, setName }) {
         <div className="expert-portfolio">
           <div className="expert-description-container">
             <div className="upload">
-              <div className="camerabutton">
-                <UploadPic name={name} setPortfolio={setPortfolio} />
-              </div>
+              {/* <div className="camerabutton">
+                <UploadPic name={name} />
+              </div> */}
               <img
                 className="profile-picturee"
                 src={portfolio?.personal_details.profile_picture}
@@ -51,7 +50,7 @@ export default function Portfolio_user({ name, email, setName }) {
             <Card
               style={{
                 backgroundColor: " rgba(255,250,250)",
-                padding: "1rem",
+                padding: "0rem",
                 width: "272%",
                 borderRadius: "1rem",
               }}
@@ -64,7 +63,7 @@ export default function Portfolio_user({ name, email, setName }) {
                         <strong>Personal Details</strong>
                       </h6>
                       {"\n"}
-                      <HeadlineEdit
+                      {/* <HeadlineEdit
                         className="edit-function"
                         id_expert={portfolio?._id}
                         name={name}
@@ -78,13 +77,12 @@ export default function Portfolio_user({ name, email, setName }) {
                         portfolio={portfolio}
                         setPortfolio={setPortfolio}
                         setName={setName}
-                      />
+                      /> */}
                     </div>
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     align="left"
-                    style={{paddingLeft: "0.5rem"}}
                   >
                     <h6>
                       {" "}
@@ -100,7 +98,6 @@ export default function Portfolio_user({ name, email, setName }) {
                     variant="body2"
                     color="text.secondary"
                     align="left"
-                    style={{paddingLeft: "0.5rem"}}
                   >
                     <h6>
                       Address: {portfolio?.personal_details?.address?.street}{" "}
@@ -116,16 +113,6 @@ export default function Portfolio_user({ name, email, setName }) {
 
 
                 </CardContent>
-
-                <CardActions
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  <Button size="small" color="primary">
-                    <NavLink to={`/managebookings/${portfolio?.personal_details?.first_name}`} className="button-expert">
-                      MANAGE YOUR BOOKINGS
-                    </NavLink>
-                  </Button>
-                </CardActions>
               </CardActionArea>
             </Card>
           </div>

@@ -15,14 +15,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
 import Button from "@mui/material/Button";
+import { NavLink } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import HeadlineEditExpert from "./EditFunctionality/HeadlineEditExpert";
 import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
 import EducationEdit from "./EditFunctionality/EducationEdit";
 import CertificationEdit from "./EditFunctionality/CertificationEdit";
 import LanguageEdit from "./EditFunctionality/LanguageEdit";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import { CardActionArea,CardActions } from "@mui/material";
 
 export default function Portfolio({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
@@ -41,12 +43,28 @@ export default function Portfolio({ name, email, setName }) {
     name && getPortfolio();
   }, [name]);
 
-  console.log(portfolio?.hourly_rate);
   return (
     <>
       {portfolio ? (
         <div>
           <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: "5rem",
+          paddingBottom: "2rem",
+          left: "20px",
+        }}
+      >
+        <div className="upload">
+          <div className="camerabutton">
+            <UploadPic name={name} setPortfolio={setPortfolio} />
+          </div>
+          <img
+            className="profile-picturee"
+            src={portfolio?.personal_details.profile_picture}
+            alt="Expert image"
             style={{
               width: "100%",
               display: "flex",
@@ -55,10 +73,70 @@ export default function Portfolio({ name, email, setName }) {
               paddingBottom: "2rem",
               left: "20px",
             }}
-          >
-            <div className="upload">
-              <div className="camerabutton">
-                <UploadPic name={name} />
+          />
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingBottom: "3rem",
+        }}
+      >
+        <Card
+          style={{
+            backgroundColor: "rgba(255, 250, 250)",
+            padding: "0rem",
+            borderRadius: "1rem",
+            maxWidth: "800px",
+            width: "100%",
+          }}
+        >
+          <CardActionArea>
+          <CardContent>
+            <div className="professional-experience">
+              <div className="portfoliobutton">
+                <h6>
+                  <strong>Personal Details</strong>
+                </h6>
+                {"\n"}
+
+                <HeadlineEditExpert
+                  id_expert={portfolio?._id}
+                  name={name}
+                  first_name={portfolio?.personal_details.first_name}
+                  last_name={portfolio?.personal_details.last_name}
+                  skills={portfolio?.personal_details.skills}
+                  street={portfolio?.personal_details.address.street}
+                  city={portfolio?.personal_details.address.city}
+                  nationality={portfolio?.personal_details.nationality}
+                  hourly_rate={portfolio?.hourly_rate}
+                  portfolio={portfolio}
+                  setPortfolio={setPortfolio}
+                  setName={setName}
+                />
+              </div>
+              <div style={{ padding: "1rem" }}>
+                <p>
+                <strong>Name: </strong> {portfolio?.personal_details.first_name}{" "}
+                  {portfolio?.personal_details.last_name}
+                </p>
+                <p>
+                <strong>Street: </strong>{portfolio?.personal_details.address.street}
+                  {"\n"}
+                </p>
+                <p>
+                <strong>City: </strong>{portfolio?.personal_details.address.city}
+                  {"\n"}
+                </p>
+
+                <p><strong>Country: </strong>{portfolio?.personal_details.nationality}</p>
+
+                {portfolio?.personal_details.skills.map((skill) => {
+                  return <p><strong>Skills: </strong>{skill}</p>;
+                })}
+                <p><strong>Hourly rate: </strong>{portfolio?.hourly_rate} Euros / hour</p>
               </div>
               <img
                 className="profile-picturee"
@@ -458,12 +536,24 @@ export default function Portfolio({ name, email, setName }) {
                           </div>
                         </ul>
                       </div>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+          <CardActions
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <Button size="small" color="primary">
+                    <NavLink to={`/manageexpertbookings/${portfolio?.personal_details.first_name}`} className="button-expert">
+                      MANAGE YOUR BOOKINGS
+                    </NavLink>
+                  </Button>
+                </CardActions>
+          </CardActionArea>
+        </Card>
+      </div>
         </div>
       ) : (
         <Box sx={{ display: "flex" }}>
