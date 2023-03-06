@@ -9,7 +9,7 @@ function Footer() {
     <div>
     <div className="container-contact">
       <div className="container-contact-address">
-        <p className="logo">Slim Team</p>
+        <p className="logo">SM Team</p>
         <div className="social-media">
           <FacebookIcon />
           <TwitterIcon />

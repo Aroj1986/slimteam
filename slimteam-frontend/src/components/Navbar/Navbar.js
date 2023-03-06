@@ -10,126 +10,93 @@ import { padding } from "@mui/system";
 
 function Navbar({ userLogin, setUserLogin, name }) {
   const { user, loading, logout } = useContext(AuthContext);
-  // console.log(user);
-  // const logoutOnClick = (e) => {
-  //   axios
-  //     .post("http://localhost:8888/logout")
-  //     .then((res) => {
-  //       console.log(`Backend: ${res.data}`);
-  //       console.log("Frontend: User is logged out");
-  //     })
-  //     .catch((err) => {
-  //       if (err) {
-  //         console.log(`Error logging out the user ${err}`);
-  //       }
-  //     });
-  //   setUserLogin(false);
-  // };
 
   return (
     <>
-      <div className="container-header">
-        <a href="/"><p style={{paddingLeft:"20px"}}>
-          <img className="img-header" src= {LogoCompany} alt="logo" />
-        </p></a>
+    <div className="container-header">
+      
+        
+          <a href="/">
+            <p style={{ paddingLeft: "20px" }}>
+              <img className="img-header" src={LogoCompany} alt="logo" />
+            </p>
+          </a>
+        
 
-        <div className="row container-navbar">
+        {/* <div className="row container-navbar"> */}
           {!loading && (
             <>
-            <ul className="col-8 lists-navbar">
-            <NavLink to="/" className="items-navbar">
-              About us
-            </NavLink>{" "}
-            |
-            <NavLink to="/explore-experts" className="items-navbar">
-              Explore experts
-            </NavLink>{" "}
-            |
-            <NavLink to="/meet-us" className="items-navbar">
-              Meet us
-            </NavLink>{" "}
-            |
-            <NavLink to="/jobwall" className="items-navbar">
-              JobWall
-            </NavLink>
-          </ul>
-          <ul className="col-4 login-navbar">
-
-            
-          {user ? (
-  <>
-  <Button
-      variant="contained"
-      style={{ backgroundColor: "black" }}
-    >
-    <NavLink to={`/portfolio/${name}`} className="items-buttons">{name}</NavLink> 
-    </Button>
-    <Button
-      variant="contained"
-      style={{ backgroundColor: "black" }}
-      onClick={logout}
-    >
-      Logout
-    </Button>
-  </>
-) : (
-  <>
-    <Button
-      variant="contained"
-      style={{ backgroundColor: "black" }}
-    >
-
-      
-      <NavLink to="/register" className="items-buttons">
-        Register
-      </NavLink>
-    </Button>
-    <Button
-      variant="contained"
-      style={{ backgroundColor: "black" }}
-    >
-      <NavLink to="/login" className="items-buttons">
-        Login
-      </NavLink>
-    </Button>
-  </>
-)}
-
-
-
-            {/*             <Button
-              variant="contained"
-              style={{ backgroundColor: "black" }}
-            >
-              <NavLink
-                to={`${userLogin ? `/portfolio/${name}` : "/register"}`}
-                className="items-buttons register"
-              >
-                {userLogin ? "Profile" : "Register"}
-              </NavLink>
-            </Button>{" "}
-            |
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "black" }}
-            >
-              <NavLink
-                to={`${userLogin ? "/login" : "/login"}`}
-                className="items-buttons"
-              >
-                {userLogin ? (
-                  <span onClick={logoutOnClick}>Logout</span>
+            <div className="col-8 lists-navbar">
+              <ul>
+                <NavLink to="/" className="items-navbar">
+                  About us
+                </NavLink>{" "}
+                |
+                <NavLink to="/explore-experts" className="items-navbar">
+                  Explore experts
+                </NavLink>{" "}
+                |
+                <NavLink to="/meet-us" className="items-navbar">
+                  Meet us
+                </NavLink>{" "}
+                |
+                <NavLink to="/jobwall" className="items-navbar">
+                  JobWall
+                </NavLink>
+              </ul>
+              </div>
+              <div>
+              <ul className="col-4 login-navbar">
+                {user ? (
+                  <>
+                    <Button
+                      variant="contained"
+                      style={{ backgroundColor: "black" }}
+                    >
+                      <NavLink
+                        to={`/portfolio/${name}`}
+                        className="items-buttons"
+                      >
+                        {name}
+                      </NavLink>
+                    </Button>
+                    <Button
+                      variant="contained"
+                      style={{ backgroundColor: "black" }}
+                      onClick={logout}
+                    >
+                      Logout
+                    </Button>
+                  </>
                 ) : (
-                  "Login"
+                  <>
+                    <Button
+                      variant="contained"
+                      style={{ backgroundColor: "black" }}
+                    >
+                      <NavLink to="/register" className="items-buttons">
+                        Register
+                      </NavLink>
+                    </Button>
+                    <Button
+                      variant="contained"
+                      style={{ backgroundColor: "black" }}
+                    >
+                      <NavLink to="/login" className="items-buttons">
+                        Login
+                      </NavLink>
+                    </Button>
+                  </>
                 )}
-              </NavLink>
-            </Button> */}
-          </ul>
+              </ul>
+              </div>
             </>
           )}
-        </div>
+        {/* </div> */}
       </div>
+      
     </>
+    
   );
 }
 

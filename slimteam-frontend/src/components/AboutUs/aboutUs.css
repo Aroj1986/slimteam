@@ -37,7 +37,7 @@
 
 .slogan {
   font-family: Baskerville;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   font-weight:bolder;
@@ -59,7 +59,7 @@ background-color: rgb(242, 236, 236);
 }
 
 .hero-section {
-  padding: 80px; 
+  padding: 15px; 
   display: flex;
   flex-direction: column;
   justify-content: center;

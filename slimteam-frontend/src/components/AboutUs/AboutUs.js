@@ -9,7 +9,7 @@ import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
 import ImagesearchRollerIcon from "@mui/icons-material/ImagesearchRoller";
 import ChildFriendlyIcon from "@mui/icons-material/ChildFriendly";
-
+import CarpenterIcon from '@mui/icons-material/Carpenter';
 import logo from "../../images/logo.png";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
@@ -80,6 +80,10 @@ function AboutUs() {
         <div className="icons"> 
         <ChildFriendlyIcon style={{ color: "green", fontSize: "3rem" }}/>
                 <p>Nanny services</p>
+        </div>
+        <div className="icons"> 
+        <CarpenterIcon style={{ color: "grey", fontSize: "3rem" }}/>
+                <p>Carpenter services</p>
         </div>
         </div>
 
