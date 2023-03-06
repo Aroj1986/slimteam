@@ -28,6 +28,7 @@
 @media (max-width: 768px) {
   .calendar-container {
   width: 60%;
+  }
 }
 
 .calender-styling .rbc-toolbar button:hover {

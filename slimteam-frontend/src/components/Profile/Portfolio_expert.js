@@ -49,7 +49,7 @@ export default function Portfolio({ name, email, setName }) {
         <div>
           <div
         style={{
-          width: "100%",
+          // width: "100%",
           display: "flex",
           justifyContent: "center",
           paddingTop: "5rem",
@@ -66,12 +66,9 @@ export default function Portfolio({ name, email, setName }) {
             src={portfolio?.personal_details.profile_picture}
             alt="Expert image"
             style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              paddingTop: "5rem",
-              paddingBottom: "2rem",
-              left: "20px",
+              // width: "100%",
+              height: 150,
+              width: 150
             }}
           />
         </div>
@@ -101,79 +98,6 @@ export default function Portfolio({ name, email, setName }) {
                   <strong>Personal Details</strong>
                 </h6>
                 {"\n"}
-
-                <HeadlineEditExpert
-                  id_expert={portfolio?._id}
-                  name={name}
-                  first_name={portfolio?.personal_details.first_name}
-                  last_name={portfolio?.personal_details.last_name}
-                  skills={portfolio?.personal_details.skills}
-                  street={portfolio?.personal_details.address.street}
-                  city={portfolio?.personal_details.address.city}
-                  nationality={portfolio?.personal_details.nationality}
-                  hourly_rate={portfolio?.hourly_rate}
-                  portfolio={portfolio}
-                  setPortfolio={setPortfolio}
-                  setName={setName}
-                />
-              </div>
-              <div style={{ padding: "1rem" }}>
-                <p>
-                <strong>Name: </strong> {portfolio?.personal_details.first_name}{" "}
-                  {portfolio?.personal_details.last_name}
-                </p>
-                <p>
-                <strong>Street: </strong>{portfolio?.personal_details.address.street}
-                  {"\n"}
-                </p>
-                <p>
-                <strong>City: </strong>{portfolio?.personal_details.address.city}
-                  {"\n"}
-                </p>
-
-                <p><strong>Country: </strong>{portfolio?.personal_details.nationality}</p>
-
-                {portfolio?.personal_details.skills.map((skill) => {
-                  return <p><strong>Skills: </strong>{skill}</p>;
-                })}
-                <p><strong>Hourly rate: </strong>{portfolio?.hourly_rate} Euros / hour</p>
-              </div>
-              <img
-                className="profile-picturee"
-                src={portfolio?.personal_details.profile_picture}
-                alt="Expert image"
-                style={{
-                  height: 150,
-                  width: 150,
-                }}
-              />
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingBottom: "3rem",
-            }}
-          >
-            <Card
-              style={{
-                backgroundColor: "rgba(255, 250, 250)",
-                padding: "1rem",
-                borderRadius: "1rem",
-                maxWidth: "800px",
-                width: "100%",
-              }}
-            >
-              <CardContent>
-                <div className="professional-experience">
-                  <div className="portfoliobutton">
-                    <h6 style={{ paddingLeft: "0.5rem" }}>
-                      <strong>Personal Details</strong>
-                    </h6>
-                    {"\n"}
-
                     <HeadlineEditExpert
                       className="edit-function"
                       id_expert={portfolio?._id}
@@ -536,10 +460,7 @@ export default function Portfolio({ name, email, setName }) {
                           </div>
                         </ul>
                       </div>
-                    </ul>
-                  </div>
-                );
-              })}
+              )})}
             </div>
           </CardContent>
           <CardActions
