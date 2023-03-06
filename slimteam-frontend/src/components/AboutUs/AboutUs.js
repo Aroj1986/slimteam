@@ -21,7 +21,9 @@ function AboutUs() {
           <div className="hero-section">
             <h2 className="slogan" style={{ display: "inline" }}>
               Our Connection to Excellent{" "}
+
               <p style={{ marginLeft: "0.4rem", marginRight: "0.4rem", display: "inline" }}></p>
+
               <img src={logo} height={70} width={60}></img> ervices
             </h2>
             <p className="paragraph">
@@ -48,8 +50,36 @@ function AboutUs() {
           />
         </div>
         <br></br>
+        <div className="reviews">
+          <div className="icons"> 
+          <ElectricBoltIcon style={{ color: "gold", fontSize: "2.5rem" }} />
+          <p>Electrician services</p>
+          </div>
 
-        <Carousel
+          <div className="icons"> 
+          <HandymanIcon style={{ color: "grey", fontSize: "2.5rem" }} />
+          <p>Plumbing services</p>
+        </div>
+
+        <div className="icons"> 
+          <CleaningServicesIcon style={{ color: "#654321", fontSize: "2.5rem" }} />
+              
+                <p>Cleaning services</p>
+        </div>
+
+        <div className="icons"> 
+        <ImagesearchRollerIcon style={{color: "#333333", fontSize: "2.5rem" }} />
+              
+                <p>Home Painting services</p>
+        </div>
+
+        <div className="icons"> 
+        <ChildFriendlyIcon style={{ color: "green", fontSize: "3rem" }}/>
+                <p>Nanny services</p>
+        </div>
+        </div>
+
+        {/* <Carousel
           variant="dark"
           className="flex-carousel text-center"
           style={{ width: 300 }}
@@ -119,7 +149,7 @@ function AboutUs() {
               </p>
             </div>
           </Carousel.Item>
-        </Carousel>
+        </Carousel> */}
         <br />
         <br />
       </div>
