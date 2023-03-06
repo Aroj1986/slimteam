@@ -3,10 +3,7 @@
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: auto;
   height: 500px;
-  width: 60%;
   padding: 30px;
   margin-bottom: 40px;
   mix-blend-mode: multiply;
@@ -30,8 +27,7 @@
 
 @media (max-width: 768px) {
   .calendar-container {
-    width: 80%;
-  }
+  width: 60%;
 }
 
 .calender-styling .rbc-toolbar button:hover {
@@ -133,5 +129,16 @@
   background-color: #d32f2f;
 }
 
+.calendar-event {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
 
-
+@media (max-width: 768px) {
+  .calendar-container {
+    width: 80%;
+  }
+}

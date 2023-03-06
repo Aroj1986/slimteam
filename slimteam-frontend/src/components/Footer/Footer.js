@@ -9,7 +9,7 @@ function Footer() {
     <div>
     <div className="container-contact">
       <div className="container-contact-address">
-        <p className="logo">Slim Team</p>
+        <p className="logo">SM Team</p>
         <div className="social-media">
           <FacebookIcon />
           <TwitterIcon />
@@ -17,8 +17,7 @@ function Footer() {
         </div>
         <p className="copyright">
           {" "}
-          © 2023<script>document.write(new Date().getFullYear())</script> Slim
-          Team Group. All Rights Reserved.
+          © 2023<script>document.write(new Date().getFullYear())</script> SM Team. All Rights Reserved.
         </p>
         <div className="line"></div><br />
       </div>
@@ -30,11 +29,6 @@ function Footer() {
           <p className='footer-downs'>Newsroom</p>
         </div>
     </div>
-
-   
-
-
-
     </div>
   );
 }

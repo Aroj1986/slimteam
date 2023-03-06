@@ -51,7 +51,7 @@ export default function Portfolio_user({ name, email, setName }) {
             <Card
               style={{
                 backgroundColor: " rgba(255,250,250)",
-                padding: "0rem",
+                padding: "1rem",
                 width: "272%",
                 borderRadius: "1rem",
               }}
@@ -84,6 +84,7 @@ export default function Portfolio_user({ name, email, setName }) {
                     variant="body2"
                     color="text.secondary"
                     align="left"
+                    style={{paddingLeft: "0.5rem"}}
                   >
                     <h6>
                       {" "}
@@ -99,6 +100,7 @@ export default function Portfolio_user({ name, email, setName }) {
                     variant="body2"
                     color="text.secondary"
                     align="left"
+                    style={{paddingLeft: "0.5rem"}}
                   >
                     <h6>
                       Address: {portfolio?.personal_details?.address?.street}{" "}

@@ -8,9 +8,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Dancing+Script:wght@600&family=Julius+Sans+One&family=Pangolin&family=Space+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Dancing+Script:wght@600&family=Holtwood+One+SC&family=Julius+Sans+One&family=Pangolin&family=Space+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Dancing+Script:wght@600&family=Holtwood+One+SC&family=Julius+Sans+One&family=Pangolin&family=Space+Mono&family=Tilt+Prism&display=swap');
+
+
 .aroj {
-  margin: 2rem;
+  margin-top: 3rem;
+  margin-right: 3rem;
+  margin-bottom: rem;
   mix-blend-mode: multiply;
+  display: flex;
+  flex-direction: column;
 }
 
 .line {
@@ -33,11 +39,12 @@
 
 .slogan {
   font-family: Baskerville;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   font-weight:bolder;
-  font-size: 30px;
+  text-align: center;
+  /* font-size: 30px; */
   font-family: 'Julius Sans One', sans-serif;
   /* font-family: 'Holtwood One SC', serif; */
   /* font-family: 'Tilt Prism', cursive; */
@@ -51,14 +58,30 @@ background-color: rgb(242, 236, 236);
 .paragraph {
   text-align: center;
   font-size: 16px;
+ padding: 1rem;
 }
 
 .hero-section {
-  padding: 80px; 
+  padding: 15px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .reviews {
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
 }
 
 .horizontal-line {
@@ -72,38 +95,10 @@ background-color: rgb(242, 236, 236);
   display: none;
 }
 
-/* Media queries to adjust styles based on screen size */
-@media screen and (max-width: 768px) {
-  .flex-carousel {
-    flex-direction: column;
-    align-items: center;
-  }
-
-
-  /* .slogan {
-    font-size: 20px;
-  } */
 
   .hero-section {
-    padding: 30px;
-    margin: 7px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .image {
-    margin: 0.25rem;
-    width: 90%;
-    mix-blend-mode:initial;
+    padding: 1rem;
+    margin: 2rem;
   }
 
-  /* .slogan {
-    font-size: 10px;
-  } */
-
-  .hero-section {
-    padding: 5px;
-    margin: 2px;
-  }
-}
 

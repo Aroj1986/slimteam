@@ -35,7 +35,6 @@ const MyCalendar = ({ name, expertName }) => {
           }/${exptname}`
         );
         setEvents(response.data);
-        console.log(response.data);
         const userw = await axios.get(
           `http://localhost:8888/profile-details/${name}`
         );
@@ -69,7 +68,6 @@ const MyCalendar = ({ name, expertName }) => {
       console.log("past");
       setBooking(false);
     } else {
-      console.log(bookedDates);
       const found = bookedDates.find(
         (element) =>
           element.split("T")[0] === moment(start.start).format("YYYY-MM-DD")
@@ -84,7 +82,6 @@ const MyCalendar = ({ name, expertName }) => {
       }
     }
   };
-
   const handleDelete = ({
     expert_UserName,
     user_UserName,
@@ -179,8 +176,7 @@ const MyCalendar = ({ name, expertName }) => {
         request={request}
         setEditingEvent={setEditingEvent}
       />
-      <div className="editorandcalendar">
-      
+      <div className="calendar-event">
         <div className="calendar-container">
           <Calendar
             className="calender-styling"

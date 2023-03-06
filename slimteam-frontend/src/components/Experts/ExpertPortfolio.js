@@ -88,28 +88,18 @@ export default function ExpertPortfolio({ setExpertName }) {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   <b>
-                   
-                    
                     {expert.personal_details?.address?.city},{" "}
                     {expert.personal_details?.nationality}
                   </b>
                 </Typography>
                 <Typography>
-
-                {expert?.personal_details?.skills?.length ? (
-                        expert.personal_details.skills.map((skill) => {
-                          return (
-                            <>{skill} |{" "}
-                            </>
-                              
-                              
-                          
-                          );
-                        })): (
-                          <p className="heading2"> No SkillsFound</p>
-                  
-                          )}
-                
+                  {expert?.personal_details?.skills?.length ? (
+                    expert.personal_details.skills.map((skill) => {
+                      return <>{skill} </>;
+                    })
+                  ) : (
+                    <p className="heading2"> No SkillsFound</p>
+                  )}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {expert.personal_details?.email}{" "}
@@ -144,7 +134,12 @@ export default function ExpertPortfolio({ setExpertName }) {
                 <Typography gutterBottom component="div">
                   <div className="professional-experience">
                     <div>
-                      <h5 className="heading">Experience</h5>
+                      <h5
+                        className="heading"
+                        style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
+                      >
+                        Experience
+                      </h5>
                       {expert?.experience?.length ? (
                         expert?.experience.map((exp) => {
                           return (
@@ -162,7 +157,12 @@ export default function ExpertPortfolio({ setExpertName }) {
                 </Typography>
                 <Typography gutterBottom component="div">
                   <div className="professional-experience">
-                    <h5 className="heading">Education</h5>
+                    <h5
+                      className="heading"
+                      style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
+                    >
+                      Education
+                    </h5>
                     <div>
                       {expert?.education?.length ? (
                         expert?.education.map((exp) => {
@@ -181,7 +181,12 @@ export default function ExpertPortfolio({ setExpertName }) {
                 </Typography>
                 <Typography gutterBottom component="div">
                   <div className="professional-experience">
-                    <h5 className="heading">License / Certification</h5>
+                    <h5
+                      className="heading"
+                      style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
+                    >
+                      License / Certification
+                    </h5>
                     <p>
                       <div>
                         {expert?.certifications?.length ? (
@@ -201,7 +206,6 @@ export default function ExpertPortfolio({ setExpertName }) {
                     </p>
                   </div>
                 </Typography>
-
 
                 {/*                 <Typography gutterBottom component="div">
 
