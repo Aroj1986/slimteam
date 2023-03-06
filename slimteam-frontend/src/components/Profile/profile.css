@@ -93,12 +93,6 @@ float:right;
   flex-wrap: wrap; /* delete this line in case it should be in a row */
 }
 
-.editButton {
-  position: absolute;
-  top: 3.5%;
-  right: 3%;
-}
-
 .professional-experience
 {
 margin-bottom: 1rem;

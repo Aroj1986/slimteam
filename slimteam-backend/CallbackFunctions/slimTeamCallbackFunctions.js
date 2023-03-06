@@ -285,6 +285,7 @@ const editExpertHeadlineExpert = async (req, res) => {
         "personal_details.nationality": personal_details.nationality,
         "personal_details.skills": personal_details.skills,
         "hourly_rate": personal_details.hourly_rate,
+        "personal_details.phone_number": personal_details.phone_number,
        } },
       { new: true }
     );

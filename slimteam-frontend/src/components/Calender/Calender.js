@@ -7,8 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./myCalendar.css";
 import axios from "axios";
 import Modal from "./Modal";
-import * as emailjs from "emailjs-com"
-
+import * as emailjs from "emailjs-com";
 
 const MyCalendar = ({ name, expertName }) => {
   const [startDate, setStartDate] = useState();
@@ -19,27 +18,37 @@ const MyCalendar = ({ name, expertName }) => {
   const [open, setOpen] = useState(false);
   const [booking, setBooking] = useState();
   const localizer = momentLocalizer(moment);
-  const[to_email,setToEmail] = useState();
-  const[from_email,setfromEmail] = useState();
+  const [to_email, setToEmail] = useState();
+  const [from_email, setfromEmail] = useState();
   const [bookedDates, setBookedDates] = useState([]);
-  const[request,setRequest] = useState();
-  const exptname = localStorage.getItem("expertName")
-  const usName = localStorage.getItem("name")
+  const [request, setRequest] = useState();
+  const exptname = localStorage.getItem("expertName");
+  const usName = localStorage.getItem("name");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8888/book-online/${name ? name : usName}/${exptname}`);
+        const response = await axios.get(
+          `http://localhost:8888/book-online/${
+            name ? name : usName
+          }/${exptname}`
+        );
         setEvents(response.data);
-        const userw = await axios .get(`http://localhost:8888/profile-details/${name}`)
-        setfromEmail(userw.data[0].personal_details.email)
-       const expert = await axios .get(`http://localhost:8888/profile-details/${exptname}`)
-       setToEmail(expert.data[0].personal_details.email)
-       const bookedDate = await axios.get("http://localhost:8888/book-online");
-       console.log(bookedDate.data)
-       setBookedDates(bookedDate.data.map((value) => {
-            return value.start
-        }))
+        const userw = await axios.get(
+          `http://localhost:8888/profile-details/${name}`
+        );
+        setfromEmail(userw.data[0].personal_details.email);
+        const expert = await axios.get(
+          `http://localhost:8888/profile-details/${exptname}`
+        );
+        setToEmail(expert.data[0].personal_details.email);
+        const bookedDate = await axios.get("http://localhost:8888/book-online");
+        console.log(bookedDate.data);
+        setBookedDates(
+          bookedDate.data.map((value) => {
+            return value.start;
+          })
+        );
       } catch (error) {
         console.log(error);
       }
@@ -47,55 +56,60 @@ const MyCalendar = ({ name, expertName }) => {
     fetchData();
   }, []);
 
-// console.log(bookedDates)
+  // console.log(bookedDates)
 
- const handleSlotSelect = (start,date) => {
-  setOpen(true);
-  
-  
-  // console.log(moment(start.start).format("YYYY-MM-DD") )
-  // console.log( found.split("T")[0])
-  const now = new Date();
-  if (start.slots[0] < now.setHours(48, 0, 0, 0)) {
-    console.log("past")
-    setBooking(false)
-  }
-  else {
-    const found = bookedDates.find(element => element.split("T")[0] === moment(start.start).format("YYYY-MM-DD"));
-    console.log(found)
-     if ( found === undefined ) {
-     setBooking(true)
-    setRequest("POST")
-    setStartDate(moment(start.start).format("YYYY-MM-DD"));
-    setEndDate(moment(start.start).format("YYYY-MM-DD"));
-    }
-    else if(found !== "") {
-          setBooking(false)
-    }
+  const handleSlotSelect = (start, date) => {
+    setOpen(true);
 
-  }
-};
-
-// const handleEdit = () => {
-//   // const newTitle = setBooking(true)
-//   setOpen(true);
-//   setBooking(true)
-//   setRequest("PUT")
-// };
-
-const handleDelete = ({ expert_UserName,user_UserName,title,start,_id }) => {
-  console.log(expert_UserName,user_UserName)
-  setEditingEvent(null);
-  axios
-    .delete(`http://localhost:8888/book-online/${_id}`)
-    .then((response) => {
-      console.log("Event got deleted successfully", response.data);
-      setEvents(
-        events.filter((event) => {
-          return event._id != response.data._id;
-        })
+    // console.log(moment(start.start).format("YYYY-MM-DD") )
+    // console.log( found.split("T")[0])
+    const now = new Date();
+    if (start.slots[0] < now.setHours(48, 0, 0, 0)) {
+      console.log("past");
+      setBooking(false);
+    } else {
+      const found = bookedDates.find(
+        (element) =>
+          element.split("T")[0] === moment(start.start).format("YYYY-MM-DD")
       );
-         //mail to expert for user booking
+      console.log(found);
+      if (found === undefined) {
+        setBooking(true);
+        setRequest("POST");
+        setStartDate(moment(start.start).format("YYYY-MM-DD"));
+        setEndDate(moment(start.start).format("YYYY-MM-DD"));
+      } else if (found !== "") {
+        setBooking(false);
+      }
+    }
+  };
+
+  // const handleEdit = () => {
+  //   // const newTitle = setBooking(true)
+  //   setOpen(true);
+  //   setBooking(true)
+  //   setRequest("PUT")
+  // };
+
+  const handleDelete = ({
+    expert_UserName,
+    user_UserName,
+    title,
+    start,
+    _id,
+  }) => {
+    console.log(expert_UserName, user_UserName);
+    setEditingEvent(null);
+    axios
+      .delete(`http://localhost:8888/book-online/${_id}`)
+      .then((response) => {
+        console.log("Event got deleted successfully", response.data);
+        setEvents(
+          events.filter((event) => {
+            return event._id != response.data._id;
+          })
+        );
+        //mail to expert for user booking
         //  emailjs.send('service_uvp0rck', 'template_9qeisr9', {
         //   to_email : to_email
         //   ,from_email:from_email
@@ -109,19 +123,17 @@ const handleDelete = ({ expert_UserName,user_UserName,title,start,_id }) => {
         //  }, (error) => {
         //      console.log(error.text);
         //  });
-    })
-   
-    .catch((error) => {
-      console.error("Error deleting event", error);
-    });
-};
+      })
 
-
-  const handleEventSelect = (event,start) => {
-    console.log(event)
-    setEditingEvent(event);
+      .catch((error) => {
+        console.error("Error deleting event", error);
+      });
   };
 
+  const handleEventSelect = (event, start) => {
+    console.log(event);
+    setEditingEvent(event);
+  };
 
   const eventPropGetter = (event) => {
     const isBooked = events.some(
@@ -133,29 +145,27 @@ const handleDelete = ({ expert_UserName,user_UserName,title,start,_id }) => {
       disabled: isBooked,
       style: {
         // borderLeft: isBooked ? "5px solid blue" : "5px solid black",
-        color:"black",
-        backgroundColor:" #7f6d7f"
-      
+        color: "black",
+        backgroundColor: " #7f6d7f",
       },
     };
   };
 
-  const eventStyleGetter = (event,start, end, isSelected) => {
+  const eventStyleGetter = (event, start, end, isSelected) => {
     console.log(event);
-    var backgroundColor = '#' + event.hexColor;
+    var backgroundColor = "#" + event.hexColor;
     var style = {
-        backgroundColor: backgroundColor,
-        borderRadius: '0px',
-        opacity: 0.8,
-        color: 'black',
-        border: '0px',
-        display: 'block'
+      backgroundColor: backgroundColor,
+      borderRadius: "0px",
+      opacity: 0.8,
+      color: "black",
+      border: "0px",
+      display: "block",
     };
     return {
-        style: style
+      style: style,
     };
-};
-
+  };
 
   return (
     <div className="calender-full">
@@ -172,45 +182,47 @@ const handleDelete = ({ expert_UserName,user_UserName,title,start,_id }) => {
         expertName={exptname}
         booking={booking}
         to_email={to_email}
-        from_email ={from_email}
+        from_email={from_email}
         request={request}
         setEditingEvent={setEditingEvent}
       />
-      <div className="calendar-container">
-      <Calendar
-        className="calender-styling"
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        selectable
-        onSelectSlot={handleSlotSelect}
-        onSelectEvent={handleEventSelect}
-        eventPropGetter={eventPropGetter}
-        eventStyleGetter={eventStyleGetter}
-        tileDisabled={({date}) => [0, 6].includes(date.getDay())}
-      />
-      </div>
-       {editingEvent && (
-        <div className="event-editor">
-          <h3>Edit Appointment</h3>
-          <p>Title: {editingEvent.title}</p>
-          <div className="event-editor2">
-            {/* <button
+      <div className="calendar-event">
+        <div className="calendar-container">
+          <Calendar
+            className="calender-styling"
+            localizer={localizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            selectable
+            onSelectSlot={handleSlotSelect}
+            onSelectEvent={handleEventSelect}
+            eventPropGetter={eventPropGetter}
+            eventStyleGetter={eventStyleGetter}
+            tileDisabled={({ date }) => [0, 6].includes(date.getDay())}
+          />
+        </div>
+        {editingEvent && (
+          <div className="event-editor">
+            <h3>Edit Appointment</h3>
+            <p>Title: {editingEvent.title}</p>
+            <div className="event-editor2">
+              {/* <button
               className="edit-button"
               onClick={() => handleEdit(editingEvent)}
             >
               Edit
             </button> */}
-            <button
-              className="delete-button"
-              onClick={() => handleDelete(editingEvent)}
-            >
-              Delete
-            </button>
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(editingEvent)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
