@@ -224,6 +224,27 @@ const editExpertCertificationOne = async (req, res) => {
   }
 };
 
+const editLanguages = async (req, res) => {
+  try {
+    const { name, id } = req.params;
+    const { languages } = req.body;
+    const expert = await Profile.findOne({ "languages._id": id });
+    expert.languages = expert.languages.map((lang) => {
+      if (lang._id.equals(id)) {
+        return languages;
+      } else {
+        return lang;
+      }
+    });
+    const result = await expert.save();
+    res.status(201).json(result);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send(error.messages);
+  }
+};
+
+
 const editExpertHeadline = async (req, res) => {
   try {
     const { name, id } = req.params;
@@ -249,6 +270,30 @@ const editExpertHeadline = async (req, res) => {
   }
 };
 
+const editExpertHeadlineExpert = async (req, res) => {
+  try {
+    const { name, id } = req.params;
+    const { personal_details } = req.body;
+    console.log(name, personal_details.first_name, personal_details);
+    const expert = await Profile.findOneAndUpdate(
+      { "personal_details.first_name": name },
+      { $set: { 
+        "personal_details.first_name": personal_details.first_name,
+        "personal_details.last_name": personal_details.last_name,
+        "personal_details.address.street": personal_details.address.street,
+        "personal_details.address.city": personal_details.address.city,
+        "personal_details.nationality": personal_details.nationality,
+        "personal_details.skills": personal_details.skills,
+        "hourly_rate": personal_details.hourly_rate,
+       } },
+      { new: true }
+    );
+    res.status(201).json(expert);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send(error.messages);
+  }
+};
 
 const getProfile = async (req, res) => {
   try {
@@ -275,6 +320,8 @@ module.exports = {
   editExpertExperienceOne,
   editExpertEducationOne,
   editExpertCertificationOne,
+  editLanguages,
   editExpertHeadline,
+  editExpertHeadlineExpert,
   getProfile,
 };

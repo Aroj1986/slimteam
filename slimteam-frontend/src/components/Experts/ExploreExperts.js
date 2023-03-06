@@ -35,6 +35,16 @@ export default function ExploreExperts({ experts, setExperts }) {
 
   console.log(sortedExpertsByCountry);
   console.log(sortedExpertsByExpertise);
+
+  // to capitalize first letter of the word
+  function capitalizeWords(str) {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
   return (
     <>
       <hr />
@@ -69,7 +79,7 @@ export default function ExploreExperts({ experts, setExperts }) {
           </div>
         </div>
 
-        <div className="col col-9">
+        <div className="col col-9 fullcontainer">
           <button onClick={() => navigate(0)} className="goBackArrow">
             <span>
               <svg
@@ -92,7 +102,11 @@ export default function ExploreExperts({ experts, setExperts }) {
                 <div>
                   <div className="expert-list-container">
                     {sortedExpertsByCountry.map((expert, index) => (
-                      <Card sx={{ maxWidth: 250 }}>
+                      <Card
+                        className="cardpoke"
+                        border="primary"
+                        style={{ width: "15rem", height: "22rem" }}
+                      >
                         <CardActionArea>
                           <CardMedia
                             component="img"
@@ -106,15 +120,21 @@ export default function ExploreExperts({ experts, setExperts }) {
                               variant="h5"
                               component="div"
                             >
-                              {expert.personal_details.first_name}{" "}
-                              {expert.personal_details.last_name}
+                              <h6 className="explore-experts-name-skills">
+                                {expert.personal_details?.first_name?.toUpperCase()}{" "}
+                                {expert.personal_details?.last_name?.toUpperCase()}
+                              </h6>
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography
+                              variant="body2"
+                              color="text.secondary"
+                              className="explore-experts-name-skills"
+                            >
                               {expert.personal_details.skills}
                             </Typography>
                           </CardContent>
                         </CardActionArea>
-                        <CardActions>
+                        <CardActions className="button-div">
                           <Button size="small" color="primary">
                             <NavLink
                               to={`/explore-experts/${expert?.personal_details.first_name}`}
@@ -135,6 +155,7 @@ export default function ExploreExperts({ experts, setExperts }) {
                       <div className="expert-list-container">
                         {sortedExpertsByExpertise.map((expert, index) => (
                           <Card
+                            className="cardpoke"
                             border="primary"
                             style={{ width: "15rem", height: "22rem" }}
                           >
@@ -151,18 +172,21 @@ export default function ExploreExperts({ experts, setExperts }) {
                                   variant="h5"
                                   component="div"
                                 >
-                                  {expert.personal_details.first_name}{" "}
-                                  {expert.personal_details.last_name}
+                                  <h6 className="explore-experts-name-skills">
+                                    {expert.personal_details?.first_name?.toUpperCase()}{" "}
+                                    {expert.personal_details?.last_name?.toUpperCase()}
+                                  </h6>
                                 </Typography>
                                 <Typography
                                   variant="body2"
                                   color="text.secondary"
+                                  className="explore-experts-name-skills"
                                 >
                                   {expert.personal_details.skills}
                                 </Typography>
                               </CardContent>
                             </CardActionArea>
-                            <CardActions>
+                            <CardActions className="button-div">
                               <Button size="small" color="primary">
                                 <NavLink
                                   to={`/explore-experts/${expert.personal_details.first_name}`}
@@ -180,9 +204,11 @@ export default function ExploreExperts({ experts, setExperts }) {
                     <div className="expert-list-container">
                       {experts.map((expert, index) => (
                         <Card
+                          className="cardpoke"
                           border="primary"
                           style={{ width: "15rem", height: "22rem" }}
                         >
+                          {" "}
                           <CardActionArea>
                             <CardMedia
                               component="img"
@@ -196,18 +222,21 @@ export default function ExploreExperts({ experts, setExperts }) {
                                 variant="h5"
                                 component="div"
                               >
-                                {expert.personal_details.first_name}{" "}
-                                {expert.personal_details.last_name}
+                                <h6 className="explore-experts-name-skills">
+                                  {expert.personal_details?.first_name?.toUpperCase()}{" "}
+                                  {expert.personal_details?.last_name?.toUpperCase()}
+                                </h6>
                               </Typography>
                               <Typography
                                 variant="body2"
                                 color="text.secondary"
+                                className="explore-experts-name-skills"
                               >
                                 {expert.personal_details.skills}
                               </Typography>
                             </CardContent>
                           </CardActionArea>
-                          <CardActions>
+                          <CardActions className="button-div">
                             <Button size="small" color="primary">
                               <NavLink
                                 to={`/explore-experts/${expert.personal_details.first_name}`}

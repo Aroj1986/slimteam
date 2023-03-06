@@ -8,8 +8,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Dancing+Script:wght@600&family=Julius+Sans+One&family=Pangolin&family=Space+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Dancing+Script:wght@600&family=Holtwood+One+SC&family=Julius+Sans+One&family=Pangolin&family=Space+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Dancing+Script:wght@600&family=Holtwood+One+SC&family=Julius+Sans+One&family=Pangolin&family=Space+Mono&family=Tilt+Prism&display=swap');
+
+
 .aroj {
-  margin: 2rem;
+  margin-top: 3rem;
+  margin-right: 3rem;
+  margin-bottom: rem;
   mix-blend-mode: multiply;
 }
 
@@ -33,7 +37,7 @@
 
 .slogan {
   font-family: Baskerville;
-  padding: 10px;
+  padding: 30px;
   display: flex;
   justify-content: center;
   font-weight:bolder;
@@ -63,6 +67,17 @@ background-color: rgb(242, 236, 236);
 
 .reviews {
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
 }
 
 .horizontal-line {
@@ -101,9 +116,6 @@ background-color: rgb(242, 236, 236);
     mix-blend-mode:initial;
   }
 
-  /* .slogan {
-    font-size: 10px;
-  } */
 
   .hero-section {
     padding: 5px;

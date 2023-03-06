@@ -6,14 +6,13 @@ import arojPicture from "./ArojPicture.jpg";
 
 import HandymanIcon from "@mui/icons-material/Handyman";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
-import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
-import ImagesearchRollerIcon from '@mui/icons-material/ImagesearchRoller';
-import ChildFriendlyIcon from '@mui/icons-material/ChildFriendly';
+import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
+import ImagesearchRollerIcon from "@mui/icons-material/ImagesearchRoller";
+import ChildFriendlyIcon from "@mui/icons-material/ChildFriendly";
 
 import logo from "../../images/logo.png";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
-
 
 function AboutUs() {
   return (
@@ -21,6 +20,7 @@ function AboutUs() {
       <div className="d-flex flex-column justify-content-center align-items-center mt-3 mb-3 ">
         <div className="d-flex flex-row aroj justify-content-md-between align-items-center p-2">
           <div className="hero-section">
+
             <h3 className="slogan" style={{display:"inline"}}>Our Connection to Excellent 
             
             {/* <p style={{margin:"0.4rem",display:"inline"}}></p><img src={logo} height={70} width={60}></img>  */} Services</h3>
@@ -42,6 +42,7 @@ function AboutUs() {
                                 BOOK NOW
                               </NavLink>
                               </Button>
+
           </div>
           <img
             className="image"
@@ -53,8 +54,36 @@ function AboutUs() {
         
         </div>
         <br></br>
+        <div className="reviews">
+          <div className="icons"> 
+          <ElectricBoltIcon style={{ color: "gold", fontSize: "2.5rem" }} />
+          <p>Electrician services</p>
+          </div>
 
-        <Carousel
+          <div className="icons"> 
+          <HandymanIcon style={{ color: "grey", fontSize: "2.5rem" }} />
+          <p>Plumbing services</p>
+        </div>
+
+        <div className="icons"> 
+          <CleaningServicesIcon style={{ color: "#654321", fontSize: "2.5rem" }} />
+              
+                <p>Cleaning services</p>
+        </div>
+
+        <div className="icons"> 
+        <ImagesearchRollerIcon style={{color: "#333333", fontSize: "2.5rem" }} />
+              
+                <p>Home Painting services</p>
+        </div>
+
+        <div className="icons"> 
+        <ChildFriendlyIcon style={{ color: "green", fontSize: "3rem" }}/>
+                <p>Nanny services</p>
+        </div>
+        </div>
+
+        {/* <Carousel
           variant="dark"
           className="flex-carousel text-center"
           style={{ width: 300 }}
@@ -63,20 +92,21 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <HandymanIcon style={{ color: "grey", fontSize: "2.5rem" }}/>
+                <HandymanIcon style={{ color: "grey", fontSize: "2.5rem" }} />
               </p>
-            
 
-            <p>
-              {" "}
-              <p>Plumbing services</p>{" "}
-            </p>
+              <p>
+                {" "}
+                <p>Plumbing services</p>{" "}
+              </p>
             </div>
           </Carousel.Item>
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <ElectricBoltIcon style={{ color: "gold", fontSize: "2.5rem"}}/>{" "}
+                <ElectricBoltIcon
+                  style={{ color: "gold", fontSize: "2.5rem" }}
+                />{" "}
               </p>
               <p>
                 {" "}
@@ -87,7 +117,9 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <CleaningServicesIcon style={{ color: "brown", fontSize: "2.5rem" }} />{" "}
+                <CleaningServicesIcon
+                  style={{ color: "brown", fontSize: "2.5rem" }}
+                />{" "}
               </p>
               <p>
                 {" "}
@@ -98,7 +130,9 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <ImagesearchRollerIcon style={{color: "grey", fontSize: "2.5rem" }} />{" "}
+                <ImagesearchRollerIcon
+                  style={{ color: "grey", fontSize: "2.5rem" }}
+                />{" "}
               </p>
               <p>
                 {" "}
@@ -109,7 +143,9 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <ChildFriendlyIcon style={{ color: "green", fontSize: "3rem" }}/>{" "}
+                <ChildFriendlyIcon
+                  style={{ color: "green", fontSize: "3rem" }}
+                />{" "}
               </p>
               <p>
                 {" "}
@@ -117,7 +153,7 @@ function AboutUs() {
               </p>
             </div>
           </Carousel.Item>
-        </Carousel>
+        </Carousel> */}
         <br />
         <br />
       </div>
