@@ -52,13 +52,13 @@ export default function ExpertPortfolio({ setExpertName }) {
       </button>
 
       <div className="expert">
-        <div className="ex1">
+        {/* <div className="ex1"> */}
           <div>
             <img
               className="profile-picture"
               src={expert?.personal_details?.profile_picture}
               alt="Expert image"
-              style={{ height: 150, width: 150, textAlign: "center" }}
+              style={{ height: 150, width: 150 }}
             />
           </div>
 
@@ -66,7 +66,7 @@ export default function ExpertPortfolio({ setExpertName }) {
             style={{
               display: "flex",
               justifyContent: "center",
-              width: "105%",
+              width: "100%",
               margin: "0 auto",
               marginBottom: "5rem",
             }}
@@ -115,7 +115,9 @@ export default function ExpertPortfolio({ setExpertName }) {
                   className="button-expert"
                   style={{ color: "white" }}
                 >
-                  <a className="button-expert">Message</a>
+                  <button onClick={() => window.location = `mailto:${expert?.personal_details?.email}`} className="button-expert" >
+                  E-MAIL
+                </button>
                 </Button>
                 <Button
                   size="small"
@@ -207,10 +209,10 @@ export default function ExpertPortfolio({ setExpertName }) {
                   </div>
                 </Typography>
 
-                {/*                 <Typography gutterBottom component="div">
+                                <Typography gutterBottom component="div">
 
                   <div className="professional-experience">
-                    <h5 className="heading">Languages</h5>
+                    <h5 className="heading"  style={{ paddingLeft: "1rem", paddingTop: "1rem" }}>Languages</h5>
 
                     <div>
                       {expert?.languages?.length ? (
@@ -227,11 +229,11 @@ export default function ExpertPortfolio({ setExpertName }) {
                       )}
                     </div>
                   </div>
-                </Typography> */}
+                </Typography>
               </CardContent>
             </Card>
           </div>
-        </div>
+        {/* </div> */}
       </div>
       {/* </div> */}
     </>

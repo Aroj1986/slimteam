@@ -15,6 +15,7 @@
   padding-left: 2rem;
 }
 
+
 .button-div {
   display: flex;
   flex-direction: row;
@@ -235,8 +236,10 @@
   text-align: center;
 }
 .expert {
+  /* background-color: #15731e; */
   text-align: center;
   align-content: center;
+  justify-content: center;
 }
 
 .checkbox-label {

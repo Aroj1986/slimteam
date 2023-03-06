@@ -87,15 +87,16 @@ export default function Portfolio({ name, email, setName }) {
             padding: "0rem",
             borderRadius: "1rem",
             maxWidth: "800px",
-            width: "100%",
+            width: "100%"
           }}
         >
           <CardActionArea>
           <CardContent>
             <div className="professional-experience">
-              <div className="portfoliobutton">
+              <div className="portfoliobutton"
+              style={{ paddingLeft: "1rem" }}>
                 <h6>
-                  <strong>Personal Details</strong>
+                  <strong>PERSONAL DETAILS</strong>
                 </h6>
                 {"\n"}
                     <HeadlineEditExpert
@@ -118,49 +119,49 @@ export default function Portfolio({ name, email, setName }) {
                   </div>
                   <div style={{ paddingLeft: "2rem" }}>
                     <p>
-                      <strong>Name: </strong>{" "}
-                      {portfolio?.personal_details.first_name}{" "}
-                      {portfolio?.personal_details.last_name}
+                      <strong style={{color:"gray"}}>Name{" "}: {" "}
+                      {portfolio?.personal_details.first_name.toUpperCase()}{" "}
+                      {portfolio?.personal_details.last_name.toUpperCase()}</strong>
                     </p>
                     <p>
-                      <strong>Street: </strong>
+                      <strong style={{color:"gray"}}>Street{" "}: </strong>
                       {portfolio?.personal_details.address.street}
                       {"\n"}
                     </p>
                     <p>
-                      <strong>City: </strong>
+                      <strong style={{color:"gray"}}>City{" "}: </strong>
                       {portfolio?.personal_details.address.city}
                       {"\n"}
                     </p>
 
                     <p>
-                      <strong>Country: </strong>
+                      <strong style={{color:"gray"}}>Country{" "}: </strong>
                       {portfolio?.personal_details.nationality}
                     </p>
 
                     {portfolio?.personal_details.skills.map((skill) => {
                       return (
                         <p>
-                          <strong>Skills: </strong>
+                          <strong style={{color:"gray"}}>Skills{" "}: </strong>
                           {skill}
                         </p>
                       );
                     })}
                     <p>
-                      <strong>Hourly rate: </strong>
+                      <strong style={{color:"gray"}}>Hourly rate{" "}: </strong>
                       {portfolio?.hourly_rate} Euros / hour
                     </p>
                     <p>
-                    <strong>Phone number: </strong> {portfolio?.personal_details?.phone_number}{" "}
+                    <strong style={{color:"gray"}}>Phone number{" "}: </strong> {portfolio?.personal_details?.phone_number}{" "}
                     </p>
-                    <p><strong>E-Mail: </strong>{portfolio?.personal_details?.email}</p>
+                    <p><strong style={{color:"gray"}}>E-Mail{" "}: </strong>{portfolio?.personal_details?.email}</p>
                   </div>
                 </div>
 
                 <div className="professional-experience">
                   <div className="portfoliobutton">
                     <h6  style={{ paddingLeft: "0.5rem" }}>
-                      <strong>Professional Experience</strong>{" "}
+                      <strong>Experience</strong>{" "}
                     </h6>{" "}
                     <ExperienceAdd
                       id={portfolio?._id}
@@ -176,7 +177,7 @@ export default function Portfolio({ name, email, setName }) {
                         <ul>
                           <div className="experience">
                             <h6>
-                              <strong>{exp?.position}</strong>
+                              <strong style={{color:"gray"}}>{exp?.position.toUpperCase()}</strong>
                             </h6>{" "}
                             <div className="experience-item">
                               <ExperienceEdit
@@ -221,7 +222,7 @@ export default function Portfolio({ name, email, setName }) {
                             </div>
                           </div>
                           <div>
-                            <h6>at {exp?.institution}</h6>{" "}
+                            <h6>at {exp?.institution.toUpperCase()}</h6>{" "}
                           </div>
                           <div className="startandend">
                             <p>
@@ -242,7 +243,7 @@ export default function Portfolio({ name, email, setName }) {
                 <div className="professional-experience">
                   <div className="portfoliobutton">
                     <h6 style={{ paddingLeft: "0.5rem" }}>
-                      <strong>Qualification / Trainings</strong>
+                      <strong>Training</strong>
                     </h6>{" "}
                     <EducationAdd
                       id={portfolio?._id}
@@ -258,7 +259,7 @@ export default function Portfolio({ name, email, setName }) {
                         <ul>
                           <div className="experience">
                             <h6>
-                              <strong>{edu?.degree}</strong>
+                              <strong style={{color:"gray"}}>{edu?.degree.toUpperCase()}</strong>
                             </h6>{" "}
                             <div className="experience-item">
                               <EducationEdit
@@ -305,7 +306,7 @@ export default function Portfolio({ name, email, setName }) {
                             </div>
                           </div>
                           <div>
-                            <h6>from {edu?.institute}</h6>{" "}
+                            <h6>from {edu?.institute.toUpperCase()}</h6>{" "}
                           </div>
                           <div className="startandend">
                             <p>
@@ -326,7 +327,7 @@ export default function Portfolio({ name, email, setName }) {
                 <div className="professional-experience">
                   <div className="portfoliobutton">
                     <h6 style={{ paddingLeft: "0.5rem" }}>
-                      <strong>License / Certification</strong>
+                      <strong >Licenses / Certifications</strong>
                     </h6>{" "}
                     <CerticiationsAdd
                       id={portfolio?._id}
@@ -342,7 +343,7 @@ export default function Portfolio({ name, email, setName }) {
                         <ul>
                           <div className="experience">
                             <h6>
-                              <strong>{cert?.certification_name}</strong>
+                              <strong style={{color:"gray"}}>{cert?.certification_name.toUpperCase()}</strong>
                             </h6>{" "}
                             <div className="experience-item">
                               <CertificationEdit
@@ -414,7 +415,7 @@ export default function Portfolio({ name, email, setName }) {
                         <ul>
                           <div className="experience">
                             <h6>
-                              <strong>{lang?.language} </strong>
+                              <strong style={{color:"gray"}}>{lang?.language.toUpperCase()} </strong>
                             </h6>{" "}
                             <div className="experience-item">
                               <LanguageEdit
@@ -456,7 +457,7 @@ export default function Portfolio({ name, email, setName }) {
                             </div>
                           </div>
                           <div>
-                            <h6 className="startandend">{lang?.proficiency}</h6>
+                            <h6 className="startandend">{lang?.proficiency.toUpperCase()}</h6>
                           </div>
                         </ul>
                       </div>
