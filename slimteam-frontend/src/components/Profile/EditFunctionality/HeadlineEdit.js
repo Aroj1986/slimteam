@@ -25,13 +25,13 @@ export default function HeadlineEdit({
   setName,
 }) {
   const [open, setOpen] = React.useState(false);
-  const [inputFirstName, setInputFirstName] = useState();
-  const [inputLastName, setInputLastName] = useState();
-  const [inputStreet, setInputStreet] = useState();
-  const [inputCity, setInputCity] = useState();
-  const [inputNationality, setInputNationality] = useState();
+  const [inputFirstName, setInputFirstName] = useState(first_name);
+  const [inputLastName, setInputLastName] = useState(last_name);
+  const [inputStreet, setInputStreet] = useState(street);
+  const [inputCity, setInputCity] = useState(city);
+  const [inputNationality, setInputNationality] = useState(nationality);
   const [inputEmail, setInputEmail] = useState();
-  const [inputPhoneNo, setInputPhoneNo] = useState();
+  const [inputPhoneNo, setInputPhoneNo] = useState(phone_number);
 
   console.log(
     id_expert,
@@ -146,7 +146,8 @@ export default function HeadlineEdit({
             autoFocus
             margin="dense"
             type="text"
-            label={first_name}
+            label="First Name"
+            defaultValue={first_name}
             placeholder="First name"
             fullWidth
             variant="standard"
@@ -157,8 +158,8 @@ export default function HeadlineEdit({
             autoFocus
             margin="dense"
             type="text"
-            label={last_name}
-            placeholder="Last name"
+            label="Last Name"
+            defaultValue={last_name}
             fullWidth
             variant="standard"
             onChange={handleOnChangeLastName}
@@ -167,8 +168,8 @@ export default function HeadlineEdit({
             autoFocus
             margin="dense"
             type="text"
-            label={street}
-            placeholder="street"
+            label="Street"
+            defaultValue={street}
             fullWidth
             variant="standard"
             onChange={handleOnChangeStreet}
@@ -177,7 +178,8 @@ export default function HeadlineEdit({
             autoFocus
             margin="dense"
             type="text"
-            label={city}
+            label="City"
+            defaultValue={city}
             placeholder="City"
             fullWidth
             variant="standard"
@@ -187,8 +189,9 @@ export default function HeadlineEdit({
             autoFocus
             margin="dense"
             type="text"
-            label={nationality}
-            placeholder="Nationality"
+            label="Country"
+            defaultValue={nationality}
+            placeholder="Country"
             fullWidth
             variant="standard"
             onChange={handleOnChangeNationality}
@@ -207,7 +210,8 @@ export default function HeadlineEdit({
             autoFocus
             margin="dense"
             type="text"
-            label={phone_number}
+            label="Phone Number"
+            defaultValue={phone_number}
             placeholder="Phone Number"
             fullWidth
             variant="standard"

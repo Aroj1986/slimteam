@@ -61,7 +61,7 @@ export default function Portfolio_user({ name, email, setName }) {
                   <div className="professional-experience" style={{paddingLeft: "1rem", margin: "1rem"}}>
                     <div className="portfoliobutton">
                       <h6>
-                        <strong>Personal Details</strong>
+                        <strong>PERSONAL DETAILS</strong>
                       </h6>
                       {"\n"}
                       <HeadlineEdit
@@ -84,33 +84,33 @@ export default function Portfolio_user({ name, email, setName }) {
                     variant="body2"
                     color="text.secondary"
                     align="left"
-                    style={{paddingLeft: "0.5rem"}}
+                    style={{paddingLeft: "2rem"}}
                   >
-                    <h6>
+                    <p>
                       {" "}
-                      Name:
+                      <strong>NAME</strong> :
                       <b>
-                        {portfolio?.personal_details?.first_name}{" "}
-                        {portfolio?.personal_details?.last_name}
+                        {" "}{portfolio?.personal_details?.first_name.toUpperCase()}{" "}
+                        {portfolio?.personal_details?.last_name.toUpperCase()}
                       </b>
-                    </h6>
+                    </p>
                   </Typography>
                   
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     align="left"
-                    style={{paddingLeft: "0.5rem"}}
+                    style={{paddingLeft: "2rem"}}
                   >
-                    <h6>
-                      Address: {portfolio?.personal_details?.address?.street}{" "}
-                    </h6>
-                    <h6>City: {portfolio?.personal_details?.address?.city}</h6>
-                    <h6>Country: {portfolio?.personal_details?.nationality}</h6>
-                    <h6>E-Mail: {portfolio?.personal_details?.email} </h6>
-                    <h6>
-                      Phone number: {portfolio?.personal_details?.phone_number}{" "}
-                    </h6>
+                    <p>
+                      <strong>ADDRESS</strong>{" "}: {portfolio?.personal_details?.address?.street}{" "}
+                    </p>
+                    <p><strong>CITY</strong>{" "}: {portfolio?.personal_details?.address?.city}</p>
+                    <p><strong>COUNTRY</strong>{" "}: {portfolio?.personal_details?.nationality}</p>
+                    <p><strong>E-MAIL</strong>{" "}: {portfolio?.personal_details?.email} </p>
+                    <p>
+                      <strong>Phone number</strong>{" "}: {portfolio?.personal_details?.phone_number}{" "}
+                    </p>
                   </Typography>
                   </div>
 
