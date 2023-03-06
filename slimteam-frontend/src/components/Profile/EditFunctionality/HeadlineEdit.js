@@ -151,6 +151,7 @@ export default function HeadlineEdit({
             fullWidth
             variant="standard"
             onChange={handleOnChangeFirstName}
+            disabled
           />
           <TextField
             autoFocus
