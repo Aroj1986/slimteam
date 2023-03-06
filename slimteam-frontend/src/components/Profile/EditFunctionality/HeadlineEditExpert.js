@@ -21,6 +21,7 @@ export default function HeadlineEdit({
   nationality,
   skills,
   hourly_rate,
+  phone_number,
   setPortfolio,
   setName,
 }) {
@@ -32,7 +33,8 @@ export default function HeadlineEdit({
   const [inputNationality, setInputNationality] = useState();
   const [inputSkills, setInputSkills] = useState();
   const [inputHourlyRate, setInputHourlyRate] = useState();
-  
+  const [inputPhoneNo, setInputPhoneNo] = useState();
+
   console.log(
     id_expert,
     first_name,
@@ -41,7 +43,8 @@ export default function HeadlineEdit({
     city,
     nationality,
     skills,
-    hourly_rate
+    hourly_rate,
+    phone_number
   );
 
   // to capitalize first letter of the word
@@ -54,58 +57,73 @@ export default function HeadlineEdit({
   };
 
   const handleOnChangeFirstName = (e) => {
-    if(!e.target.value) {
-        setInputFirstName(capitalizeWords(first_name));
+    if (!e.target.value) {
+      setInputFirstName(capitalizeWords(first_name));
     } else {
-        setInputFirstName(capitalizeWords(e.target.value));
+      setInputFirstName(capitalizeWords(e.target.value));
     }
   };
 
   const handleOnChangeLastName = (e) => {
-    if(!e.target.value) {
-        setInputLastName(capitalizeWords(last_name));
+    if (!e.target.value) {
+      setInputLastName(capitalizeWords(last_name));
     } else {
-        setInputLastName(capitalizeWords(e.target.value));
+      setInputLastName(capitalizeWords(e.target.value));
     }
   };
 
   const handleOnChangeStreet = (e) => {
-    if(!e.target.value) {
-        setInputStreet(capitalizeWords(street));
+    if (!e.target.value) {
+      setInputStreet(capitalizeWords(street));
     } else {
-        setInputStreet(capitalizeWords(e.target.value));
+      setInputStreet(capitalizeWords(e.target.value));
     }
   };
 
   const handleOnChangeCity = (e) => {
-    if(!e.target.value) {
-        setInputCity(capitalizeWords(city));
+    if (!e.target.value) {
+      setInputCity(capitalizeWords(city));
     } else {
-        setInputCity(capitalizeWords(e.target.value));
+      setInputCity(capitalizeWords(e.target.value));
     }
   };
 
   const handleOnChangeNationality = (e) => {
-    if(!e.target.value) {
-        setInputNationality(capitalizeWords(nationality));
+    if (!e.target.value) {
+      setInputNationality(capitalizeWords(nationality));
     } else {
-        setInputNationality(capitalizeWords(e.target.value));
+      setInputNationality(capitalizeWords(e.target.value));
     }
   };
-  
+
   const handleOnChangeSkills = (e) => {
-    if(!e.target.value) {
-        setInputSkills(capitalizeWords(skills));
+    if (!e.target.value) {
+      setInputSkills(capitalizeWords(skills));
     } else {
-        setInputSkills(capitalizeWords(e.target.value));
+      setInputSkills(capitalizeWords(e.target.value));
     }
   };
 
   const handleOnChangeHourlyRate = (e) => {
-    if(!e.target.value) {
-        setInputHourlyRate(capitalizeWords(hourly_rate));
+    if (!e.target.value) {
+      setInputHourlyRate(capitalizeWords(hourly_rate));
     } else {
-        setInputHourlyRate(capitalizeWords(e.target.value));
+      setInputHourlyRate(capitalizeWords(e.target.value));
+    }
+  };
+
+  // to format the phone number as (XXX - XXXX - XXXX)
+  const handleOnChangePhoneNo = (e) => {
+    if (e.target.value.length < 13) {
+      const currentPhoneNumber = ("" + e.target.value).replace(/\D/g, "");
+
+      let formattedPhoneNumber = `${currentPhoneNumber.substring(0, 3)}${
+        currentPhoneNumber.length > 3 ? "-" : ""
+      }${currentPhoneNumber.substring(3, 7)}${
+        currentPhoneNumber.length > 7 ? "-" : ""
+      }${currentPhoneNumber.substring(7, 11)}`;
+
+      setInputPhoneNo(formattedPhoneNumber);
     }
   };
 
@@ -124,6 +142,7 @@ export default function HeadlineEdit({
       nationality: inputNationality,
       skills: inputSkills,
       hourly_rate: inputHourlyRate,
+      phone_number: inputPhoneNo,
     },
   };
 
@@ -149,13 +168,16 @@ export default function HeadlineEdit({
 
   return (
     <>
-     <div className="editButton"> <IconButton aria-label="edit" size="small">
-        <EditSharpIcon
-          onClick={handleClickOpen}
-          fontSize="inherit"
-          color="inherit"
-        />
-      </IconButton> </div>
+      <div className="editButton">
+        {" "}
+        <IconButton aria-label="edit" size="small">
+          <EditSharpIcon
+            onClick={handleClickOpen}
+            fontSize="inherit"
+            color="inherit"
+          />
+        </IconButton>{" "}
+      </div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit education</DialogTitle>
         <DialogContent>
@@ -168,6 +190,7 @@ export default function HeadlineEdit({
             fullWidth
             variant="standard"
             onChange={handleOnChangeFirstName}
+            disabled
           />
           <TextField
             autoFocus
@@ -228,6 +251,16 @@ export default function HeadlineEdit({
             fullWidth
             variant="standard"
             onChange={handleOnChangeHourlyRate}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            type="text"
+            label={phone_number}
+            placeholder="Phone Number"
+            fullWidth
+            variant="standard"
+            onChange={handleOnChangePhoneNo}
           />
         </DialogContent>
         <DialogActions>
