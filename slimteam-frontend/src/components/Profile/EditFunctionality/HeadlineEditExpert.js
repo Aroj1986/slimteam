@@ -19,8 +19,8 @@ export default function HeadlineEdit({
   street,
   city,
   nationality,
-  email,
-  phone_number,
+  skills,
+  hourly_rate,
   setPortfolio,
   setName,
 }) {
@@ -30,9 +30,9 @@ export default function HeadlineEdit({
   const [inputStreet, setInputStreet] = useState();
   const [inputCity, setInputCity] = useState();
   const [inputNationality, setInputNationality] = useState();
-  const [inputEmail, setInputEmail] = useState();
-  const [inputPhoneNo, setInputPhoneNo] = useState();
-
+  const [inputSkills, setInputSkills] = useState();
+  const [inputHourlyRate, setInputHourlyRate] = useState();
+  
   console.log(
     id_expert,
     first_name,
@@ -40,8 +40,8 @@ export default function HeadlineEdit({
     street,
     city,
     nationality,
-    email,
-    phone_number
+    skills,
+    hourly_rate
   );
 
   // to capitalize first letter of the word
@@ -54,41 +54,58 @@ export default function HeadlineEdit({
   };
 
   const handleOnChangeFirstName = (e) => {
-    setInputFirstName(capitalizeWords(e.target.value));
+    if(!e.target.value) {
+        setInputFirstName(capitalizeWords(first_name));
+    } else {
+        setInputFirstName(capitalizeWords(e.target.value));
+    }
   };
 
   const handleOnChangeLastName = (e) => {
-    setInputLastName(capitalizeWords(e.target.value));
+    if(!e.target.value) {
+        setInputLastName(capitalizeWords(last_name));
+    } else {
+        setInputLastName(capitalizeWords(e.target.value));
+    }
   };
 
   const handleOnChangeStreet = (e) => {
-    setInputStreet(capitalizeWords(e.target.value));
+    if(!e.target.value) {
+        setInputStreet(capitalizeWords(street));
+    } else {
+        setInputStreet(capitalizeWords(e.target.value));
+    }
   };
 
   const handleOnChangeCity = (e) => {
-    setInputCity(capitalizeWords(e.target.value));
+    if(!e.target.value) {
+        setInputCity(capitalizeWords(city));
+    } else {
+        setInputCity(capitalizeWords(e.target.value));
+    }
   };
 
   const handleOnChangeNationality = (e) => {
-    setInputNationality(capitalizeWords(e.target.value));
+    if(!e.target.value) {
+        setInputNationality(capitalizeWords(nationality));
+    } else {
+        setInputNationality(capitalizeWords(e.target.value));
+    }
+  };
+  
+  const handleOnChangeSkills = (e) => {
+    if(!e.target.value) {
+        setInputSkills(capitalizeWords(skills));
+    } else {
+        setInputSkills(capitalizeWords(e.target.value));
+    }
   };
 
-  /*   const handleOnChangeEmail = (e) => {
-    setInputEmail(e.target.value);
-  }; */
-
-  // to format the phone number as (XXX - XXXX - XXXX)
-  const handleOnChangePhoneNo = (e) => {
-    if (e.target.value.length < 13) {
-      const currentPhoneNumber = ("" + e.target.value).replace(/\D/g, "");
-
-      let formattedPhoneNumber = `${currentPhoneNumber.substring(0, 3)}${
-        currentPhoneNumber.length > 3 ? "-" : ""
-      }${currentPhoneNumber.substring(3, 7)}${
-        currentPhoneNumber.length > 7 ? "-" : ""
-      }${currentPhoneNumber.substring(7, 11)}`;
-
-      setInputPhoneNo(formattedPhoneNumber);
+  const handleOnChangeHourlyRate = (e) => {
+    if(!e.target.value) {
+        setInputHourlyRate(capitalizeWords(hourly_rate));
+    } else {
+        setInputHourlyRate(capitalizeWords(e.target.value));
     }
   };
 
@@ -105,8 +122,8 @@ export default function HeadlineEdit({
         city: inputCity,
       },
       nationality: inputNationality,
-      //      email: inputEmail,
-      phone_number: inputPhoneNo,
+      skills: inputSkills,
+      hourly_rate: inputHourlyRate,
     },
   };
 
@@ -115,7 +132,7 @@ export default function HeadlineEdit({
   const handleSubmitEdit = async () => {
     await axios
       .put(
-        `http://localhost:8888/portfolio/${name}/edit-headline/${id_expert}`,
+        `http://localhost:8888/portfolio/${name}/edit-headline-expert/${id_expert}`,
         personal_details
       )
       .then((res) => {
@@ -192,25 +209,25 @@ export default function HeadlineEdit({
             variant="standard"
             onChange={handleOnChangeNationality}
           />
-          {/*           <TextField
-            autoFocus
-            margin="dense"
-            type="text"
-            label={email}
-            placeholder="email"
-            fullWidth
-            variant="standard"
-            onChange={handleOnChangeEmail}
-          /> */}
           <TextField
             autoFocus
             margin="dense"
             type="text"
-            label={phone_number}
-            placeholder="Phone Number"
+            label={skills}
+            placeholder="Skills"
             fullWidth
             variant="standard"
-            onChange={handleOnChangePhoneNo}
+            onChange={handleOnChangeSkills}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            type="text"
+            label={hourly_rate}
+            placeholder="Hourly rate"
+            fullWidth
+            variant="standard"
+            onChange={handleOnChangeHourlyRate}
           />
         </DialogContent>
         <DialogActions>

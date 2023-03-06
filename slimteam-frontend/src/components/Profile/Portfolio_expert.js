@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import "./profile.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -8,345 +7,448 @@ import EducationAdd from "./AddFunctionality/EducationAdd";
 import CerticiationsAdd from "./AddFunctionality/CerticiationsAdd";
 import LanguagesAdd from "./AddFunctionality/LanguagesAdd";
 import UploadPic from "./UploadPic";
-// import AddButtonForm from "./AddButtonForm";
 import moment from "moment";
 import TimeCalculator from "./TimeCalculator";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditSharpIcon from "@mui/icons-material/EditSharp";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import HeadlineEditExpert from "./EditFunctionality/HeadlineEditExpert";
+import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
+import EducationEdit from "./EditFunctionality/EducationEdit";
+import CertificationEdit from "./EditFunctionality/CertificationEdit";
+import LanguageEdit from "./EditFunctionality/LanguageEdit";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
-export default function Portfolio_expert({ name, email,setName }) {
+export default function Portfolio({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
- 
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8888/portfolio/${name}`)
-      .then((res) => {
-        setPortfolio(res.data);
-      })
-      .catch((err) => {
-        console.log(`Error fetching sought expert in database: ${err}`);
-      });
+    const getPortfolio = () => {
+      axios
+        .get(`http://localhost:8888/portfolio/${name}`)
+        .then((res) => {
+          setPortfolio(res.data);
+        })
+        .catch((err) => {
+          console.log(`Error fetching sought expert in database: ${err}`);
+        });
+    };
+    name && getPortfolio();
   }, [name]);
 
+  console.log(portfolio?.hourly_rate)
   return (
-    <Container>
-      <div className="expert-portfolio">
-        <div className="expert-description-container">
-          <div className="banner"></div>
-
-          <div className="upload">
-            <img
-              className="profile-picturee"
-              src={portfolio?.personal_details.profile_picture}
-              alt="Expert image"
-              style={{ height: 150, width: 150 }}
-            />
-            <div className="camerabutton">
-            <UploadPic name={name}/>
-            </div>
+    <>
+      {portfolio ? (
+        <div>
+          <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: "5rem",
+          paddingBottom: "2rem",
+          left: "20px",
+        }}
+      >
+        <div className="upload">
+          <div className="camerabutton">
+            <UploadPic name={name} />
           </div>
-
-          <div className="expert-headline">
-            <div className="name-address">
-              <h4>
-                <b>
-                  {portfolio?.personal_details.first_name}{" "}
-                  {portfolio?.personal_details.last_name}
-                </b>
-              </h4>
-             
-              <div className="skills">
-                {" "}
-                Skilled in :
-                {portfolio?.personal_details.skills.map((skill) => {
-                  return <h6> {skill}</h6>;
-                })}
-              </div>
-            </div>
-          </div>
-
-          <div className="professional-experience">
-            <div className="portfoliobutton">
-              {" "}
-              <h4>Professional experience </h4>  <ExperienceAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
-            </div>
-
-            {portfolio?.experience.map((exp) => {
-              return (
-                <div>
-                  <ul>
-                    <div className="experience-item">
-                      <h6>
-                        <strong>{exp?.position}</strong>
-                      </h6>{" "}
-                      <div>
-                      <IconButton aria-label="delete" size="large">
-                        <EditSharpIcon
-                          fontSize="inherit"
-                          onClick={() => {
-                            const experience = {
-                              experience: {
-                                institution: exp?.institution,
-                                position: exp?.position,
-                                from_date: exp?.from_date,
-                                until_date: exp?.until_date,
-                              },
-                            };
-
-                            axios
-                              .put(
-                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
-                                experience
-                              )
-                              .then((res) => {
-                                setPortfolio(res.data);
-                              })
-                              .catch((err) => {
-                                console.log(
-                                  `Error deleting experience in database: ${err}`
-                                );
-                              });
-                          }}
-                        />
-                      </IconButton>
-
-                      <IconButton aria-label="delete" size="large">
-                        <DeleteIcon
-                          fontSize="inherit"
-                          onClick={() => {
-                            const experience = {
-                              experience: {
-                                institution: exp?.institution,
-                                position: exp?.position,
-                                from_date: exp?.from_date,
-                                until_date: exp?.until_date,
-                              },
-                            };
-
-                            axios
-                              .put(
-                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
-                                experience
-                              )
-                              .then((res) => {
-                                setPortfolio(res.data);
-                              })
-                              .catch((err) => {
-                                console.log(
-                                  `Error deleting experience in database: ${err}`
-                                );
-                              });
-                          }}
-                        />
-                      </IconButton>
-                      </div>
-                    
-                    </div>
-                    <div>
-                      <h6>at {exp?.institution}</h6>{" "}
-                    </div>
-                    <div className="startandend">
-                      <p>
-                        {moment(exp?.from_date).format("MMM YYYY")} -{" "}
-                        {moment(exp?.until_date).format("MMM YYYY")} .{" "}
-                        <TimeCalculator
-                          date1={exp?.from_date}
-                          date2={exp?.until_date}
-                        />
-                      </p>
-                    </div>{" "}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="professional-experience">
-            <div className="portfoliobutton">
-              <h4>Qualification / Trainings</h4> <EducationAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
-            </div>
-
-            
-            {portfolio?.education.map((edu) => {
-              return (
-                <div>
-                  <ul>
-                    <div className="experience-item">
-                      <h6>
-                        <strong>{edu?.degree}</strong>
-                      </h6>{" "}
-                      <IconButton aria-label="delete" size="large">
-                        <DeleteIcon
-                          fontSize="inherit"
-                          onClick={() => {
-                            const education = {
-                              education: {
-                                institute: edu?.institute,
-                                degree: edu?.degree,
-                                start_date: edu?.start_date,
-                                end_date: edu?.end_date,
-                              },
-                            };
-
-                            console.log(education);
-                            axios
-                              .put(
-                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
-                                education
-                              )
-                              .then((res) => {
-                                setPortfolio(res.data);
-                              })
-                              .catch((err) => {
-                                console.log(
-                                  `Error deleting education in database: ${err}`
-                                );
-                              });
-                            console.log(education);
-                          }}
-                        />
-                      </IconButton>
-                      
-                    </div>
-                    <div>
-                      <h6>at {edu?.institute}</h6>{" "}
-                    </div>
-                    <div className="startandend">
-                      <p>
-                        {moment(edu?.start_date).format("MMM YYYY")} -{" "}
-                        {moment(edu?.end_date).format("MMM YYYY")} .{" "}
-                        <TimeCalculator
-                          date1={edu?.start_date}
-                          date2={edu?.end_date}
-                        />
-                      </p>
-                    </div>{" "}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="professional-experience">
-            <div className="portfoliobutton">
-              <h4>License / Certification</h4> <CerticiationsAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
-            </div>
-
-            {portfolio?.certifications.map((cert) => {
-              return (
-                <div>
-                  <ul>
-                    <div className="experience-item">
-                      <h6>
-                        <strong>{cert?.certification_name}</strong>
-                      </h6>{" "}
-                      <IconButton aria-label="delete" size="large">
-                        <DeleteIcon
-                          fontSize="inherit"
-                          onClick={() => {
-                            const certifications = {
-                              certifications: {
-                                certification_name: cert?.certification_name,
-                              },
-                            };
-
-                            console.log(certifications);
-                            axios
-                              .put(
-                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
-                                certifications
-                              )
-                              .then((res) => {
-                                setPortfolio(res.data);
-                              })
-                              .catch((err) => {
-                                console.log(
-                                  `Error deleting education in database: ${err}`
-                                );
-                              });
-                            console.log(certifications);
-                          }}
-                        />
-                      </IconButton>
-                      
-                    </div>
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="professional-experience">
-            <div className="portfoliobutton">
-              <h4>Languages</h4> <LanguagesAdd id = {portfolio?._id} name = {portfolio?.personal_details.first_name} portfolio = {portfolio} setPortfolio={setPortfolio}/>
-            </div>
-
-            
-
-            {portfolio?.languages.map((lang) => {
-              return (
-                <div>
-                  <ul>
-                    <div className="experience-item" key="language">
-                      <h6>
-                        <strong>{lang?.language}:</strong> {lang?.proficiency}
-                      </h6>{" "}
-                      <IconButton aria-label="delete" size="large">
-                        <DeleteIcon
-                          fontSize="inherit"
-                          onClick={() => {
-                            const languages = {
-                              languages: {
-                                language: lang?.language,
-                                proficiency: lang?.proficiency,
-                              },
-                            };
-
-                            console.log(languages);
-                            axios
-                              .put(
-                                `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
-                                languages
-                              )
-                              .then((res) => {
-                                setPortfolio(res.data);
-                              })
-                              .catch((err) => {
-                                console.log(
-                                  `Error deleting education in database: ${err}`
-                                );
-                              });
-                            console.log(languages);
-                          }}
-                        />
-                      </IconButton>
-
-                    </div>
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="rate-review-container">
-          <div className="expert-headline">
-            <div className="name-address">
-              <h4>
-                <b>Full Name</b>
-              </h4>
-              <h6>
-                <b>street</b>
-              </h6>
-              <h6>City </h6>
-              <h6>Country</h6>
-              <h6>hourly_rate : 6€</h6>
-            </div>
-          </div>
+          <img
+            className="profile-picturee"
+            src={portfolio?.personal_details.profile_picture}
+            alt="Expert image"
+            style={{
+              height: 150,
+              width: 150,
+            }}
+          />
         </div>
       </div>
-    </Container>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingBottom: "3rem",
+        }}
+      >
+        <Card
+          style={{
+            backgroundColor: "rgba(255, 250, 250)",
+            padding: "0rem",
+            borderRadius: "1rem",
+            maxWidth: "800px",
+            width: "100%",
+          }}
+        >
+          <CardContent>
+            <div className="professional-experience">
+              <div className="portfoliobutton">
+                <h6>
+                  <strong>Personal Details</strong>
+                </h6>
+                {"\n"}
+
+                <HeadlineEditExpert
+                  id_expert={portfolio?._id}
+                  name={name}
+                  first_name={portfolio?.personal_details.first_name}
+                  last_name={portfolio?.personal_details.last_name}
+                  skills={portfolio?.personal_details.skills}
+                  street={portfolio?.personal_details.address.street}
+                  city={portfolio?.personal_details.address.city}
+                  nationality={portfolio?.personal_details.nationality}
+                  hourly_rate={portfolio?.hourly_rate}
+                  portfolio={portfolio}
+                  setPortfolio={setPortfolio}
+                  setName={setName}
+                />
+              </div>
+              <div style={{ padding: "1rem" }}>
+                <p>
+                <strong>Name: </strong> {portfolio?.personal_details.first_name}{" "}
+                  {portfolio?.personal_details.last_name}
+                </p>
+                <p>
+                <strong>Street: </strong>{portfolio?.personal_details.address.street}
+                  {"\n"}
+                </p>
+                <p>
+                <strong>City: </strong>{portfolio?.personal_details.address.city}
+                  {"\n"}
+                </p>
+
+                <p><strong>Country: </strong>{portfolio?.personal_details.nationality}</p>
+
+                {portfolio?.personal_details.skills.map((skill) => {
+                  return <p><strong>Skills: </strong>{skill}</p>;
+                })}
+                <p><strong>Hourly rate: </strong>{portfolio?.hourly_rate} Euros / hour</p>
+              </div>
+            </div>
+
+            <div className="professional-experience">
+              <div className="portfoliobutton">
+                <h6>
+                  <strong>Professional Experience</strong>{" "}
+                </h6>{" "}
+                <ExperienceAdd
+                  id={portfolio?._id}
+                  name={portfolio?.personal_details.first_name}
+                  portfolio={portfolio}
+                  setPortfolio={setPortfolio}
+                />
+              </div>
+
+              {portfolio?.experience.map((exp) => {
+                return (
+                  <div>
+                    <ul>
+                      <div className="experience">
+                        <h6>
+                          <strong>{exp?.position}</strong>
+                        </h6>{" "}
+                        <div className="experience-item">
+                          <ExperienceEdit
+                            name={name}
+                            id_exp={exp?._id}
+                            institution={exp?.institution}
+                            position={exp?.position}
+                            from_date={exp?.from_date}
+                            until_date={exp?.until_date}
+                            setPortfolio={setPortfolio}
+                          />
+
+                          <IconButton aria-label="delete" size="small">
+                            <DeleteIcon
+                              fontSize="inherit"
+                              onClick={() => {
+                                const experience = {
+                                  experience: {
+                                    institution: exp?.institution,
+                                    position: exp?.position,
+                                    from_date: exp?.from_date,
+                                    until_date: exp?.until_date,
+                                  },
+                                };
+
+                                axios
+                                  .put(
+                                    `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
+                                    experience
+                                  )
+                                  .then((res) => {
+                                    setPortfolio(res.data);
+                                  })
+                                  .catch((err) => {
+                                    console.log(
+                                      `Error deleting experience in database: ${err}`
+                                    );
+                                  });
+                              }}
+                            />
+                          </IconButton>
+                        </div>
+                      </div>
+                      <div>
+                        <h6>at {exp?.institution}</h6>{" "}
+                      </div>
+                      <div className="startandend">
+                        <p>
+                          {moment(exp?.from_date).format("MMM YYYY")} -{" "}
+                          {moment(exp?.until_date).format("MMM YYYY")} .{" "}
+                          <TimeCalculator
+                            date1={exp?.from_date}
+                            date2={exp?.until_date}
+                          />
+                        </p>
+                      </div>{" "}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="professional-experience">
+              <div className="portfoliobutton">
+                <h6>
+                  <strong>Qualification / Trainings</strong>
+                </h6>{" "}
+                <EducationAdd
+                  id={portfolio?._id}
+                  name={portfolio?.personal_details.first_name}
+                  portfolio={portfolio}
+                  setPortfolio={setPortfolio}
+                />
+              </div>
+
+              {portfolio?.education.map((edu) => {
+                return (
+                  <div>
+                    <ul>
+                      <div className="experience">
+                        <h6>
+                          <strong>{edu?.degree}</strong>
+                        </h6>{" "}
+                        <div className="experience-item">
+                          <EducationEdit
+                            name={name}
+                            id_edu={edu?._id}
+                            institute={edu?.institute}
+                            degree={edu?.degree}
+                            start_date={edu?.start_date}
+                            end_date={edu?.end_date}
+                            setPortfolio={setPortfolio}
+                          />
+
+                          <IconButton aria-label="delete" size="small">
+                            <DeleteIcon
+                              fontSize="inherit"
+                              onClick={() => {
+                                const education = {
+                                  education: {
+                                    institute: edu?.institute,
+                                    degree: edu?.degree,
+                                    start_date: edu?.start_date,
+                                    end_date: edu?.end_date,
+                                  },
+                                };
+
+                                console.log(education);
+                                axios
+                                  .put(
+                                    `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
+                                    education
+                                  )
+                                  .then((res) => {
+                                    setPortfolio(res.data);
+                                  })
+                                  .catch((err) => {
+                                    console.log(
+                                      `Error deleting education in database: ${err}`
+                                    );
+                                  });
+                                console.log(education);
+                              }}
+                            />
+                          </IconButton>
+                        </div>
+                      </div>
+                      <div>
+                        <h6>from {edu?.institute}</h6>{" "}
+                      </div>
+                      <div className="startandend">
+                        <p>
+                          {moment(edu?.start_date).format("MMM YYYY")} -{" "}
+                          {moment(edu?.end_date).format("MMM YYYY")} .{" "}
+                          <TimeCalculator
+                            date1={edu?.start_date}
+                            date2={edu?.end_date}
+                          />
+                        </p>
+                      </div>{" "}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="professional-experience">
+              <div className="portfoliobutton">
+                <h6>
+                  <strong>License / Certification</strong>
+                </h6>{" "}
+                <CerticiationsAdd
+                  id={portfolio?._id}
+                  name={portfolio?.personal_details.first_name}
+                  portfolio={portfolio}
+                  setPortfolio={setPortfolio}
+                />
+              </div>
+
+              {portfolio?.certifications.map((cert) => {
+                return (
+                  <div>
+                    <ul>
+                      <div className="experience">
+                        <h6>
+                          <strong>{cert?.certification_name}</strong>
+                        </h6>{" "}
+                        <div className="experience-item">
+                          <CertificationEdit
+                            name={name}
+                            id_cert={cert?._id}
+                            certification_name={cert?.certification_name}
+                            valid_from={cert?.valid_from}
+                            setPortfolio={setPortfolio}
+                          />
+                          <IconButton aria-label="delete" size="small">
+                            <DeleteIcon
+                              fontSize="inherit"
+                              onClick={() => {
+                                const certifications = {
+                                  certifications: {
+                                    certification_name:
+                                      cert?.certification_name,
+                                  },
+                                };
+
+                                console.log(certifications);
+                                axios
+                                  .put(
+                                    `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
+                                    certifications
+                                  )
+                                  .then((res) => {
+                                    setPortfolio(res.data);
+                                  })
+                                  .catch((err) => {
+                                    console.log(
+                                      `Error deleting education in database: ${err}`
+                                    );
+                                  });
+                                console.log(certifications);
+                              }}
+                            />
+                          </IconButton>
+                        </div>
+                      </div>
+                      <div>
+                        <h6 className="startandend">
+                          Valid from{" "}
+                          {moment(cert?.valid_from).format("MMM YYYY")}{" "}
+                        </h6>{" "}
+                      </div>
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="professional-experience">
+              <div className="portfoliobutton">
+                <h6>
+                  <strong>Languages</strong>
+                </h6>
+                <LanguagesAdd
+                  id={portfolio?._id}
+                  name={portfolio?.personal_details.first_name}
+                  portfolio={portfolio}
+                  setPortfolio={setPortfolio}
+                />
+              </div>
+
+              {portfolio?.languages.map((lang) => {
+                return (
+                  <div>
+                    <ul>
+                      <div className="experience">
+                        <h6>
+                          <strong>{lang?.language} </strong>
+                        </h6>{" "}
+                        <div className="experience-item">
+                          <LanguageEdit
+                            name={name}
+                            id_lang={lang?._id}
+                            language={lang?.language}
+                            proficiency={lang?.proficiency}
+                            setPortfolio={setPortfolio}
+                          />
+                          <IconButton aria-label="delete" size="small">
+                            <DeleteIcon
+                              fontSize="inherit"
+                              onClick={() => {
+                                const languages = {
+                                  languages: {
+                                    language: lang?.language,
+                                    proficiency: lang?.proficiency,
+                                  },
+                                };
+
+                                console.log(languages);
+                                axios
+                                  .put(
+                                    `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
+                                    languages
+                                  )
+                                  .then((res) => {
+                                    setPortfolio(res.data);
+                                  })
+                                  .catch((err) => {
+                                    console.log(
+                                      `Error deleting education in database: ${err}`
+                                    );
+                                  });
+                                console.log(languages);
+                              }}
+                            />
+                          </IconButton>
+                        </div>
+                      </div>
+                      <div>
+                        <h6 className="startandend">{lang?.proficiency}</h6>
+                      </div>
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+        </div>
+      ) : (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      )}
+    </>
   );
 }

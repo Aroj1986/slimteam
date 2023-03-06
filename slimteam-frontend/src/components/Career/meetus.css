@@ -30,6 +30,8 @@
 .team-member {
   border: 1px solid gray;
   margin-bottom: 5px;
+  /* background-color: aliceblue; */
+ 
 }
 
 .team-member-name {

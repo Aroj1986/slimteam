@@ -15,7 +15,6 @@ import { AuthContext } from "../../context/AuthProvider";
 
 export default function ExpertPortfolio({ setExpertName }) {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const [expert, setExpert] = useState({});
   const { name } = useParams();
   const navigate = useNavigate();
@@ -81,14 +80,44 @@ export default function ExpertPortfolio({ setExpertName }) {
                 borderRadius: "1rem",
               }}
             >
-              <CardContent>
+              <CardContent style={{ padding: "0px", paddingTop: "16px" }}>
                 <Typography gutterBottom component="div">
-                  {expert?.personal_details?.first_name}{" "}
-                  {expert?.personal_details?.last_name}
+                  <h4>
+                    {expert.personal_details?.first_name}{" "}
+                    {expert.personal_details?.last_name}
+                  </h4>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {expert?.personal_details?.skills},{" "}
-                  {expert?.personal_details?.nationality}
+                  <b>
+                   
+                    
+                    {expert.personal_details?.address?.city},{" "}
+                    {expert.personal_details?.nationality}
+                  </b>
+                </Typography>
+                <Typography>
+
+                {expert?.personal_details?.skills?.length ? (
+                        expert.personal_details.skills.map((skill) => {
+                          return (
+                            <>{skill} |{" "}
+                            </>
+                              
+                              
+                          
+                          );
+                        })): (
+                          <p className="heading2"> No SkillsFound</p>
+                  
+                          )}
+                
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {expert.personal_details?.email}{" "}
+                </Typography>
+                <Typography>{expert.personal_details?.phone_number}</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <p>Hourly Rate: {expert?.hourly_rate}/€</p>
                 </Typography>
               </CardContent>
               <CardActions style={{ justifyContent: "center" }}>
@@ -178,12 +207,11 @@ export default function ExpertPortfolio({ setExpertName }) {
                 {/*                 <Typography gutterBottom component="div">
 
                   <div className="professional-experience">
-                    <h5 className="heading" >Languages</h5>
+                    <h5 className="heading">Languages</h5>
 
                     <div>
                       {expert?.languages?.length ? (
                         expert.languages.map((exp) => {
-
                           return (
                             <ul className="my-list heading">
                               <li>languages: {exp?.language}</li>

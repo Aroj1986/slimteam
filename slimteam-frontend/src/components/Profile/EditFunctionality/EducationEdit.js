@@ -9,13 +9,16 @@ import IconButton from "@mui/material/IconButton";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { useState } from "react";
 import axios from "axios";
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 export default function EducationEdit({name, id_edu, institute, degree, start_date, end_date, setPortfolio}) {
   const [open, setOpen] = React.useState(false);
   const [inputInstitute, setInputInstitute] = useState();
   const [inputDegree, setInputDegree] = useState();
-  const [inputStartDate, setInputStartDate] = useState();
-  const [inputEndDate, setInputEndDate] = useState();
+  const [inputStartDate, setInputStartDate] = useState(start_date);
+  const [inputEndDate, setInputEndDate] = useState(end_date);
 
   const handleOnChangeInstitute = (e) => {
     setInputInstitute(e.target.value);
@@ -25,13 +28,11 @@ export default function EducationEdit({name, id_edu, institute, degree, start_da
     setInputDegree(e.target.value);
   };
 
-  const handleOnChangeStartDate = (e) => {
-    setInputStartDate(e.target.value);
-  };
+  const handleOnChangeStartDate = (newValue) => {
+    setInputStartDate(newValue);}
 
-  const handleOnChangeEndDate = (e) => {
-    setInputEndDate(e.target.value);
-  };
+  const handleOnChangeEndDate= (newValue) => {
+    setInputEndDate(newValue);}
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,10 +40,10 @@ export default function EducationEdit({name, id_edu, institute, degree, start_da
 
   const education = {
     education: {
-      institute: inputInstitute,
-      degree: inputDegree,
-      start_date: inputStartDate,
-      end_date: inputEndDate,
+      institute: inputInstitute?inputInstitute:institute,
+      degree: inputDegree?inputDegree:degree,
+      start_date: inputStartDate?inputStartDate:start_date,
+      end_date: inputEndDate?inputEndDate:end_date,
     },
   };
 
@@ -61,7 +62,7 @@ export default function EducationEdit({name, id_edu, institute, degree, start_da
 
   return (
     <div>
-      <IconButton aria-label="edit" size="large">
+      <IconButton aria-label="edit" size="small">
         <EditSharpIcon
           onClick={handleClickOpen}
           fontSize="inherit"
@@ -75,7 +76,8 @@ export default function EducationEdit({name, id_edu, institute, degree, start_da
             autoFocus
             margin="dense"
             type="text"
-            label={degree}
+            label="degree"
+            defaultValue={degree}
             placeholder="Degree"
             fullWidth
             variant="standard"
@@ -85,31 +87,38 @@ export default function EducationEdit({name, id_edu, institute, degree, start_da
             autoFocus
             margin="dense"
             type="text"
-            label={institute}
+            label="institute"
+            defaultValue={institute}
             placeholder="University/College"
             fullWidth
             variant="standard"
             onChange={handleOnChangeInstitute}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            type="date"
-//            label={start_date}
-            fullWidth
-            onChange={handleOnChangeStartDate}
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            type="date"
-//            label={end_date}
-            fullWidth
-            onChange={handleOnChangeEndDate}
-          />
+          <div style={{padding:"1rem"}}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+         <div style={{padding:"1rem"}}>
+        <DesktopDatePicker
+          label="start date"
+          inputFormat="MM/DD/YYYY"
+          value={inputStartDate}
+          onChange={handleOnChangeStartDate}
+          renderInput={(params) => <TextField {...params} />}
+        /></div>
+        <div style={{padding:"1rem"}}>
+          <DesktopDatePicker
+          label="until_date"
+          inputFormat="MM/DD/YYYY"
+          value={inputEndDate}
+          onChange={handleOnChangeEndDate}
+          renderInput={(params) => <TextField {...params} />}
+        />
+        </div>
+          </LocalizationProvider>
+          </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmitEdit}>DONE</Button>
+        <Button onClick={handleClose}>CANCEL</Button>
+          <Button onClick={handleSubmitEdit}>SAVE</Button>
         </DialogActions>
       </Dialog>
     </div>

@@ -21,7 +21,9 @@ function AboutUs() {
           <div className="hero-section">
             <h2 className="slogan" style={{ display: "inline" }}>
               Our Connection to Excellent{" "}
-              <p style={{ margin: "0.4rem", display: "inline" }}></p>
+
+              <p style={{ marginLeft: "0.4rem", marginRight: "0.4rem", display: "inline" }}></p>
+
               <img src={logo} height={70} width={60}></img> ervices
             </h2>
             <p className="paragraph">
@@ -86,20 +88,21 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <HandymanIcon style={{ color: "grey", fontSize: "2.5rem" }}/>
+                <HandymanIcon style={{ color: "grey", fontSize: "2.5rem" }} />
               </p>
-            
 
-            <p>
-              {" "}
-              <p>Plumbing services</p>{" "}
-            </p>
+              <p>
+                {" "}
+                <p>Plumbing services</p>{" "}
+              </p>
             </div>
           </Carousel.Item>
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <ElectricBoltIcon style={{ color: "gold", fontSize: "2.5rem"}}/>{" "}
+                <ElectricBoltIcon
+                  style={{ color: "gold", fontSize: "2.5rem" }}
+                />{" "}
               </p>
               <p>
                 {" "}
@@ -110,7 +113,9 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <CleaningServicesIcon style={{ color: "brown", fontSize: "2.5rem" }} />{" "}
+                <CleaningServicesIcon
+                  style={{ color: "brown", fontSize: "2.5rem" }}
+                />{" "}
               </p>
               <p>
                 {" "}
@@ -121,7 +126,9 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <ImagesearchRollerIcon style={{color: "grey", fontSize: "2.5rem" }} />{" "}
+                <ImagesearchRollerIcon
+                  style={{ color: "grey", fontSize: "2.5rem" }}
+                />{" "}
               </p>
               <p>
                 {" "}
@@ -132,7 +139,9 @@ function AboutUs() {
           <Carousel.Item>
             <div className="reviews">
               <p>
-                <ChildFriendlyIcon style={{ color: "green", fontSize: "3rem" }}/>{" "}
+                <ChildFriendlyIcon
+                  style={{ color: "green", fontSize: "3rem" }}
+                />{" "}
               </p>
               <p>
                 {" "}

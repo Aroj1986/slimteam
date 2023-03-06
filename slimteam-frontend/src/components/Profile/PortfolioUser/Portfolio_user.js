@@ -9,106 +9,129 @@ import { NavLink } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { height, maxHeight } from "@mui/system";
 
 export default function Portfolio_user({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8888/portfolio/${name}`)
-      .then((res) => {
-        setPortfolio(res.data);
-      })
-      .catch((err) => {
-        console.log(`Error fetching sought expert in database: ${err}`);
-      });
+    const getPortfolio = () => {
+      axios
+        .get(`http://localhost:8888/portfolio/${name}`)
+        .then((res) => {
+          setPortfolio(res.data);
+        })
+        .catch((err) => {
+          console.log(`Error fetching sought expert in database: ${err}`);
+        });
+    };
+    name && getPortfolio();
   }, [name]);
 
-  console.log(portfolio)
-  
   return (
     <Container>
-      <div className="expert-portfolio">
-        <div className="expert-description-container">
-          <div className="upload">
-            <div className="camerabutton">
-              <UploadPic name={name} />
+      {portfolio ? (
+        <div className="expert-portfolio">
+          <div className="expert-description-container">
+            <div className="upload">
+              <div className="camerabutton">
+                <UploadPic name={name} />
+              </div>
+              <img
+                className="profile-picturee"
+                src={portfolio?.personal_details.profile_picture}
+                alt="Expert image"
+                style={{ height: 150, width: 150 }}
+              />
             </div>
-            <img
-              className="profile-picturee"
-              src={portfolio?.personal_details.profile_picture}
-              alt="Expert image"
-              style={{ height: 150, width: 150 }}
-            />
-          </div>
+            <Card
+              style={{
+                backgroundColor: " rgba(255,250,250)",
+                padding: "0rem",
+                width: "272%",
+                borderRadius: "1rem",
+              }}
+            >
+              <CardActionArea>
+                <CardContent>
+                  <div className="professional-experience" style={{paddingLeft: "1rem", margin: "1rem"}}>
+                    <div className="portfoliobutton">
+                      <h6>
+                        <strong>Personal Details</strong>
+                      </h6>
+                      {"\n"}
+                      <HeadlineEdit
+                        className="edit-function"
+                        id_expert={portfolio?._id}
+                        name={name}
+                        first_name={portfolio?.personal_details?.first_name}
+                        last_name={portfolio?.personal_details?.last_name}
+                        street={portfolio?.personal_details?.address?.street}
+                        city={portfolio?.personal_details?.address?.city}
+                        nationality={portfolio?.personal_details?.nationality}
+                        email={portfolio?.personal_details?.email}
+                        phone_number={portfolio?.personal_details?.phone_number}
+                        portfolio={portfolio}
+                        setPortfolio={setPortfolio}
+                        setName={setName}
+                      />
+                    </div>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    align="left"
+                  >
+                    <h6>
+                      {" "}
+                      Name:
+                      <b>
+                        {portfolio?.personal_details?.first_name}{" "}
+                        {portfolio?.personal_details?.last_name}
+                      </b>
+                    </h6>
+                  </Typography>
+                  
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    align="left"
+                  >
+                    <h6>
+                      Address: {portfolio?.personal_details?.address?.street}{" "}
+                    </h6>
+                    <h6>City: {portfolio?.personal_details?.address?.city}</h6>
+                    <h6>Country: {portfolio?.personal_details?.nationality}</h6>
+                    <h6>E-Mail: {portfolio?.personal_details?.email} </h6>
+                    <h6>
+                      Phone number: {portfolio?.personal_details?.phone_number}{" "}
+                    </h6>
+                  </Typography>
+                  </div>
 
-          <Card
-            style={{
-              backgroundColor: " rgba(255,250,250)",
-              padding: "0rem",
-              width: "272%",
-              borderRadius: "1rem",
-            }}
-          >
-            <CardActionArea>
-              <CardContent>
-                <Typography className = "headlineeditbutton" gutterBottom variant="h5" component="div">
-                  PROFILE DETAILS
-                  <HeadlineEdit
-                    className="edit-function"
-                    id_expert={portfolio?._id}
-                    name={name}
-                    first_name={portfolio?.personal_details?.first_name}
-                    last_name={portfolio?.personal_details?.last_name}
-                    street={portfolio?.personal_details?.address?.street}
-                    city={portfolio?.personal_details?.address?.city}
-                    nationality={portfolio?.personal_details?.nationality}
-                    email={portfolio?.personal_details?.email}
-                    phone_number={portfolio?.personal_details?.phone_number}
-                    portfolio={portfolio}
-                    setPortfolio={setPortfolio}
-                    setName={setName}
-                  />
-                </Typography>
+
+                </CardContent>
+
                 <CardActions
                   style={{ display: "flex", justifyContent: "center" }}
                 >
-                </CardActions>
-
-                <Typography variant="body2" color="text.secondary" align="left">
-                  <b>
-                    {portfolio?.personal_details.first_name}{" "}
-                    {portfolio?.personal_details.last_name}
-                  </b>
-                </Typography>
-
-                <Typography variant="body2" color="text.secondary" align="left">
-                  <h6>
-                    Address: {portfolio?.personal_details.address.street}{" "}
-                  </h6>
-                  <h6>City: {portfolio?.personal_details.address.city}</h6>
-                  <h6>Country: {portfolio?.personal_details.nationality}</h6>
-                  <h6>E-Mail: {portfolio?.personal_details.email} </h6>
-                  <h6>
-                    Phone number: {portfolio?.personal_details.phone_number}{" "}
-                  </h6>
-                </Typography>
-
-                <CardActions
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                    <Button size="small" color="primary">
+                  <Button size="small" color="primary">
                     <NavLink to="/managebookings" className="button-expert">
-                      Manage your Bookings
+                      MANAGE YOUR BOOKINGS
                     </NavLink>
                   </Button>
                 </CardActions>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+              </CardActionArea>
+            </Card>
+          </div>
         </div>
-      </div>
+      ) : (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      )}
     </Container>
   );
 }

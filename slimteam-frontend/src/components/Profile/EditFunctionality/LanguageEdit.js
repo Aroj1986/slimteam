@@ -11,42 +11,49 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import IconButton from "@mui/material/IconButton";
-import AddIcon from "@mui/icons-material/Add";
+import EditSharpIcon from "@mui/icons-material/EditSharp";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import axios from "axios";
 
-export default function LanguagesAdd({name, id, portfolio, setPortfolio }) {
-  const [open, setOpen] = useState(false);
-  const [language, setLanguage] = useState(null);
-  const [proficiency, setProficiency] = useState(null);
-  
-  const languages = {
-    languages: { language, proficiency },
-  };
-  const url = `http://localhost:8888/portfolio/${name}`;
-  const AddLanguages = (e) => {
-    e.preventDefault();
-    axios.put(url, languages).then((res) => {
-      setPortfolio(res.data);
-    });
-    setOpen(false);
-  };
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason !== 'backdropClick') {
+export default function LanguageEdit({name,id_lang,language,proficiency,setPortfolio}) {
+    const [open, setOpen] = useState(false);
+    const [languageEdit, setLanguageEdit] = useState(null);
+    const [proficiencyEdit, setProficiencyEdit] = useState(null);
+    
+    const languages = {
+      languages: { language:languageEdit?languageEdit:language, proficiency:proficiencyEdit?proficiencyEdit:proficiency },
+    };
+    const url = `http://localhost:8888/portfolio/${name}`;
+    const AddLanguages = (e) => {
+        axios
+        .put(
+          `http://localhost:8888/portfolio/${name}/edit-languages/${id_lang}`,
+          languages
+        )
+        .then((res) => {
+          setPortfolio(res.data);
+        });
       setOpen(false);
-    }
-  };
-
+    };
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = (event, reason) => {
+      if (reason !== 'backdropClick') {
+        setOpen(false);
+      }
+    };
   return (
     <div>
-     <IconButton aria-label="edit" size="small">
-          <AddIcon onClick={handleClickOpen} fontSize="inherit" color="inherit" />
-        </IconButton>
+      <IconButton aria-label="edit" size="small">
+        <EditSharpIcon
+          onClick={handleClickOpen}
+          fontSize="inherit"
+          color="inherit"
+        />
+      </IconButton>
         <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
         <DialogTitle>Add Languages</DialogTitle>
         <DialogContent>
@@ -57,12 +64,13 @@ export default function LanguagesAdd({name, id, portfolio, setPortfolio }) {
               autoFocus
               margin="dense"
               id="name"
-              label="Language"
+              label="language"
+              defaultValue={language}
               type="text"
               fullWidth
               variant="standard"
               onChange={(e) => {
-                setLanguage(e.target.value);
+                setLanguageEdit(e.target.value);
                 }}
             />
             </FormControl>
@@ -71,9 +79,9 @@ export default function LanguagesAdd({name, id, portfolio, setPortfolio }) {
               <Select
                 labelId="demo-dialog-select-label"
                 id="demo-dialog-select"
-                // value={age}
+                defaultValue={proficiency}
                 onChange={(e) => {
-                  setProficiency(e.target.value);
+                  setProficiencyEdit(e.target.value);
                   }}
                 input={<OutlinedInput label="Proficiency" />}
               >
@@ -93,5 +101,5 @@ export default function LanguagesAdd({name, id, portfolio, setPortfolio }) {
         </DialogActions>
       </Dialog>
     </div>
-  );
+  )
 }
