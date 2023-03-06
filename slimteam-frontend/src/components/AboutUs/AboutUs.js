@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "./aboutUs.css";
+import handymen from "./handymen.jpg";
 import arojPicture from "./ArojPicture.jpg";
 
 import HandymanIcon from "@mui/icons-material/Handyman";
@@ -20,11 +21,19 @@ function AboutUs() {
       <div className="d-flex flex-column justify-content-center align-items-center mt-3 mb-3 ">
         <div className="d-flex flex-row aroj justify-content-md-between align-items-center p-2">
           <div className="hero-section">
-            <h2 className="slogan" style={{display:"inline"}}>Our Connection to Excellent <p style={{margin:"0.4rem",display:"inline"}}></p><img src={logo} height={70} width={60}></img> ervices</h2>
+            <h3 className="slogan" style={{display:"inline"}}>Our Connection to Excellent 
+            
+            {/* <p style={{margin:"0.4rem",display:"inline"}}></p><img src={logo} height={70} width={60}></img>  */} Services</h3>
             <p className="paragraph">
 
-              From minor repairs to major renovations, our service experts have got you covered - 
-              <Button size="small" color="primary">
+              From minor repairs to major renovations, our service experts have got you covered.
+             
+                            <br /> <br />Receive your future staff for your job within a few
+              hours.
+              <br /> <br />
+
+            </p>
+            <Button size="small" color="primary" style={{textAlign:"center"}}>
                               <NavLink
                                 to={`/explore-experts`}
                                 className="button-expert"
@@ -32,17 +41,16 @@ function AboutUs() {
                               >
                                 BOOK NOW
                               </NavLink>
-                            </Button> <br />Receive your future staff for your job within a few
-              hours.
-
-            </p>
+                              </Button>
           </div>
           <img
             className="image"
-            src={arojPicture}
+            src={handymen}
             alt="arojPicture"
-            style={{ height: 350 }}
+            style={{ height: 280, width:500}}
           />
+
+        
         </div>
         <br></br>
 
