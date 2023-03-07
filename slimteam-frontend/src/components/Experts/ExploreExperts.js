@@ -12,7 +12,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+
 export default function ExploreExperts({ experts, setExperts }) {
+
+  const { loading } = useContext(AuthContext);
+
   // sort by country
   const [checkedCountry, setCheckedCountry] = useState([
     { count: "germany", checked: false },
@@ -59,8 +65,7 @@ export default function ExploreExperts({ experts, setExperts }) {
   // );
   return (
     <>
-      <hr />
-      <div className="row">
+      <div className="row backgroundBody">
         <div className="col col-3 d-flex flex-column justify-content-start">
           <div className="filter-container">
             <h6>
@@ -91,6 +96,7 @@ export default function ExploreExperts({ experts, setExperts }) {
           </div>
         </div>
 
+        {!loading && (
         <div className="col col-9 fullcontainer">
           <button onClick={() => navigate(0)} className="goBackArrow">
             <span>
@@ -324,6 +330,7 @@ export default function ExploreExperts({ experts, setExperts }) {
             </div>
           )}
         </div>
+)}
       </div>
     </>
   );
