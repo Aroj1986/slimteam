@@ -74,7 +74,6 @@ const {name} = useParams();
         //   ,expert_name : expert_UserName
         //   ,user_name : user_UserName
         //   ,start_date: start
-        //   ,reason : reason
         //   ,title:title
         //   ,reason:reason
         //  }, 'f_2ehsvnxo2qEtz7Z')
@@ -127,65 +126,81 @@ const {name} = useParams();
   return (
     <div>
       <div>
-      <div>
-      {/* <Button onClick={handleClickOpen}>Open select dialog</Button> */}
-      <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
-        <DialogTitle>Please select the reason for cancellation</DialogTitle>
-        <DialogContent>
-          <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel htmlFor="demo-dialog-native">Reason</InputLabel>
-              <Select
-                native
-                value={reason}
-                onChange={handleChange}
-                input={<OutlinedInput label="Reason" id="demo-dialog-native" />}
-              >
-                <option aria-label="None" value="" />
-                <option value="Not available on the day of Booking">Not available on the day of Appointment</option>
-                <option value="Have other B[kings">Have another appointment</option>
-                <option value="Other">Other</option>
-              </Select>
-            </FormControl>
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() => handleOK(editEvent)}>Ok</Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-    {editEvent && (
-        <div className="event-editor">
-          <h4>BOOKING DETAILS </h4>
-          <p>SERVICE :  {editEvent.title}</p>
-           <p>EXPERT_NAME : <NavLink to={`/viewexpertprofile/${editEvent.expert_UserName}`}>{editEvent.expert_UserName}</NavLink></p>
-           <p>BOOKING MADE BY : <NavLink to={`/viewuserprofile/${editEvent.user_UserName}`}>{editEvent.user_UserName}</NavLink></p>
-          <div className="event-editor2">
-            <button
-              className="delete-button"
-              style={{borderRadius:"0.7rem", backgroundColor:"gray"}}
-              onClick={handleDelete}
-            >
-              CANCEL BOOKING
-            </button>
-          </div>
-        </div>
-      )}
-
+        <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
+          <DialogTitle>Please select the reason for cancellation</DialogTitle>
+          <DialogContent>
+            <Box component="form" sx={{ display: "flex", flexWrap: "wrap" }}>
+              <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel htmlFor="demo-dialog-native">Reason</InputLabel>
+                <Select
+                  native
+                  value={reason}
+                  onChange={handleChange}
+                  input={
+                    <OutlinedInput label="Reason" id="demo-dialog-native" />
+                  }
+                >
+                  <option aria-label="None" value="" />
+                  <option value="Not available on the day of Booking">
+                    Not available on the day of Appointment
+                  </option>
+                  <option value="Have other B[kings">
+                    Have another appointment
+                  </option>
+                  <option value="Other">Other</option>
+                </Select>
+              </FormControl>
+            </Box>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={() => handleOK(editEvent)}>Ok</Button>
+          </DialogActions>
+        </Dialog>
       </div>
-        <Calendar
-        className="calender-styling"
-        localizer={localizer}
-        events={bookings}
-        startAccessor="start"
-        endAccessor="end"
-        selectable
-        onSelectEvent={handleEventSelect}
-        eventPropGetter={eventPropGetter}
-        eventStyleGetter={eventStyleGetter}
-        views={[Views.MONTH, Views.AGENDA]}
-      />
+      <div className="calendar-event">
+      <div className="calendar-container">
+          <Calendar
+            className="calender-styling"
+            localizer={localizer}
+            events={bookings}
+            startAccessor="start"
+            endAccessor="end"
+            selectable
+            onSelectEvent={handleEventSelect}
+            eventPropGetter={eventPropGetter}
+            eventStyleGetter={eventStyleGetter}
+            views={[Views.MONTH, Views.AGENDA]}
+          />
+        </div>
+        {editEvent && (
+          <div className="event-editor">
+            <h4>BOOKING DETAILS </h4>
+            <p>SERVICE : {editEvent.title}</p>
+            <p>
+              EXPERT_NAME :{" "}
+              <NavLink to={`/viewexpertprofile/${editEvent.expert_UserName}`}>
+                {editEvent.expert_UserName}
+              </NavLink>
+            </p>
+            <p>
+              BOOKING MADE BY :{" "}
+              <NavLink to={`/viewuserprofile/${editEvent.user_UserName}`}>
+                {editEvent.user_UserName}
+              </NavLink>
+            </p>
+            <div className="event-editor2">
+              <button
+                className="delete-button"
+                style={{ borderRadius: "0.7rem", backgroundColor: "gray" }}
+                onClick={() => handleDelete(editEvent)}
+              >
+                CANCEL BOOKING
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

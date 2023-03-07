@@ -10,10 +10,14 @@ function Profile_gerneric({
   isExpert,
   isUser,
   setUserLogin,
-}) {
+})
+
+{
+  console.log(  isExpert,
+    isUser)
   return (
     <div>
-      {isExpert ? (
+      {!isExpert ? (
         <Profile_expert
           email={email}
           setEmail={setEmail}

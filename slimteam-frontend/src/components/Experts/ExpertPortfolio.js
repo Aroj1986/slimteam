@@ -82,27 +82,27 @@ export default function ExpertPortfolio({ setExpertName }) {
               <CardContent style={{ padding: "0px", paddingTop: "16px" }}>
                 <Typography gutterBottom component="div">
                   <h4>
-                    {expert.personal_details?.first_name}{" "}
-                    {expert.personal_details?.last_name}
+                    {expert.personal_details?.first_name.toUpperCase()}{" "}
+                    {expert.personal_details?.last_name.toUpperCase()}
                   </h4>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   <b>
-                    {expert.personal_details?.address?.city},{" "}
-                    {expert.personal_details?.nationality}
+                    {expert.personal_details?.address?.city.toUpperCase()},{" "}
+                    {expert.personal_details?.nationality.toUpperCase()}
                   </b>
                 </Typography>
                 <Typography>
                   {expert?.personal_details?.skills?.length ? (
                     expert.personal_details.skills.map((skill) => {
-                      return <>{skill} </>;
+                      return <>{skill.toUpperCase()} </>;
                     })
                   ) : (
                     <p className="heading2"> No SkillsFound</p>
                   )}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {expert.personal_details?.email}{" "}
+                  {expert.personal_details?.email.toUpperCase()}{" "}
                 </Typography>
                 <Typography>{expert.personal_details?.phone_number}</Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -140,19 +140,19 @@ export default function ExpertPortfolio({ setExpertName }) {
                         className="heading"
                         style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
                       >
-                        Experience
+                        EXPERIENCE
                       </h5>
                       {expert?.experience?.length ? (
                         expert?.experience.map((exp) => {
                           return (
                             <ul className="my-list heading">
-                              <li>Institution: {exp?.institution}</li>
-                              <li>Position: {exp?.position}</li>
+                              <li><strong style={{color:"gray",paddingTop:"2rem"}} >INSTITUTION </strong>: {exp?.institution.toUpperCase()}</li>
+                              <li><strong style={{color:"gray",paddingTop:"2rem"}} >POSITION </strong>: {exp?.position.toUpperCase()}</li>
                             </ul>
                           );
                         })
                       ) : (
-                        <p className="heading2"> No Experience Found</p>
+                        <p className="heading2"> NO EXPERIENCE FOUND</p>
                       )}
                     </div>
                   </div>
@@ -163,20 +163,20 @@ export default function ExpertPortfolio({ setExpertName }) {
                       className="heading"
                       style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
                     >
-                      Education
+                      TRAININGS
                     </h5>
                     <div>
                       {expert?.education?.length ? (
                         expert?.education.map((exp) => {
                           return (
                             <ul className="my-list heading">
-                              <li>Institute: {exp?.institute}</li>
-                              <li>Degree: {exp?.degree}</li>
+                              <li><strong style={{color:"gray",paddingTop:"2rem"}} >INSTITUTE </strong>: {exp?.institute.toUpperCase()}</li>
+                              <li><strong style={{color:"gray",paddingTop:"2rem"}} >DEGREE</strong> : {exp?.degree.toUpperCase()}</li>
                             </ul>
                           );
                         })
                       ) : (
-                        <p className="heading2"> No Education Found</p>
+                        <p className="heading2">NO EDUCATION FOUND</p>
                       )}
                     </div>
                   </div>
@@ -187,7 +187,7 @@ export default function ExpertPortfolio({ setExpertName }) {
                       className="heading"
                       style={{ paddingLeft: "1rem", paddingTop: "1rem" }}
                     >
-                      License / Certification
+                      LICENCES / CERTIFICATIONS
                     </h5>
                     <p>
                       <div>
@@ -196,13 +196,13 @@ export default function ExpertPortfolio({ setExpertName }) {
                             return (
                               <ul className="my-list heading">
                                 <li>
-                                  certifications: {exp?.certification_name}
+                                <strong style={{color:"gray",paddingTop:"2rem"}} >{exp?.certification_name.toUpperCase()}</strong>
                                 </li>
                               </ul>
                             );
                           })
                         ) : (
-                          <p className="heading2"> Certification Found</p>
+                          <p className="heading2">NO CERTIFICATIONS OR LICENCES </p>
                         )}
                       </div>
                     </p>
@@ -212,20 +212,20 @@ export default function ExpertPortfolio({ setExpertName }) {
                                 <Typography gutterBottom component="div">
 
                   <div className="professional-experience">
-                    <h5 className="heading"  style={{ paddingLeft: "1rem", paddingTop: "1rem" }}>Languages</h5>
+                    <h5 className="heading"  style={{ paddingLeft: "1rem", paddingTop: "1rem" }}>LANGUAGES</h5>
 
                     <div>
                       {expert?.languages?.length ? (
                         expert.languages.map((exp) => {
                           return (
                             <ul className="my-list heading">
-                              <li>languages: {exp?.language}</li>
-                              <li>languages: {exp?.proficiency}</li>
+                              <li> <strong style={{color:"gray",paddingTop:"2rem"}} >{exp?.language.toUpperCase()}</strong></li>
+                              <li style={{paddingLeft:"1rem" , paddingTop:"0.4rem"}}> {exp?.proficiency.toUpperCase()}</li>
                             </ul>
                           );
                         })
                       ) : (
-                        <p className="heading2"> No Languages Found</p>
+                        <p className="heading2"> NO LANGUAGES FOUND</p>
                       )}
                     </div>
                   </div>

@@ -95,6 +95,7 @@ export default function App() {
               email={email}
               role={role}
               setName={setName}
+              isExpert={isExpert}
             />
           }
         ></Route>

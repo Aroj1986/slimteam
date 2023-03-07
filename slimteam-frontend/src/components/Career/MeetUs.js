@@ -10,8 +10,9 @@ function MeetUs() {
        <>
         <div className="team-content-section backgroundBody">
           <div className="team-heading">
-            <h1>MEET OUR AMAZING TEAM</h1>
-            {/* <p>Lorem ipsum dolor sit amet proin gravida nibh vel velit</p> */}
+            <h1 style={{textAlign:"center"}}>MEET OUR AMAZING TEAM</h1>
+            {/* <p>Lorem ipsum dolor
+             sit amet proin gravida nibh vel velit</p> */}
           </div>
           <hr />
           <br />
@@ -67,10 +68,11 @@ function MeetUs() {
             </div>
           </div>
           <br /><br />
-          <p>For any Queries or Support, Please reach out to us!</p>
-          <button onClick={() => window.location = 'mailto:sindhura.kontham@gmail.com'} className="post-submit" >
+          <p style={{display:"flex",flexDirection:"column",alignItems:"center"}}>For any Queries or Support, Please reach out to us! <br/>
+          <br /><button onClick={() => window.location = 'mailto:sindhura.kontham@gmail.com'} className="post-submit" >
                 Contact Us
                 </button>
+                </p>
         </div>
        </>
   )

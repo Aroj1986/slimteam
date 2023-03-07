@@ -9,6 +9,17 @@ import axios from "axios";
 import Modal from "./Modal";
 import * as emailjs from "emailjs-com";
 import { NavLink } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const MyCalendar = ({ name, expertName }) => {
   const [startDate, setStartDate] = useState();
@@ -17,6 +28,7 @@ const MyCalendar = ({ name, expertName }) => {
   const [editingEvent, setEditingEvent] = useState(null);
   const [title, setTitle] = useState("");
   const [open, setOpen] = useState(false);
+  const [openCancel, setOpenCancel] = useState(false);
   const [booking, setBooking] = useState();
   const localizer = momentLocalizer(moment);
   const [to_email, setToEmail] = useState();
@@ -25,6 +37,7 @@ const MyCalendar = ({ name, expertName }) => {
   const [request, setRequest] = useState();
   const exptname = localStorage.getItem("expertName");
   const usName = localStorage.getItem("name");
+  const [reason, setReason] = React.useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,7 +69,7 @@ const MyCalendar = ({ name, expertName }) => {
     fetchData();
   }, []);
 
-  // console.log(bookedDates)
+  console.log(openCancel)
 
   const handleSlotSelect = (start, date) => {
     setOpen(true);
@@ -82,14 +95,28 @@ const MyCalendar = ({ name, expertName }) => {
       }
     }
   };
-  const handleDelete = ({
+
+  const handleChange = (event) => {
+    setReason(event.target.value || "");
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason !== "backdropClick") {
+      setOpenCancel(false);
+    }
+  };
+
+  const handleDelete = () => {
+    setOpenCancel(true);
+  };
+  const handleOK = ({
     expert_UserName,
     user_UserName,
     title,
     start,
     _id,
   }) => {
-    console.log(expert_UserName, user_UserName);
+
     setEditingEvent(null);
     axios
       .delete(`http://localhost:8888/book-online/${_id}`)
@@ -100,6 +127,8 @@ const MyCalendar = ({ name, expertName }) => {
             return event._id != response.data._id;
           })
         );
+        setOpenCancel(false);
+        setReason("");
         //mail to expert for user booking
         //  emailjs.send('service_uvp0rck', 'template_9qeisr9', {
         //   to_email : to_email
@@ -108,6 +137,7 @@ const MyCalendar = ({ name, expertName }) => {
         //   ,user_name : user_UserName
         //   ,start_date: start
         //   ,title:title
+        //   ,reason : reason
         //  }, 'f_2ehsvnxo2qEtz7Z')
         //  .then((result) => {
         //      console.log(result.status,result.text);
@@ -176,6 +206,39 @@ const MyCalendar = ({ name, expertName }) => {
         request={request}
         setEditingEvent={setEditingEvent}
       />
+       <div>
+        <Dialog disableEscapeKeyDown open={openCancel} onClose={handleClose}>
+        <DialogTitle>Please select the reason for cancellation</DialogTitle>
+        <DialogContent>
+          <Box component="form" sx={{ display: "flex", flexWrap: "wrap" }}>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel htmlFor="demo-dialog-native">Reason</InputLabel>
+              <Select
+                native
+                value={reason}
+                onChange={handleChange}
+                input={
+                  <OutlinedInput label="Reason" id="demo-dialog-native" />
+                }
+              >
+                <option aria-label="None" value="" />
+                <option value="Not available on the day of Booking">
+                  Not available on the day of Appointment
+                </option>
+                <option value="Have other B[kings">
+                  Have another appointment
+                </option>
+                <option value="Other">Other</option>
+              </Select>
+            </FormControl>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={() => handleOK(editingEvent)}>Ok</Button>
+        </DialogActions>
+      </Dialog>
+     
       <div className="calendar-event">
         <div className="calendar-container">
           <Calendar
@@ -224,6 +287,7 @@ const MyCalendar = ({ name, expertName }) => {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

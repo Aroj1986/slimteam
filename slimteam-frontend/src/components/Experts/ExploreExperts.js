@@ -5,15 +5,17 @@ import { useNavigate } from "react-router-dom";
 import FilterByCountry from "./FilterExperts/FilterByCountry";
 import SearchExpert from "./SearchExpert";
 import FilterByExpertise from "./FilterExperts/FilterByExpertise";
-
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 export default function ExploreExperts({ experts, setExperts }) {
   // sort by country
+  const { loading } = useContext(AuthContext);
   const [checkedCountry, setCheckedCountry] = useState([
     { count: "germany", checked: false },
     { count: "england", checked: false },
@@ -24,7 +26,11 @@ export default function ExploreExperts({ experts, setExperts }) {
   // sort by expertise
   const [checkedExpertise, setCheckedExpertise] = useState([
     { expertise: "cooking", checked: false },
-    { expertise: "Sheet metal", checked: false },
+    { expertise: "carpenter", checked: false },
+    { expertise: "gardener", checked: false },
+    { expertise: "plumbing", checked: false },
+    { expertise: "nanny", checked: false },
+    { expertise: "cleaner", checked: false },
   ]);
   const [sortedExpertsByExpertise, setSortedExpertsByExpertise] =
     useState(false);
@@ -59,14 +65,13 @@ export default function ExploreExperts({ experts, setExperts }) {
   // );
   return (
     <>
-      <hr />
-      <div className="row">
+      <div className="row backgroundBody">
         <div className="col col-3 d-flex flex-column justify-content-start">
           <div className="filter-container">
             <h6>
               <>
                 <SearchExpert experts={experts} setExperts={setExperts} />
-                <h5>Filter your search results:</h5>
+                <h5>Filter your results:</h5>
               </>
             </h6>
             <div className="filter-card-container">
@@ -91,6 +96,7 @@ export default function ExploreExperts({ experts, setExperts }) {
           </div>
         </div>
 
+        {!loading && (
         <div className="col col-9 fullcontainer">
           <button onClick={() => navigate(0)} className="goBackArrow">
             <span>
@@ -324,6 +330,7 @@ export default function ExploreExperts({ experts, setExperts }) {
             </div>
           )}
         </div>
+)}
       </div>
     </>
   );
