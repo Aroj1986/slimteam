@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect  } from "react";
 import { Calendar, momentLocalizer,Views } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
-import "../Calender/myCalendar.css";
+import "../../Calender/myCalendar.css";
 import axios from "axios";
 import * as emailjs from "emailjs-com"
 import { color } from "@mui/system";
 import { NavLink,useParams } from "react-router-dom";
-import ExpertView from "./ViewProfileinBookings/ExpertView";
+import ExpertView from "./ExpertView";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -21,9 +21,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function ManageBookings() {
-  const {name} = useParams();
-    const [open, setOpen] = React.useState(false);
+export default function ManageBookings_expert() {
+const {name} = useParams();
+  const [open, setOpen] = React.useState(false);
   const [reason, setReason] = React.useState('');
     const [editEvent, setEditEvent] = useState(null);
     const [bookings, setBookings] = useState([]);
@@ -31,9 +31,8 @@ export default function ManageBookings() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-              const response = await axios.get(`http://localhost:8888/managebookings/${name}`);
+              const response = await axios.get(`http://localhost:8888/manageexpertbookings/${name}`);
               setBookings(response.data)
-              console.log(response.data)
             } catch (error) {
               console.log(error);
             }
@@ -41,7 +40,19 @@ export default function ManageBookings() {
           fetchData();
     },[])
 
+    const handleChange = (event) => {
+      setReason((event.target.value) || '');
+    };
+  
+    const handleClose = (event, reason) => {
+      if (reason !== 'backdropClick') {
+        setOpen(false);
+      }
+    };
 
+    const handleDelete = () => {
+     setOpen(true)
+    }
 
     const handleOK = ({ expert_UserName,user_UserName,reason,title,start,_id }) => {
         setEditEvent(null);
@@ -54,17 +65,18 @@ export default function ManageBookings() {
                 return event._id != response.data._id;
               })
             );
-            setOpen(false)
+            setOpen(false);
             setReason("")
               //  mail to expert for user booking
-        //  emailjs.send('service_uvp0rck', 'template_9qeisr9', {
+        //  emailjs.send('service_uvp0rck', 'template_7q53ym5', {
         //   to_email : to_email
         //   ,from_email:from_email
         //   ,expert_name : expert_UserName
         //   ,user_name : user_UserName
-        //   ,reason : reason
         //   ,start_date: start
+        //   ,reason : reason
         //   ,title:title
+        //   ,reason:reason
         //  }, 'f_2ehsvnxo2qEtz7Z')
         //  .then((result) => {
         //      console.log(result.status,result.text);
@@ -76,22 +88,10 @@ export default function ManageBookings() {
             console.error("Error deleting event", error);
           });
       };
-      const handleChange = (event) => {
-        setReason((event.target.value) || '');
-      };
-    
-      const handleClose = (event, reason) => {
-        if (reason !== 'backdropClick') {
-          setOpen(false);
-        }
-      };
-  
-      const handleDelete = () => {
-       setOpen(true)
-      }
-  
+
     const handleEventSelect = (event,start) => {
         setEditEvent(event);
+         
       };
     const eventPropGetter = (event) => {
         const isBooked = bookings.some(
@@ -128,6 +128,7 @@ export default function ManageBookings() {
     <div>
       <div>
       <div>
+      {/* <Button onClick={handleClickOpen}>Open select dialog</Button> */}
       <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
         <DialogTitle>Please select the reason for cancellation</DialogTitle>
         <DialogContent>
@@ -161,12 +162,6 @@ export default function ManageBookings() {
            <p>EXPERT_NAME : <NavLink to={`/viewexpertprofile/${editEvent.expert_UserName}`}>{editEvent.expert_UserName}</NavLink></p>
            <p>BOOKING MADE BY : <NavLink to={`/viewuserprofile/${editEvent.user_UserName}`}>{editEvent.user_UserName}</NavLink></p>
           <div className="event-editor2">
-            {/* <button
-              className="edit-button"
-              onClick={() => handleEdit(editingEvent)}
-            >
-              Edit
-            </button> */}
             <button
               className="delete-button"
               style={{borderRadius:"0.7rem", backgroundColor:"gray"}}

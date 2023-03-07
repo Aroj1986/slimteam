@@ -10,35 +10,24 @@ import { padding } from "@mui/system";
 
 function Navbar({ userLogin, setUserLogin, name }) {
   const { user, loading, logout } = useContext(AuthContext);
-  // console.log(user);
-  // const logoutOnClick = (e) => {
-  //   axios
-  //     .post("http://localhost:8888/logout")
-  //     .then((res) => {
-  //       console.log(`Backend: ${res.data}`);
-  //       console.log("Frontend: User is logged out");
-  //     })
-  //     .catch((err) => {
-  //       if (err) {
-  //         console.log(`Error logging out the user ${err}`);
-  //       }
-  //     });
-  //   setUserLogin(false);
-  // };
 
   return (
     <>
-      <div className="container-header">
-        <a href="/">
-          <p style={{ paddingLeft: "20px" }}>
-            <img className="img-header" src={LogoCompany} alt="logo" />
-          </p>
-        </a>
+    <div className="container-header">
+      
+        
+          <a href="/">
+            <p style={{ paddingLeft: "20px" }}>
+              <img className="img-header" src={LogoCompany} alt="logo" />
+            </p>
+          </a>
+        
 
-        <div className="row container-navbar">
+        {/* <div className="row container-navbar"> */}
           {!loading && (
             <>
-              <ul className="col-8 lists-navbar">
+            <div className="col-8 lists-navbar">
+              <ul>
                 <NavLink to="/" className="items-navbar">
                   About us
                 </NavLink>{" "}
@@ -55,6 +44,8 @@ function Navbar({ userLogin, setUserLogin, name }) {
                   JobWall
                 </NavLink>
               </ul>
+              </div>
+              <div>
               <ul className="col-4 login-navbar">
                 {user ? (
                   <>
@@ -66,7 +57,7 @@ function Navbar({ userLogin, setUserLogin, name }) {
                         to={`/portfolio/${name}`}
                         className="items-buttons"
                       >
-                        Profile
+                        PROFILE
                       </NavLink>
                     </Button>
                     <Button
@@ -77,6 +68,7 @@ function Navbar({ userLogin, setUserLogin, name }) {
                       Logout
                     </Button>
                   </>
+
                 ) : (
                   <>
                     <Button
@@ -97,40 +89,15 @@ function Navbar({ userLogin, setUserLogin, name }) {
                     </Button>
                   </>
                 )}
-
-                {/*             <Button
-              variant="contained"
-              style={{ backgroundColor: "black" }}
-            >
-              <NavLink
-                to={`${userLogin ? `/portfolio/${name}` : "/register"}`}
-                className="items-buttons register"
-              >
-                {userLogin ? "Profile" : "Register"}
-              </NavLink>
-            </Button>{" "}
-            |
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "black" }}
-            >
-              <NavLink
-                to={`${userLogin ? "/login" : "/login"}`}
-                className="items-buttons"
-              >
-                {userLogin ? (
-                  <span onClick={logoutOnClick}>Logout</span>
-                ) : (
-                  "Login"
-                )}
-              </NavLink>
-            </Button> */}
               </ul>
+              </div>
             </>
           )}
-        </div>
+        {/* </div> */}
       </div>
+      
     </>
+    
   );
 }
 

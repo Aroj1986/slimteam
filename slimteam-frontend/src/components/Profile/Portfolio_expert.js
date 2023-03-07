@@ -15,14 +15,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import HeadlineEdit from "./EditFunctionality/HeadlineEdit";
 import Button from "@mui/material/Button";
+import { NavLink } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import HeadlineEditExpert from "./EditFunctionality/HeadlineEditExpert";
 import ExperienceEdit from "./EditFunctionality/ExperienceEdit";
 import EducationEdit from "./EditFunctionality/EducationEdit";
 import CertificationEdit from "./EditFunctionality/CertificationEdit";
 import LanguageEdit from "./EditFunctionality/LanguageEdit";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import { CardActionArea,CardActions } from "@mui/material";
 
 export default function Portfolio({ name, email, setName }) {
   const [portfolio, setPortfolio] = useState();
@@ -41,61 +43,62 @@ export default function Portfolio({ name, email, setName }) {
     name && getPortfolio();
   }, [name]);
 
-  console.log(portfolio?.hourly_rate);
   return (
     <>
       {portfolio ? (
         <div>
           <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              paddingTop: "5rem",
-              paddingBottom: "2rem",
-              left: "20px",
-            }}
-          >
-            <div className="upload">
-              <div className="camerabutton">
-                <UploadPic name={name} />
-              </div>
-              <img
-                className="profile-picturee"
-                src={portfolio?.personal_details.profile_picture}
-                alt="Expert image"
-                style={{
-                  height: 150,
-                  width: 150,
-                }}
-              />
-            </div>
+        style={{
+          // width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: "5rem",
+          paddingBottom: "2rem",
+          left: "20px",
+        }}
+      >
+        <div className="upload">
+          <div className="camerabutton">
+            <UploadPic name={name} setPortfolio={setPortfolio} />
           </div>
-
-          <div
+          <img
+            className="profile-picturee"
+            src={portfolio?.personal_details.profile_picture}
+            alt="Expert image"
             style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingBottom: "3rem",
+              // width: "100%",
+              height: 150,
+              width: 150
             }}
-          >
-            <Card
-              style={{
-                backgroundColor: "rgba(255, 250, 250)",
-                padding: "1rem",
-                borderRadius: "1rem",
-                maxWidth: "800px",
-                width: "100%",
-              }}
-            >
-              <CardContent>
-                <div className="professional-experience">
-                  <div className="portfoliobutton">
-                    <h6 style={{ paddingLeft: "0.5rem" }}>
-                      <strong>Personal Details</strong>
-                    </h6>
-                    {"\n"}
+          />
+        </div>
+      </div>
 
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingBottom: "3rem",
+        }}
+      >
+        <Card
+          style={{
+            backgroundColor: "rgba(255, 250, 250)",
+            padding: "0rem",
+            borderRadius: "1rem",
+            maxWidth: "800px",
+            width: "100%"
+          }}
+        >
+          <CardActionArea>
+          <CardContent>
+            <div className="professional-experience">
+              <div className="portfoliobutton"
+              style={{ paddingLeft: "1rem" }}>
+                <h6>
+                  <strong>PERSONAL DETAILS</strong>
+                </h6>
+                {"\n"}
                     <HeadlineEditExpert
                       className="edit-function"
                       id_expert={portfolio?._id}
@@ -116,49 +119,49 @@ export default function Portfolio({ name, email, setName }) {
                   </div>
                   <div style={{ paddingLeft: "2rem" }}>
                     <p>
-                      <strong>Name: </strong>{" "}
-                      {portfolio?.personal_details.first_name}{" "}
-                      {portfolio?.personal_details.last_name}
+                      <strong style={{color:"gray"}}>Name{" "}: {" "}
+                      {portfolio?.personal_details.first_name.toUpperCase()}{" "}
+                      {portfolio?.personal_details.last_name.toUpperCase()}</strong>
                     </p>
                     <p>
-                      <strong>Street: </strong>
+                      <strong style={{color:"gray"}}>Street{" "}: </strong>
                       {portfolio?.personal_details.address.street}
                       {"\n"}
                     </p>
                     <p>
-                      <strong>City: </strong>
+                      <strong style={{color:"gray"}}>City{" "}: </strong>
                       {portfolio?.personal_details.address.city}
                       {"\n"}
                     </p>
 
                     <p>
-                      <strong>Country: </strong>
+                      <strong style={{color:"gray"}}>Country{" "}: </strong>
                       {portfolio?.personal_details.nationality}
                     </p>
 
                     {portfolio?.personal_details.skills.map((skill) => {
                       return (
                         <p>
-                          <strong>Skills: </strong>
+                          <strong style={{color:"gray"}}>Skills{" "}: </strong>
                           {skill}
                         </p>
                       );
                     })}
                     <p>
-                      <strong>Hourly rate: </strong>
+                      <strong style={{color:"gray"}}>Hourly rate{" "}: </strong>
                       {portfolio?.hourly_rate} Euros / hour
                     </p>
                     <p>
-                    <strong>Phone number: </strong> {portfolio?.personal_details?.phone_number}{" "}
+                    <strong style={{color:"gray"}}>Phone number{" "}: </strong> {portfolio?.personal_details?.phone_number}{" "}
                     </p>
-                    <p><strong>E-Mail: </strong>{portfolio?.personal_details?.email}</p>
+                    <p><strong style={{color:"gray"}}>E-Mail{" "}: </strong>{portfolio?.personal_details?.email}</p>
                   </div>
                 </div>
 
                 <div className="professional-experience">
                   <div className="portfoliobutton">
                     <h6  style={{ paddingLeft: "0.5rem" }}>
-                      <strong>Professional Experience</strong>{" "}
+                      <strong>Experience</strong>{" "}
                     </h6>{" "}
                     <ExperienceAdd
                       id={portfolio?._id}
@@ -174,7 +177,7 @@ export default function Portfolio({ name, email, setName }) {
                         <ul>
                           <div className="experience">
                             <h6>
-                              <strong>{exp?.position}</strong>
+                              <strong style={{color:"gray"}}>{exp?.position.toUpperCase()}</strong>
                             </h6>{" "}
                             <div className="experience-item">
                               <ExperienceEdit
@@ -219,7 +222,7 @@ export default function Portfolio({ name, email, setName }) {
                             </div>
                           </div>
                           <div>
-                            <h6>at {exp?.institution}</h6>{" "}
+                            <h6>at {exp?.institution.toUpperCase()}</h6>{" "}
                           </div>
                           <div className="startandend">
                             <p>
@@ -240,7 +243,7 @@ export default function Portfolio({ name, email, setName }) {
                 <div className="professional-experience">
                   <div className="portfoliobutton">
                     <h6 style={{ paddingLeft: "0.5rem" }}>
-                      <strong>Qualification / Trainings</strong>
+                      <strong>Training</strong>
                     </h6>{" "}
                     <EducationAdd
                       id={portfolio?._id}
@@ -256,7 +259,7 @@ export default function Portfolio({ name, email, setName }) {
                         <ul>
                           <div className="experience">
                             <h6>
-                              <strong>{edu?.degree}</strong>
+                              <strong style={{color:"gray"}}>{edu?.degree.toUpperCase()}</strong>
                             </h6>{" "}
                             <div className="experience-item">
                               <EducationEdit
@@ -303,7 +306,7 @@ export default function Portfolio({ name, email, setName }) {
                             </div>
                           </div>
                           <div>
-                            <h6>from {edu?.institute}</h6>{" "}
+                            <h6>from {edu?.institute.toUpperCase()}</h6>{" "}
                           </div>
                           <div className="startandend">
                             <p>
@@ -324,7 +327,7 @@ export default function Portfolio({ name, email, setName }) {
                 <div className="professional-experience">
                   <div className="portfoliobutton">
                     <h6 style={{ paddingLeft: "0.5rem" }}>
-                      <strong>License / Certification</strong>
+                      <strong >Licenses / Certifications</strong>
                     </h6>{" "}
                     <CerticiationsAdd
                       id={portfolio?._id}
@@ -340,7 +343,7 @@ export default function Portfolio({ name, email, setName }) {
                         <ul>
                           <div className="experience">
                             <h6>
-                              <strong>{cert?.certification_name}</strong>
+                              <strong style={{color:"gray"}}>{cert?.certification_name.toUpperCase()}</strong>
                             </h6>{" "}
                             <div className="experience-item">
                               <CertificationEdit
@@ -412,7 +415,7 @@ export default function Portfolio({ name, email, setName }) {
                         <ul>
                           <div className="experience">
                             <h6>
-                              <strong>{lang?.language} </strong>
+                              <strong style={{color:"gray"}}>{lang?.language.toUpperCase()} </strong>
                             </h6>{" "}
                             <div className="experience-item">
                               <LanguageEdit
@@ -454,16 +457,25 @@ export default function Portfolio({ name, email, setName }) {
                             </div>
                           </div>
                           <div>
-                            <h6 className="startandend">{lang?.proficiency}</h6>
+                            <h6 className="startandend">{lang?.proficiency.toUpperCase()}</h6>
                           </div>
                         </ul>
                       </div>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+              )})}
+            </div>
+          </CardContent>
+          <CardActions
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <Button size="small" color="primary">
+                    <NavLink to={`/manageexpertbookings/${portfolio?.personal_details.first_name}`} className="button-expert">
+                      MANAGE YOUR BOOKINGS
+                    </NavLink>
+                  </Button>
+                </CardActions>
+          </CardActionArea>
+        </Card>
+      </div>
         </div>
       ) : (
         <Box sx={{ display: "flex" }}>

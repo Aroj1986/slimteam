@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,6 +8,7 @@ import "./myCalendar.css";
 import axios from "axios";
 import Modal from "./Modal";
 import * as emailjs from "emailjs-com";
+import { NavLink } from "react-router-dom";
 
 const MyCalendar = ({ name, expertName }) => {
   const [startDate, setStartDate] = useState();
@@ -43,7 +44,6 @@ const MyCalendar = ({ name, expertName }) => {
         );
         setToEmail(expert.data[0].personal_details.email);
         const bookedDate = await axios.get("http://localhost:8888/book-online");
-        console.log(bookedDate.data);
         setBookedDates(
           bookedDate.data.map((value) => {
             return value.start;
@@ -72,7 +72,6 @@ const MyCalendar = ({ name, expertName }) => {
         (element) =>
           element.split("T")[0] === moment(start.start).format("YYYY-MM-DD")
       );
-      console.log(found);
       if (found === undefined) {
         setBooking(true);
         setRequest("POST");
@@ -83,14 +82,6 @@ const MyCalendar = ({ name, expertName }) => {
       }
     }
   };
-
-  // const handleEdit = () => {
-  //   // const newTitle = setBooking(true)
-  //   setOpen(true);
-  //   setBooking(true)
-  //   setRequest("PUT")
-  // };
-
   const handleDelete = ({
     expert_UserName,
     user_UserName,
@@ -131,7 +122,6 @@ const MyCalendar = ({ name, expertName }) => {
   };
 
   const handleEventSelect = (event, start) => {
-    console.log(event);
     setEditingEvent(event);
   };
 
@@ -200,28 +190,40 @@ const MyCalendar = ({ name, expertName }) => {
             eventPropGetter={eventPropGetter}
             eventStyleGetter={eventStyleGetter}
             tileDisabled={({ date }) => [0, 6].includes(date.getDay())}
+            views={[Views.MONTH, Views.AGENDA]}
           />
         </div>
-        {editingEvent && (
-          <div className="event-editor">
-            <h3>Edit Appointment</h3>
-            <p>Title: {editingEvent.title}</p>
-            <div className="event-editor2">
-              {/* <button
-              className="edit-button"
-              onClick={() => handleEdit(editingEvent)}
-            >
-              Edit
-            </button> */}
-              <button
-                className="delete-button"
-                onClick={() => handleDelete(editingEvent)}
-              >
-                Delete
-              </button>
+        <div>
+          {editingEvent && (
+            <div className="event-editor">
+              <h4>BOOKING DETAILS </h4>
+              <p>SERVICE : {editingEvent.title}</p>
+              <p>
+                EXPERT_NAME :{" "}
+                <NavLink
+                  to={`/viewexpertprofile/${editingEvent.expert_UserName}`}
+                >
+                  {editingEvent.expert_UserName}
+                </NavLink>
+              </p>
+              <p>
+                BOOKING MADE BY :{" "}
+                <NavLink to={`/viewuserprofile/${editingEvent.user_UserName}`}>
+                  {editingEvent.user_UserName}
+                </NavLink>
+              </p>
+              <div className="event-editor2">
+                <button
+                  className="delete-button"
+                  style={{borderRadius:"0.7rem", backgroundColor:"gray"}}
+                  onClick={() => handleDelete(editingEvent)}
+                >
+                  CANCEL BOOKING
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

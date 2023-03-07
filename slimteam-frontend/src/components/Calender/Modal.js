@@ -20,6 +20,7 @@ import axios from "axios";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 export default function Modal ({ open, setOpen, start,end, title,setTitle,events, setEvents,name,expertName,booking,to_email,from_email,request}) {
+  console.log(name,expertName)
   const [time, setTime] = useState();
   const [description,setDesciption] = useState();
   const form = useRef();
@@ -102,7 +103,9 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
       // }, (error) => {
       //     console.log(error.text);
       // });
-      setTitle("")
+      setTitle("");
+      setTime("")
+      setDesciption("");
     }
   };
 
