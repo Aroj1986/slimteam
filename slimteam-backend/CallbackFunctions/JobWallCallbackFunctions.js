@@ -21,7 +21,23 @@ const getPosts = async (req, res, next) => {
   }
 };
   
+
+const deletePostOne = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id)
+    const post = await Post.findByIdAndDelete(
+      { "_id": id},
+    );
+    res.status(201).json(post);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send(error.messages);
+  }
+};
+
 module.exports = { 
     createPost,
     getPosts,
+    deletePostOne,
 };

@@ -8,7 +8,7 @@ import Neelima from "../../images/Neelima.jpeg";
 function MeetUs() {
   return (
        <>
-        <div className="team-content-section">
+        <div className="team-content-section backgroundBody">
           <div className="team-heading">
             <h1>MEET OUR AMAZING TEAM</h1>
             {/* <p>Lorem ipsum dolor sit amet proin gravida nibh vel velit</p> */}
