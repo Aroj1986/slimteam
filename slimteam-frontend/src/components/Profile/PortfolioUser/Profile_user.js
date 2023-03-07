@@ -106,11 +106,12 @@ export default function Profile_user({
       <ToastContainer toastClassName="toastCustomClassName" />
       <Container>
         <div className="firstrow" style={{ margin: "20px" }}>
-          <h6>Personal Details</h6>
-          <Row md={4}>
+          <h3 style={{textAlign:"center"}}>PERSONAL DETAILS </h3><br/>
+          <Row md={3}>
+            <Col></Col>
             <Col>
               <div>
-                <label for="inputGroupSelect01">Title :</label> {"   "}
+                <label for="inputGroupSelect01">TITLE :</label> {"   "}
                 <select
                   class="form-control"
                   id="inputGroupSelect01"
@@ -125,9 +126,11 @@ export default function Profile_user({
                 </select>
               </div>
             </Col>
+            <Col></Col>
+            <Col></Col>
             <Col>
               <div className="name">
-                <label for="floatingInputGrid">First Name :</label>
+                <label for="floatingInputGrid">FIRST NAME :</label>
                 <div>
                   <input
                     type="text"
@@ -142,9 +145,11 @@ export default function Profile_user({
                 </div>
               </div>
             </Col>
+            <Col></Col>
+            <Col></Col>
             <Col>
               <div className="name">
-                <label for="floatingInputGrid">Last Name :</label>
+                <label for="floatingInputGrid">LAST NAME :</label>
                 <div>
                   <input
                     type="text"
@@ -159,10 +164,11 @@ export default function Profile_user({
                 </div>
               </div>
             </Col>
-
+            <Col></Col>
+            <Col></Col>
             <Col>
               <div>
-                <label for="floatingInputGrid">Street :</label>
+                <label for="floatingInputGrid">STREET :</label>
                 <div>
                   <input
                     type="text"
@@ -177,9 +183,11 @@ export default function Profile_user({
                 </div>
               </div>
             </Col>
+            <Col></Col><Col></Col>
+
             <Col>
               <div>
-                <label for="floatingInputGrid">Postal Code :</label>
+                <label for="floatingInputGrid">POSTAL CODE :</label>
                 <div>
                   <input
                     type="text"
@@ -193,9 +201,11 @@ export default function Profile_user({
                 </div>
               </div>
             </Col>
+            <Col></Col>
+            <Col></Col>
             <Col>
               <div>
-                <label for="floatingInputGrid">City :</label>
+                <label for="floatingInputGrid">CITY :</label>
                 <div>
                   <input
                     type="text"
@@ -209,9 +219,11 @@ export default function Profile_user({
                 </div>
               </div>
             </Col>
+            <Col></Col>
+            <Col></Col>
             <Col>
               <div>
-                <label for="floatingInputGrid">Country :</label>
+                <label for="floatingInputGrid">COUNTRY :</label>
                 <div>
                   <input
                     type="text"
@@ -226,9 +238,10 @@ export default function Profile_user({
               </div>
             </Col>
             <Col></Col>
+            <Col></Col>
             <Col>
               <div>
-                <label for="floatingInputGrid">Mobile No :</label>
+                <label for="floatingInputGrid">MOBILE :</label>
                 <div>
                   <input
                     type="text"
@@ -243,7 +256,6 @@ export default function Profile_user({
                 </div>
               </div>
             </Col>
-            <Col></Col>
           </Row>
         </div>
       </Container>

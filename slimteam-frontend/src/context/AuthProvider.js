@@ -53,6 +53,7 @@ function AuthProvider(props) {
         setUser(res.data)
         console.log(res.data)
          localStorage.setItem("email",res.data.email)
+         
         setUserLogin(true)
         navigate("/profile");
       })

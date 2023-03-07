@@ -27,6 +27,7 @@ import Box from '@mui/material/Box';
 import { CardActionArea,CardActions } from "@mui/material";
 
 export default function Portfolio({ name, email, setName }) {
+  console.log(name)
   const [portfolio, setPortfolio] = useState();
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function Portfolio({ name, email, setName }) {
         .get(`http://localhost:8888/portfolio/${name}`)
         .then((res) => {
           setPortfolio(res.data);
+          console.log(res.data)
         })
         .catch((err) => {
           console.log(`Error fetching sought expert in database: ${err}`);

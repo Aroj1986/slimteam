@@ -16,10 +16,13 @@
 /* Team content section */
 
 .team-content-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
   /* background-image: url(./images/bgk-header.png); */
   /* color: white; */
-  padding: 60px 60px;
+  padding: 100px;
   background-size: cover;
 }
 
