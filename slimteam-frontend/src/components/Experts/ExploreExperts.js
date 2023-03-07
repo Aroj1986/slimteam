@@ -13,15 +13,11 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthProvider";
-
 export default function ExploreExperts({ experts, setExperts }) {
 
   const { loading } = useContext(AuthContext);
 
   // sort by country
-  const { loading } = useContext(AuthContext);
   const [checkedCountry, setCheckedCountry] = useState([
     { count: "germany", checked: false },
     { count: "england", checked: false },
