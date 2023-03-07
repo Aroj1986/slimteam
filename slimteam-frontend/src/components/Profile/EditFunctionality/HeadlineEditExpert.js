@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../../axiosClient";
 import "../profile.css";
 
 export default function HeadlineEdit({
@@ -123,7 +123,7 @@ export default function HeadlineEdit({
   const handleSubmitEdit = async () => {
     await axios
       .put(
-        `http://localhost:8888/portfolio/${name}/edit-headline-expert/${id_expert}`,
+        `/portfolio/${name}/edit-headline-expert/${id_expert}`,
         personal_details
       )
       .then((res) => {

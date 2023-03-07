@@ -1,5 +1,5 @@
 import "./App.css";
-import axios from "axios";
+import axios from "./axiosClient";
 import { useEffect, useState } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
@@ -35,7 +35,7 @@ export default function App() {
   var mail = localStorage.getItem("email");
 
   useEffect(() => {
-    axios.get("http://localhost:8888/explore-experts").then((res) => {
+    axios.get("/explore-experts").then((res) => {
       setExperts(res.data.filter((rd) => 
       {
         if(rd?.role === "Expert" && rd?.personal_details.email !== mail) {
@@ -45,7 +45,7 @@ export default function App() {
       ))
       // setExperts(res.data);
     });
-    axios.get(`http://localhost:8888/explore-experts/${mail}`).then((res) => {
+    axios.get(`/explore-experts/${mail}`).then((res) => {
       setName(res.data[0]?.personal_details?.first_name);
       localStorage.setItem("name",res.data[0]?.personal_details?.first_name)
       setRole(res.data[0]?.role);

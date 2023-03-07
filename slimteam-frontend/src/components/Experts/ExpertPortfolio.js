@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../axiosClient";
 import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -20,7 +20,7 @@ export default function ExpertPortfolio({ setExpertName }) {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`http://localhost:8888/explore-expert/${name}`)
+      .get(`/explore-expert/${name}`)
       .then((res) => {
         setExpert(res.data);
         setExpertName(name);

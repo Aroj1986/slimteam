@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import "../profile.css";
-import axios from "axios";
+import axios from "../../../axiosClient";
 import { useEffect, useState } from "react";
 import UploadPic from "../UploadPic";
 import HeadlineEdit from "../EditFunctionality/HeadlineEdit";
@@ -20,7 +20,7 @@ export default function UserView() {
   useEffect(() => {
     const getPortfolio = () => {
       axios
-        .get(`http://localhost:8888/portfolio/${name}`)
+        .get(`/portfolio/${name}`)
         .then((res) => {
           setPortfolio(res.data);
         })

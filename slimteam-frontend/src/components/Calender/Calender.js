@@ -5,7 +5,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "./myCalendar.css";
-import axios from "axios";
+import axios from "../../axiosClient";
 import Modal from "./Modal";
 import * as emailjs from "emailjs-com";
 import { NavLink } from "react-router-dom";
@@ -43,20 +43,20 @@ const MyCalendar = ({ name, expertName }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8888/book-online/${
+          `/book-online/${
             name ? name : usName
           }/${exptname}`
         );
         setEvents(response.data);
         const userw = await axios.get(
-          `http://localhost:8888/profile-details/${name}`
+          `/profile-details/${name}`
         );
         setfromEmail(userw.data[0].personal_details.email);
         const expert = await axios.get(
-          `http://localhost:8888/profile-details/${exptname}`
+          `/profile-details/${exptname}`
         );
         setToEmail(expert.data[0].personal_details.email);
-        const bookedDate = await axios.get("http://localhost:8888/book-online");
+        const bookedDate = await axios.get("/book-online");
         setBookedDates(
           bookedDate.data.map((value) => {
             return value.start;
@@ -119,7 +119,7 @@ const MyCalendar = ({ name, expertName }) => {
 
     setEditingEvent(null);
     axios
-      .delete(`http://localhost:8888/book-online/${_id}`)
+      .delete(`/book-online/${_id}`)
       .then((response) => {
         console.log("Event got deleted successfully", response.data);
         setEvents(

@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../axiosClient";
 
 export const AuthContext = createContext();
 
@@ -12,7 +12,7 @@ function AuthProvider(props) {
 
    useEffect(() => {
     axios
-      .get('http://localhost:8888/profile', {withCredentials: true})
+      .get('/profile', {withCredentials: true})
       .then((res) => {
         setUser(res.data)
         setLoading(false);
@@ -27,7 +27,7 @@ function AuthProvider(props) {
   const login = (email, password, setError) => {
     return axios
       .post(
-        "http://localhost:8888/login",
+        "/login",
         { email, password }, {withCredentials: true}
       )
       .then((res) => {
@@ -46,7 +46,7 @@ function AuthProvider(props) {
 
   const register = (email, password,isExpert,isUser) => {
     return axios
-    .post(("http://localhost:8888/register"),
+    .post(("/register"),
         { email, password,isExpert,isUser }, {withCredentials: true}
       )
       .then((res) => {
@@ -70,7 +70,7 @@ function AuthProvider(props) {
 
   function logout() {
     return     axios
-    .get("http://localhost:8888/logout", {withCredentials: true})
+    .get("/logout", {withCredentials: true})
     .then((res) => {
       console.log(`Backend: ${res.data}`);
       console.log("Frontend: User is logged out");

@@ -14,7 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../axiosClient";
 
 export default function LanguageEdit({name,id_lang,language,proficiency,setPortfolio}) {
     const [open, setOpen] = useState(false);
@@ -24,11 +24,11 @@ export default function LanguageEdit({name,id_lang,language,proficiency,setPortf
     const languages = {
       languages: { language:languageEdit?languageEdit:language, proficiency:proficiencyEdit?proficiencyEdit:proficiency },
     };
-    const url = `http://localhost:8888/portfolio/${name}`;
+    const url = `/portfolio/${name}`;
     const AddLanguages = (e) => {
         axios
         .put(
-          `http://localhost:8888/portfolio/${name}/edit-languages/${id_lang}`,
+          `/portfolio/${name}/edit-languages/${id_lang}`,
           languages
         )
         .then((res) => {

@@ -4,7 +4,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Calender/myCalendar.css";
-import axios from "axios";
+import axios from "../../axiosClient";
 import * as emailjs from "emailjs-com";
 import { color } from "@mui/system";
 import { NavLink, useParams } from "react-router-dom";
@@ -32,7 +32,7 @@ export default function ManageBookings() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8888/managebookings/${name}`
+          `/managebookings/${name}`
         );
         setBookings(response.data);
       } catch (error) {
@@ -52,7 +52,7 @@ export default function ManageBookings() {
   }) => {
     setEditEvent(null);
     axios
-      .delete(`http://localhost:8888/book-online/${_id}`)
+      .delete(`/book-online/${_id}`)
       .then((response) => {
         console.log("Event got deleted successfully", response.data);
         setBookings(

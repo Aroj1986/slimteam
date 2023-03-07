@@ -14,7 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../axiosClient";
 
 export default function LanguagesAdd({name, id, portfolio, setPortfolio }) {
   const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function LanguagesAdd({name, id, portfolio, setPortfolio }) {
   const languages = {
     languages: { language, proficiency },
   };
-  const url = `http://localhost:8888/portfolio/${name}`;
+  const url = `/portfolio/${name}`;
   const AddLanguages = (e) => {
     e.preventDefault();
     axios.put(url, languages).then((res) => {

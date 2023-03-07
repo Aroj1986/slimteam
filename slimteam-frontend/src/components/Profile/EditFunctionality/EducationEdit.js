@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../axiosClient";
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -49,7 +49,7 @@ export default function EducationEdit({name, id_edu, institute, degree, start_da
 
   const handleSubmitEdit = () => {
     axios
-    .put(`http://localhost:8888/portfolio/${name}/edit-education/${id_edu}`, education)
+    .put(`/portfolio/${name}/edit-education/${id_edu}`, education)
     .then((res) => {
       setPortfolio(res.data)
     });

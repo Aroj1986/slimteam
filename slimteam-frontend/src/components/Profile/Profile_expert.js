@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import axios from "axios";
+import axios from "../../axiosClient";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
@@ -106,7 +106,7 @@ function Profile_expert({
 
 
     axios
-      .post("http://localhost:8888/explore-experts", postData)
+      .post("/explore-experts", postData)
       .then((res) => {
         setUserLogin(true);
         navigate(`/portfolio/${data.first_name}`);

@@ -1,6 +1,7 @@
 require('dotenv/config')
 require('./slimTeamDatabase')
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const express = require('express')
 const PORT = 8888
