@@ -1,7 +1,7 @@
 import React from "react";
 import "./navbar.css";
 import { Navigate, NavLink } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axiosClient";
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";

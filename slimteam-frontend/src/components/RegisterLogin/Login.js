@@ -5,7 +5,7 @@ import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 import { useState, useContext } from "react";
-import axios from "axios";
+import axios from "../../axiosClient";
 import { useNavigate, Navigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 
@@ -55,7 +55,7 @@ function Login({ setUserLogin, name, setName, setRole }) {
     }
     /*     const postData = { email, password };
     axios
-      .post("http://localhost:8888/login", postData)
+      .post("/login", postData)
       .then((res) => {
         console.log(res.data);
         if (email === res.data.email && password === res.data.password) {
@@ -66,7 +66,7 @@ function Login({ setUserLogin, name, setName, setRole }) {
       })
 
       axios
-      .get(`http://localhost:8888/explore-experts/${email}`)
+      .get(`/explore-experts/${email}`)
       .then((res) => {
         setName(res.data[0].personal_details.first_name)
         setRole(res.data[0].role)

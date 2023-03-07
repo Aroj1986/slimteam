@@ -1,3 +1,4 @@
+const path = require("path");
 require('dotenv/config')
 require('./slimTeamDatabase')
 const cookieParser = require("cookie-parser");
@@ -12,6 +13,8 @@ const jobWallRouter = require('./Routes/JobWallRoutes')
 const CalenderRoutes = require('./Routes/CalenderRoutes')
 const profilePicRouter = require('./routes/profilepic');
 const { errorHandler } = require('./middlewares/errorHandler')
+
+slimTeam.use(express.static(path.resolve(__dirname, "slimteam-frontend", "build")));
 
 slimTeam.use(cookieParser());
 slimTeam.use(express.json({
@@ -31,8 +34,14 @@ slimTeam.use('/jobwall', jobWallRouter)
 slimTeam.use('/', profilePicRouter);
 slimTeam.use('/book-online/:name', slimTeamRouter)
 
+slimTeam.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "slimteam-frontend", "build", "index.html"));
+ });
+
 slimTeam.use(errorHandler)
 
 slimTeam.listen(PORT, () => {
     console.log(`Server listening on port http://localhost:${PORT}`)
 })
+
+ 

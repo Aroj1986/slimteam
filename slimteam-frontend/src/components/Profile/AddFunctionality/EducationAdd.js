@@ -10,7 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../axiosClient";
 
 export default function EducationAdd({ name,id,portfolio , setPortfolio }) {
       const [open, setOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function EducationAdd({ name,id,portfolio , setPortfolio }) {
       const education = {
         education :{institute ,degree, start_date, end_date}
       }
-      const url = `http://localhost:8888/portfolio/${name}`;
+      const url = `/portfolio/${name}`;
       const AddEducation = (e) => {
         e.preventDefault()
         axios.put(url, education)

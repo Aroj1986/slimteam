@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../../axiosClient';
 
 export default function UploadPic({name,setPortfolio}) {
   const [open, setOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function UploadPic({name,setPortfolio}) {
   });
 
   const editPicture = async() => {
-    await axios.put(`http://localhost:8888/addprofilepic/${name}`, {profile_picture})
+    await axios.put(`/addprofilepic/${name}`, {profile_picture})
     .then(res => {
      setPortfolio(res.data)
        console.log(res.data);

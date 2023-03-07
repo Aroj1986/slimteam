@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axiosClient";
 import "./registerLogin.css";
 import { AuthContext } from "../../context/AuthProvider";
 
@@ -11,7 +11,7 @@ export default function Logout({setUserLogin}) {
 
   const logoutOnClick = (e) => {
     axios
-      .post("http://localhost:8888/logout")
+      .post("/logout")
       .then((res) => {
         console.log(`Backend: ${res.data}`);
         console.log("Frontend: User is logged out");

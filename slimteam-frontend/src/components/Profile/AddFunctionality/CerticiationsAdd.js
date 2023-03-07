@@ -10,7 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../axiosClient";
 
 export default function CerticiationsAdd({ name,id,portfolio , setPortfolio }) {
     const [open, setOpen] = useState(false);
@@ -20,7 +20,7 @@ export default function CerticiationsAdd({ name,id,portfolio , setPortfolio }) {
     const certifications = {
         certifications :{certification_name:certification,valid_from:start_date}
     }
-    const url = `http://localhost:8888/portfolio/${name}`;
+    const url = `/portfolio/${name}`;
     const AddCeritifications = (e) => {
       e.preventDefault()
       axios.put(url, certifications)

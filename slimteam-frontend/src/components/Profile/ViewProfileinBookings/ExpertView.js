@@ -1,6 +1,6 @@
 import React from "react";
 import "../profile.css";
-import axios from "axios";
+import axios from "../../../axiosClient";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import TimeCalculator from "../TimeCalculator";
@@ -21,7 +21,7 @@ export default function ExpertView() {
   useEffect(() => {
     const getPortfolio = () => {
       axios
-        .get(`http://localhost:8888/portfolio/${name}`)
+        .get(`/portfolio/${name}`)
         .then((res) => {
           setPortfolio(res.data);
         })
@@ -173,7 +173,7 @@ export default function ExpertView() {
 
                                 axios
                                   .put(
-                                    `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
+                                    `/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
                                     experience
                                   )
                                   .then((res) => {
@@ -256,7 +256,7 @@ export default function ExpertView() {
                                 console.log(education);
                                 axios
                                   .put(
-                                    `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
+                                    `/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
                                     education
                                   )
                                   .then((res) => {
@@ -335,7 +335,7 @@ export default function ExpertView() {
                                 console.log(certifications);
                                 axios
                                   .put(
-                                    `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
+                                    `/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
                                     certifications
                                   )
                                   .then((res) => {
@@ -407,7 +407,7 @@ export default function ExpertView() {
                                 console.log(languages);
                                 axios
                                   .put(
-                                    `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
+                                    `/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
                                     languages
                                   )
                                   .then((res) => {

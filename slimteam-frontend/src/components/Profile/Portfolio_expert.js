@@ -1,6 +1,6 @@
 import React from "react";
 import "./profile.css";
-import axios from "axios";
+import axios from "../../axiosClient";
 import { useEffect, useState } from "react";
 import ExperienceAdd from "./AddFunctionality/ExperienceAdd";
 import EducationAdd from "./AddFunctionality/EducationAdd";
@@ -33,7 +33,7 @@ export default function Portfolio({ name, email, setName }) {
   useEffect(() => {
     const getPortfolio = () => {
       axios
-        .get(`http://localhost:8888/portfolio/${name}`)
+        .get(`/portfolio/${name}`)
         .then((res) => {
           setPortfolio(res.data);
           console.log(res.data)
@@ -207,7 +207,7 @@ export default function Portfolio({ name, email, setName }) {
 
                                     axios
                                       .put(
-                                        `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
+                                        `/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
                                         experience
                                       )
                                       .then((res) => {
@@ -290,7 +290,7 @@ export default function Portfolio({ name, email, setName }) {
                                     console.log(education);
                                     axios
                                       .put(
-                                        `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
+                                        `/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
                                         education
                                       )
                                       .then((res) => {
@@ -369,7 +369,7 @@ export default function Portfolio({ name, email, setName }) {
                                     console.log(certifications);
                                     axios
                                       .put(
-                                        `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
+                                        `/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
                                         certifications
                                       )
                                       .then((res) => {
@@ -441,7 +441,7 @@ export default function Portfolio({ name, email, setName }) {
                                     console.log(languages);
                                     axios
                                       .put(
-                                        `http://localhost:8888/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
+                                        `/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
                                         languages
                                       )
                                       .then((res) => {

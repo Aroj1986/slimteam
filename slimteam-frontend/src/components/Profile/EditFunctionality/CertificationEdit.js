@@ -11,7 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../axiosClient";
 
 export default function CertificationEdit({
   name,
@@ -46,7 +46,7 @@ export default function CertificationEdit({
   const handleSubmitEdit = () => {
     axios
       .put(
-        `http://localhost:8888/portfolio/${name}/edit-certification/${id_cert}`,
+        `/portfolio/${name}/edit-certification/${id_cert}`,
         certifications
       )
       .then((res) => {

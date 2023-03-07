@@ -16,7 +16,7 @@ import React, { useEffect, useRef } from 'react';
 import * as emailjs from "emailjs-com"
 
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosClient";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 export default function Modal ({ open, setOpen, start,end, title,setTitle,events, setEvents,name,expertName,booking,to_email,from_email,request}) {
@@ -32,13 +32,13 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
   useEffect(() => {
     const getDetails = () =>{
       axios
-      .get(`http://localhost:8888/portfolio/${name}`)
+      .get(`/portfolio/${name}`)
       .then((res) => {
         setUserDetails(res.data);
       })
 
       axios
-      .get(`http://localhost:8888/portfolio/${expertName}`)
+      .get(`/portfolio/${expertName}`)
       .then((res) => {
         setExpertDetails(res.data);
       })
@@ -85,7 +85,7 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
     e.preventDefault();
     if (title) {
       axios
-        .post("http://localhost:8888/book-online", { start,end,title,UserName:name,expertName : expertName,allDay:true  })
+        .post("/book-online", { start,end,title,UserName:name,expertName : expertName,allDay:true  })
         .then(({ data }) => setEvents([...events, data]))
         .catch((err) => console.log(err));
       setOpen(false);

@@ -11,7 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../axiosClient";
 
 export default function ExperienceEdit({name, id_exp, institution, position, from_date, until_date, setPortfolio}) {
   const [open, setOpen] = React.useState(false);
@@ -51,7 +51,7 @@ console.log(inputFromDate,inputUntilDate)
 
   const handleSubmitEdit = () => {
     axios
-    .put(`http://localhost:8888/portfolio/${name}/edit-experience/${id_exp}`, experience)
+    .put(`/portfolio/${name}/edit-experience/${id_exp}`, experience)
     .then((res) => {
       setPortfolio(res.data)
     });
