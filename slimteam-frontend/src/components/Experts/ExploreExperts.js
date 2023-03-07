@@ -170,6 +170,8 @@ export default function ExploreExperts({ experts, setExperts }) {
                         alignItems: "center",
                         margin: "0 auto",
                         marginTop: "2rem",
+                        marginBottom: "1rem"
+
                       }}
                       onClick={loadMore}
                     >
@@ -241,6 +243,8 @@ export default function ExploreExperts({ experts, setExperts }) {
                             alignItems: "center",
                             margin: "0 auto",
                             marginTop: "2rem",
+                            marginBottom: "1rem"
+
                           }}
                           onClick={loadMore}
                         >
@@ -307,6 +311,7 @@ export default function ExploreExperts({ experts, setExperts }) {
                         alignItems: "center",
                         margin: "0 auto",
                         marginTop: "2rem",
+                        marginBottom: "1rem"
                       }}
                       onClick={loadMore}
                     >
