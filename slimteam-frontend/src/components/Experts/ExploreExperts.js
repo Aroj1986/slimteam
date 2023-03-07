@@ -12,13 +12,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthProvider";
-
 export default function ExploreExperts({ experts, setExperts }) {
-
-  const { loading } = useContext(AuthContext);
-
   // sort by country
   const [checkedCountry, setCheckedCountry] = useState([
     { count: "germany", checked: false },
@@ -51,9 +45,22 @@ export default function ExploreExperts({ experts, setExperts }) {
       .join(" ");
   }
 
+  const [showLoadMore, setShowLoadMore] = useState(false);
+  const [visibleExperts, setVisibleExperts] = useState(4);
+
+  const loadMore = () => {
+    setVisibleExperts((prev) => prev + 4);
+  };
+
+  // console.log(
+  //   experts.length >= 4,
+  //   sortedExpertsByCountry.length >= 4,
+  //   sortedExpertsByExpertise.length >= 4
+  // );
   return (
     <>
-      <div className="row backgroundBody">
+      <hr />
+      <div className="row">
         <div className="col col-3 d-flex flex-column justify-content-start">
           <div className="filter-container">
             <h6>
@@ -84,7 +91,6 @@ export default function ExploreExperts({ experts, setExperts }) {
           </div>
         </div>
 
-        {!loading && (
         <div className="col col-9 fullcontainer">
           <button onClick={() => navigate(0)} className="goBackArrow">
             <span>
@@ -107,118 +113,154 @@ export default function ExploreExperts({ experts, setExperts }) {
               {sortedExpertsByCountry.length ? (
                 <div>
                   <div className="expert-list-container">
-                    {sortedExpertsByCountry.map((expert, index) => (
-                      <Card
-                        className="cardpoke"
-                        border="primary"
-                        style={{ width: "16rem",height: "25rem",borderRadius:"3rem"}}
-                      >
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            height="250"
-                            image={expert.personal_details.profile_picture}
-                            alt="Expert image"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                            >
-                              <h6 className="explore-experts-name-skills">
-                                {expert.personal_details?.first_name?.toUpperCase()}{" "}
-                                {expert.personal_details?.last_name?.toUpperCase()}
-                              </h6>
-                            </Typography>
-                            <Typography
-                              variant="body2"
-                              color="text.secondary"
-                              className="explore-experts-name-skills"
-                            >
-                              {expert.personal_details.skills}
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions className="button-div">
-                          <Button size="small" color="primary">
-                            <NavLink
-                              to={`/explore-experts/${expert?.personal_details.first_name}`}
-                              className="button-expert"
-                            >
-                              view details
-                            </NavLink>
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    ))}
+                    {sortedExpertsByCountry
+                      .slice(0, visibleExperts)
+                      .map((expert, index) => (
+                        <Card
+                          className="cardpoke"
+                          border="primary"
+                          style={{ width: "15rem", height: "22rem" }}
+                        >
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              height="200"
+                              image={expert.personal_details.profile_picture}
+                              alt="Expert image"
+                            />
+                            <CardContent>
+                              <Typography
+                                gutterBottom
+                                variant="h5"
+                                component="div"
+                              >
+                                <h6 className="explore-experts-name-skills">
+                                  {expert.personal_details?.first_name?.toUpperCase()}{" "}
+                                  {expert.personal_details?.last_name?.toUpperCase()}
+                                </h6>
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                className="explore-experts-name-skills"
+                              >
+                                {expert.personal_details.skills}
+                              </Typography>
+                            </CardContent>
+                          </CardActionArea>
+                          <CardActions className="button-div">
+                            <Button size="small" color="primary">
+                              <NavLink
+                                to={`/explore-experts/${expert?.personal_details.first_name}`}
+                                className="button-expert"
+                              >
+                                view details
+                              </NavLink>
+                            </Button>
+                          </CardActions>
+                        </Card>
+                      ))}
                   </div>
+                  {sortedExpertsByCountry.length >= 4 && (
+                    <Button
+                      variant="contained"
+                      style={{
+                        backgroundColor: "black",
+                        display: "flex",
+                        alignItems: "center",
+                        margin: "0 auto",
+                        marginTop: "2rem",
+                      }}
+                      onClick={loadMore}
+                    >
+                      Load more
+                    </Button>
+                  )}
                 </div>
               ) : (
                 <div>
                   {sortedExpertsByExpertise.length ? (
                     <div>
                       <div className="expert-list-container">
-                        {sortedExpertsByExpertise.map((expert, index) => (
-                          <Card
-                            className="cardpoke"
-                            border="primary"
-                            style={{ width: "16rem", height: "25rem",borderRadius:"3rem" }}
-                          >
-                            <CardActionArea>
-                              <CardMedia
-                                component="img"
-                                height="250"
-                                image={expert.personal_details.profile_picture}
-                                alt="Expert image"
-                              />
-                              <CardContent>
-                                <Typography
-                                  gutterBottom
-                                  variant="h5"
-                                  component="div"
-                                >
-                                  <h6 className="explore-experts-name-skills">
-                                    {expert.personal_details?.first_name?.toUpperCase()}{" "}
-                                    {expert.personal_details?.last_name?.toUpperCase()}
-                                  </h6>
-                                </Typography>
-                                <Typography
-                                  variant="body2"
-                                  color="text.secondary"
-                                  className="explore-experts-name-skills"
-                                >
-                                  {expert.personal_details.skills}
-                                </Typography>
-                              </CardContent>
-                            </CardActionArea>
-                            <CardActions className="button-div">
-                              <Button size="small" color="primary">
-                                <NavLink
-                                  to={`/explore-experts/${expert.personal_details.first_name}`}
-                                  className="button-expert"
-                                >
-                                  view details
-                                </NavLink>
-                              </Button>
-                            </CardActions>
-                          </Card>
-                        ))}
+                        {sortedExpertsByExpertise
+                          .slice(0, visibleExperts)
+                          .map((expert, index) => (
+                            <Card
+                              className="cardpoke"
+                              border="primary"
+                              style={{ width: "15rem", height: "22rem" }}
+                            >
+                              <CardActionArea>
+                                <CardMedia
+                                  component="img"
+                                  height="200"
+                                  image={
+                                    expert.personal_details.profile_picture
+                                  }
+                                  alt="Expert image"
+                                />
+                                <CardContent>
+                                  <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                    component="div"
+                                  >
+                                    <h6 className="explore-experts-name-skills">
+                                      {expert.personal_details?.first_name?.toUpperCase()}{" "}
+                                      {expert.personal_details?.last_name?.toUpperCase()}
+                                    </h6>
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    color="text.secondary"
+                                    className="explore-experts-name-skills"
+                                  >
+                                    {expert.personal_details.skills}
+                                  </Typography>
+                                </CardContent>
+                              </CardActionArea>
+                              <CardActions className="button-div">
+                                <Button size="small" color="primary">
+                                  <NavLink
+                                    to={`/explore-experts/${expert.personal_details.first_name}`}
+                                    className="button-expert"
+                                  >
+                                    view details
+                                  </NavLink>
+                                </Button>
+                              </CardActions>
+                            </Card>
+                          ))}
                       </div>
+                      {sortedExpertsByExpertise.length >= 4 && (
+                        <Button
+                          variant="contained"
+                          style={{
+                            backgroundColor: "black",
+                            display: "flex",
+                            alignItems: "center",
+                            margin: "0 auto",
+                            marginTop: "2rem",
+                          }}
+                          onClick={loadMore}
+                        >
+                          Load more
+                        </Button>
+                      )}
                     </div>
                   ) : (
                     <div className="expert-list-container">
-                      {experts.map((expert, index) => (
+                      {experts.slice(0, visibleExperts).map((expert, index) => (
                         <Card
                           className="cardpoke"
                           border="primary"
-                          style={{ width: "16rem",height: "25rem",borderRadius:"3rem"}}
+                          style={{ width: "15rem", height: "22rem" }}
                         >
                           {" "}
                           <CardActionArea>
                             <CardMedia
                               component="img"
-                              height="250"
+                              height="200"
                               image={expert.personal_details.profile_picture}
                               alt="Expert image"
                             />
@@ -256,6 +298,21 @@ export default function ExploreExperts({ experts, setExperts }) {
                       ))}
                     </div>
                   )}
+                  {experts.length >= 4 && (
+                    <Button
+                      variant="contained"
+                      style={{
+                        backgroundColor: "black",
+                        display: "flex",
+                        alignItems: "center",
+                        margin: "0 auto",
+                        marginTop: "2rem",
+                      }}
+                      onClick={loadMore}
+                    >
+                      Load more
+                    </Button>
+                  )}{" "}
                 </div>
               )}
             </div>
@@ -267,7 +324,6 @@ export default function ExploreExperts({ experts, setExperts }) {
             </div>
           )}
         </div>
-        )}
       </div>
     </>
   );
