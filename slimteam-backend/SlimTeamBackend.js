@@ -27,7 +27,7 @@ slimTeam.use('/explore-experts', slimTeamRouter)
 slimTeam.use('/explore-experts/:name', slimTeamRouter)
 slimTeam.use('/', CalenderRoutes)
 slimTeam.use('/', userAuthenticationRouter)
-slimTeam.use('/', jobWallRouter)
+slimTeam.use('/jobwall', jobWallRouter)
 slimTeam.use('/', profilePicRouter);
 slimTeam.use('/book-online/:name', slimTeamRouter)
 

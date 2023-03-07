@@ -1,13 +1,21 @@
 const mongoose = require("mongoose");
-const Post = require("../schemaModel/Post");
+const {Post} = require("../schemaModel/Post");
 const { ErrorResponse } = require("../utilities/ErrorResponse");
+
 
 const createPost = async (req, res, next) => {
   try {
-    const { title, description} = req.body;
-    const newPost = await Post.create({ title, description });
-    res.send(newPost)
-} catch (error) {
+    const { title, description, author } = req.body;
+
+    console.log(req.body, title, author, description)
+    const newPost = await Post.create({
+      title,
+      author,
+      description,
+    });
+    res.json(newPost);
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -21,7 +29,6 @@ const getPosts = async (req, res, next) => {
   }
 };
   
-
 const deletePostOne = async (req, res) => {
   try {
     const { id } = req.params;
@@ -31,8 +38,7 @@ const deletePostOne = async (req, res) => {
     );
     res.status(201).json(post);
   } catch (error) {
-    console.log(error.message);
-    res.status(500).send(error.messages);
+    next(error);
   }
 };
 

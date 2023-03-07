@@ -6,15 +6,17 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-import EmailIcon from "@mui/icons-material/Email";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Button from "@mui/material/Button";
+//import EmailIcon from "@mui/material/Email";
 
 export default function Jobwall({ name }) {
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const postItem = {
     title: "",
+    author: user?._id,
     description: "",
   };
 
@@ -28,11 +30,12 @@ export default function Jobwall({ name }) {
 
   const handleOnClickPost = async (e) => {
     e.preventDefault();
+    post.author = user._id
+    console.log(post)
     await axios
       .post("http://localhost:8888/jobwall", post)
       .then((res) => {
         setPost(res.data);
-        console.log(res.data);
         console.log("Frontend: A new post is created");
       })
       .catch((err) => {
@@ -42,7 +45,7 @@ export default function Jobwall({ name }) {
       });
   };
 
-  const maxCh = 60;
+  const maxCh = 150;
   const toggleBtn = () => {
     setReadMore(!readMore);
   };
@@ -61,8 +64,10 @@ export default function Jobwall({ name }) {
     fetchPosts();
   }, [post]);
 
+  console.log(posts);
+
   return (
-    <div className="backgroundBody">
+    <>
       {user ? (
         <div>
           <div className="post-input-container">
@@ -102,12 +107,15 @@ export default function Jobwall({ name }) {
               return (
                 <div className="post-container">
                   <div className="post-card">
-                  <h5>
-                    <b>{post.title} </b>{" "}
-                  </h5>
-                  <p className="post-date">
-                    {moment(now).format("ddd, YYYY-MM-DD")}
-                  </p>
+                    <h5>
+                      <b>{post.title}</b>
+                    </h5>
+                    <p>
+                      {moment(now).format("ddd, YYYY-MM-DD HH:mm")} - by{" "}
+                      <NavLink to="/profile" className="post-author">
+                        {name}
+                      </NavLink>
+                    </p>
                     <div className="post-item">
                       <div className="post-description">
                         {readMore
@@ -146,18 +154,19 @@ export default function Jobwall({ name }) {
                       <hr className="horizontal-line" />
                       <div className="response-div">
                         <div>
-                          If you are interested, please contact:
-                          <IconButton aria-label="edit" size="small">
-                            <EmailIcon fontSize="inherit" color="inherit" />
-                          </IconButton>{" "}
+                          If you are interested, please contact: 
+{/*                           <IconButton aria-label="edit" size="small">
+                            <EmailIcon fontSize="inherit" color="inherit" onClick={() =>
+                              (window.location = `mailto:${user?.personal_details?.email}`)
+                            } />
+                          </IconButton>{" "} */}
                           <NavLink
                             to={`/portfolio/${name}`}
                             className="post-author"
                           >
-                            {name}
+                            {post.author}
                           </NavLink>
-                        </div>
-                      </div>
+                        </div>                      </div>
                     </div>
                   </div>
                 </div>
@@ -172,10 +181,13 @@ export default function Jobwall({ name }) {
               <div className="post-container">
                 <div className="post-card">
                   <h5>
-                    <b>{post.title} </b>{" "}
+                    <b>{post.title}</b>
                   </h5>
-                  <p className="post-date">
-                    {moment(now).format("ddd, YYYY-MM-DD")}
+                  <p>
+                    {moment(now).format("ddd, YYYY-MM-DD HH:mm")} - by{" "}
+                    <NavLink to="/profile" className="post-author">
+                    {post.author}
+                    </NavLink>
                   </p>
                   <div className="post-item">
                     <div className="post-description">
@@ -188,15 +200,20 @@ export default function Jobwall({ name }) {
                     </div>
                     <hr className="horizontal-line" />
                     <div className="response-div">
-                      <div>
-                        If you are interested, please contact:
-                        <NavLink to="/login" className="post-author">
-                          <IconButton aria-label="edit" size="small">
-                            <EmailIcon fontSize="inherit" color="inherit" />
-                          </IconButton>{" "}
-                          Jason
-                        </NavLink>
-                      </div>
+                        <div>
+                          If you are interested, please contact: 
+{/*                           <IconButton aria-label="edit" size="small">
+                            <EmailIcon fontSize="inherit" color="inherit" onClick={() =>
+                              (window.location = `mailto:${user?.personal_details?.email}`)
+                            } />
+                          </IconButton>{" "} */}
+                          <NavLink
+                            to={`/portfolio/${name}`}
+                            className="post-author"
+                          >
+                            {post.author}
+                          </NavLink>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -205,6 +222,6 @@ export default function Jobwall({ name }) {
           })}
         </div>
       )}
-    </div>
+    </>
   );
 }
