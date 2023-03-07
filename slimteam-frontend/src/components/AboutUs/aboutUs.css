@@ -102,3 +102,16 @@ background-color: rgb(242, 236, 236);
   }
 
 
+  .hover-container {
+    position: relative;
+  }
+  
+  .hover-container:hover::before {
+    content: "Designed by katemangostar / Freepik";
+    font-size: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: auto;
+  }
+  
