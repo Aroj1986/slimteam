@@ -53,12 +53,16 @@ function AboutUs() {
               </NavLink>
             </Button>
           </div>
+          <div class="hover-container">
+          <a href="http://www.freepik.com" target="_blank">
           <img
             className="image"
             src={handymen}
-            alt="arojPicture"
+            alt="Designed by katemangostar / Freepik"
             style={{ width: 580 }}
           />
+          </a>
+          </div>
         </div>
         <br></br>
         <div className="reviews">
