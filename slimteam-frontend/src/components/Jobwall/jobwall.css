@@ -76,6 +76,13 @@
   color: white;
 }
 
+.jobPost-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .post-container {
   display: flex;
   flex-direction: column;
@@ -141,4 +148,8 @@
   border: none;
   color: rgb(9, 135, 167);
   cursor: pointer;
+}
+
+.post-date {
+  color: gray;
 }

@@ -1,3 +1,14 @@
+/* scrollable body and background image*/
+.backgroundBody {
+  /*background: url("https://png.pngtree.com/thumb_back/fh260/background/20201009/pngtree-gold-marble-white-gray-marble-pattern-texture-abstract-background-panoramic-marbling-image_406896.jpg");*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: whitesmoke;
+  background-blend-mode: lighten;
+  padding-top: 0rem;
+}
+
 .container-search-field {
   display: flex;
   flex-direction: row;
@@ -71,12 +82,7 @@
   flex-shrink: 1;
   flex-wrap: wrap;
   gap: 5rem;
-  padding: 1rem 0rem;
-
   width: 100%;
-}
-.expert-list-container {
-  background-color: F2ECEC;
 }
 
 .card-container {
@@ -125,7 +131,8 @@
 /* Expert portfolio page*/
 
 .goBackArrow {
-  background-color: white;
+  background-color: none;
+  color: none;
   border: none;
   display: flex;
   flex-direction: row;
@@ -133,7 +140,7 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  margin: 0rem 1rem;
+  margin-top: 1rem;
 }
 
 .goBackText {
