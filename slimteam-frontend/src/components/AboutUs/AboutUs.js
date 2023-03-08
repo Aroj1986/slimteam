@@ -10,7 +10,6 @@ import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
 import ImagesearchRollerIcon from "@mui/icons-material/ImagesearchRoller";
 import ChildFriendlyIcon from "@mui/icons-material/ChildFriendly";
 import CarpenterIcon from "@mui/icons-material/Carpenter";
-import logo from "../../images/logo.png";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
