@@ -90,19 +90,19 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
         .catch((err) => console.log(err));
       setOpen(false);
       //mail to expert for user booking
-      // emailjs.send('service_tnbxdpq', 'template_gseatce', template_param_expert, '52YVtk3Co2hMAovzI')
-      // .then((result) => {
-      //     console.log(result.status,result.text);
-      // }, (error) => {
-      //     console.log(error.text);
-      // });
-      // // copy of confirmation mail to user for booking an expert
-      // emailjs.send('service_tnbxdpq', 'template_q6jcw4l', template_param_user, '52YVtk3Co2hMAovzI')
-      // .then((result) => {
-      //     console.log(result.status,result.text);
-      // }, (error) => {
-      //     console.log(error.text);
-      // });
+      emailjs.send('service_tnbxdpq', 'template_gseatce', template_param_expert, '52YVtk3Co2hMAovzI')
+      .then((result) => {
+          console.log(result.status,result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      // copy of confirmation mail to user for booking an expert
+      emailjs.send('service_tnbxdpq', 'template_q6jcw4l', template_param_user, '52YVtk3Co2hMAovzI')
+      .then((result) => {
+          console.log(result.status,result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
       setTitle("");
       setTime("")
       setDesciption("");

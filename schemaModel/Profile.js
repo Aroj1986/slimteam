@@ -11,7 +11,7 @@ const profileSchema = new Schema (
             email : {type: String},
             skills : [{type: String, required: true}],
             profile_picture : {type: String,
-            default:"https://res.cloudinary.com/daeqbf45h/image/upload/v1677080995/rnjmgtg2gn6dse1oyseg.jpg" },
+            default:"https://res.cloudinary.com/daeqbf45h/image/upload/v1678283013/vpoxud35hl7wpqiry5ee.jpg" },
             title : {type : String, required: true},
             first_name : {type : String, required: true},
             last_name : {type : String, required: true},
