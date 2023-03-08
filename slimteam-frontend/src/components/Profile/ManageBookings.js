@@ -63,20 +63,20 @@ export default function ManageBookings() {
         setOpen(false);
         setReason("");
         //  mail to expert for user booking
-        //  emailjs.send('service_uvp0rck', 'template_9qeisr9', {
-        //   to_email : to_email
-        //   ,from_email:from_email
-        //   ,expert_name : expert_UserName
-        //   ,user_name : user_UserName
-        //   ,reason : reason
-        //   ,start_date: start
-        //   ,title:title
-        //  }, 'f_2ehsvnxo2qEtz7Z')
-        //  .then((result) => {
-        //      console.log(result.status,result.text);
-        //  }, (error) => {
-        //      console.log(error.text);
-        //  });
+         emailjs.send('service_uvp0rck', 'template_9qeisr9', {
+          to_email : to_email
+          ,from_email:from_email
+          ,expert_name : expert_UserName
+          ,user_name : user_UserName
+          ,reason : reason
+          ,start_date: start
+          ,title:title
+         }, 'f_2ehsvnxo2qEtz7Z')
+         .then((result) => {
+             console.log(result.status,result.text);
+         }, (error) => {
+             console.log(error.text);
+         });
       })
       .catch((error) => {
         console.error("Error deleting event", error);

@@ -68,20 +68,20 @@ const {name} = useParams();
             setOpen(false);
             setReason("")
               //  mail to expert for user booking
-        //  emailjs.send('service_uvp0rck', 'template_7q53ym5', {
-        //   to_email : to_email
-        //   ,from_email:from_email
-        //   ,expert_name : expert_UserName
-        //   ,user_name : user_UserName
-        //   ,start_date: start
-        //   ,title:title
-        //   ,reason:reason
-        //  }, 'f_2ehsvnxo2qEtz7Z')
-        //  .then((result) => {
-        //      console.log(result.status,result.text);
-        //  }, (error) => {
-        //      console.log(error.text);
-        //  });
+         emailjs.send('service_uvp0rck', 'template_7q53ym5', {
+          to_email : to_email
+          ,from_email:from_email
+          ,expert_name : expert_UserName
+          ,user_name : user_UserName
+          ,start_date: start
+          ,title:title
+          ,reason:reason
+         }, 'f_2ehsvnxo2qEtz7Z')
+         .then((result) => {
+             console.log(result.status,result.text);
+         }, (error) => {
+             console.log(error.text);
+         });
           })
           .catch((error) => {
             console.error("Error deleting event", error);
