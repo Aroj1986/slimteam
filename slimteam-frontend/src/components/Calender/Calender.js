@@ -43,20 +43,20 @@ const MyCalendar = ({ name, expertName }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `/book-online/${
+          `/api/calendar/book-online/${
             name ? name : usName
           }/${exptname}`
         );
         setEvents(response.data);
         const userw = await axios.get(
-          `/profile-details/${name}`
+          `/api/explore-experts/profile-details/${name}`
         );
         setfromEmail(userw.data[0].personal_details.email);
         const expert = await axios.get(
-          `/profile-details/${exptname}`
+          `/api/explore-experts/profile-details/${exptname}`
         );
         setToEmail(expert.data[0].personal_details.email);
-        const bookedDate = await axios.get("/book-online");
+        const bookedDate = await axios.get("/api/calendar/book-online");
         setBookedDates(
           bookedDate.data.map((value) => {
             return value.start;
@@ -119,7 +119,7 @@ const MyCalendar = ({ name, expertName }) => {
 
     setEditingEvent(null);
     axios
-      .delete(`/book-online/${_id}`)
+      .delete(`/api/calendar/book-online/${_id}`)
       .then((response) => {
         console.log("Event got deleted successfully", response.data);
         setEvents(

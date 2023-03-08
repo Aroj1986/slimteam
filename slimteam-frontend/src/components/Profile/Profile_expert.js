@@ -106,7 +106,7 @@ function Profile_expert({
 
 
     axios
-      .post("/explore-experts", postData)
+      .post("/api/explore-experts/explore-experts", postData)
       .then((res) => {
         setUserLogin(true);
         navigate(`/portfolio/${data.first_name}`);

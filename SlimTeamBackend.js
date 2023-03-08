@@ -25,14 +25,14 @@ slimTeam.use(cors({
   credentials: true
 }))
 
-slimTeam.use('/', slimTeamRouter)
-slimTeam.use('/explore-experts', slimTeamRouter)
-slimTeam.use('/explore-experts/:name', slimTeamRouter)
-slimTeam.use('/', CalenderRoutes)
-slimTeam.use('/', userAuthenticationRouter)
-slimTeam.use('/jobwall', jobWallRouter)
-slimTeam.use('/', profilePicRouter);
-slimTeam.use('/book-online/:name', slimTeamRouter)
+slimTeam.use('/api/explore-experts', slimTeamRouter)
+//slimTeam.use('/explore-experts', slimTeamRouter)
+//slimTeam.use('/explore-experts/:name', slimTeamRouter)
+slimTeam.use('/api/calendar', CalenderRoutes)
+slimTeam.use('/api/auth', userAuthenticationRouter)
+slimTeam.use('/api/jobwall', jobWallRouter)
+slimTeam.use('/api/picture', profilePicRouter);
+//slimTeam.use('/api/calendar/book-online/:name', slimTeamRouter)
 
 slimTeam.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "slimteam-frontend", "build", "index.html"));

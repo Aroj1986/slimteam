@@ -11,7 +11,7 @@ export default function Logout({setUserLogin}) {
 
   const logoutOnClick = (e) => {
     axios
-      .post("/logout")
+      .post("/api/auth/logout")
       .then((res) => {
         console.log(`Backend: ${res.data}`);
         console.log("Frontend: User is logged out");

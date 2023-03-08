@@ -33,7 +33,7 @@ export default function Portfolio({ name, email, setName }) {
   useEffect(() => {
     const getPortfolio = () => {
       axios
-        .get(`/portfolio/${name}`)
+        .get(`/api/explore-experts/portfolio/${name}`)
         .then((res) => {
           setPortfolio(res.data);
           console.log(res.data)
@@ -207,7 +207,7 @@ export default function Portfolio({ name, email, setName }) {
 
                                     axios
                                       .put(
-                                        `/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
+                                        `/api/explore-experts/portfolio/${portfolio?.personal_details?.first_name}/delete-experience`,
                                         experience
                                       )
                                       .then((res) => {
@@ -290,7 +290,7 @@ export default function Portfolio({ name, email, setName }) {
                                     console.log(education);
                                     axios
                                       .put(
-                                        `/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
+                                        `/api/explore-experts/portfolio/${portfolio?.personal_details?.first_name}/delete-education`,
                                         education
                                       )
                                       .then((res) => {
@@ -369,7 +369,7 @@ export default function Portfolio({ name, email, setName }) {
                                     console.log(certifications);
                                     axios
                                       .put(
-                                        `/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
+                                        `/api/explore-experts/portfolio/${portfolio?.personal_details?.first_name}/delete-certification`,
                                         certifications
                                       )
                                       .then((res) => {
@@ -441,7 +441,7 @@ export default function Portfolio({ name, email, setName }) {
                                     console.log(languages);
                                     axios
                                       .put(
-                                        `/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
+                                        `/api/explore-experts/portfolio/${portfolio?.personal_details?.first_name}/delete-language`,
                                         languages
                                       )
                                       .then((res) => {

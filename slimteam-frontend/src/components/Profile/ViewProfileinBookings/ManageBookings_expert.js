@@ -31,7 +31,7 @@ const {name} = useParams();
     useEffect(() => {
         const fetchData = async () => {
             try {
-              const response = await axios.get(`/manageexpertbookings/${name}`);
+              const response = await axios.get(`/api/calendar/manageexpertbookings/${name}`);
               setBookings(response.data)
             } catch (error) {
               console.log(error);
@@ -57,7 +57,7 @@ const {name} = useParams();
     const handleOK = ({ expert_UserName,user_UserName,reason,title,start,_id }) => {
         setEditEvent(null);
         axios
-          .delete(`/book-online/${_id}`)
+          .delete(`/api/calendar/book-online/${_id}`)
           .then((response) => {
             console.log("Event got deleted successfully", response.data);
             setBookings(

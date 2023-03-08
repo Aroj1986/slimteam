@@ -46,7 +46,7 @@ export default function CertificationEdit({
   const handleSubmitEdit = () => {
     axios
       .put(
-        `/portfolio/${name}/edit-certification/${id_cert}`,
+        `/api/explore-experts/portfolio/${name}/edit-certification/${id_cert}`,
         certifications
       )
       .then((res) => {

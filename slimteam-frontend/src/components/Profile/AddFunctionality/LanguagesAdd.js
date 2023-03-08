@@ -24,7 +24,7 @@ export default function LanguagesAdd({name, id, portfolio, setPortfolio }) {
   const languages = {
     languages: { language, proficiency },
   };
-  const url = `/portfolio/${name}`;
+  const url = `/api/explore-experts/portfolio/${name}`;
   const AddLanguages = (e) => {
     e.preventDefault();
     axios.put(url, languages).then((res) => {

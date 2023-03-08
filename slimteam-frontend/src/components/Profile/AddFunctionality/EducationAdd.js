@@ -23,7 +23,7 @@ export default function EducationAdd({ name,id,portfolio , setPortfolio }) {
       const education = {
         education :{institute ,degree, start_date, end_date}
       }
-      const url = `/portfolio/${name}`;
+      const url = `/api/explore-experts/portfolio/${name}`;
       const AddEducation = (e) => {
         e.preventDefault()
         axios.put(url, education)

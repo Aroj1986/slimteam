@@ -32,7 +32,7 @@ export default function ManageBookings() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `/managebookings/${name}`
+          `/api/calendar/managebookings/${name}`
         );
         setBookings(response.data);
       } catch (error) {
@@ -52,7 +52,7 @@ export default function ManageBookings() {
   }) => {
     setEditEvent(null);
     axios
-      .delete(`/book-online/${_id}`)
+      .delete(`/api/calendar/book-online/${_id}`)
       .then((response) => {
         console.log("Event got deleted successfully", response.data);
         setBookings(
