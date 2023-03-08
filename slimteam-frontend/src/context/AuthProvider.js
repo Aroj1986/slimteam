@@ -12,7 +12,7 @@ function AuthProvider(props) {
 
    useEffect(() => {
     axios
-      .get('/profile', {withCredentials: true})
+      .get('/api/explore-experts/profile', {withCredentials: true})
       .then((res) => {
         setUser(res.data)
         setLoading(false);
@@ -27,7 +27,7 @@ function AuthProvider(props) {
   const login = (email, password, setError) => {
     return axios
       .post(
-        "/login",
+        "/api/auth/login",
         { email, password }, {withCredentials: true}
       )
       .then((res) => {
@@ -46,7 +46,7 @@ function AuthProvider(props) {
 
   const register = (email, password,isExpert,isUser) => {
     return axios
-    .post(("/register"),
+    .post(("/api/auth/register"),
         { email, password,isExpert,isUser }, {withCredentials: true}
       )
       .then((res) => {
@@ -70,7 +70,7 @@ function AuthProvider(props) {
 
   function logout() {
     return     axios
-    .get("/logout", {withCredentials: true})
+    .get("/api/auth/logout", {withCredentials: true})
     .then((res) => {
       console.log(`Backend: ${res.data}`);
       console.log("Frontend: User is logged out");

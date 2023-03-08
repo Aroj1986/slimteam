@@ -28,7 +28,7 @@ export default function LanguageEdit({name,id_lang,language,proficiency,setPortf
     const AddLanguages = (e) => {
         axios
         .put(
-          `/portfolio/${name}/edit-languages/${id_lang}`,
+          `/api/explore-experts/portfolio/${name}/edit-languages/${id_lang}`,
           languages
         )
         .then((res) => {

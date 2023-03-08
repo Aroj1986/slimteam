@@ -20,7 +20,7 @@ export default function CerticiationsAdd({ name,id,portfolio , setPortfolio }) {
     const certifications = {
         certifications :{certification_name:certification,valid_from:start_date}
     }
-    const url = `/portfolio/${name}`;
+    const url = `/api/explore-experts/portfolio/${name}`;
     const AddCeritifications = (e) => {
       e.preventDefault()
       axios.put(url, certifications)

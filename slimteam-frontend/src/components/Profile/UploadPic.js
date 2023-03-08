@@ -30,7 +30,7 @@ export default function UploadPic({name,setPortfolio}) {
   });
 
   const editPicture = async() => {
-    await axios.put(`/addprofilepic/${name}`, {profile_picture})
+    await axios.put(`/api/picture/addprofilepic/${name}`, {profile_picture})
     .then(res => {
      setPortfolio(res.data)
        console.log(res.data);

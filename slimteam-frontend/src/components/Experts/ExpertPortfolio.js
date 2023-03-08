@@ -20,7 +20,7 @@ export default function ExpertPortfolio({ setExpertName }) {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`/explore-expert/${name}`)
+      .get(`/api/explore-experts/explore-expert/${name}`)
       .then((res) => {
         setExpert(res.data);
         setExpertName(name);

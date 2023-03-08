@@ -35,7 +35,7 @@ export default function App() {
   var mail = localStorage.getItem("email");
 
   useEffect(() => {
-    axios.get("/explore-experts").then((res) => {
+    axios.get("/api/explore-experts/explore-experts").then((res) => {
       setExperts(res.data.filter((rd) => 
       {
         if(rd?.role === "Expert" && rd?.personal_details.email !== mail) {
@@ -45,7 +45,7 @@ export default function App() {
       ))
       // setExperts(res.data);
     });
-    axios.get(`/explore-experts/${mail}`).then((res) => {
+    axios.get(`/api/explore-experts/explore-experts/${mail}`).then((res) => {
       setName(res.data[0]?.personal_details?.first_name);
       localStorage.setItem("name",res.data[0]?.personal_details?.first_name)
       setRole(res.data[0]?.role);

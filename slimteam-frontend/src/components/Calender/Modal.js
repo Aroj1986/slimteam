@@ -32,13 +32,13 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
   useEffect(() => {
     const getDetails = () =>{
       axios
-      .get(`/portfolio/${name}`)
+      .get(`/api/explore-experts/portfolio/${name}`)
       .then((res) => {
         setUserDetails(res.data);
       })
 
       axios
-      .get(`/portfolio/${expertName}`)
+      .get(`/api/explore-experts/portfolio/${expertName}`)
       .then((res) => {
         setExpertDetails(res.data);
       })
@@ -85,7 +85,7 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
     e.preventDefault();
     if (title) {
       axios
-        .post("/book-online", { start,end,title,UserName:name,expertName : expertName,allDay:true  })
+        .post("/api/calendar/book-online", { start,end,title,UserName:name,expertName : expertName,allDay:true  })
         .then(({ data }) => setEvents([...events, data]))
         .catch((err) => console.log(err));
       setOpen(false);

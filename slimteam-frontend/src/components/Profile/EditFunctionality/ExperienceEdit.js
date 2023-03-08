@@ -51,7 +51,7 @@ console.log(inputFromDate,inputUntilDate)
 
   const handleSubmitEdit = () => {
     axios
-    .put(`/portfolio/${name}/edit-experience/${id_exp}`, experience)
+    .put(`/api/explore-experts/portfolio/${name}/edit-experience/${id_exp}`, experience)
     .then((res) => {
       setPortfolio(res.data)
     });

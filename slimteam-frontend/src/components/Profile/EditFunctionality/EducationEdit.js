@@ -49,7 +49,7 @@ export default function EducationEdit({name, id_edu, institute, degree, start_da
 
   const handleSubmitEdit = () => {
     axios
-    .put(`/portfolio/${name}/edit-education/${id_edu}`, education)
+    .put(`/api/explore-experts/portfolio/${name}/edit-education/${id_edu}`, education)
     .then((res) => {
       setPortfolio(res.data)
     });

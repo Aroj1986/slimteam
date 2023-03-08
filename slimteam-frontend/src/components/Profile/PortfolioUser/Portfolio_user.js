@@ -20,7 +20,7 @@ export default function Portfolio_user({ name, email, setName }) {
   useEffect(() => {
     const getPortfolio = () => {
       axios
-        .get(`/portfolio/${name}`)
+        .get(`/api/explore-experts/portfolio/${name}`)
         .then((res) => {
           setPortfolio(res.data);
           console.log(res.data)

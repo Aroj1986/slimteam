@@ -33,7 +33,7 @@ export default function Jobwall({ name }) {
     post.author = user._id
     console.log(post)
     await axios
-      .post("/jobwall", post)
+      .post("/api/jobwall", post)
       .then((res) => {
         setPost(res.data);
         console.log("Frontend: A new post is created");
@@ -55,7 +55,7 @@ export default function Jobwall({ name }) {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await axios.get("/jobwall");
+        const response = await axios.get("/api/jobwall");
         setPosts(response.data);
       } catch (err) {
         console.log(err);
@@ -135,7 +135,7 @@ export default function Jobwall({ name }) {
 
                               await axios
                                 .put(
-                                  `/jobwall/delete-post/${post?._id}`,
+                                  `/api/jobwall/delete-post/${post?._id}`,
                                   postOne
                                 )
                                 .then((res) => {

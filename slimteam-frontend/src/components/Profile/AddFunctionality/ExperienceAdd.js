@@ -27,7 +27,7 @@ export default function ExperienceAdd({ name,id,portfolio , setPortfolio }) {
       until_date: end_date,
     },
   };
-  const url = `/portfolio/${name}`;
+  const url = `/api/explore-experts/portfolio/${name}`;
   const AddExperience = (e) => {
     e.preventDefault()
     axios.put(url, experience)

@@ -123,7 +123,7 @@ export default function HeadlineEdit({
   const handleSubmitEdit = async () => {
     await axios
       .put(
-        `/portfolio/${name}/edit-headline-expert/${id_expert}`,
+        `/api/explore-experts/portfolio/${name}/edit-headline-expert/${id_expert}`,
         personal_details
       )
       .then((res) => {
