@@ -1,9 +1,9 @@
 import "./meetus.css";
 import { NavLink } from "react-router-dom";
-import sindhura from "../../images/Sindhura.jpeg";
-import aroj from "../../images/ArojPicture.jpeg";
-import Monika from "../../images/Monika.jpeg";
-import Neelima from "../../images/Neelima.jpeg";
+import aroj from "../../assets/ArojPicture.jpeg";
+import Monika from '../../assets/Monika.jpeg'
+import Neelima from '../../assets/Neelima.jpeg'
+import sindhura from '../../assets/Sindhura.jpeg'
 
 function MeetUs() {
   return (
