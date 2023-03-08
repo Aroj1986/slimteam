@@ -28,6 +28,7 @@ export default function ManageBookings() {
   const [editEvent, setEditEvent] = useState(null);
   const [bookings, setBookings] = useState([]);
   const localizer = momentLocalizer(moment);
+  const [toemail,setToEmail] = useState("")
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -64,8 +65,8 @@ export default function ManageBookings() {
         setReason("");
         //  mail to expert for user booking
          emailjs.send('service_uvp0rck', 'template_9qeisr9', {
-          to_email : to_email
-          ,from_email:from_email
+          to_email : toemail
+          // ,from_email:from_email
           ,expert_name : expert_UserName
           ,user_name : user_UserName
           ,reason : reason
@@ -96,8 +97,13 @@ export default function ManageBookings() {
     setOpen(true);
   };
 
-  const handleEventSelect = (event, start) => {
+  const handleEventSelect = async (event, start) => {
     setEditEvent(event);
+    axios.get(`/api/explore-experts/explore-expert/${event.expert_UserName}`)
+    .then((res) => {
+      console.log(res.data)
+      setToEmail(res.data?.personal_details.email);
+    });
   };
   const eventPropGetter = (event) => {
     const isBooked = bookings.some(

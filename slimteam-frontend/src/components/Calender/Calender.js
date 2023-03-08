@@ -38,6 +38,7 @@ const MyCalendar = ({ name, expertName }) => {
   const exptname = localStorage.getItem("expertName");
   const usName = localStorage.getItem("name");
   const [reason, setReason] = React.useState("");
+  const [to_eemail, setToeEmail] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -131,8 +132,8 @@ const MyCalendar = ({ name, expertName }) => {
         setReason("");
         //mail to expert for user booking
          emailjs.send('service_uvp0rck', 'template_9qeisr9', {
-          to_email : to_email
-          ,from_email:from_email
+          to_email : to_eemail
+          // ,from_email:from_email
           ,expert_name : expert_UserName
           ,user_name : user_UserName
           ,start_date: start
@@ -140,8 +141,10 @@ const MyCalendar = ({ name, expertName }) => {
           ,reason : reason
          }, 'f_2ehsvnxo2qEtz7Z')
          .then((result) => {
+          
              console.log(result.status,result.text);
          }, (error) => {
+          console.log(to_eemail)
              console.log(error.text);
          });
       })
@@ -153,7 +156,15 @@ const MyCalendar = ({ name, expertName }) => {
 
   const handleEventSelect = (event, start) => {
     setEditingEvent(event);
+    console.log(event.expert_UserName)
+
+   axios.get(`/api/explore-experts/explore-expert/${event.expert_UserName}`)
+    .then((res) => {
+      console.log(res.data)
+       setToeEmail(res.data?.personal_details.email);
+    });
   };
+  console.log(to_eemail)
 
   const eventPropGetter = (event) => {
     const isBooked = events.some(

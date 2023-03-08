@@ -46,7 +46,7 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
         console.log(`Error fetching sought expert in database: ${err}`);
       });
     }  
-    name && expertName && getDetails()
+    getDetails()
 
   }, [name,expertName]);
 
@@ -80,6 +80,8 @@ export default function Modal ({ open, setOpen, start,end, title,setTitle,events
     postal_code:userDetails?.personal_details?.address?.postal_code,
     description:description,
   }
+  console.log(template_param_expert)
+  console.log(template_param_user)
 
   const handleSubmit = (e) => {
     e.preventDefault();
