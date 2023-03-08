@@ -20,7 +20,7 @@ const {
   editExpertHeadlineExpert,
   getProfile,
   editLanguages,
-} = require("../CallbackFunctions/SlimTeamCallbackFunctions");
+} = require("../CallbackFunctions/slimTeamCallbackFunctions");
 
 slimTeamRouter.get("/profile", verifyToken, getProfile);
 slimTeamRouter.route("/explore-experts").post(createProfile).get(getExperts);

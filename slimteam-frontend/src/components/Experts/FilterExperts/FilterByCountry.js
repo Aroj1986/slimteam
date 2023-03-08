@@ -1,12 +1,7 @@
 import * as React from "react";
 import "./filter.css";
-import {
-  Box,
-  FormLabel,
-  FormControl,
-  FormGroup,
-} from "@mui/material";
-import '../experts.css'
+import { Box, FormLabel, FormControl, FormGroup } from "@mui/material";
+import "../experts.css";
 
 export default function FilterByCountry({
   experts,
@@ -19,27 +14,24 @@ export default function FilterByCountry({
   let result = checkedCountry.filter((count) => count.checked);
 
   const handleChange = (checked, i) => {
-    setCheckedCountry(false)
+    setCheckedCountry(false);
     let tmp = checkedCountry[i];
     tmp.checked = !checked;
     let CheckedCountriesClone = [...checkedCountry];
     CheckedCountriesClone[i] = tmp;
 
     setCheckedCountry([...CheckedCountriesClone]);
-   
 
-    if(tmp.checked === false) {
-      setSortedExpertsByCountry(false)
+    if (tmp.checked === false) {
+      setSortedExpertsByCountry(false);
     } else {
       setSortedExpertsByCountry(
         experts.filter(
           (expert) =>
             expert?.personal_details?.nationality?.toLowerCase() === tmp.count
         )
-      );      
+      );
     }
-   
-
   };
 
   selected = result.map((rec) => rec.count);
@@ -48,12 +40,11 @@ export default function FilterByCountry({
     <div className="filter-card-container">
       <Box sx={{ display: "flex" }}>
         <FormControl component="fieldset" variant="standard">
-
-          <FormLabel component="legend" className="country">Country</FormLabel>
-         
+          <FormLabel component="legend" className="country">
+            Country
+          </FormLabel>
 
           <FormGroup className="checkbox-label">
-
             {checkedCountry.map(({ count, checked }, i) => (
               <div key={i}>
                 <input
@@ -63,12 +54,14 @@ export default function FilterByCountry({
                   onChange={() => handleChange(checked, i)}
                 />
                 <label className="form-check-label" htmlFor={i}>
-                  {count}
+                  {count
+                    .toLowerCase()
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
                 </label>
               </div>
             ))}
-
-
           </FormGroup>
         </FormControl>
       </Box>

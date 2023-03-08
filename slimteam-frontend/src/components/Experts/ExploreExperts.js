@@ -27,10 +27,12 @@ export default function ExploreExperts({ experts, setExperts }) {
 
   // sort by expertise
   const [checkedExpertise, setCheckedExpertise] = useState([
-    { expertise: "cooking", checked: false },
+    { expertise: "electrician", checked: false },
+    { expertise: "mechanic", checked: false },
+    { expertise: "plumber", checked: false },
     { expertise: "carpenter", checked: false },
     { expertise: "gardener", checked: false },
-    { expertise: "plumbing", checked: false },
+    { expertise: "chef", checked: false },
     { expertise: "nanny", checked: false },
     { expertise: "cleaner", checked: false },
   ]);
