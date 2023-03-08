@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon SlimTeamBackend.js"
+    "dev": "nodemon SlimTeamBackend.js",
+    "start": "node SlimTeamBackend.js"
   },
   "repository": {
     "type": "git",
