@@ -11,7 +11,7 @@ const slimTeamRouter = require('./Routes/slimTeamRoutes')
 const userAuthenticationRouter = require('./Routes/UserAuthenticationRoutes')
 const jobWallRouter = require('./Routes/JobWallRoutes')
 const CalenderRoutes = require('./Routes/CalenderRoutes')
-const profilePicRouter = require('./routes/profilepic');
+const profilePicRouter = require('./Routes/profilepic');
 const { errorHandler } = require('./middlewares/errorHandler')
 
 slimTeam.use(express.static(path.resolve(__dirname, "slimteam-frontend", "build")));
