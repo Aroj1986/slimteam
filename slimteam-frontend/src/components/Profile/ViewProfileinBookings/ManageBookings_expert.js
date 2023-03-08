@@ -28,6 +28,7 @@ const {name} = useParams();
     const [editEvent, setEditEvent] = useState(null);
     const [bookings, setBookings] = useState([]);
     const localizer = momentLocalizer(moment);
+    const [toemail,setToEmail] = useState("")
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -69,8 +70,8 @@ const {name} = useParams();
             setReason("")
               //  mail to expert for user booking
          emailjs.send('service_uvp0rck', 'template_7q53ym5', {
-          to_email : to_email
-          ,from_email:from_email
+          to_email : toemail
+          // ,from_email:from_email
           ,expert_name : expert_UserName
           ,user_name : user_UserName
           ,start_date: start
@@ -88,10 +89,15 @@ const {name} = useParams();
           });
       };
 
-    const handleEventSelect = (event,start) => {
+    const handleEventSelect = async (event,start) => {
         setEditEvent(event);
-         
+        axios.get(`/api/explore-experts/explore-expert/${event.user_UserName}`)
+        .then((res) => {
+          console.log(res.data)
+          setToEmail(res.data?.personal_details.email);
+        });
       };
+      console.log(toemail)
     const eventPropGetter = (event) => {
         const isBooked = bookings.some(
           (e) =>
