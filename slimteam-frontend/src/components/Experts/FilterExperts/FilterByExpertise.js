@@ -1,11 +1,6 @@
 import * as React from "react";
-import {
-  Box,
-  FormLabel,
-  FormControl,
-  FormGroup,
-} from "@mui/material";
-import '../experts.css'
+import { Box, FormLabel, FormControl, FormGroup } from "@mui/material";
+import "../experts.css";
 
 export default function FilterByExpertise({
   experts,
@@ -18,37 +13,41 @@ export default function FilterByExpertise({
   let result = checkedExpertise.filter((expertise) => expertise.checked);
 
   const handleChange = (checked, i) => {
-    setCheckedExpertise(false)
+    setCheckedExpertise(false);
     let tmp = checkedExpertise[i];
     tmp.checked = !checked;
     let checkedExpertiseClone = [...checkedExpertise];
     checkedExpertiseClone[i] = tmp;
-    console.log(checkedExpertiseClone)
-    setCheckedExpertise([...checkedExpertiseClone, ]);
-    if(tmp.checked === false) {
-      setSortedExpertsByExpertise(false)
+    console.log(checkedExpertiseClone);
+    setCheckedExpertise([...checkedExpertiseClone]);
+    if (tmp.checked === false) {
+      setSortedExpertsByExpertise(false);
     } else {
       setSortedExpertsByExpertise(
         experts.filter((expert) => {
-          for(let i=0; i<expert.personal_details.skills.length; i++){
-            console.log(expert.personal_details.skills[i])
-            console.log(tmp.expertise[expert.personal_details.skills[i]])
-            console.log(tmp.expertise)
-            if((expert.personal_details.skills[i].toLowerCase()).includes(tmp.expertise.toLowerCase())){
-              return true
+          for (let i = 0; i < expert.personal_details.skills.length; i++) {
+            console.log(expert.personal_details.skills[i]);
+            console.log(tmp.expertise[expert.personal_details.skills[i]]);
+            console.log(tmp.expertise);
+            if (
+              expert.personal_details.skills[i]
+                .toLowerCase()
+                .includes(tmp.expertise.toLowerCase())
+            ) {
+              return true;
             } else {
-              return false
+              return false;
             }
           }
         })
-        );     
-        console.log(tmp)
+      );
+      console.log(tmp);
     }
-    console.log(tmp)
-    console.log(checkedExpertiseClone)
+    console.log(tmp);
+    console.log(checkedExpertiseClone);
   };
 
-  selected = result.map((rec) => rec.expertise)
+  selected = result.map((rec) => rec.expertise);
 
   return (
     <div className="filter-card-container">
@@ -65,7 +64,11 @@ export default function FilterByExpertise({
                   onChange={() => handleChange(checked, i)}
                 />
                 <label className="form-check-label" htmlFor={i}>
-                  {expertise}
+                  {expertise
+                    .toLowerCase()
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
                 </label>
               </div>
             ))}

@@ -17,7 +17,7 @@ function Profile_gerneric({
     isUser)
   return (
     <div>
-      {!isExpert ? (
+      {isExpert ? (
         <Profile_expert
           email={email}
           setEmail={setEmail}
